@@ -5480,18 +5480,6 @@ class ToolTipRendererDirective {
         this.showToolTipOnTextOverflow = false;
         this.duration = 0;
     }
-    ngOnInit() {
-        const positionStrategy = this._overlayPositionBuilder.flexibleConnectedTo(this._elementRef).withPositions([
-            {
-                originX: 'start',
-                originY: 'top',
-                overlayX: 'start',
-                overlayY: 'bottom',
-                offsetY: -5
-            }
-        ]);
-        this._overlayRef = this._overlay.create({ positionStrategy });
-    }
     show() {
         if (this.timeout) {
             clearTimeout(this.timeout);
@@ -5499,8 +5487,21 @@ class ToolTipRendererDirective {
         if ((this.showToolTipOnTextOverflow &&
             this._elementRef.nativeElement.offsetWidth < this._elementRef.nativeElement.scrollWidth) ||
             this.showToolTip) {
-            if (this._overlayRef && !this._overlayRef.hasAttached()) {
+            if (!this._overlayRef) {
+                const positionStrategy = this._overlayPositionBuilder.flexibleConnectedTo(this._elementRef).withPositions([
+                    {
+                        originX: 'start',
+                        originY: 'top',
+                        overlayX: 'start',
+                        overlayY: 'bottom',
+                        offsetY: -5
+                    }
+                ]);
+                this._overlayRef = this._overlay.create({ positionStrategy });
+            }
+            if (!this._overlayRef.hasAttached()) {
                 const tooltipRef = this._overlayRef.attach(new _angular_cdk_portal__WEBPACK_IMPORTED_MODULE_0__["ComponentPortal"](_components_ice_custom_tooltip_ice_custom_tooltip_component__WEBPACK_IMPORTED_MODULE_2__["CustomToolTipComponent"]));
+                this.componentInstance = tooltipRef;
                 tooltipRef.instance.text = this.iceTooltipHtmlText;
             }
         }
@@ -5511,11 +5512,16 @@ class ToolTipRendererDirective {
         }, this.duration);
     }
     ngOnDestroy() {
+        if (this.timeout) {
+            clearTimeout(this.timeout);
+        }
         this.closeToolTip();
+        this._overlayRef = null;
     }
     closeToolTip() {
         if (this._overlayRef) {
             this._overlayRef.detach();
+            this.componentInstance = null;
         }
     }
 }

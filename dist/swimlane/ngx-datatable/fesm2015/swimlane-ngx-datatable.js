@@ -8174,22 +8174,6 @@ class ToolTipRendererDirective {
     /**
      * @return {?}
      */
-    ngOnInit() {
-        /** @type {?} */
-        const positionStrategy = this._overlayPositionBuilder.flexibleConnectedTo(this._elementRef).withPositions([
-            {
-                originX: 'start',
-                originY: 'top',
-                overlayX: 'start',
-                overlayY: 'bottom',
-                offsetY: -5
-            }
-        ]);
-        this._overlayRef = this._overlay.create({ positionStrategy });
-    }
-    /**
-     * @return {?}
-     */
     show() {
         if (this.timeout) {
             clearTimeout(this.timeout);
@@ -8197,9 +8181,23 @@ class ToolTipRendererDirective {
         if ((this.showToolTipOnTextOverflow &&
             this._elementRef.nativeElement.offsetWidth < this._elementRef.nativeElement.scrollWidth) ||
             this.showToolTip) {
-            if (this._overlayRef && !this._overlayRef.hasAttached()) {
+            if (!this._overlayRef) {
+                /** @type {?} */
+                const positionStrategy = this._overlayPositionBuilder.flexibleConnectedTo(this._elementRef).withPositions([
+                    {
+                        originX: 'start',
+                        originY: 'top',
+                        overlayX: 'start',
+                        overlayY: 'bottom',
+                        offsetY: -5
+                    }
+                ]);
+                this._overlayRef = this._overlay.create({ positionStrategy });
+            }
+            if (!this._overlayRef.hasAttached()) {
                 /** @type {?} */
                 const tooltipRef = this._overlayRef.attach(new ComponentPortal(CustomToolTipComponent));
+                this.componentInstance = tooltipRef;
                 tooltipRef.instance.text = this.iceTooltipHtmlText;
             }
         }
@@ -8219,7 +8217,11 @@ class ToolTipRendererDirective {
      * @return {?}
      */
     ngOnDestroy() {
+        if (this.timeout) {
+            clearTimeout(this.timeout);
+        }
         this.closeToolTip();
+        this._overlayRef = (/** @type {?} */ (null));
     }
     /**
      * @private
@@ -8228,6 +8230,7 @@ class ToolTipRendererDirective {
     closeToolTip() {
         if (this._overlayRef) {
             this._overlayRef.detach();
+            this.componentInstance = (/** @type {?} */ (null));
         }
     }
 }
@@ -8269,6 +8272,11 @@ if (false) {
      * @private
      */
     ToolTipRendererDirective.prototype.timeout;
+    /**
+     * @type {?}
+     * @private
+     */
+    ToolTipRendererDirective.prototype.componentInstance;
     /**
      * @type {?}
      * @private

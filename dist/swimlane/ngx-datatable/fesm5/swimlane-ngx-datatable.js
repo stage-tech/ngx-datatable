@@ -9455,25 +9455,6 @@ var ToolTipRendererDirective = /** @class */ (function () {
     /**
      * @return {?}
      */
-    ToolTipRendererDirective.prototype.ngOnInit = /**
-     * @return {?}
-     */
-    function () {
-        /** @type {?} */
-        var positionStrategy = this._overlayPositionBuilder.flexibleConnectedTo(this._elementRef).withPositions([
-            {
-                originX: 'start',
-                originY: 'top',
-                overlayX: 'start',
-                overlayY: 'bottom',
-                offsetY: -5
-            }
-        ]);
-        this._overlayRef = this._overlay.create({ positionStrategy: positionStrategy });
-    };
-    /**
-     * @return {?}
-     */
     ToolTipRendererDirective.prototype.show = /**
      * @return {?}
      */
@@ -9484,9 +9465,23 @@ var ToolTipRendererDirective = /** @class */ (function () {
         if ((this.showToolTipOnTextOverflow &&
             this._elementRef.nativeElement.offsetWidth < this._elementRef.nativeElement.scrollWidth) ||
             this.showToolTip) {
-            if (this._overlayRef && !this._overlayRef.hasAttached()) {
+            if (!this._overlayRef) {
+                /** @type {?} */
+                var positionStrategy = this._overlayPositionBuilder.flexibleConnectedTo(this._elementRef).withPositions([
+                    {
+                        originX: 'start',
+                        originY: 'top',
+                        overlayX: 'start',
+                        overlayY: 'bottom',
+                        offsetY: -5
+                    }
+                ]);
+                this._overlayRef = this._overlay.create({ positionStrategy: positionStrategy });
+            }
+            if (!this._overlayRef.hasAttached()) {
                 /** @type {?} */
                 var tooltipRef = this._overlayRef.attach(new ComponentPortal(CustomToolTipComponent));
+                this.componentInstance = tooltipRef;
                 tooltipRef.instance.text = this.iceTooltipHtmlText;
             }
         }
@@ -9513,7 +9508,11 @@ var ToolTipRendererDirective = /** @class */ (function () {
      * @return {?}
      */
     function () {
+        if (this.timeout) {
+            clearTimeout(this.timeout);
+        }
         this.closeToolTip();
+        this._overlayRef = (/** @type {?} */ (null));
     };
     /**
      * @private
@@ -9526,6 +9525,7 @@ var ToolTipRendererDirective = /** @class */ (function () {
     function () {
         if (this._overlayRef) {
             this._overlayRef.detach();
+            this.componentInstance = (/** @type {?} */ (null));
         }
     };
     ToolTipRendererDirective.decorators = [
@@ -9568,6 +9568,11 @@ if (false) {
      * @private
      */
     ToolTipRendererDirective.prototype.timeout;
+    /**
+     * @type {?}
+     * @private
+     */
+    ToolTipRendererDirective.prototype.componentInstance;
     /**
      * @type {?}
      * @private
