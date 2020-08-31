@@ -6074,18 +6074,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_row_detail_row_detail_template_directive__WEBPACK_IMPORTED_MODULE_27__ = __webpack_require__(/*! ./components/row-detail/row-detail-template.directive */ "./projects/swimlane/ngx-datatable/src/lib/components/row-detail/row-detail-template.directive.ts");
 /* harmony import */ var _components_body_body_cell_component__WEBPACK_IMPORTED_MODULE_28__ = __webpack_require__(/*! ./components/body/body-cell.component */ "./projects/swimlane/ngx-datatable/src/lib/components/body/body-cell.component.ts");
 /* harmony import */ var _components_body_selection_component__WEBPACK_IMPORTED_MODULE_29__ = __webpack_require__(/*! ./components/body/selection.component */ "./projects/swimlane/ngx-datatable/src/lib/components/body/selection.component.ts");
-/* harmony import */ var _angular_platform_browser_animations__WEBPACK_IMPORTED_MODULE_30__ = __webpack_require__(/*! @angular/platform-browser/animations */ "./node_modules/@angular/platform-browser/__ivy_ngcc__/fesm2015/animations.js");
-/* harmony import */ var _components_columns_column_header_directive__WEBPACK_IMPORTED_MODULE_31__ = __webpack_require__(/*! ./components/columns/column-header.directive */ "./projects/swimlane/ngx-datatable/src/lib/components/columns/column-header.directive.ts");
-/* harmony import */ var _components_columns_column_cell_directive__WEBPACK_IMPORTED_MODULE_32__ = __webpack_require__(/*! ./components/columns/column-cell.directive */ "./projects/swimlane/ngx-datatable/src/lib/components/columns/column-cell.directive.ts");
-/* harmony import */ var _components_columns_tree_directive__WEBPACK_IMPORTED_MODULE_33__ = __webpack_require__(/*! ./components/columns/tree.directive */ "./projects/swimlane/ngx-datatable/src/lib/components/columns/tree.directive.ts");
-/* harmony import */ var _components_footer_footer_directive__WEBPACK_IMPORTED_MODULE_34__ = __webpack_require__(/*! ./components/footer/footer.directive */ "./projects/swimlane/ngx-datatable/src/lib/components/footer/footer.directive.ts");
-/* harmony import */ var _components_body_body_group_header_template_directive__WEBPACK_IMPORTED_MODULE_35__ = __webpack_require__(/*! ./components/body/body-group-header-template.directive */ "./projects/swimlane/ngx-datatable/src/lib/components/body/body-group-header-template.directive.ts");
-/* harmony import */ var _components_body_summary_summary_row_component__WEBPACK_IMPORTED_MODULE_36__ = __webpack_require__(/*! ./components/body/summary/summary-row.component */ "./projects/swimlane/ngx-datatable/src/lib/components/body/summary/summary-row.component.ts");
-/* harmony import */ var _directives_ice_custom_html_tooltip_directive__WEBPACK_IMPORTED_MODULE_37__ = __webpack_require__(/*! ./directives/ice-custom-html-tooltip.directive */ "./projects/swimlane/ngx-datatable/src/lib/directives/ice-custom-html-tooltip.directive.ts");
-/* harmony import */ var _components_ice_custom_tooltip_ice_custom_tooltip_component__WEBPACK_IMPORTED_MODULE_38__ = __webpack_require__(/*! ./components/ice-custom-tooltip/ice-custom-tooltip.component */ "./projects/swimlane/ngx-datatable/src/lib/components/ice-custom-tooltip/ice-custom-tooltip.component.ts");
-/* harmony import */ var _angular_cdk_portal__WEBPACK_IMPORTED_MODULE_39__ = __webpack_require__(/*! @angular/cdk/portal */ "./node_modules/@angular/cdk/__ivy_ngcc__/esm2015/portal.js");
-
-
+/* harmony import */ var _components_columns_column_header_directive__WEBPACK_IMPORTED_MODULE_30__ = __webpack_require__(/*! ./components/columns/column-header.directive */ "./projects/swimlane/ngx-datatable/src/lib/components/columns/column-header.directive.ts");
+/* harmony import */ var _components_columns_column_cell_directive__WEBPACK_IMPORTED_MODULE_31__ = __webpack_require__(/*! ./components/columns/column-cell.directive */ "./projects/swimlane/ngx-datatable/src/lib/components/columns/column-cell.directive.ts");
+/* harmony import */ var _components_columns_tree_directive__WEBPACK_IMPORTED_MODULE_32__ = __webpack_require__(/*! ./components/columns/tree.directive */ "./projects/swimlane/ngx-datatable/src/lib/components/columns/tree.directive.ts");
+/* harmony import */ var _components_footer_footer_directive__WEBPACK_IMPORTED_MODULE_33__ = __webpack_require__(/*! ./components/footer/footer.directive */ "./projects/swimlane/ngx-datatable/src/lib/components/footer/footer.directive.ts");
+/* harmony import */ var _components_body_body_group_header_template_directive__WEBPACK_IMPORTED_MODULE_34__ = __webpack_require__(/*! ./components/body/body-group-header-template.directive */ "./projects/swimlane/ngx-datatable/src/lib/components/body/body-group-header-template.directive.ts");
+/* harmony import */ var _components_body_summary_summary_row_component__WEBPACK_IMPORTED_MODULE_35__ = __webpack_require__(/*! ./components/body/summary/summary-row.component */ "./projects/swimlane/ngx-datatable/src/lib/components/body/summary/summary-row.component.ts");
+/* harmony import */ var _directives_ice_custom_html_tooltip_directive__WEBPACK_IMPORTED_MODULE_36__ = __webpack_require__(/*! ./directives/ice-custom-html-tooltip.directive */ "./projects/swimlane/ngx-datatable/src/lib/directives/ice-custom-html-tooltip.directive.ts");
+/* harmony import */ var _components_ice_custom_tooltip_ice_custom_tooltip_component__WEBPACK_IMPORTED_MODULE_37__ = __webpack_require__(/*! ./components/ice-custom-tooltip/ice-custom-tooltip.component */ "./projects/swimlane/ngx-datatable/src/lib/components/ice-custom-tooltip/ice-custom-tooltip.component.ts");
 
 
 
@@ -6138,14 +6134,14 @@ class NgxDatatableModule {
     }
 }
 NgxDatatableModule.ngModuleDef = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineNgModule"]({ type: NgxDatatableModule });
-NgxDatatableModule.ngInjectorDef = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineInjector"]({ factory: function NgxDatatableModule_Factory(t) { return new (t || NgxDatatableModule)(); }, providers: [_services_scrollbar_helper_service__WEBPACK_IMPORTED_MODULE_5__["ScrollbarHelper"], _services_dimensions_helper_service__WEBPACK_IMPORTED_MODULE_6__["DimensionsHelper"], _services_column_changes_service__WEBPACK_IMPORTED_MODULE_7__["ColumnChangesService"]], imports: [[_angular_common__WEBPACK_IMPORTED_MODULE_1__["CommonModule"], _angular_material_tooltip__WEBPACK_IMPORTED_MODULE_4__["MatTooltipModule"], _angular_cdk_portal__WEBPACK_IMPORTED_MODULE_39__["PortalModule"], _angular_platform_browser_animations__WEBPACK_IMPORTED_MODULE_30__["BrowserAnimationsModule"], _angular_cdk_overlay__WEBPACK_IMPORTED_MODULE_3__["OverlayModule"], _angular_material_icon__WEBPACK_IMPORTED_MODULE_2__["MatIconModule"]]] });
+NgxDatatableModule.ngInjectorDef = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineInjector"]({ factory: function NgxDatatableModule_Factory(t) { return new (t || NgxDatatableModule)(); }, providers: [_services_scrollbar_helper_service__WEBPACK_IMPORTED_MODULE_5__["ScrollbarHelper"], _services_dimensions_helper_service__WEBPACK_IMPORTED_MODULE_6__["DimensionsHelper"], _services_column_changes_service__WEBPACK_IMPORTED_MODULE_7__["ColumnChangesService"]], imports: [[_angular_common__WEBPACK_IMPORTED_MODULE_1__["CommonModule"], _angular_material_tooltip__WEBPACK_IMPORTED_MODULE_4__["MatTooltipModule"], _angular_cdk_overlay__WEBPACK_IMPORTED_MODULE_3__["OverlayModule"], _angular_material_icon__WEBPACK_IMPORTED_MODULE_2__["MatIconModule"]]] });
 /*@__PURE__*/ _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵsetNgModuleScope"](NgxDatatableModule, { declarations: [_components_footer_footer_template_directive__WEBPACK_IMPORTED_MODULE_8__["DataTableFooterTemplateDirective"],
         _directives_visibility_directive__WEBPACK_IMPORTED_MODULE_9__["VisibilityDirective"],
         _directives_draggable_directive__WEBPACK_IMPORTED_MODULE_10__["DraggableDirective"],
         _directives_resizeable_directive__WEBPACK_IMPORTED_MODULE_11__["ResizeableDirective"],
         _directives_orderable_directive__WEBPACK_IMPORTED_MODULE_12__["OrderableDirective"],
         _directives_long_press_directive__WEBPACK_IMPORTED_MODULE_13__["LongPressDirective"],
-        _directives_ice_custom_html_tooltip_directive__WEBPACK_IMPORTED_MODULE_37__["ToolTipRendererDirective"],
+        _directives_ice_custom_html_tooltip_directive__WEBPACK_IMPORTED_MODULE_36__["ToolTipRendererDirective"],
         _components_body_scroller_component__WEBPACK_IMPORTED_MODULE_14__["ScrollerComponent"],
         _components_datatable_component__WEBPACK_IMPORTED_MODULE_15__["DatatableComponent"],
         _components_columns_column_directive__WEBPACK_IMPORTED_MODULE_16__["DataTableColumnDirective"],
@@ -6157,33 +6153,33 @@ NgxDatatableModule.ngInjectorDef = _angular_core__WEBPACK_IMPORTED_MODULE_0__["�
         _components_body_progress_bar_component__WEBPACK_IMPORTED_MODULE_22__["ProgressBarComponent"],
         _components_body_body_row_component__WEBPACK_IMPORTED_MODULE_23__["DataTableBodyRowComponent"],
         _components_body_body_row_wrapper_component__WEBPACK_IMPORTED_MODULE_24__["DataTableRowWrapperComponent"],
-        _components_ice_custom_tooltip_ice_custom_tooltip_component__WEBPACK_IMPORTED_MODULE_38__["CustomToolTipComponent"],
+        _components_ice_custom_tooltip_ice_custom_tooltip_component__WEBPACK_IMPORTED_MODULE_37__["CustomToolTipComponent"],
         _components_row_detail_row_detail_directive__WEBPACK_IMPORTED_MODULE_25__["DatatableRowDetailDirective"],
         _components_body_body_group_header_directive__WEBPACK_IMPORTED_MODULE_26__["DatatableGroupHeaderDirective"],
         _components_row_detail_row_detail_template_directive__WEBPACK_IMPORTED_MODULE_27__["DatatableRowDetailTemplateDirective"],
         _components_body_body_cell_component__WEBPACK_IMPORTED_MODULE_28__["DataTableBodyCellComponent"],
         _components_body_selection_component__WEBPACK_IMPORTED_MODULE_29__["DataTableSelectionComponent"],
-        _components_columns_column_header_directive__WEBPACK_IMPORTED_MODULE_31__["DataTableColumnHeaderDirective"],
-        _components_columns_column_cell_directive__WEBPACK_IMPORTED_MODULE_32__["DataTableColumnCellDirective"],
-        _components_columns_tree_directive__WEBPACK_IMPORTED_MODULE_33__["DataTableColumnCellTreeToggle"],
-        _components_footer_footer_directive__WEBPACK_IMPORTED_MODULE_34__["DatatableFooterDirective"],
-        _components_body_body_group_header_template_directive__WEBPACK_IMPORTED_MODULE_35__["DatatableGroupHeaderTemplateDirective"],
-        _components_body_summary_summary_row_component__WEBPACK_IMPORTED_MODULE_36__["DataTableSummaryRowComponent"]], imports: [_angular_common__WEBPACK_IMPORTED_MODULE_1__["CommonModule"], _angular_material_tooltip__WEBPACK_IMPORTED_MODULE_4__["MatTooltipModule"], _angular_cdk_portal__WEBPACK_IMPORTED_MODULE_39__["PortalModule"], _angular_platform_browser_animations__WEBPACK_IMPORTED_MODULE_30__["BrowserAnimationsModule"], _angular_cdk_overlay__WEBPACK_IMPORTED_MODULE_3__["OverlayModule"], _angular_material_icon__WEBPACK_IMPORTED_MODULE_2__["MatIconModule"]], exports: [_components_datatable_component__WEBPACK_IMPORTED_MODULE_15__["DatatableComponent"],
+        _components_columns_column_header_directive__WEBPACK_IMPORTED_MODULE_30__["DataTableColumnHeaderDirective"],
+        _components_columns_column_cell_directive__WEBPACK_IMPORTED_MODULE_31__["DataTableColumnCellDirective"],
+        _components_columns_tree_directive__WEBPACK_IMPORTED_MODULE_32__["DataTableColumnCellTreeToggle"],
+        _components_footer_footer_directive__WEBPACK_IMPORTED_MODULE_33__["DatatableFooterDirective"],
+        _components_body_body_group_header_template_directive__WEBPACK_IMPORTED_MODULE_34__["DatatableGroupHeaderTemplateDirective"],
+        _components_body_summary_summary_row_component__WEBPACK_IMPORTED_MODULE_35__["DataTableSummaryRowComponent"]], imports: [_angular_common__WEBPACK_IMPORTED_MODULE_1__["CommonModule"], _angular_material_tooltip__WEBPACK_IMPORTED_MODULE_4__["MatTooltipModule"], _angular_cdk_overlay__WEBPACK_IMPORTED_MODULE_3__["OverlayModule"], _angular_material_icon__WEBPACK_IMPORTED_MODULE_2__["MatIconModule"]], exports: [_components_datatable_component__WEBPACK_IMPORTED_MODULE_15__["DatatableComponent"],
         _components_row_detail_row_detail_directive__WEBPACK_IMPORTED_MODULE_25__["DatatableRowDetailDirective"],
         _components_body_body_group_header_directive__WEBPACK_IMPORTED_MODULE_26__["DatatableGroupHeaderDirective"],
         _components_row_detail_row_detail_template_directive__WEBPACK_IMPORTED_MODULE_27__["DatatableRowDetailTemplateDirective"],
         _components_columns_column_directive__WEBPACK_IMPORTED_MODULE_16__["DataTableColumnDirective"],
-        _components_columns_column_header_directive__WEBPACK_IMPORTED_MODULE_31__["DataTableColumnHeaderDirective"],
-        _components_columns_column_cell_directive__WEBPACK_IMPORTED_MODULE_32__["DataTableColumnCellDirective"],
-        _components_columns_tree_directive__WEBPACK_IMPORTED_MODULE_33__["DataTableColumnCellTreeToggle"],
+        _components_columns_column_header_directive__WEBPACK_IMPORTED_MODULE_30__["DataTableColumnHeaderDirective"],
+        _components_columns_column_cell_directive__WEBPACK_IMPORTED_MODULE_31__["DataTableColumnCellDirective"],
+        _components_columns_tree_directive__WEBPACK_IMPORTED_MODULE_32__["DataTableColumnCellTreeToggle"],
         _components_footer_footer_template_directive__WEBPACK_IMPORTED_MODULE_8__["DataTableFooterTemplateDirective"],
-        _components_footer_footer_directive__WEBPACK_IMPORTED_MODULE_34__["DatatableFooterDirective"],
+        _components_footer_footer_directive__WEBPACK_IMPORTED_MODULE_33__["DatatableFooterDirective"],
         _components_footer_pager_component__WEBPACK_IMPORTED_MODULE_21__["DataTablePagerComponent"],
-        _components_body_body_group_header_template_directive__WEBPACK_IMPORTED_MODULE_35__["DatatableGroupHeaderTemplateDirective"]] });
+        _components_body_body_group_header_template_directive__WEBPACK_IMPORTED_MODULE_34__["DatatableGroupHeaderTemplateDirective"]] });
 /*@__PURE__*/ _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵsetClassMetadata"](NgxDatatableModule, [{
         type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["NgModule"],
         args: [{
-                imports: [_angular_common__WEBPACK_IMPORTED_MODULE_1__["CommonModule"], _angular_material_tooltip__WEBPACK_IMPORTED_MODULE_4__["MatTooltipModule"], _angular_cdk_portal__WEBPACK_IMPORTED_MODULE_39__["PortalModule"], _angular_platform_browser_animations__WEBPACK_IMPORTED_MODULE_30__["BrowserAnimationsModule"], _angular_cdk_overlay__WEBPACK_IMPORTED_MODULE_3__["OverlayModule"], _angular_material_icon__WEBPACK_IMPORTED_MODULE_2__["MatIconModule"]],
+                imports: [_angular_common__WEBPACK_IMPORTED_MODULE_1__["CommonModule"], _angular_material_tooltip__WEBPACK_IMPORTED_MODULE_4__["MatTooltipModule"], _angular_cdk_overlay__WEBPACK_IMPORTED_MODULE_3__["OverlayModule"], _angular_material_icon__WEBPACK_IMPORTED_MODULE_2__["MatIconModule"]],
                 providers: [_services_scrollbar_helper_service__WEBPACK_IMPORTED_MODULE_5__["ScrollbarHelper"], _services_dimensions_helper_service__WEBPACK_IMPORTED_MODULE_6__["DimensionsHelper"], _services_column_changes_service__WEBPACK_IMPORTED_MODULE_7__["ColumnChangesService"]],
                 declarations: [
                     _components_footer_footer_template_directive__WEBPACK_IMPORTED_MODULE_8__["DataTableFooterTemplateDirective"],
@@ -6192,7 +6188,7 @@ NgxDatatableModule.ngInjectorDef = _angular_core__WEBPACK_IMPORTED_MODULE_0__["�
                     _directives_resizeable_directive__WEBPACK_IMPORTED_MODULE_11__["ResizeableDirective"],
                     _directives_orderable_directive__WEBPACK_IMPORTED_MODULE_12__["OrderableDirective"],
                     _directives_long_press_directive__WEBPACK_IMPORTED_MODULE_13__["LongPressDirective"],
-                    _directives_ice_custom_html_tooltip_directive__WEBPACK_IMPORTED_MODULE_37__["ToolTipRendererDirective"],
+                    _directives_ice_custom_html_tooltip_directive__WEBPACK_IMPORTED_MODULE_36__["ToolTipRendererDirective"],
                     _components_body_scroller_component__WEBPACK_IMPORTED_MODULE_14__["ScrollerComponent"],
                     _components_datatable_component__WEBPACK_IMPORTED_MODULE_15__["DatatableComponent"],
                     _components_columns_column_directive__WEBPACK_IMPORTED_MODULE_16__["DataTableColumnDirective"],
@@ -6204,18 +6200,18 @@ NgxDatatableModule.ngInjectorDef = _angular_core__WEBPACK_IMPORTED_MODULE_0__["�
                     _components_body_progress_bar_component__WEBPACK_IMPORTED_MODULE_22__["ProgressBarComponent"],
                     _components_body_body_row_component__WEBPACK_IMPORTED_MODULE_23__["DataTableBodyRowComponent"],
                     _components_body_body_row_wrapper_component__WEBPACK_IMPORTED_MODULE_24__["DataTableRowWrapperComponent"],
-                    _components_ice_custom_tooltip_ice_custom_tooltip_component__WEBPACK_IMPORTED_MODULE_38__["CustomToolTipComponent"],
+                    _components_ice_custom_tooltip_ice_custom_tooltip_component__WEBPACK_IMPORTED_MODULE_37__["CustomToolTipComponent"],
                     _components_row_detail_row_detail_directive__WEBPACK_IMPORTED_MODULE_25__["DatatableRowDetailDirective"],
                     _components_body_body_group_header_directive__WEBPACK_IMPORTED_MODULE_26__["DatatableGroupHeaderDirective"],
                     _components_row_detail_row_detail_template_directive__WEBPACK_IMPORTED_MODULE_27__["DatatableRowDetailTemplateDirective"],
                     _components_body_body_cell_component__WEBPACK_IMPORTED_MODULE_28__["DataTableBodyCellComponent"],
                     _components_body_selection_component__WEBPACK_IMPORTED_MODULE_29__["DataTableSelectionComponent"],
-                    _components_columns_column_header_directive__WEBPACK_IMPORTED_MODULE_31__["DataTableColumnHeaderDirective"],
-                    _components_columns_column_cell_directive__WEBPACK_IMPORTED_MODULE_32__["DataTableColumnCellDirective"],
-                    _components_columns_tree_directive__WEBPACK_IMPORTED_MODULE_33__["DataTableColumnCellTreeToggle"],
-                    _components_footer_footer_directive__WEBPACK_IMPORTED_MODULE_34__["DatatableFooterDirective"],
-                    _components_body_body_group_header_template_directive__WEBPACK_IMPORTED_MODULE_35__["DatatableGroupHeaderTemplateDirective"],
-                    _components_body_summary_summary_row_component__WEBPACK_IMPORTED_MODULE_36__["DataTableSummaryRowComponent"]
+                    _components_columns_column_header_directive__WEBPACK_IMPORTED_MODULE_30__["DataTableColumnHeaderDirective"],
+                    _components_columns_column_cell_directive__WEBPACK_IMPORTED_MODULE_31__["DataTableColumnCellDirective"],
+                    _components_columns_tree_directive__WEBPACK_IMPORTED_MODULE_32__["DataTableColumnCellTreeToggle"],
+                    _components_footer_footer_directive__WEBPACK_IMPORTED_MODULE_33__["DatatableFooterDirective"],
+                    _components_body_body_group_header_template_directive__WEBPACK_IMPORTED_MODULE_34__["DatatableGroupHeaderTemplateDirective"],
+                    _components_body_summary_summary_row_component__WEBPACK_IMPORTED_MODULE_35__["DataTableSummaryRowComponent"]
                 ],
                 exports: [
                     _components_datatable_component__WEBPACK_IMPORTED_MODULE_15__["DatatableComponent"],
@@ -6223,13 +6219,13 @@ NgxDatatableModule.ngInjectorDef = _angular_core__WEBPACK_IMPORTED_MODULE_0__["�
                     _components_body_body_group_header_directive__WEBPACK_IMPORTED_MODULE_26__["DatatableGroupHeaderDirective"],
                     _components_row_detail_row_detail_template_directive__WEBPACK_IMPORTED_MODULE_27__["DatatableRowDetailTemplateDirective"],
                     _components_columns_column_directive__WEBPACK_IMPORTED_MODULE_16__["DataTableColumnDirective"],
-                    _components_columns_column_header_directive__WEBPACK_IMPORTED_MODULE_31__["DataTableColumnHeaderDirective"],
-                    _components_columns_column_cell_directive__WEBPACK_IMPORTED_MODULE_32__["DataTableColumnCellDirective"],
-                    _components_columns_tree_directive__WEBPACK_IMPORTED_MODULE_33__["DataTableColumnCellTreeToggle"],
+                    _components_columns_column_header_directive__WEBPACK_IMPORTED_MODULE_30__["DataTableColumnHeaderDirective"],
+                    _components_columns_column_cell_directive__WEBPACK_IMPORTED_MODULE_31__["DataTableColumnCellDirective"],
+                    _components_columns_tree_directive__WEBPACK_IMPORTED_MODULE_32__["DataTableColumnCellTreeToggle"],
                     _components_footer_footer_template_directive__WEBPACK_IMPORTED_MODULE_8__["DataTableFooterTemplateDirective"],
-                    _components_footer_footer_directive__WEBPACK_IMPORTED_MODULE_34__["DatatableFooterDirective"],
+                    _components_footer_footer_directive__WEBPACK_IMPORTED_MODULE_33__["DatatableFooterDirective"],
                     _components_footer_pager_component__WEBPACK_IMPORTED_MODULE_21__["DataTablePagerComponent"],
-                    _components_body_body_group_header_template_directive__WEBPACK_IMPORTED_MODULE_35__["DatatableGroupHeaderTemplateDirective"]
+                    _components_body_body_group_header_template_directive__WEBPACK_IMPORTED_MODULE_34__["DatatableGroupHeaderTemplateDirective"]
                 ]
             }]
     }], null, null);

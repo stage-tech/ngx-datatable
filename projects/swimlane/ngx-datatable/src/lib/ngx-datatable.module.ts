@@ -28,7 +28,6 @@ import { DatatableGroupHeaderDirective } from './components/body/body-group-head
 import { DatatableRowDetailTemplateDirective } from './components/row-detail/row-detail-template.directive';
 import { DataTableBodyCellComponent } from './components/body/body-cell.component';
 import { DataTableSelectionComponent } from './components/body/selection.component';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DataTableColumnHeaderDirective } from './components/columns/column-header.directive';
 import { DataTableColumnCellDirective } from './components/columns/column-cell.directive';
 import { DataTableColumnCellTreeToggle } from './components/columns/tree.directive';
@@ -37,11 +36,9 @@ import { DatatableGroupHeaderTemplateDirective } from './components/body/body-gr
 import { DataTableSummaryRowComponent } from './components/body/summary/summary-row.component';
 import { ToolTipRendererDirective } from './directives/ice-custom-html-tooltip.directive';
 import { CustomToolTipComponent } from './components/ice-custom-tooltip/ice-custom-tooltip.component';
-import { PortalModule } from '@angular/cdk/portal';
-import { ScrollingModule } from '@angular/cdk/scrolling';
 
 @NgModule({
-  imports: [CommonModule, MatTooltipModule, PortalModule, BrowserAnimationsModule, OverlayModule, MatIconModule],
+  imports: [CommonModule, MatTooltipModule, OverlayModule, MatIconModule],
   providers: [ScrollbarHelper, DimensionsHelper, ColumnChangesService],
   declarations: [
     DataTableFooterTemplateDirective,

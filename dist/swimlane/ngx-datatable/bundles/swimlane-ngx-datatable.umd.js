@@ -1,8 +1,8 @@
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@angular/common'), require('@angular/material/icon'), require('@angular/cdk/overlay'), require('@angular/material/tooltip'), require('rxjs'), require('rxjs/operators'), require('@angular/platform-browser/animations'), require('@angular/cdk/portal')) :
-    typeof define === 'function' && define.amd ? define('@swimlane/ngx-datatable', ['exports', '@angular/core', '@angular/common', '@angular/material/icon', '@angular/cdk/overlay', '@angular/material/tooltip', 'rxjs', 'rxjs/operators', '@angular/platform-browser/animations', '@angular/cdk/portal'], factory) :
-    (global = global || self, factory((global.swimlane = global.swimlane || {}, global.swimlane['ngx-datatable'] = {}), global.ng.core, global.ng.common, global.ng.material.icon, global.ng.cdk.overlay, global.ng.material.tooltip, global.rxjs, global.rxjs.operators, global.ng.platformBrowser.animations, global.ng.cdk.portal));
-}(this, function (exports, core, common, icon, overlay, tooltip, rxjs, operators, animations, portal) { 'use strict';
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@angular/common'), require('@angular/material/icon'), require('@angular/cdk/overlay'), require('@angular/material/tooltip'), require('rxjs'), require('rxjs/operators'), require('@angular/cdk/portal')) :
+    typeof define === 'function' && define.amd ? define('@swimlane/ngx-datatable', ['exports', '@angular/core', '@angular/common', '@angular/material/icon', '@angular/cdk/overlay', '@angular/material/tooltip', 'rxjs', 'rxjs/operators', '@angular/cdk/portal'], factory) :
+    (global = global || self, factory((global.swimlane = global.swimlane || {}, global.swimlane['ngx-datatable'] = {}), global.ng.core, global.ng.common, global.ng.material.icon, global.ng.cdk.overlay, global.ng.material.tooltip, global.rxjs, global.rxjs.operators, global.ng.cdk.portal));
+}(this, function (exports, core, common, icon, overlay, tooltip, rxjs, operators, portal) { 'use strict';
 
     /*! *****************************************************************************
     Copyright (c) Microsoft Corporation. All rights reserved.
@@ -9807,7 +9807,7 @@
         };
         NgxDatatableModule.decorators = [
             { type: core.NgModule, args: [{
-                        imports: [common.CommonModule, tooltip.MatTooltipModule, portal.PortalModule, animations.BrowserAnimationsModule, overlay.OverlayModule, icon.MatIconModule],
+                        imports: [common.CommonModule, tooltip.MatTooltipModule, overlay.OverlayModule, icon.MatIconModule],
                         providers: [ScrollbarHelper, DimensionsHelper, ColumnChangesService],
                         declarations: [
                             DataTableFooterTemplateDirective,

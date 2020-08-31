@@ -6,8 +6,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { Subject, fromEvent, BehaviorSubject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { __decorate, __metadata } from 'tslib';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { ComponentPortal, PortalModule } from '@angular/cdk/portal';
+import { ComponentPortal } from '@angular/cdk/portal';
 
 /**
  * @fileoverview added by tsickle
@@ -8306,7 +8305,7 @@ class NgxDatatableModule {
 }
 NgxDatatableModule.decorators = [
     { type: NgModule, args: [{
-                imports: [CommonModule, MatTooltipModule, PortalModule, BrowserAnimationsModule, OverlayModule, MatIconModule],
+                imports: [CommonModule, MatTooltipModule, OverlayModule, MatIconModule],
                 providers: [ScrollbarHelper, DimensionsHelper, ColumnChangesService],
                 declarations: [
                     DataTableFooterTemplateDirective,
