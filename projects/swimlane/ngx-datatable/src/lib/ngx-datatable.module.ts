@@ -85,7 +85,8 @@ import { CustomToolTipComponent } from './components/ice-custom-tooltip/ice-cust
     DatatableFooterDirective,
     DataTablePagerComponent,
     DatatableGroupHeaderTemplateDirective
-  ]
+  ],
+  entryComponents: [CustomToolTipComponent]
 })
 export class NgxDatatableModule {
   /**

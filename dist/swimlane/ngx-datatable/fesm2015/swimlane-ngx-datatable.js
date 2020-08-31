@@ -8352,7 +8352,8 @@ NgxDatatableModule.decorators = [
                     DatatableFooterDirective,
                     DataTablePagerComponent,
                     DatatableGroupHeaderTemplateDirective
-                ]
+                ],
+                entryComponents: [CustomToolTipComponent]
             },] }
 ];
 /**

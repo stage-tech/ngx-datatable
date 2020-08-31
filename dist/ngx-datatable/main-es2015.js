@@ -6226,7 +6226,8 @@ NgxDatatableModule.ngInjectorDef = _angular_core__WEBPACK_IMPORTED_MODULE_0__["É
                     _components_footer_footer_directive__WEBPACK_IMPORTED_MODULE_33__["DatatableFooterDirective"],
                     _components_footer_pager_component__WEBPACK_IMPORTED_MODULE_21__["DataTablePagerComponent"],
                     _components_body_body_group_header_template_directive__WEBPACK_IMPORTED_MODULE_34__["DatatableGroupHeaderTemplateDirective"]
-                ]
+                ],
+                entryComponents: [_components_ice_custom_tooltip_ice_custom_tooltip_component__WEBPACK_IMPORTED_MODULE_37__["CustomToolTipComponent"]]
             }]
     }], null, null);
 

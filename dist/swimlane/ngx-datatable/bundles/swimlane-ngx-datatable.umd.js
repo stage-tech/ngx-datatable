@@ -9854,7 +9854,8 @@
                             DatatableFooterDirective,
                             DataTablePagerComponent,
                             DatatableGroupHeaderTemplateDirective
-                        ]
+                        ],
+                        entryComponents: [CustomToolTipComponent]
                     },] }
         ];
         return NgxDatatableModule;

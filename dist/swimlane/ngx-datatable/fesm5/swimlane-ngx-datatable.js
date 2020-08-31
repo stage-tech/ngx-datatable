@@ -9661,7 +9661,8 @@ var NgxDatatableModule = /** @class */ (function () {
                         DatatableFooterDirective,
                         DataTablePagerComponent,
                         DatatableGroupHeaderTemplateDirective
-                    ]
+                    ],
+                    entryComponents: [CustomToolTipComponent]
                 },] }
     ];
     return NgxDatatableModule;
