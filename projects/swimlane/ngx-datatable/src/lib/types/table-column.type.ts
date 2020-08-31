@@ -216,4 +216,11 @@ export interface TableColumn {
    * @memberOf TableColumn
    */
   summaryTemplate?: any;
+
+  /**
+   * Ice material icons
+   *
+   * @memberOf TableColumn
+   */
+  icons?: string;
 }

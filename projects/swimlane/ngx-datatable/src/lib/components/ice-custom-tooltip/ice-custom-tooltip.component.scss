@@ -1,0 +1,31 @@
+.ice-custom-tooltip {
+  .tooltip-container {
+    border: 1px solid gray;
+    border-radius: 2px;
+    padding: 1px 5px 4px 5px;
+    background: #616161;
+    border-radius: 5px;
+    color: white;
+  }
+
+  .tooltip-table {
+    border-collapse: collapse;
+  }
+
+  .tooltip-header-row {
+    border-bottom: 1pt solid white;
+  }
+
+  .text-align-left {
+    text-align: left;
+  }
+
+  .text-align-vertical-center {
+    vertical-align: middle !important;
+  }
+
+  .cell-padding {
+    padding: 5px;
+    margin: 5px;
+  }
+}

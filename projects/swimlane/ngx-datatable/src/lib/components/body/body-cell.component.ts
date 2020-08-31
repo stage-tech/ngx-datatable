@@ -54,7 +54,24 @@ export type TreeStatus = 'collapsed' | 'expanded' | 'loading' | 'disabled';
         </ng-template>
       </ng-container>
 
-      <span *ngIf="!column.cellTemplate" [title]="sanitizedValue" [innerHTML]="value"> </span>
+      <h4
+        class="ice-data-table-row"
+        *ngIf="!column.cellTemplate"
+        iceCustomHtmlToolTip
+        [iceTooltipHtmlText]="getTooltipValue(value, row, column)"
+        [showToolTipOnTextOverflow]="true"
+        [showToolTip]="hasToShowToolTip(row, column)"
+        [innerHTML]="value"
+      ></h4>
+
+      <div *ngIf="column.icons as icons" fxLayout="column">
+        <mat-icon
+          *ngFor="let i of getIcons(row, icons)"
+          [innerHTML]="i.icon"
+          [matTooltip]="i.text"
+          class="{{ i.class }} mat-icon material-icons ice-ml-10"
+        ></mat-icon>
+      </div>
       <ng-template
         #cellTemplate
         *ngIf="column.cellTemplate"
@@ -420,5 +437,23 @@ export class DataTableBodyCellComponent implements DoCheck, OnDestroy {
   calcLeftMargin(column: any, row: any) {
     const levelIndent = column.treeLevelIndent != null ? column.treeLevelIndent : 50;
     return column.isTreeColumn ? row.level * levelIndent : 0;
+  }
+
+  hasToShowToolTip(row, field) {
+    return row && field && field.tooltip && field.tooltip.length > 0;
+  }
+
+  getTooltipValue(value, row, field) {
+    if (row && field && field.tooltip && field.tooltip.length > 0) {
+      return row[`${field.tooltip}`];
+    }
+    return value;
+  }
+
+  getIcons(row, icons) {
+    if (row && icons) {
+      const iconsArray = icons.split('.');
+      return iconsArray.length > 1 && row[iconsArray[0]] ? row[iconsArray[0]][iconsArray[1]] || [] : row[icons] || [];
+    }
   }
 }

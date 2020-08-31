@@ -73,6 +73,8 @@ import { SummaryRowServerPagingComponent } from './summary/summary-row-server-pa
 import { SummaryRowInlineHtmlComponent } from './summary/summary-row-inline-html.component';
 import { AppRoutingModule } from './app-routing.module';
 import { CommonModule } from '@angular/common';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 @NgModule({
   declarations: [
@@ -130,6 +132,8 @@ import { CommonModule } from '@angular/common';
   ],
   imports: [
     CommonModule,
+    MatTooltipModule,
+    BrowserAnimationsModule,
     BrowserModule,
     AppRoutingModule,
     NgxDatatableModule.forRoot({
