@@ -122,7 +122,7 @@ export type TreeStatus = 'collapsed' | 'expanded' | 'loading' | 'disabled';
       <ice-datatable-row-select
         style="margin-top: 18px"
         [options]="column.selectOptions"
-        [class]="column.cellClass"
+        [ngClass]="column.cellClass"
         (update)="updateSelect(column, row, $event)"
         [value]="value || column.defaultValue"
         [selectDisabled]="column.disabled"
@@ -132,12 +132,12 @@ export type TreeStatus = 'collapsed' | 'expanded' | 'loading' | 'disabled';
       <ng-container *ngIf="!column.selectOptions && (column.editable && isEditable(column, row) | async)">
         <mat-icon class="mat-icon material-icons" *ngIf="!column.hideEditIcon">edit</mat-icon>
         <ice-editable-text
-          [class]="column.cellClass"
+          [ngClass]="column.cellClass"
           (update)="editField(column, row, $event)"
           [errorText]="selectFieldValue(row, column.errorMessageField)"
-          [value]="selectFieldValue(row, column.prop)"
+          [value]="value"
         >
-          {{ selectFieldValue(row, column.prop) }}
+          {{ value }}
         </ice-editable-text>
       </ng-container>
 
@@ -534,7 +534,7 @@ export class DataTableBodyCellComponent implements DoCheck, OnDestroy {
       const propArray = prop.split('.');
       return propArray.length > 1 && row[propArray[0]] ? row[propArray[0]][propArray[1]] : row[prop];
     }
-    return false;
+    return ' ';
   }
 
   onClickRowActionButton(field, row) {

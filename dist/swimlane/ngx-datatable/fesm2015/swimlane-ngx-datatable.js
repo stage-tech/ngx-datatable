@@ -1,7 +1,7 @@
 import { Injectable, Inject, Directive, TemplateRef, EventEmitter, ElementRef, NgZone, HostBinding, Output, Input, Renderer2, HostListener, KeyValueDiffers, ContentChildren, Component, ChangeDetectionStrategy, ContentChild, ChangeDetectorRef, ViewChild, ViewEncapsulation, SkipSelf, Optional, ViewContainerRef, ViewChildren, NgModule } from '@angular/core';
 import { DOCUMENT, CommonModule } from '@angular/common';
 import { MatIconModule } from '@angular/material/icon';
-import { MatSelectModule } from '@angular/material/select';
+import { MatButtonModule } from '@angular/material/button';
 import { Overlay, OverlayPositionBuilder, OverlayModule } from '@angular/cdk/overlay';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { Subject, fromEvent, BehaviorSubject, of } from 'rxjs';
@@ -7498,7 +7498,7 @@ class DataTableBodyCellComponent {
             const propArray = prop.split('.');
             return propArray.length > 1 && row[propArray[0]] ? row[propArray[0]][propArray[1]] : row[prop];
         }
-        return false;
+        return ' ';
     }
     /**
      * @param {?} field
@@ -7653,7 +7653,7 @@ DataTableBodyCellComponent.decorators = [
       <ice-datatable-row-select
         style="margin-top: 18px"
         [options]="column.selectOptions"
-        [class]="column.cellClass"
+        [ngClass]="column.cellClass"
         (update)="updateSelect(column, row, $event)"
         [value]="value || column.defaultValue"
         [selectDisabled]="column.disabled"
@@ -7663,12 +7663,12 @@ DataTableBodyCellComponent.decorators = [
       <ng-container *ngIf="!column.selectOptions && (column.editable && isEditable(column, row) | async)">
         <mat-icon class="mat-icon material-icons" *ngIf="!column.hideEditIcon">edit</mat-icon>
         <ice-editable-text
-          [class]="column.cellClass"
+          [ngClass]="column.cellClass"
           (update)="editField(column, row, $event)"
           [errorText]="selectFieldValue(row, column.errorMessageField)"
-          [value]="selectFieldValue(row, column.prop)"
+          [value]="value"
         >
-          {{ selectFieldValue(row, column.prop) }}
+          {{ value }}
         </ice-editable-text>
       </ng-container>
 
@@ -8601,7 +8601,7 @@ class EditableTextComponent {
 EditableTextComponent.decorators = [
     { type: Component, args: [{
                 selector: 'ice-editable-text',
-                template: "",
+                template: "<button\n  class=\"button-as-text mb-0\"\n  #contentWrapper\n  *ngIf=\"!editing\"\n  [disabled]=\"disabled\"\n  [class.active]=\"active\"\n  (keyup.space)=\"editOnSpace && emitToggleEditing($event)\"\n  (focus)=\"emitFocus(); editOnFocus && emitToggleEditing($event)\"\n  (click)=\"emitToggleActive($event); editOnClick && emitToggleEditing($event)\"\n>\n  <ng-content></ng-content>\n</button>\n<div *ngIf=\"editing\" class=\"editable-text-container\">\n  <div>\n    <input\n      type=\"text\"\n      class=\"editable-text-input\"\n      #inputElement\n      [disabled]=\"disabled\"\n      [class.active]=\"active\"\n      [value]=\"value\"\n      (keyup.escape)=\"emitToggleEditing($event)\"\n      (keyup.enter)=\"emitUpdate(inputElement.value)\"\n      (change)=\"emitUpdate(inputElement.value)\"\n      (blur)=\"emitToggleEditing($event)\"\n    />\n  </div>\n</div>\n<div *ngIf=\"errorText\" class=\"editable-text-container ice-pt-10\">\n  <label class=\"ice-error-msg\">{{ errorText }}</label>\n</div>\n",
                 encapsulation: ViewEncapsulation.None,
                 host: {
                     class: 'ice-editable-text'
@@ -8680,7 +8680,7 @@ class NgxDatatableModule {
 }
 NgxDatatableModule.decorators = [
     { type: NgModule, args: [{
-                imports: [CommonModule, MatTooltipModule, OverlayModule, MatIconModule, MatSelectModule],
+                imports: [CommonModule, MatTooltipModule, OverlayModule, MatIconModule, MatButtonModule],
                 providers: [ScrollbarHelper, DimensionsHelper, ColumnChangesService],
                 declarations: [
                     DataTableFooterTemplateDirective,

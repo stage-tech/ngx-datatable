@@ -1,7 +1,7 @@
 import { NgModule, ModuleWithProviders } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatIconModule } from '@angular/material/icon';
-import { MatSelectModule } from '@angular/material/select';
+import { MatButtonModule } from '@angular/material/button';
 import { OverlayModule } from '@angular/cdk/overlay';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { ScrollbarHelper } from './services/scrollbar-helper.service';
@@ -41,7 +41,7 @@ import { DatatableSelectComponent } from './components/ice-datatable-select/ice-
 import { EditableTextComponent } from './components/ice-editable-text/ice-editable-text.component';
 
 @NgModule({
-  imports: [CommonModule, MatTooltipModule, OverlayModule, MatIconModule, MatSelectModule],
+  imports: [CommonModule, MatTooltipModule, OverlayModule, MatIconModule, MatButtonModule],
   providers: [ScrollbarHelper, DimensionsHelper, ColumnChangesService],
   declarations: [
     DataTableFooterTemplateDirective,

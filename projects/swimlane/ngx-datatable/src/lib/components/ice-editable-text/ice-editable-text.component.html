@@ -1,0 +1,31 @@
+<button
+  class="button-as-text mb-0"
+  #contentWrapper
+  *ngIf="!editing"
+  [disabled]="disabled"
+  [class.active]="active"
+  (keyup.space)="editOnSpace && emitToggleEditing($event)"
+  (focus)="emitFocus(); editOnFocus && emitToggleEditing($event)"
+  (click)="emitToggleActive($event); editOnClick && emitToggleEditing($event)"
+>
+  <ng-content></ng-content>
+</button>
+<div *ngIf="editing" class="editable-text-container">
+  <div>
+    <input
+      type="text"
+      class="editable-text-input"
+      #inputElement
+      [disabled]="disabled"
+      [class.active]="active"
+      [value]="value"
+      (keyup.escape)="emitToggleEditing($event)"
+      (keyup.enter)="emitUpdate(inputElement.value)"
+      (change)="emitUpdate(inputElement.value)"
+      (blur)="emitToggleEditing($event)"
+    />
+  </div>
+</div>
+<div *ngIf="errorText" class="editable-text-container ice-pt-10">
+  <label class="ice-error-msg">{{ errorText }}</label>
+</div>
