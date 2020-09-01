@@ -213,7 +213,7 @@ const _c29 = [1, "mat-icon", "material-icons"];
 function DataTableBodyCellComponent_button_9_Template(rf, ctx) { if (rf & 1) {
     const _r97 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵgetCurrentView"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "button", _c28);
-    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵlistener"]("click", function DataTableBodyCellComponent_button_9_Template_button_click_0_listener($event) { _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵrestoreView"](_r97); const ctx_r96 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"](); return ctx_r96.onClickRowActionButton(ctx_r96.column, ctx_r96.row); });
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵlistener"]("click", function DataTableBodyCellComponent_button_9_Template_button_click_0_listener($event) { _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵrestoreView"](_r97); const ctx_r96 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"](); return ctx_r96.onClickRowActionButton($event, ctx_r96.column, ctx_r96.row); });
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](1, "mat-icon", _c29);
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](2);
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
@@ -271,7 +271,6 @@ class DataTableBodyCellComponent {
     constructor(element, cd, sanitizer) {
         this.cd = cd;
         this.sanitizer = sanitizer;
-        this.actionButtonClicked = new _angular_core__WEBPACK_IMPORTED_MODULE_0__["EventEmitter"]();
         this.activate = new _angular_core__WEBPACK_IMPORTED_MODULE_0__["EventEmitter"]();
         this.treeAction = new _angular_core__WEBPACK_IMPORTED_MODULE_0__["EventEmitter"]();
         this._isEditable = {};
@@ -575,9 +574,10 @@ class DataTableBodyCellComponent {
         }
         return ' ';
     }
-    onClickRowActionButton(field, row) {
+    onClickRowActionButton(event, field, row) {
         if (field && row) {
-            this.actionButtonClicked.emit(row);
+            event.preventDefault();
+            event.stopPropagation();
             field.action(row);
         }
     }
@@ -623,7 +623,7 @@ DataTableBodyCellComponent.ngComponentDef = _angular_core__WEBPACK_IMPORTED_MODU
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵstyleProp"]("max-width", ctx.maxWidth, "px");
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵstyleProp"]("height", ctx.height);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵstylingApply"]();
-    } }, inputs: { displayCheck: "displayCheck", group: "group", rowHeight: "rowHeight", isSelected: "isSelected", expanded: "expanded", rowIndex: "rowIndex", column: "column", row: "row", sorts: "sorts", treeStatus: "treeStatus" }, outputs: { actionButtonClicked: "actionButtonClicked", activate: "activate", treeAction: "treeAction" }, consts: 15, vars: 18, template: function DataTableBodyCellComponent_Template(rf, ctx) { if (rf & 1) {
+    } }, inputs: { displayCheck: "displayCheck", group: "group", rowHeight: "rowHeight", isSelected: "isSelected", expanded: "expanded", rowIndex: "rowIndex", column: "column", row: "row", sorts: "sorts", treeStatus: "treeStatus" }, outputs: { activate: "activate", treeAction: "treeAction" }, consts: 15, vars: 18, template: function DataTableBodyCellComponent_Template(rf, ctx) { if (rf & 1) {
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "div", _c1);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵstyling"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplate"](1, DataTableBodyCellComponent_label_1_Template, 2, 1, "label", _c2);
@@ -759,7 +759,7 @@ DataTableBodyCellComponent.ngComponentDef = _angular_core__WEBPACK_IMPORTED_MODU
         *ngIf="column.actionButtonIcon && !(column.hideActionButton && column.hideActionButton(row) | async)"
         mat-icon-button
         [matTooltip]="column.actionButtonTooltip"
-        (click)="onClickRowActionButton(column, row)"
+        (click)="onClickRowActionButton($event, column, row)"
       >
         <mat-icon class="mat-icon material-icons">{{ column.actionButtonIcon }}</mat-icon>
       </button>
@@ -816,8 +816,6 @@ DataTableBodyCellComponent.ngComponentDef = _angular_core__WEBPACK_IMPORTED_MODU
             type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["Input"]
         }], treeStatus: [{
             type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["Input"]
-        }], actionButtonClicked: [{
-            type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["Output"]
         }], activate: [{
             type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["Output"]
         }], treeAction: [{

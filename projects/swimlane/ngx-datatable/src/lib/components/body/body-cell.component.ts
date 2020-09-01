@@ -114,7 +114,7 @@ export type TreeStatus = 'collapsed' | 'expanded' | 'loading' | 'disabled';
         *ngIf="column.actionButtonIcon && !(column.hideActionButton && column.hideActionButton(row) | async)"
         mat-icon-button
         [matTooltip]="column.actionButtonTooltip"
-        (click)="onClickRowActionButton(column, row)"
+        (click)="onClickRowActionButton($event, column, row)"
       >
         <mat-icon class="mat-icon material-icons">{{ column.actionButtonIcon }}</mat-icon>
       </button>
@@ -252,8 +252,6 @@ export class DataTableBodyCellComponent implements DoCheck, OnDestroy {
   get treeStatus(): TreeStatus {
     return this._treeStatus;
   }
-
-  @Output() actionButtonClicked: EventEmitter<any> = new EventEmitter();
 
   @Output() activate: EventEmitter<any> = new EventEmitter();
 
@@ -537,9 +535,10 @@ export class DataTableBodyCellComponent implements DoCheck, OnDestroy {
     return ' ';
   }
 
-  onClickRowActionButton(field, row) {
+  onClickRowActionButton(event, field, row) {
     if (field && row) {
-      this.actionButtonClicked.emit(row);
+      event.preventDefault();
+      event.stopPropagation();
       field.action(row);
     }
   }

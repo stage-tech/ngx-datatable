@@ -7032,7 +7032,6 @@ class DataTableBodyCellComponent {
     constructor(element, cd, sanitizer) {
         this.cd = cd;
         this.sanitizer = sanitizer;
-        this.actionButtonClicked = new EventEmitter();
         this.activate = new EventEmitter();
         this.treeAction = new EventEmitter();
         this._isEditable = {};
@@ -7501,13 +7500,15 @@ class DataTableBodyCellComponent {
         return ' ';
     }
     /**
+     * @param {?} event
      * @param {?} field
      * @param {?} row
      * @return {?}
      */
-    onClickRowActionButton(field, row) {
+    onClickRowActionButton(event, field, row) {
         if (field && row) {
-            this.actionButtonClicked.emit(row);
+            event.preventDefault();
+            event.stopPropagation();
             field.action(row);
         }
     }
@@ -7645,7 +7646,7 @@ DataTableBodyCellComponent.decorators = [
         *ngIf="column.actionButtonIcon && !(column.hideActionButton && column.hideActionButton(row) | async)"
         mat-icon-button
         [matTooltip]="column.actionButtonTooltip"
-        (click)="onClickRowActionButton(column, row)"
+        (click)="onClickRowActionButton($event, column, row)"
       >
         <mat-icon class="mat-icon material-icons">{{ column.actionButtonIcon }}</mat-icon>
       </button>
@@ -7700,7 +7701,6 @@ DataTableBodyCellComponent.propDecorators = {
     row: [{ type: Input }],
     sorts: [{ type: Input }],
     treeStatus: [{ type: Input }],
-    actionButtonClicked: [{ type: Output }],
     activate: [{ type: Output }],
     treeAction: [{ type: Output }],
     cellTemplate: [{ type: ViewChild, args: ['cellTemplate', { read: ViewContainerRef, static: true },] }],
@@ -7718,8 +7718,6 @@ DataTableBodyCellComponent.propDecorators = {
 if (false) {
     /** @type {?} */
     DataTableBodyCellComponent.prototype.displayCheck;
-    /** @type {?} */
-    DataTableBodyCellComponent.prototype.actionButtonClicked;
     /** @type {?} */
     DataTableBodyCellComponent.prototype.activate;
     /** @type {?} */

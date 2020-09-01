@@ -17,7 +17,6 @@ export declare class DataTableBodyCellComponent implements DoCheck, OnDestroy {
     row: any;
     sorts: any[];
     treeStatus: TreeStatus;
-    actionButtonClicked: EventEmitter<any>;
     activate: EventEmitter<any>;
     treeAction: EventEmitter<any>;
     cellTemplate: ViewContainerRef;
@@ -64,7 +63,7 @@ export declare class DataTableBodyCellComponent implements DoCheck, OnDestroy {
     getTooltipValue(value: any, row: any, field: any): any;
     getIcons(row: any, icons: any): any;
     selectFieldValue(row: any, prop: any): any;
-    onClickRowActionButton(field: any, row: any): void;
+    onClickRowActionButton(event: any, field: any, row: any): void;
     sanatizeHtml(html: string): string;
     isEditable(field: any, row: any): Observable<boolean>;
     updateSelect(field: any, row: any, newValue: any): void;
