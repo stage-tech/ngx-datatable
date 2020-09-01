@@ -19,6 +19,8 @@ import { TableColumn } from '../../types/table-column.type';
 import { MouseEvent, KeyboardEvent } from '../../events';
 import { SortDirection } from '../../types/sort-direction.type';
 import { Keys } from '../../utils/keys';
+import { DomSanitizer } from '@angular/platform-browser';
+import { Observable, of } from 'rxjs';
 
 export type TreeStatus = 'collapsed' | 'expanded' | 'loading' | 'disabled';
 
@@ -55,8 +57,13 @@ export type TreeStatus = 'collapsed' | 'expanded' | 'loading' | 'disabled';
       </ng-container>
 
       <h4
+        *ngIf="
+          !column.actionButtonIcon &&
+          !column.cellTemplate &&
+          !column.selectOptions &&
+          (!column.editable || !(isEditable(column, row) | async))
+        "
         class="ice-data-table-row"
-        *ngIf="!column.cellTemplate"
         iceCustomHtmlToolTip
         [iceTooltipHtmlText]="getTooltipValue(value, row, column)"
         [showToolTipOnTextOverflow]="true"
@@ -72,6 +79,42 @@ export type TreeStatus = 'collapsed' | 'expanded' | 'loading' | 'disabled';
           class="{{ i.class }} mat-icon material-icons ice-ml-10"
         ></mat-icon>
       </div>
+
+      <mat-icon
+        *ngIf="
+          column.iconCustomTooltipHtmlText && selectFieldValue(row, column.iconCustomTooltipHtmlText) as customHtml
+        "
+        iceCustomHtmlToolTip
+        [iceTooltipHtmlText]="sanatizeHtml(customHtml)"
+        [duration]="1500"
+        class="material-icons"
+        [ngClass]="selectFieldValue(row, column.iconColor)"
+        >priority_high</mat-icon
+      >
+
+      <mat-icon
+        *ngIf="row[column.prop + 'InfoTooltip']"
+        [matTooltip]="row[column.prop + 'InfoTooltip']"
+        class="mat-icon material-icons"
+        >info</mat-icon
+      >
+
+      <mat-icon
+        *ngIf="row[column.prop + 'Excluded']"
+        [matTooltip]="row[column.prop + 'Excluded']"
+        class="mat-icon material-icons"
+        >block</mat-icon
+      >
+
+      <button
+        *ngIf="column.actionButtonIcon && !(column.hideActionButton && column.hideActionButton(row) | async)"
+        mat-icon-button
+        [matTooltip]="column.actionButtonTooltip"
+        (click)="onClickRowActionButton(column, row)"
+      >
+        <mat-icon class="mat-icon material-icons">{{ column.actionButtonIcon }}</mat-icon>
+      </button>
+
       <ng-template
         #cellTemplate
         *ngIf="column.cellTemplate"
@@ -184,6 +227,8 @@ export class DataTableBodyCellComponent implements DoCheck, OnDestroy {
     return this._treeStatus;
   }
 
+  @Output() actionButtonClicked: EventEmitter<any> = new EventEmitter();
+
   @Output() activate: EventEmitter<any> = new EventEmitter();
 
   @Output() treeAction: EventEmitter<any> = new EventEmitter();
@@ -257,7 +302,7 @@ export class DataTableBodyCellComponent implements DoCheck, OnDestroy {
     }
     return height + 'px';
   }
-
+  _isEditable: { [a: string]: Observable<boolean> } = {};
   sanitizedValue: any;
   value: any;
   sortDir: SortDirection;
@@ -290,7 +335,7 @@ export class DataTableBodyCellComponent implements DoCheck, OnDestroy {
   private _element: any;
   private _treeStatus: TreeStatus;
 
-  constructor(element: ElementRef, private cd: ChangeDetectorRef) {
+  constructor(element: ElementRef, private cd: ChangeDetectorRef, private sanitizer: DomSanitizer) {
     this._element = element.nativeElement;
   }
 
@@ -455,5 +500,35 @@ export class DataTableBodyCellComponent implements DoCheck, OnDestroy {
       const iconsArray = icons.split('.');
       return iconsArray.length > 1 && row[iconsArray[0]] ? row[iconsArray[0]][iconsArray[1]] || [] : row[icons] || [];
     }
+    return [];
+  }
+
+  selectFieldValue(row, prop) {
+    if (row && prop) {
+      const propArray = prop.split('.');
+      return propArray.length > 1 && row[propArray[0]] ? row[propArray[0]][propArray[1]] : row[prop];
+    }
+    return false;
+  }
+
+  onClickRowActionButton(field, row) {
+    if (field && row) {
+      this.actionButtonClicked.emit(row);
+      field.action(row);
+    }
+  }
+
+  sanatizeHtml(html: string) {
+    return this.sanitizer.bypassSecurityTrustHtml(html) as string;
+  }
+
+  isEditable(field: any, row: any): Observable<boolean> {
+    if (field && row) {
+      if (!this._isEditable[field.prop + row.id]) {
+        this._isEditable[field.prop + row.id] = field.editable(row);
+      }
+      return this._isEditable[field.prop + row.id];
+    }
+    return of(false);
   }
 }

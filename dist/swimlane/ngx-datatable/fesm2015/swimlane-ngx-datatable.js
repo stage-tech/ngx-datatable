@@ -3,9 +3,10 @@ import { DOCUMENT, CommonModule } from '@angular/common';
 import { MatIconModule } from '@angular/material/icon';
 import { Overlay, OverlayPositionBuilder, OverlayModule } from '@angular/cdk/overlay';
 import { MatTooltipModule } from '@angular/material/tooltip';
-import { Subject, fromEvent, BehaviorSubject } from 'rxjs';
+import { Subject, fromEvent, BehaviorSubject, of } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { __decorate, __metadata } from 'tslib';
+import { DomSanitizer } from '@angular/platform-browser';
 import { ComponentPortal } from '@angular/cdk/portal';
 
 /**
@@ -7025,11 +7026,15 @@ class DataTableBodyCellComponent {
     /**
      * @param {?} element
      * @param {?} cd
+     * @param {?} sanitizer
      */
-    constructor(element, cd) {
+    constructor(element, cd, sanitizer) {
         this.cd = cd;
+        this.sanitizer = sanitizer;
+        this.actionButtonClicked = new EventEmitter();
         this.activate = new EventEmitter();
         this.treeAction = new EventEmitter();
+        this._isEditable = {};
         this.isFocused = false;
         this.onCheckboxChangeFn = this.onCheckboxChange.bind(this);
         this.activateFn = this.activate.emit.bind(this.activate);
@@ -7479,6 +7484,52 @@ class DataTableBodyCellComponent {
             const iconsArray = icons.split('.');
             return iconsArray.length > 1 && row[iconsArray[0]] ? row[iconsArray[0]][iconsArray[1]] || [] : row[icons] || [];
         }
+        return [];
+    }
+    /**
+     * @param {?} row
+     * @param {?} prop
+     * @return {?}
+     */
+    selectFieldValue(row, prop) {
+        if (row && prop) {
+            /** @type {?} */
+            const propArray = prop.split('.');
+            return propArray.length > 1 && row[propArray[0]] ? row[propArray[0]][propArray[1]] : row[prop];
+        }
+        return false;
+    }
+    /**
+     * @param {?} field
+     * @param {?} row
+     * @return {?}
+     */
+    onClickRowActionButton(field, row) {
+        if (field && row) {
+            this.actionButtonClicked.emit(row);
+            field.action(row);
+        }
+    }
+    /**
+     * @param {?} html
+     * @return {?}
+     */
+    sanatizeHtml(html) {
+        return (/** @type {?} */ (this.sanitizer.bypassSecurityTrustHtml(html)));
+    }
+    /**
+     * @param {?} field
+     * @param {?} row
+     * @return {?}
+     */
+    isEditable(field, row) {
+        if (field && row) {
+            if (!this._isEditable[field.prop + row.id]) {
+                this._isEditable[field.prop + row.id] = field.editable(row);
+            }
+            return this._isEditable[field.prop + row.id];
+        }
+        return of(false);
     }
 }
 DataTableBodyCellComponent.decorators = [
@@ -7515,8 +7566,13 @@ DataTableBodyCellComponent.decorators = [
       </ng-container>
 
       <h4
+        *ngIf="
+          !column.actionButtonIcon &&
+          !column.cellTemplate &&
+          !column.selectOptions &&
+          (!column.editable || !(isEditable(column, row) | async))
+        "
         class="ice-data-table-row"
-        *ngIf="!column.cellTemplate"
         iceCustomHtmlToolTip
         [iceTooltipHtmlText]="getTooltipValue(value, row, column)"
         [showToolTipOnTextOverflow]="true"
@@ -7532,6 +7588,42 @@ DataTableBodyCellComponent.decorators = [
           class="{{ i.class }} mat-icon material-icons ice-ml-10"
         ></mat-icon>
       </div>
+
+      <mat-icon
+        *ngIf="
+          column.iconCustomTooltipHtmlText && selectFieldValue(row, column.iconCustomTooltipHtmlText) as customHtml
+        "
+        iceCustomHtmlToolTip
+        [iceTooltipHtmlText]="sanatizeHtml(customHtml)"
+        [duration]="1500"
+        class="material-icons"
+        [ngClass]="selectFieldValue(row, column.iconColor)"
+        >priority_high</mat-icon
+      >
+
+      <mat-icon
+        *ngIf="row[column.prop + 'InfoTooltip']"
+        [matTooltip]="row[column.prop + 'InfoTooltip']"
+        class="mat-icon material-icons"
+        >info</mat-icon
+      >
+
+      <mat-icon
+        *ngIf="row[column.prop + 'Excluded']"
+        [matTooltip]="row[column.prop + 'Excluded']"
+        class="mat-icon material-icons"
+        >block</mat-icon
+      >
+
+      <button
+        *ngIf="column.actionButtonIcon && !(column.hideActionButton && column.hideActionButton(row) | async)"
+        mat-icon-button
+        [matTooltip]="column.actionButtonTooltip"
+        (click)="onClickRowActionButton(column, row)"
+      >
+        <mat-icon class="mat-icon material-icons">{{ column.actionButtonIcon }}</mat-icon>
+      </button>
+
       <ng-template
         #cellTemplate
         *ngIf="column.cellTemplate"
@@ -7546,7 +7638,8 @@ DataTableBodyCellComponent.decorators = [
 /** @nocollapse */
 DataTableBodyCellComponent.ctorParameters = () => [
     { type: ElementRef },
-    { type: ChangeDetectorRef }
+    { type: ChangeDetectorRef },
+    { type: DomSanitizer }
 ];
 DataTableBodyCellComponent.propDecorators = {
     displayCheck: [{ type: Input }],
@@ -7559,6 +7652,7 @@ DataTableBodyCellComponent.propDecorators = {
     row: [{ type: Input }],
     sorts: [{ type: Input }],
     treeStatus: [{ type: Input }],
+    actionButtonClicked: [{ type: Output }],
     activate: [{ type: Output }],
     treeAction: [{ type: Output }],
     cellTemplate: [{ type: ViewChild, args: ['cellTemplate', { read: ViewContainerRef, static: true },] }],
@@ -7577,11 +7671,15 @@ if (false) {
     /** @type {?} */
     DataTableBodyCellComponent.prototype.displayCheck;
     /** @type {?} */
+    DataTableBodyCellComponent.prototype.actionButtonClicked;
+    /** @type {?} */
     DataTableBodyCellComponent.prototype.activate;
     /** @type {?} */
     DataTableBodyCellComponent.prototype.treeAction;
     /** @type {?} */
     DataTableBodyCellComponent.prototype.cellTemplate;
+    /** @type {?} */
+    DataTableBodyCellComponent.prototype._isEditable;
     /** @type {?} */
     DataTableBodyCellComponent.prototype.sanitizedValue;
     /** @type {?} */
@@ -7651,6 +7749,11 @@ if (false) {
      * @private
      */
     DataTableBodyCellComponent.prototype.cd;
+    /**
+     * @type {?}
+     * @private
+     */
+    DataTableBodyCellComponent.prototype.sanitizer;
 }
 
 /**
@@ -8600,12 +8703,28 @@ if (false) {
      */
     TableColumn.prototype.summaryTemplate;
     /**
-     * Ice material icons
+     * Ice special cases
      *
      * \@memberOf TableColumn
      * @type {?|undefined}
      */
     TableColumn.prototype.icons;
+    /** @type {?|undefined} */
+    TableColumn.prototype.iconCustomTooltipHtmlText;
+    /** @type {?|undefined} */
+    TableColumn.prototype.iconColor;
+    /** @type {?|undefined} */
+    TableColumn.prototype.actionButtonIcon;
+    /** @type {?|undefined} */
+    TableColumn.prototype.action;
+    /** @type {?|undefined} */
+    TableColumn.prototype.hideActionButton;
+    /** @type {?|undefined} */
+    TableColumn.prototype.actionButtonTooltip;
+    /** @type {?|undefined} */
+    TableColumn.prototype.selectOptions;
+    /** @type {?|undefined} */
+    TableColumn.prototype.editable;
 }
 
 /**

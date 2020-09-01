@@ -1,9 +1,12 @@
 import { ChangeDetectorRef, EventEmitter, ElementRef, ViewContainerRef, OnDestroy, DoCheck } from '@angular/core';
 import { TableColumn } from '../../types/table-column.type';
 import { SortDirection } from '../../types/sort-direction.type';
+import { DomSanitizer } from '@angular/platform-browser';
+import { Observable } from 'rxjs';
 export declare type TreeStatus = 'collapsed' | 'expanded' | 'loading' | 'disabled';
 export declare class DataTableBodyCellComponent implements DoCheck, OnDestroy {
     private cd;
+    private sanitizer;
     displayCheck: (row: any, column?: TableColumn, value?: any) => boolean;
     group: any;
     rowHeight: number;
@@ -14,6 +17,7 @@ export declare class DataTableBodyCellComponent implements DoCheck, OnDestroy {
     row: any;
     sorts: any[];
     treeStatus: TreeStatus;
+    actionButtonClicked: EventEmitter<any>;
     activate: EventEmitter<any>;
     treeAction: EventEmitter<any>;
     cellTemplate: ViewContainerRef;
@@ -22,6 +26,9 @@ export declare class DataTableBodyCellComponent implements DoCheck, OnDestroy {
     readonly minWidth: number;
     readonly maxWidth: number;
     readonly height: string | number;
+    _isEditable: {
+        [a: string]: Observable<boolean>;
+    };
     sanitizedValue: any;
     value: any;
     sortDir: SortDirection;
@@ -39,7 +46,7 @@ export declare class DataTableBodyCellComponent implements DoCheck, OnDestroy {
     private _expanded;
     private _element;
     private _treeStatus;
-    constructor(element: ElementRef, cd: ChangeDetectorRef);
+    constructor(element: ElementRef, cd: ChangeDetectorRef, sanitizer: DomSanitizer);
     ngDoCheck(): void;
     ngOnDestroy(): void;
     checkValueUpdates(): void;
@@ -56,4 +63,8 @@ export declare class DataTableBodyCellComponent implements DoCheck, OnDestroy {
     hasToShowToolTip(row: any, field: any): boolean;
     getTooltipValue(value: any, row: any, field: any): any;
     getIcons(row: any, icons: any): any;
+    selectFieldValue(row: any, prop: any): any;
+    onClickRowActionButton(field: any, row: any): void;
+    sanatizeHtml(html: string): string;
+    isEditable(field: any, row: any): Observable<boolean>;
 }

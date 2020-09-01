@@ -3,9 +3,10 @@ import { DOCUMENT, CommonModule } from '@angular/common';
 import { MatIconModule } from '@angular/material/icon';
 import { Overlay, OverlayPositionBuilder, OverlayModule } from '@angular/cdk/overlay';
 import { MatTooltipModule } from '@angular/material/tooltip';
-import { Subject, fromEvent, BehaviorSubject } from 'rxjs';
+import { Subject, fromEvent, BehaviorSubject, of } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { __values, __spread, __assign, __decorate, __metadata } from 'tslib';
+import { DomSanitizer } from '@angular/platform-browser';
 import { ComponentPortal } from '@angular/cdk/portal';
 
 /**
@@ -8184,10 +8185,13 @@ if (false) {
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var DataTableBodyCellComponent = /** @class */ (function () {
-    function DataTableBodyCellComponent(element, cd) {
+    function DataTableBodyCellComponent(element, cd, sanitizer) {
         this.cd = cd;
+        this.sanitizer = sanitizer;
+        this.actionButtonClicked = new EventEmitter();
         this.activate = new EventEmitter();
         this.treeAction = new EventEmitter();
+        this._isEditable = {};
         this.isFocused = false;
         this.onCheckboxChangeFn = this.onCheckboxChange.bind(this);
         this.activateFn = this.activate.emit.bind(this.activate);
@@ -8768,18 +8772,84 @@ var DataTableBodyCellComponent = /** @class */ (function () {
             var iconsArray = icons.split('.');
             return iconsArray.length > 1 && row[iconsArray[0]] ? row[iconsArray[0]][iconsArray[1]] || [] : row[icons] || [];
         }
+        return [];
+    };
+    /**
+     * @param {?} row
+     * @param {?} prop
+     * @return {?}
+     */
+    DataTableBodyCellComponent.prototype.selectFieldValue = /**
+     * @param {?} row
+     * @param {?} prop
+     * @return {?}
+     */
+    function (row, prop) {
+        if (row && prop) {
+            /** @type {?} */
+            var propArray = prop.split('.');
+            return propArray.length > 1 && row[propArray[0]] ? row[propArray[0]][propArray[1]] : row[prop];
+        }
+        return false;
+    };
+    /**
+     * @param {?} field
+     * @param {?} row
+     * @return {?}
+     */
+    DataTableBodyCellComponent.prototype.onClickRowActionButton = /**
+     * @param {?} field
+     * @param {?} row
+     * @return {?}
+     */
+    function (field, row) {
+        if (field && row) {
+            this.actionButtonClicked.emit(row);
+            field.action(row);
+        }
+    };
+    /**
+     * @param {?} html
+     * @return {?}
+     */
+    DataTableBodyCellComponent.prototype.sanatizeHtml = /**
+     * @param {?} html
+     * @return {?}
+     */
+    function (html) {
+        return (/** @type {?} */ (this.sanitizer.bypassSecurityTrustHtml(html)));
+    };
+    /**
+     * @param {?} field
+     * @param {?} row
+     * @return {?}
+     */
+    DataTableBodyCellComponent.prototype.isEditable = /**
+     * @param {?} field
+     * @param {?} row
+     * @return {?}
+     */
+    function (field, row) {
+        if (field && row) {
+            if (!this._isEditable[field.prop + row.id]) {
+                this._isEditable[field.prop + row.id] = field.editable(row);
+            }
+            return this._isEditable[field.prop + row.id];
+        }
+        return of(false);
     };
     DataTableBodyCellComponent.decorators = [
         { type: Component, args: [{
                     selector: 'datatable-body-cell',
                     changeDetection: ChangeDetectionStrategy.OnPush,
-                    template: "\n    <div class=\"datatable-body-cell-label\" [style.margin-left.px]=\"calcLeftMargin(column, row)\">\n      <label\n        *ngIf=\"column.checkboxable && (!displayCheck || displayCheck(row, column, value))\"\n        class=\"datatable-checkbox\"\n      >\n        <input type=\"checkbox\" [checked]=\"isSelected\" (click)=\"onCheckboxChange($event)\" />\n      </label>\n      <ng-container *ngIf=\"column.isTreeColumn\">\n        <button\n          *ngIf=\"!column.treeToggleTemplate\"\n          class=\"datatable-tree-button\"\n          [disabled]=\"treeStatus === 'disabled'\"\n          (click)=\"onTreeAction()\"\n        >\n          <span>\n            <i *ngIf=\"treeStatus === 'loading'\" class=\"icon datatable-icon-collapse\"></i>\n            <i *ngIf=\"treeStatus === 'collapsed'\" class=\"icon datatable-icon-up\"></i>\n            <i *ngIf=\"treeStatus === 'expanded' || treeStatus === 'disabled'\" class=\"icon datatable-icon-down\"></i>\n          </span>\n        </button>\n        <ng-template\n          *ngIf=\"column.treeToggleTemplate\"\n          [ngTemplateOutlet]=\"column.treeToggleTemplate\"\n          [ngTemplateOutletContext]=\"{ cellContext: cellContext }\"\n        >\n        </ng-template>\n      </ng-container>\n\n      <h4\n        class=\"ice-data-table-row\"\n        *ngIf=\"!column.cellTemplate\"\n        iceCustomHtmlToolTip\n        [iceTooltipHtmlText]=\"getTooltipValue(value, row, column)\"\n        [showToolTipOnTextOverflow]=\"true\"\n        [showToolTip]=\"hasToShowToolTip(row, column)\"\n        [innerHTML]=\"value\"\n      ></h4>\n\n      <div *ngIf=\"column.icons as icons\" fxLayout=\"column\">\n        <mat-icon\n          *ngFor=\"let i of getIcons(row, icons)\"\n          [innerHTML]=\"i.icon\"\n          [matTooltip]=\"i.text\"\n          class=\"{{ i.class }} mat-icon material-icons ice-ml-10\"\n        ></mat-icon>\n      </div>\n      <ng-template\n        #cellTemplate\n        *ngIf=\"column.cellTemplate\"\n        [ngTemplateOutlet]=\"column.cellTemplate\"\n        [ngTemplateOutletContext]=\"cellContext\"\n      >\n      </ng-template>\n    </div>\n  "
+                    template: "\n    <div class=\"datatable-body-cell-label\" [style.margin-left.px]=\"calcLeftMargin(column, row)\">\n      <label\n        *ngIf=\"column.checkboxable && (!displayCheck || displayCheck(row, column, value))\"\n        class=\"datatable-checkbox\"\n      >\n        <input type=\"checkbox\" [checked]=\"isSelected\" (click)=\"onCheckboxChange($event)\" />\n      </label>\n      <ng-container *ngIf=\"column.isTreeColumn\">\n        <button\n          *ngIf=\"!column.treeToggleTemplate\"\n          class=\"datatable-tree-button\"\n          [disabled]=\"treeStatus === 'disabled'\"\n          (click)=\"onTreeAction()\"\n        >\n          <span>\n            <i *ngIf=\"treeStatus === 'loading'\" class=\"icon datatable-icon-collapse\"></i>\n            <i *ngIf=\"treeStatus === 'collapsed'\" class=\"icon datatable-icon-up\"></i>\n            <i *ngIf=\"treeStatus === 'expanded' || treeStatus === 'disabled'\" class=\"icon datatable-icon-down\"></i>\n          </span>\n        </button>\n        <ng-template\n          *ngIf=\"column.treeToggleTemplate\"\n          [ngTemplateOutlet]=\"column.treeToggleTemplate\"\n          [ngTemplateOutletContext]=\"{ cellContext: cellContext }\"\n        >\n        </ng-template>\n      </ng-container>\n\n      <h4\n        *ngIf=\"\n          !column.actionButtonIcon &&\n          !column.cellTemplate &&\n          !column.selectOptions &&\n          (!column.editable || !(isEditable(column, row) | async))\n        \"\n        class=\"ice-data-table-row\"\n        iceCustomHtmlToolTip\n        [iceTooltipHtmlText]=\"getTooltipValue(value, row, column)\"\n        [showToolTipOnTextOverflow]=\"true\"\n        [showToolTip]=\"hasToShowToolTip(row, column)\"\n        [innerHTML]=\"value\"\n      ></h4>\n\n      <div *ngIf=\"column.icons as icons\" fxLayout=\"column\">\n        <mat-icon\n          *ngFor=\"let i of getIcons(row, icons)\"\n          [innerHTML]=\"i.icon\"\n          [matTooltip]=\"i.text\"\n          class=\"{{ i.class }} mat-icon material-icons ice-ml-10\"\n        ></mat-icon>\n      </div>\n\n      <mat-icon\n        *ngIf=\"\n          column.iconCustomTooltipHtmlText && selectFieldValue(row, column.iconCustomTooltipHtmlText) as customHtml\n        \"\n        iceCustomHtmlToolTip\n        [iceTooltipHtmlText]=\"sanatizeHtml(customHtml)\"\n        [duration]=\"1500\"\n        class=\"material-icons\"\n        [ngClass]=\"selectFieldValue(row, column.iconColor)\"\n        >priority_high</mat-icon\n      >\n\n      <mat-icon\n        *ngIf=\"row[column.prop + 'InfoTooltip']\"\n        [matTooltip]=\"row[column.prop + 'InfoTooltip']\"\n        class=\"mat-icon material-icons\"\n        >info</mat-icon\n      >\n\n      <mat-icon\n        *ngIf=\"row[column.prop + 'Excluded']\"\n        [matTooltip]=\"row[column.prop + 'Excluded']\"\n        class=\"mat-icon material-icons\"\n        >block</mat-icon\n      >\n\n      <button\n        *ngIf=\"column.actionButtonIcon && !(column.hideActionButton && column.hideActionButton(row) | async)\"\n        mat-icon-button\n        [matTooltip]=\"column.actionButtonTooltip\"\n        (click)=\"onClickRowActionButton(column, row)\"\n      >\n        <mat-icon class=\"mat-icon material-icons\">{{ column.actionButtonIcon }}</mat-icon>\n      </button>\n\n      <ng-template\n        #cellTemplate\n        *ngIf=\"column.cellTemplate\"\n        [ngTemplateOutlet]=\"column.cellTemplate\"\n        [ngTemplateOutletContext]=\"cellContext\"\n      >\n      </ng-template>\n    </div>\n  "
                 }] }
     ];
     /** @nocollapse */
     DataTableBodyCellComponent.ctorParameters = function () { return [
         { type: ElementRef },
-        { type: ChangeDetectorRef }
+        { type: ChangeDetectorRef },
+        { type: DomSanitizer }
     ]; };
     DataTableBodyCellComponent.propDecorators = {
         displayCheck: [{ type: Input }],
@@ -8792,6 +8862,7 @@ var DataTableBodyCellComponent = /** @class */ (function () {
         row: [{ type: Input }],
         sorts: [{ type: Input }],
         treeStatus: [{ type: Input }],
+        actionButtonClicked: [{ type: Output }],
         activate: [{ type: Output }],
         treeAction: [{ type: Output }],
         cellTemplate: [{ type: ViewChild, args: ['cellTemplate', { read: ViewContainerRef, static: true },] }],
@@ -8812,11 +8883,15 @@ if (false) {
     /** @type {?} */
     DataTableBodyCellComponent.prototype.displayCheck;
     /** @type {?} */
+    DataTableBodyCellComponent.prototype.actionButtonClicked;
+    /** @type {?} */
     DataTableBodyCellComponent.prototype.activate;
     /** @type {?} */
     DataTableBodyCellComponent.prototype.treeAction;
     /** @type {?} */
     DataTableBodyCellComponent.prototype.cellTemplate;
+    /** @type {?} */
+    DataTableBodyCellComponent.prototype._isEditable;
     /** @type {?} */
     DataTableBodyCellComponent.prototype.sanitizedValue;
     /** @type {?} */
@@ -8886,6 +8961,11 @@ if (false) {
      * @private
      */
     DataTableBodyCellComponent.prototype.cd;
+    /**
+     * @type {?}
+     * @private
+     */
+    DataTableBodyCellComponent.prototype.sanitizer;
 }
 
 /**
@@ -9908,12 +9988,28 @@ if (false) {
      */
     TableColumn.prototype.summaryTemplate;
     /**
-     * Ice material icons
+     * Ice special cases
      *
      * \@memberOf TableColumn
      * @type {?|undefined}
      */
     TableColumn.prototype.icons;
+    /** @type {?|undefined} */
+    TableColumn.prototype.iconCustomTooltipHtmlText;
+    /** @type {?|undefined} */
+    TableColumn.prototype.iconColor;
+    /** @type {?|undefined} */
+    TableColumn.prototype.actionButtonIcon;
+    /** @type {?|undefined} */
+    TableColumn.prototype.action;
+    /** @type {?|undefined} */
+    TableColumn.prototype.hideActionButton;
+    /** @type {?|undefined} */
+    TableColumn.prototype.actionButtonTooltip;
+    /** @type {?|undefined} */
+    TableColumn.prototype.selectOptions;
+    /** @type {?|undefined} */
+    TableColumn.prototype.editable;
 }
 
 /**

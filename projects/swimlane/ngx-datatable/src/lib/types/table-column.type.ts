@@ -1,5 +1,6 @@
 import { PipeTransform } from '@angular/core';
 import { ValueGetter } from '../utils/column-prop-getters';
+import { Observable } from 'rxjs';
 
 /**
  * Column property that indicates how to retrieve this column's
@@ -218,9 +219,25 @@ export interface TableColumn {
   summaryTemplate?: any;
 
   /**
-   * Ice material icons
+   * Ice special cases
    *
    * @memberOf TableColumn
    */
   icons?: string;
+
+  iconCustomTooltipHtmlText?: string;
+
+  iconColor?: string;
+
+  actionButtonIcon?: string;
+
+  action?: (arg0: any) => void;
+
+  hideActionButton?: (arg0: any) => Observable<boolean>;
+
+  actionButtonTooltip?: string;
+
+  selectOptions?: Array<{ value: string; label: string }>;
+
+  editable?: (arg0: any) => Observable<boolean>;
 }
