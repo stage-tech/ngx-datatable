@@ -58,6 +58,7 @@ export type TreeStatus = 'collapsed' | 'expanded' | 'loading' | 'disabled';
 
       <h4
         *ngIf="
+          !column.icons &&
           !column.actionButtonIcon &&
           !column.cellTemplate &&
           !column.selectOptions &&
@@ -93,15 +94,15 @@ export type TreeStatus = 'collapsed' | 'expanded' | 'loading' | 'disabled';
       >
 
       <mat-icon
-        *ngIf="row[column.prop + 'InfoTooltip']"
-        [matTooltip]="row[column.prop + 'InfoTooltip']"
+        *ngIf="row[column.prop.toString() + 'InfoTooltip']"
+        [matTooltip]="row[column.prop.toString() + 'InfoTooltip']"
         class="mat-icon material-icons"
         >info</mat-icon
       >
 
       <mat-icon
-        *ngIf="row[column.prop + 'Excluded']"
-        [matTooltip]="row[column.prop + 'Excluded']"
+        *ngIf="row[column.prop.toString() + 'Excluded']"
+        [matTooltip]="row[column.prop.toString() + 'Excluded']"
         class="mat-icon material-icons"
         >block</mat-icon
       >
