@@ -83,26 +83,28 @@ export type TreeStatus = 'collapsed' | 'expanded' | 'loading' | 'disabled';
 
       <mat-icon
         *ngIf="
-          column.iconCustomTooltipHtmlText && selectFieldValue(row, column.iconCustomTooltipHtmlText) as customHtml
+          column.iconCustomTooltipHtmlText &&
+          column.prop &&
+          selectFieldValue(row, column.iconCustomTooltipHtmlText) as customHtml
         "
         iceCustomHtmlToolTip
         [iceTooltipHtmlText]="sanatizeHtml(customHtml)"
         [duration]="1500"
         class="material-icons"
-        [ngClass]="selectFieldValue(row, column.iconColor)"
+        [ngClass]="column.prop && selectFieldValue(row, column.iconColor)"
         >priority_high</mat-icon
       >
 
       <mat-icon
-        *ngIf="row[column.prop.toString() + 'InfoTooltip']"
-        [matTooltip]="row[column.prop.toString() + 'InfoTooltip']"
+        *ngIf="column.prop && row[column.prop.toString() + 'InfoTooltip']"
+        [matTooltip]="column.prop && row[column.prop.toString() + 'InfoTooltip']"
         class="mat-icon material-icons"
         >info</mat-icon
       >
 
       <mat-icon
-        *ngIf="row[column.prop.toString() + 'Excluded']"
-        [matTooltip]="row[column.prop.toString() + 'Excluded']"
+        *ngIf="column.prop && row[column.prop.toString() + 'Excluded']"
+        [matTooltip]="column.prop && row[column.prop.toString() + 'Excluded']"
         class="mat-icon material-icons"
         >block</mat-icon
       >
