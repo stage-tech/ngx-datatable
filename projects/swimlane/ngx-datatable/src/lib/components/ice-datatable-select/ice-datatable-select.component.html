@@ -1,0 +1,7 @@
+<select #selectElement (change)="emitUpdate(selectElement.value)" [value]="value" [disabled]="selectDisabled">
+  <ng-container *ngIf="options">
+    <ng-container *ngFor="let item of options">
+      <option [value]="item.value">{{ item.label }}</option>
+    </ng-container>
+  </ng-container>
+</select>

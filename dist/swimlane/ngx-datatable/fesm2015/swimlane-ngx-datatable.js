@@ -1,6 +1,7 @@
-import { Injectable, Inject, Directive, TemplateRef, EventEmitter, ElementRef, NgZone, HostBinding, Output, Input, Renderer2, HostListener, KeyValueDiffers, ContentChildren, Component, ChangeDetectionStrategy, ContentChild, ChangeDetectorRef, ViewChild, ViewEncapsulation, SkipSelf, Optional, ViewContainerRef, NgModule } from '@angular/core';
+import { Injectable, Inject, Directive, TemplateRef, EventEmitter, ElementRef, NgZone, HostBinding, Output, Input, Renderer2, HostListener, KeyValueDiffers, ContentChildren, Component, ChangeDetectionStrategy, ContentChild, ChangeDetectorRef, ViewChild, ViewEncapsulation, SkipSelf, Optional, ViewContainerRef, ViewChildren, NgModule } from '@angular/core';
 import { DOCUMENT, CommonModule } from '@angular/common';
 import { MatIconModule } from '@angular/material/icon';
+import { MatSelectModule } from '@angular/material/select';
 import { Overlay, OverlayPositionBuilder, OverlayModule } from '@angular/cdk/overlay';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { Subject, fromEvent, BehaviorSubject, of } from 'rxjs';
@@ -7531,6 +7532,27 @@ class DataTableBodyCellComponent {
         }
         return of(false);
     }
+    /**
+     * @param {?} field
+     * @param {?} row
+     * @param {?} newValue
+     * @return {?}
+     */
+    updateSelect(field, row, newValue) {
+        row[field.prop] = newValue;
+        if (field.onEdit) {
+            field.onEdit(row);
+        }
+    }
+    /**
+     * @param {?} field
+     * @param {?} row
+     * @param {?} newValue
+     * @return {?}
+     */
+    editField(field, row, newValue) {
+        field.onEdit(Object.assign({}, row, { [field.prop]: newValue }));
+    }
 }
 DataTableBodyCellComponent.decorators = [
     { type: Component, args: [{
@@ -7568,6 +7590,7 @@ DataTableBodyCellComponent.decorators = [
       <h4
         *ngIf="
           !column.icons &&
+          !column.iconCustomTooltipHtmlText &&
           !column.actionButtonIcon &&
           !column.cellTemplate &&
           !column.selectOptions &&
@@ -7626,6 +7649,28 @@ DataTableBodyCellComponent.decorators = [
       >
         <mat-icon class="mat-icon material-icons">{{ column.actionButtonIcon }}</mat-icon>
       </button>
+
+      <ice-datatable-row-select
+        style="margin-top: 18px"
+        [options]="column.selectOptions"
+        [class]="column.cellClass"
+        (update)="updateSelect(column, row, $event)"
+        [value]="value || column.defaultValue"
+        [selectDisabled]="column.disabled"
+        *ngIf="column.selectOptions && !(column.hideIfEmpty && column.disabled && value === '')"
+      ></ice-datatable-row-select>
+
+      <ng-container *ngIf="!column.selectOptions && (column.editable && isEditable(column, row) | async)">
+        <mat-icon class="mat-icon material-icons" *ngIf="!column.hideEditIcon">edit</mat-icon>
+        <ice-editable-text
+          [class]="column.cellClass"
+          (update)="editField(column, row, $event)"
+          [errorText]="selectFieldValue(row, column.errorMessageField)"
+          [value]="selectFieldValue(row, column.prop)"
+        >
+          {{ selectFieldValue(row, column.prop) }}
+        </ice-editable-text>
+      </ng-container>
 
       <ng-template
         #cellTemplate
@@ -8404,6 +8449,222 @@ if (false) {
  * @fileoverview added by tsickle
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
+class DatatableSelectComponent {
+    constructor() {
+        this.editing = false;
+        this.active = false;
+        this.rows = [];
+        this.align = 'left';
+        this.focusOnEnter = false;
+        this.editOnFocus = false;
+        this.selectDisabled = false;
+        this.update = new EventEmitter();
+        this.options = [];
+    }
+    /**
+     * @return {?}
+     */
+    ngOnInit() {
+        if (this.value) {
+            this.update.emit(this.value);
+        }
+    }
+    /**
+     * @param {?} newValue
+     * @return {?}
+     */
+    emitUpdate(newValue) {
+        this.update.emit(newValue);
+    }
+}
+DatatableSelectComponent.decorators = [
+    { type: Component, args: [{
+                selector: 'ice-datatable-row-select',
+                template: "<select #selectElement (change)=\"emitUpdate(selectElement.value)\" [value]=\"value\" [disabled]=\"selectDisabled\">\n  <ng-container *ngIf=\"options\">\n    <ng-container *ngFor=\"let item of options\">\n      <option [value]=\"item.value\">{{ item.label }}</option>\n    </ng-container>\n  </ng-container>\n</select>\n",
+                changeDetection: ChangeDetectionStrategy.OnPush
+            }] }
+];
+DatatableSelectComponent.propDecorators = {
+    align: [{ type: Input }],
+    focusOnEnter: [{ type: Input }],
+    editOnFocus: [{ type: Input }],
+    selectDisabled: [{ type: Input }],
+    update: [{ type: Output }],
+    options: [{ type: Input }],
+    default: [{ type: Input }],
+    value: [{ type: Input }],
+    selectEl: [{ type: ViewChildren, args: ['selectElement',] }]
+};
+if (false) {
+    /** @type {?} */
+    DatatableSelectComponent.prototype.editing;
+    /** @type {?} */
+    DatatableSelectComponent.prototype.active;
+    /** @type {?} */
+    DatatableSelectComponent.prototype.rows;
+    /** @type {?} */
+    DatatableSelectComponent.prototype.align;
+    /** @type {?} */
+    DatatableSelectComponent.prototype.focusOnEnter;
+    /** @type {?} */
+    DatatableSelectComponent.prototype.editOnFocus;
+    /** @type {?} */
+    DatatableSelectComponent.prototype.selectDisabled;
+    /** @type {?} */
+    DatatableSelectComponent.prototype.update;
+    /** @type {?} */
+    DatatableSelectComponent.prototype.options;
+    /** @type {?} */
+    DatatableSelectComponent.prototype.default;
+    /** @type {?} */
+    DatatableSelectComponent.prototype.value;
+    /** @type {?} */
+    DatatableSelectComponent.prototype.selectEl;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+class EditableTextComponent {
+    constructor() {
+        this.editing = false;
+        this.active = false;
+        this.align = 'left';
+        this.editOnSpace = true;
+        this.editOnClick = true;
+        this.focusOnEnter = true;
+        this.editOnFocus = false;
+        this.disabled = false;
+        this.errorText = '';
+        this.focus = new EventEmitter();
+        this.toggleEditing = new EventEmitter();
+        this.toggleActive = new EventEmitter();
+        this.update = new EventEmitter();
+    }
+    /**
+     * @param {?} newText
+     * @return {?}
+     */
+    emitUpdate(newText) {
+        if (!this.disabled) {
+            this.update.emit(newText);
+        }
+    }
+    /**
+     * @param {?} $event
+     * @return {?}
+     */
+    emitToggleEditing($event) {
+        $event.stopPropagation();
+        if (!this.disabled) {
+            this.editing = !this.editing;
+        }
+    }
+    /**
+     * @return {?}
+     */
+    emitFocus() {
+        if (this.focus) {
+            this.focus.emit(null);
+        }
+    }
+    /**
+     * @param {?} $event
+     * @return {?}
+     */
+    emitToggleActive($event) {
+        $event.stopPropagation();
+        if (!this.disabled) {
+            this.active = !this.active;
+        }
+    }
+    /**
+     * @return {?}
+     */
+    ngAfterViewInit() {
+        this.inputEl.changes.subscribe((/**
+         * @param {?} d
+         * @return {?}
+         */
+        d => {
+            return d.last && d.last.nativeElement.focus();
+        }));
+        if (this.value == null) {
+            this.value =
+                this.content &&
+                    this.content.nativeElement.childNodes.length > 0 &&
+                    this.content.nativeElement.childNodes[0].data;
+        }
+    }
+}
+EditableTextComponent.decorators = [
+    { type: Component, args: [{
+                selector: 'ice-editable-text',
+                template: "",
+                encapsulation: ViewEncapsulation.None,
+                host: {
+                    class: 'ice-editable-text'
+                },
+                changeDetection: ChangeDetectionStrategy.OnPush,
+                styles: [".ice-editable-text .inherit-all{all:inherit}.ice-editable-text .active{background-color:rgba(255,255,255,.3)!important}.ice-editable-text .button-as-text{border:none;background:inherit;padding:inherit;margin:inherit;color:inherit;font-size:inherit;font-weight:inherit;font-style:inherit;text-align:inherit;border-radius:.2rem;border-bottom:1px dashed #aaa!important;min-width:50px;min-height:20px}.ice-editable-text .button-as-text:hover{background-color:rgba(255,255,255,.2)!important}.ice-editable-text .editable-text-input{border-bottom:1px dashed #aaa!important}"]
+            }] }
+];
+EditableTextComponent.propDecorators = {
+    align: [{ type: Input }],
+    editOnSpace: [{ type: Input }],
+    editOnClick: [{ type: Input }],
+    focusOnEnter: [{ type: Input }],
+    editOnFocus: [{ type: Input }],
+    disabled: [{ type: Input }],
+    value: [{ type: Input }],
+    errorText: [{ type: Input }],
+    focus: [{ type: Output }],
+    toggleEditing: [{ type: Output }],
+    toggleActive: [{ type: Output }],
+    update: [{ type: Output }],
+    inputEl: [{ type: ViewChildren, args: ['inputElement',] }],
+    content: [{ type: ViewChild, args: ['contentWrapper', { static: false },] }]
+};
+if (false) {
+    /** @type {?} */
+    EditableTextComponent.prototype.editing;
+    /** @type {?} */
+    EditableTextComponent.prototype.active;
+    /** @type {?} */
+    EditableTextComponent.prototype.align;
+    /** @type {?} */
+    EditableTextComponent.prototype.editOnSpace;
+    /** @type {?} */
+    EditableTextComponent.prototype.editOnClick;
+    /** @type {?} */
+    EditableTextComponent.prototype.focusOnEnter;
+    /** @type {?} */
+    EditableTextComponent.prototype.editOnFocus;
+    /** @type {?} */
+    EditableTextComponent.prototype.disabled;
+    /** @type {?} */
+    EditableTextComponent.prototype.value;
+    /** @type {?} */
+    EditableTextComponent.prototype.errorText;
+    /** @type {?} */
+    EditableTextComponent.prototype.focus;
+    /** @type {?} */
+    EditableTextComponent.prototype.toggleEditing;
+    /** @type {?} */
+    EditableTextComponent.prototype.toggleActive;
+    /** @type {?} */
+    EditableTextComponent.prototype.update;
+    /** @type {?} */
+    EditableTextComponent.prototype.inputEl;
+    /** @type {?} */
+    EditableTextComponent.prototype.content;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
 class NgxDatatableModule {
     /**
      * Configure global configuration via INgxDatatableConfig
@@ -8419,7 +8680,7 @@ class NgxDatatableModule {
 }
 NgxDatatableModule.decorators = [
     { type: NgModule, args: [{
-                imports: [CommonModule, MatTooltipModule, OverlayModule, MatIconModule],
+                imports: [CommonModule, MatTooltipModule, OverlayModule, MatIconModule, MatSelectModule],
                 providers: [ScrollbarHelper, DimensionsHelper, ColumnChangesService],
                 declarations: [
                     DataTableFooterTemplateDirective,
@@ -8441,6 +8702,8 @@ NgxDatatableModule.decorators = [
                     DataTableBodyRowComponent,
                     DataTableRowWrapperComponent,
                     CustomToolTipComponent,
+                    DatatableSelectComponent,
+                    EditableTextComponent,
                     DatatableRowDetailDirective,
                     DatatableGroupHeaderDirective,
                     DatatableRowDetailTemplateDirective,
@@ -8728,6 +8991,16 @@ if (false) {
     TableColumn.prototype.selectOptions;
     /** @type {?|undefined} */
     TableColumn.prototype.editable;
+    /** @type {?|undefined} */
+    TableColumn.prototype.defaultValue;
+    /** @type {?|undefined} */
+    TableColumn.prototype.disabled;
+    /** @type {?|undefined} */
+    TableColumn.prototype.hideIfEmpty;
+    /** @type {?|undefined} */
+    TableColumn.prototype.hideEditIcon;
+    /** @type {?|undefined} */
+    TableColumn.prototype.errorMessageField;
 }
 
 /**
@@ -8805,5 +9078,5 @@ function elementsFromPoint(x, y) {
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
-export { ClickType, ColumnChangesService, ColumnMode, ContextmenuType, DataTableBodyCellComponent, DataTableBodyComponent, DataTableBodyRowComponent, DataTableColumnCellDirective, DataTableColumnCellTreeToggle, DataTableColumnDirective, DataTableColumnHeaderDirective, DataTableFooterComponent, DataTableFooterTemplateDirective, DataTableHeaderCellComponent, DataTableHeaderComponent, DataTablePagerComponent, DataTableRowWrapperComponent, DataTableSelectionComponent, DataTableSummaryRowComponent, DatatableComponent, DatatableFooterDirective, DatatableGroupHeaderDirective, DatatableGroupHeaderTemplateDirective, DatatableRowDetailDirective, DatatableRowDetailTemplateDirective, DimensionsHelper, DraggableDirective, Keys, LongPressDirective, NgxDatatableModule, OrderableDirective, ProgressBarComponent, ResizeableDirective, RowHeightCache, ScrollbarHelper, ScrollerComponent, SelectionType, SortDirection, SortType, VisibilityDirective, adjustColumnWidths, camelCase, columnGroupWidths, columnTotalWidth, columnsByPin, columnsByPinArr, columnsTotalWidth, deCamelCase, deepValueGetter, elementsFromPoint, emptyStringGetter, forceFillColumnWidths, getTotalFlexGrow, getVendorPrefixedName, getterForProp, groupRowsByParents, id, isNullOrUndefined, nextSortDir, numericIndexGetter, optionalGetterForProp, orderByComparator, selectRows, selectRowsBetween, setColumnDefaults, shallowValueGetter, sortRows, throttle, throttleable, translateTemplates, translateXY, ToolTipRendererDirective as ɵa, CustomToolTipComponent as ɵb };
+export { ClickType, ColumnChangesService, ColumnMode, ContextmenuType, DataTableBodyCellComponent, DataTableBodyComponent, DataTableBodyRowComponent, DataTableColumnCellDirective, DataTableColumnCellTreeToggle, DataTableColumnDirective, DataTableColumnHeaderDirective, DataTableFooterComponent, DataTableFooterTemplateDirective, DataTableHeaderCellComponent, DataTableHeaderComponent, DataTablePagerComponent, DataTableRowWrapperComponent, DataTableSelectionComponent, DataTableSummaryRowComponent, DatatableComponent, DatatableFooterDirective, DatatableGroupHeaderDirective, DatatableGroupHeaderTemplateDirective, DatatableRowDetailDirective, DatatableRowDetailTemplateDirective, DimensionsHelper, DraggableDirective, Keys, LongPressDirective, NgxDatatableModule, OrderableDirective, ProgressBarComponent, ResizeableDirective, RowHeightCache, ScrollbarHelper, ScrollerComponent, SelectionType, SortDirection, SortType, VisibilityDirective, adjustColumnWidths, camelCase, columnGroupWidths, columnTotalWidth, columnsByPin, columnsByPinArr, columnsTotalWidth, deCamelCase, deepValueGetter, elementsFromPoint, emptyStringGetter, forceFillColumnWidths, getTotalFlexGrow, getVendorPrefixedName, getterForProp, groupRowsByParents, id, isNullOrUndefined, nextSortDir, numericIndexGetter, optionalGetterForProp, orderByComparator, selectRows, selectRowsBetween, setColumnDefaults, shallowValueGetter, sortRows, throttle, throttleable, translateTemplates, translateXY, ToolTipRendererDirective as ɵa, CustomToolTipComponent as ɵb, DatatableSelectComponent as ɵc, EditableTextComponent as ɵd };
 //# sourceMappingURL=swimlane-ngx-datatable.js.map

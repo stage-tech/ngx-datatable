@@ -1,0 +1,32 @@
+.ice-editable-text {
+  .inherit-all {
+    all: inherit;
+  }
+  .active {
+    background-color: rgba(255, 255, 255, 0.3) !important;
+  }
+
+  .button-as-text {
+    border: none;
+    background: inherit;
+    padding: inherit;
+    margin: inherit;
+    color: inherit;
+    font-size: inherit;
+    font-weight: inherit;
+    font-style: inherit;
+    text-align: inherit;
+    border-radius: 0.2rem;
+    border-bottom: 1px #aaa dashed !important;
+    min-width: 50px;
+    min-height: 20px;
+  }
+
+  .button-as-text:hover {
+    background-color: rgba(255, 255, 255, 0.2) !important;
+  }
+
+  .editable-text-input {
+    border-bottom: 1px #aaa dashed !important;
+  }
+}

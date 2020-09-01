@@ -205,4 +205,9 @@ export interface TableColumn {
         label: string;
     }>;
     editable?: (arg0: any) => Observable<boolean>;
+    defaultValue?: string;
+    disabled?: boolean;
+    hideIfEmpty?: boolean;
+    hideEditIcon?: boolean;
+    errorMessageField?: string;
 }

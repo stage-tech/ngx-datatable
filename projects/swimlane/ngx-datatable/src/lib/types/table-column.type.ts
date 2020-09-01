@@ -240,4 +240,14 @@ export interface TableColumn {
   selectOptions?: Array<{ value: string; label: string }>;
 
   editable?: (arg0: any) => Observable<boolean>;
+
+  defaultValue?: string;
+
+  disabled?: boolean;
+
+  hideIfEmpty?: boolean;
+
+  hideEditIcon?: boolean;
+
+  errorMessageField?: string;
 }

@@ -67,4 +67,6 @@ export declare class DataTableBodyCellComponent implements DoCheck, OnDestroy {
     onClickRowActionButton(field: any, row: any): void;
     sanatizeHtml(html: string): string;
     isEditable(field: any, row: any): Observable<boolean>;
+    updateSelect(field: any, row: any, newValue: any): void;
+    editField(field: any, row: any, newValue: any): void;
 }

@@ -1,6 +1,7 @@
 import { NgModule, ModuleWithProviders } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatIconModule } from '@angular/material/icon';
+import { MatSelectModule } from '@angular/material/select';
 import { OverlayModule } from '@angular/cdk/overlay';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { ScrollbarHelper } from './services/scrollbar-helper.service';
@@ -36,9 +37,11 @@ import { DatatableGroupHeaderTemplateDirective } from './components/body/body-gr
 import { DataTableSummaryRowComponent } from './components/body/summary/summary-row.component';
 import { ToolTipRendererDirective } from './directives/ice-custom-html-tooltip.directive';
 import { CustomToolTipComponent } from './components/ice-custom-tooltip/ice-custom-tooltip.component';
+import { DatatableSelectComponent } from './components/ice-datatable-select/ice-datatable-select.component';
+import { EditableTextComponent } from './components/ice-editable-text/ice-editable-text.component';
 
 @NgModule({
-  imports: [CommonModule, MatTooltipModule, OverlayModule, MatIconModule],
+  imports: [CommonModule, MatTooltipModule, OverlayModule, MatIconModule, MatSelectModule],
   providers: [ScrollbarHelper, DimensionsHelper, ColumnChangesService],
   declarations: [
     DataTableFooterTemplateDirective,
@@ -60,6 +63,8 @@ import { CustomToolTipComponent } from './components/ice-custom-tooltip/ice-cust
     DataTableBodyRowComponent,
     DataTableRowWrapperComponent,
     CustomToolTipComponent,
+    DatatableSelectComponent,
+    EditableTextComponent,
     DatatableRowDetailDirective,
     DatatableGroupHeaderDirective,
     DatatableRowDetailTemplateDirective,

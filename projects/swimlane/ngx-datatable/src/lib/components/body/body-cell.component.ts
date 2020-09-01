@@ -59,6 +59,7 @@ export type TreeStatus = 'collapsed' | 'expanded' | 'loading' | 'disabled';
       <h4
         *ngIf="
           !column.icons &&
+          !column.iconCustomTooltipHtmlText &&
           !column.actionButtonIcon &&
           !column.cellTemplate &&
           !column.selectOptions &&
@@ -117,6 +118,28 @@ export type TreeStatus = 'collapsed' | 'expanded' | 'loading' | 'disabled';
       >
         <mat-icon class="mat-icon material-icons">{{ column.actionButtonIcon }}</mat-icon>
       </button>
+
+      <ice-datatable-row-select
+        style="margin-top: 18px"
+        [options]="column.selectOptions"
+        [class]="column.cellClass"
+        (update)="updateSelect(column, row, $event)"
+        [value]="value || column.defaultValue"
+        [selectDisabled]="column.disabled"
+        *ngIf="column.selectOptions && !(column.hideIfEmpty && column.disabled && value === '')"
+      ></ice-datatable-row-select>
+
+      <ng-container *ngIf="!column.selectOptions && (column.editable && isEditable(column, row) | async)">
+        <mat-icon class="mat-icon material-icons" *ngIf="!column.hideEditIcon">edit</mat-icon>
+        <ice-editable-text
+          [class]="column.cellClass"
+          (update)="editField(column, row, $event)"
+          [errorText]="selectFieldValue(row, column.errorMessageField)"
+          [value]="selectFieldValue(row, column.prop)"
+        >
+          {{ selectFieldValue(row, column.prop) }}
+        </ice-editable-text>
+      </ng-container>
 
       <ng-template
         #cellTemplate
@@ -533,5 +556,16 @@ export class DataTableBodyCellComponent implements DoCheck, OnDestroy {
       return this._isEditable[field.prop + row.id];
     }
     return of(false);
+  }
+
+  updateSelect(field, row: any, newValue: any) {
+    row[field.prop] = newValue;
+    if (field.onEdit) {
+      field.onEdit(row);
+    }
+  }
+
+  editField(field, row: any, newValue: any) {
+    field.onEdit({ ...row, [field.prop]: newValue });
   }
 }
