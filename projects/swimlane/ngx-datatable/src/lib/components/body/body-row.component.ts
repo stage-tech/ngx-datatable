@@ -44,16 +44,16 @@ import { translateXY } from '../../utils/translate';
         (activate)="onActivate($event, ii)"
         (treeAction)="onTreeAction()"
       >
-        <a
-          *ngIf="row.detail && row.detail.length > 0"
-          href="javascript:void(0)"
-          [class.datatable-icon-down]="!expanded"
-          [class.datatable-icon-up]="expanded"
-          title="Expand/Collapse Row"
-          (click)="toggleExpandRow(row, $event)"
-        >
-        </a>
       </datatable-body-cell>
+      <a
+        *ngIf="row.detail && row.detail.length > 0"
+        href="javascript:void(0)"
+        [class.datatable-icon-down]="!expanded"
+        [class.datatable-icon-up]="expanded"
+        title="Expand/Collapse Row"
+        (click)="toggleExpandRow(row, $event)"
+      >
+      </a>
     </div>
   `
 })
