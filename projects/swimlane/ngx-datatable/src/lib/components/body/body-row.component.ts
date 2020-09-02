@@ -199,7 +199,7 @@ export class DataTableBodyRowComponent implements DoCheck {
       width: `${widths[group]}px`
     };
 
-    if (!!this.row.detail && group === 'left') {
+    if (this.row && !!this.row.detail && group === 'left') {
       styles.width = `50px`;
     }
 
