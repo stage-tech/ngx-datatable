@@ -29,30 +29,31 @@ import { translateXY } from '../../utils/translate';
       class="datatable-row-{{ colGroup.type }} datatable-row-group"
       [ngStyle]="_groupStyles[colGroup.type]"
     >
-      <datatable-body-cell
-        *ngFor="let column of colGroup.columns; let ii = index; trackBy: columnTrackingFn"
-        tabindex="-1"
-        [row]="row"
-        [group]="group"
-        [expanded]="expanded"
-        [isSelected]="isSelected"
-        [rowIndex]="rowIndex"
-        [column]="column"
-        [rowHeight]="rowHeight"
-        [displayCheck]="displayCheck"
-        [treeStatus]="treeStatus"
-        (activate)="onActivate($event, ii)"
-        (treeAction)="onTreeAction()"
-      >
-      </datatable-body-cell>
       <a
-        *ngIf="row.detail && row.detail.length > 0 && colGroup.type === 'left'"
+        *ngIf="row.detail && row.detail.length > 0 && colGroup.type === 'center'"
         href="javascript:void(0)"
+        style="display: flex; align-items: center;"
         [class.datatable-icon-down]="!expanded"
         [class.datatable-icon-up]="expanded"
         title="Expand/Collapse Row"
         (click)="toggleExpandRow(row, $event)"
       >
+        <datatable-body-cell
+          *ngFor="let column of colGroup.columns; let ii = index; trackBy: columnTrackingFn"
+          tabindex="-1"
+          [row]="row"
+          [group]="group"
+          [expanded]="expanded"
+          [isSelected]="isSelected"
+          [rowIndex]="rowIndex"
+          [column]="column"
+          [rowHeight]="rowHeight"
+          [displayCheck]="displayCheck"
+          [treeStatus]="treeStatus"
+          (activate)="onActivate($event, ii)"
+          (treeAction)="onTreeAction()"
+        >
+        </datatable-body-cell>
       </a>
     </div>
   `
