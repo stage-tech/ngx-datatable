@@ -70,6 +70,7 @@ import { translateXY } from '../../utils/translate';
             [innerWidth]="innerWidth"
             [offsetX]="offsetX"
             [columns]="columns"
+            [rowDetail]="rowDetail"
             [rowHeight]="getRowHeight(group)"
             [row]="group"
             [rowIndex]="getRowIndex(group)"
@@ -772,7 +773,7 @@ export class DataTableBodyComponent implements OnInit, OnDestroy {
     if (!expanded || !expanded.length) return -1;
 
     const rowId = this.rowIdentity(row);
-    return expanded.findIndex((r) => {
+    return expanded.findIndex(r => {
       const id = this.rowIdentity(r);
       return id === rowId;
     });

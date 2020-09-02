@@ -15,6 +15,7 @@ export declare class DataTableBodyRowComponent implements DoCheck {
     rowIndex: number;
     displayCheck: any;
     treeStatus: TreeStatus;
+    rowDetail: any;
     offsetX: number;
     readonly cssClass: string;
     rowHeight: number;
@@ -44,4 +45,5 @@ export declare class DataTableBodyRowComponent implements DoCheck {
     onMouseenter(event: any): void;
     recalculateColumns(val?: any[]): void;
     onTreeAction(): void;
+    toggleExpandRow(row: any, event: any): void;
 }

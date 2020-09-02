@@ -3170,7 +3170,7 @@ class DataTableBodyComponent {
          * @param {?} r
          * @return {?}
          */
-        (r) => {
+        r => {
             /** @type {?} */
             const id = this.rowIdentity(r);
             return id === rowId;
@@ -3246,6 +3246,7 @@ DataTableBodyComponent.decorators = [
             [innerWidth]="innerWidth"
             [offsetX]="offsetX"
             [columns]="columns"
+            [rowDetail]="rowDetail"
             [rowHeight]="getRowHeight(group)"
             [row]="group"
             [rowIndex]="getRowIndex(group)"
@@ -6716,6 +6717,16 @@ class DataTableBodyRowComponent {
     onTreeAction() {
         this.treeAction.emit();
     }
+    /**
+     * @param {?} row
+     * @param {?} event
+     * @return {?}
+     */
+    toggleExpandRow(row, event) {
+        if (this.rowDetail) {
+            this.rowDetail.toggleExpandRow(row);
+        }
+    }
 }
 DataTableBodyRowComponent.decorators = [
     { type: Component, args: [{
@@ -6742,6 +6753,15 @@ DataTableBodyRowComponent.decorators = [
         (activate)="onActivate($event, ii)"
         (treeAction)="onTreeAction()"
       >
+        <a
+          *ngIf="row.detail && row.detail.length > 0"
+          href="javascript:void(0)"
+          [class.datatable-icon-down]="!expanded"
+          [class.datatable-icon-up]="expanded"
+          title="Expand/Collapse Row"
+          (click)="toggleExpandRow(row, $event)"
+        >
+        </a>
       </datatable-body-cell>
     </div>
   `
@@ -6765,6 +6785,7 @@ DataTableBodyRowComponent.propDecorators = {
     rowIndex: [{ type: Input }],
     displayCheck: [{ type: Input }],
     treeStatus: [{ type: Input }],
+    rowDetail: [{ type: Input }],
     offsetX: [{ type: Input }],
     cssClass: [{ type: HostBinding, args: ['class',] }],
     rowHeight: [{ type: HostBinding, args: ['style.height.px',] }, { type: Input }],
@@ -6791,6 +6812,8 @@ if (false) {
     DataTableBodyRowComponent.prototype.displayCheck;
     /** @type {?} */
     DataTableBodyRowComponent.prototype.treeStatus;
+    /** @type {?} */
+    DataTableBodyRowComponent.prototype.rowDetail;
     /** @type {?} */
     DataTableBodyRowComponent.prototype.rowHeight;
     /** @type {?} */
