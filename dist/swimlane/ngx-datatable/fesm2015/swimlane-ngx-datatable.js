@@ -6756,6 +6756,7 @@ DataTableBodyRowComponent.decorators = [
         tabindex="-1"
         [row]="row"
         [group]="group"
+        [rowDetail]="rowDetail"
         [expanded]="expanded"
         [isSelected]="isSelected"
         [rowIndex]="rowIndex"
@@ -7079,6 +7080,19 @@ class DataTableBodyCellComponent {
             onTreeAction: this.onTreeAction.bind(this)
         };
         this._element = element.nativeElement;
+    }
+    /**
+     * @param {?} rowDetail
+     * @return {?}
+     */
+    set rowDetail(rowDetail) {
+        this._rowDetail = rowDetail;
+    }
+    /**
+     * @return {?}
+     */
+    get rowDetail() {
+        return this._rowDetail;
     }
     /**
      * @param {?} group
@@ -7773,8 +7787,6 @@ if (false) {
     /** @type {?} */
     DataTableBodyCellComponent.prototype.displayCheck;
     /** @type {?} */
-    DataTableBodyCellComponent.prototype.rowDetail;
-    /** @type {?} */
     DataTableBodyCellComponent.prototype.activate;
     /** @type {?} */
     DataTableBodyCellComponent.prototype.treeAction;
@@ -7816,6 +7828,11 @@ if (false) {
      * @private
      */
     DataTableBodyCellComponent.prototype._row;
+    /**
+     * @type {?}
+     * @private
+     */
+    DataTableBodyCellComponent.prototype._rowDetail;
     /**
      * @type {?}
      * @private

@@ -35,6 +35,7 @@ import { style } from '@angular/animations';
         tabindex="-1"
         [row]="row"
         [group]="group"
+        [rowDetail]="rowDetail"
         [expanded]="expanded"
         [isSelected]="isSelected"
         [rowIndex]="rowIndex"

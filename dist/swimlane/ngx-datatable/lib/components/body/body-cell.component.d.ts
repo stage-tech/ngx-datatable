@@ -40,6 +40,7 @@ export declare class DataTableBodyCellComponent implements DoCheck, OnDestroy {
     private _sorts;
     private _column;
     private _row;
+    private _rowDetail;
     private _group;
     private _rowHeight;
     private _rowIndex;

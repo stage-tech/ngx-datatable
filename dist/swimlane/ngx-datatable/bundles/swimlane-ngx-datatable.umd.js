@@ -8123,7 +8123,7 @@
             { type: core.Component, args: [{
                         selector: 'datatable-body-row',
                         changeDetection: core.ChangeDetectionStrategy.OnPush,
-                        template: "\n    <div\n      *ngFor=\"let colGroup of _columnsByPin; let i = index; trackBy: trackByGroups\"\n      class=\"datatable-row-{{ colGroup.type }} datatable-row-group\"\n      [ngStyle]=\"_groupStyles[colGroup.type]\"\n    >\n      <datatable-body-cell\n        *ngFor=\"let column of colGroup.columns; let ii = index; trackBy: columnTrackingFn\"\n        tabindex=\"-1\"\n        [row]=\"row\"\n        [group]=\"group\"\n        [expanded]=\"expanded\"\n        [isSelected]=\"isSelected\"\n        [rowIndex]=\"rowIndex\"\n        [column]=\"column\"\n        [rowHeight]=\"rowHeight\"\n        [displayCheck]=\"displayCheck\"\n        [treeStatus]=\"treeStatus\"\n        (activate)=\"onActivate($event, ii)\"\n        (treeAction)=\"onTreeAction()\"\n      >\n      </datatable-body-cell>\n    </div>\n  "
+                        template: "\n    <div\n      *ngFor=\"let colGroup of _columnsByPin; let i = index; trackBy: trackByGroups\"\n      class=\"datatable-row-{{ colGroup.type }} datatable-row-group\"\n      [ngStyle]=\"_groupStyles[colGroup.type]\"\n    >\n      <datatable-body-cell\n        *ngFor=\"let column of colGroup.columns; let ii = index; trackBy: columnTrackingFn\"\n        tabindex=\"-1\"\n        [row]=\"row\"\n        [group]=\"group\"\n        [rowDetail]=\"rowDetail\"\n        [expanded]=\"expanded\"\n        [isSelected]=\"isSelected\"\n        [rowIndex]=\"rowIndex\"\n        [column]=\"column\"\n        [rowHeight]=\"rowHeight\"\n        [displayCheck]=\"displayCheck\"\n        [treeStatus]=\"treeStatus\"\n        (activate)=\"onActivate($event, ii)\"\n        (treeAction)=\"onTreeAction()\"\n      >\n      </datatable-body-cell>\n    </div>\n  "
                     }] }
         ];
         /** @nocollapse */
@@ -8424,6 +8424,23 @@
             };
             this._element = element.nativeElement;
         }
+        Object.defineProperty(DataTableBodyCellComponent.prototype, "rowDetail", {
+            get: /**
+             * @return {?}
+             */
+            function () {
+                return this._rowDetail;
+            },
+            set: /**
+             * @param {?} rowDetail
+             * @return {?}
+             */
+            function (rowDetail) {
+                this._rowDetail = rowDetail;
+            },
+            enumerable: true,
+            configurable: true
+        });
         Object.defineProperty(DataTableBodyCellComponent.prototype, "group", {
             get: /**
              * @return {?}
@@ -9151,8 +9168,6 @@
         /** @type {?} */
         DataTableBodyCellComponent.prototype.displayCheck;
         /** @type {?} */
-        DataTableBodyCellComponent.prototype.rowDetail;
-        /** @type {?} */
         DataTableBodyCellComponent.prototype.activate;
         /** @type {?} */
         DataTableBodyCellComponent.prototype.treeAction;
@@ -9194,6 +9209,11 @@
          * @private
          */
         DataTableBodyCellComponent.prototype._row;
+        /**
+         * @type {?}
+         * @private
+         */
+        DataTableBodyCellComponent.prototype._rowDetail;
         /**
          * @type {?}
          * @private

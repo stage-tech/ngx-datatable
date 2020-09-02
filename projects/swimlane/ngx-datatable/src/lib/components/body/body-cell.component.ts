@@ -168,7 +168,13 @@ export type TreeStatus = 'collapsed' | 'expanded' | 'loading' | 'disabled';
 export class DataTableBodyCellComponent implements DoCheck, OnDestroy {
   @Input() displayCheck: (row: any, column?: TableColumn, value?: any) => boolean;
 
-  @Input() rowDetail: any;
+  @Input() set rowDetail(rowDetail: any) {
+    this._rowDetail = rowDetail;
+  }
+
+  get rowDetail(): any {
+    return this._rowDetail;
+  }
 
   @Input() set group(group: any) {
     this._group = group;
@@ -368,6 +374,7 @@ export class DataTableBodyCellComponent implements DoCheck, OnDestroy {
   private _sorts: any[];
   private _column: TableColumn;
   private _row: any;
+  private _rowDetail: any;
   private _group: any;
   private _rowHeight: number;
   private _rowIndex: number;

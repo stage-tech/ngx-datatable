@@ -348,6 +348,12 @@ class DataTableBodyCellComponent {
         };
         this._element = element.nativeElement;
     }
+    set rowDetail(rowDetail) {
+        this._rowDetail = rowDetail;
+    }
+    get rowDetail() {
+        return this._rowDetail;
+    }
     set group(group) {
         this._group = group;
         this.cellContext.group = group;
@@ -1236,8 +1242,8 @@ __webpack_require__.r(__webpack_exports__);
 
 const _c0 = [3, "class", "ngStyle", 4, "ngFor", "ngForOf", "ngForTrackBy"];
 const _c1 = [3, "ngStyle"];
-const _c2 = ["tabindex", "-1", 3, "row", "group", "expanded", "isSelected", "rowIndex", "column", "rowHeight", "displayCheck", "treeStatus", "activate", "treeAction", 4, "ngFor", "ngForOf", "ngForTrackBy"];
-const _c3 = ["tabindex", "-1", 3, "row", "group", "expanded", "isSelected", "rowIndex", "column", "rowHeight", "displayCheck", "treeStatus", "activate", "treeAction"];
+const _c2 = ["tabindex", "-1", 3, "row", "group", "rowDetail", "expanded", "isSelected", "rowIndex", "column", "rowHeight", "displayCheck", "treeStatus", "activate", "treeAction", 4, "ngFor", "ngForOf", "ngForTrackBy"];
+const _c3 = ["tabindex", "-1", 3, "row", "group", "rowDetail", "expanded", "isSelected", "rowIndex", "column", "rowHeight", "displayCheck", "treeStatus", "activate", "treeAction"];
 function DataTableBodyRowComponent_div_0_datatable_body_cell_1_Template(rf, ctx) { if (rf & 1) {
     const _r116 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵgetCurrentView"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "datatable-body-cell", _c3);
@@ -1247,12 +1253,12 @@ function DataTableBodyRowComponent_div_0_datatable_body_cell_1_Template(rf, ctx)
 } if (rf & 2) {
     const column_r113 = ctx.$implicit;
     const ctx_r112 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"](2);
-    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("row", ctx_r112.row)("group", ctx_r112.group)("expanded", ctx_r112.expanded)("isSelected", ctx_r112.isSelected)("rowIndex", ctx_r112.rowIndex)("column", column_r113)("rowHeight", ctx_r112.rowHeight)("displayCheck", ctx_r112.displayCheck)("treeStatus", ctx_r112.treeStatus);
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("row", ctx_r112.row)("group", ctx_r112.group)("rowDetail", ctx_r112.rowDetail)("expanded", ctx_r112.expanded)("isSelected", ctx_r112.isSelected)("rowIndex", ctx_r112.rowIndex)("column", column_r113)("rowHeight", ctx_r112.rowHeight)("displayCheck", ctx_r112.displayCheck)("treeStatus", ctx_r112.treeStatus);
 } }
 function DataTableBodyRowComponent_div_0_Template(rf, ctx) { if (rf & 1) {
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "div", _c1);
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵstyling"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplate"](1, DataTableBodyRowComponent_div_0_datatable_body_cell_1_Template, 1, 9, "datatable-body-cell", _c2);
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplate"](1, DataTableBodyRowComponent_div_0_datatable_body_cell_1_Template, 1, 10, "datatable-body-cell", _c2);
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
 } if (rf & 2) {
     const colGroup_r110 = ctx.$implicit;
@@ -1447,6 +1453,7 @@ DataTableBodyRowComponent.ngComponentDef = _angular_core__WEBPACK_IMPORTED_MODUL
         tabindex="-1"
         [row]="row"
         [group]="group"
+        [rowDetail]="rowDetail"
         [expanded]="expanded"
         [isSelected]="isSelected"
         [rowIndex]="rowIndex"
