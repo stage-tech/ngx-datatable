@@ -9598,7 +9598,7 @@ var CustomToolTipComponent = /** @class */ (function () {
     CustomToolTipComponent.decorators = [
         { type: Component, args: [{
                     selector: 'ice-custom-tooltip',
-                    template: "<div>\n  <div class=\"tooltip-container\">\n    <div [innerHTML]=\"text\"></div>\n  </div>\n</div>\n",
+                    template: "<div>\r\n  <div class=\"tooltip-container\">\r\n    <div [innerHTML]=\"text\"></div>\r\n  </div>\r\n</div>\r\n",
                     encapsulation: ViewEncapsulation.None,
                     host: {
                         class: 'ice-custom-tooltip'
@@ -9808,7 +9808,7 @@ var DatatableSelectComponent = /** @class */ (function () {
     DatatableSelectComponent.decorators = [
         { type: Component, args: [{
                     selector: 'ice-datatable-row-select',
-                    template: "<select #selectElement (change)=\"emitUpdate(selectElement.value)\" [value]=\"value\" [disabled]=\"selectDisabled\">\n  <ng-container *ngIf=\"options\">\n    <ng-container *ngFor=\"let item of options\">\n      <option [value]=\"item.value\">{{ item.label }}</option>\n    </ng-container>\n  </ng-container>\n</select>\n",
+                    template: "<select #selectElement (change)=\"emitUpdate(selectElement.value)\" [value]=\"value\" [disabled]=\"selectDisabled\">\r\n  <ng-container *ngIf=\"options\">\r\n    <ng-container *ngFor=\"let item of options\">\r\n      <option [value]=\"item.value\">{{ item.label }}</option>\r\n    </ng-container>\r\n  </ng-container>\r\n</select>\r\n",
                     changeDetection: ChangeDetectionStrategy.OnPush
                 }] }
     ];
@@ -9948,7 +9948,7 @@ var EditableTextComponent = /** @class */ (function () {
     EditableTextComponent.decorators = [
         { type: Component, args: [{
                     selector: 'ice-editable-text',
-                    template: "<button\n  class=\"button-as-text mb-0\"\n  #contentWrapper\n  *ngIf=\"!editing\"\n  [disabled]=\"disabled\"\n  [class.active]=\"active\"\n  (keyup.space)=\"editOnSpace && emitToggleEditing($event)\"\n  (focus)=\"emitFocus(); editOnFocus && emitToggleEditing($event)\"\n  (click)=\"emitToggleActive($event); editOnClick && emitToggleEditing($event)\"\n>\n  <ng-content></ng-content>\n</button>\n<div *ngIf=\"editing\" class=\"editable-text-container\">\n  <div>\n    <input\n      type=\"text\"\n      class=\"editable-text-input\"\n      #inputElement\n      [disabled]=\"disabled\"\n      [class.active]=\"active\"\n      [value]=\"value\"\n      (keyup.escape)=\"emitToggleEditing($event)\"\n      (keyup.enter)=\"emitUpdate(inputElement.value)\"\n      (change)=\"emitUpdate(inputElement.value)\"\n      (blur)=\"emitToggleEditing($event)\"\n    />\n  </div>\n</div>\n<div *ngIf=\"errorText\" class=\"editable-text-container ice-pt-10\">\n  <label class=\"ice-error-msg\">{{ errorText }}</label>\n</div>\n",
+                    template: "<button\r\n  class=\"button-as-text mb-0\"\r\n  #contentWrapper\r\n  *ngIf=\"!editing\"\r\n  [disabled]=\"disabled\"\r\n  [class.active]=\"active\"\r\n  (keyup.space)=\"editOnSpace && emitToggleEditing($event)\"\r\n  (focus)=\"emitFocus(); editOnFocus && emitToggleEditing($event)\"\r\n  (click)=\"emitToggleActive($event); editOnClick && emitToggleEditing($event)\"\r\n>\r\n  <ng-content></ng-content>\r\n</button>\r\n<div *ngIf=\"editing\" class=\"editable-text-container\">\r\n  <div>\r\n    <input\r\n      type=\"text\"\r\n      class=\"editable-text-input\"\r\n      #inputElement\r\n      [disabled]=\"disabled\"\r\n      [class.active]=\"active\"\r\n      [value]=\"value\"\r\n      (keyup.escape)=\"emitToggleEditing($event)\"\r\n      (keyup.enter)=\"emitUpdate(inputElement.value)\"\r\n      (change)=\"emitUpdate(inputElement.value)\"\r\n      (blur)=\"emitToggleEditing($event)\"\r\n    />\r\n  </div>\r\n</div>\r\n<div *ngIf=\"errorText\" class=\"editable-text-container ice-pt-10\">\r\n  <label class=\"ice-error-msg\">{{ errorText }}</label>\r\n</div>\r\n",
                     encapsulation: ViewEncapsulation.None,
                     host: {
                         class: 'ice-editable-text'
