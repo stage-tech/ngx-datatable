@@ -46,7 +46,7 @@ import { translateXY } from '../../utils/translate';
       >
       </datatable-body-cell>
       <a
-        *ngIf="row.detail && row.detail.length > 0"
+        *ngIf="row.detail && row.detail.length > 0 && colGroup.type === 'left'"
         href="javascript:void(0)"
         [class.datatable-icon-down]="!expanded"
         [class.datatable-icon-up]="expanded"

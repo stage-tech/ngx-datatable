@@ -1229,7 +1229,7 @@ function DataTableBodyRowComponent_div_0_Template(rf, ctx) { if (rf & 1) {
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵselect"](1);
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("ngForOf", colGroup_r106.columns)("ngForTrackBy", ctx_r105.columnTrackingFn);
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵselect"](2);
-    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("ngIf", ctx_r105.row.detail && ctx_r105.row.detail.length > 0);
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("ngIf", ctx_r105.row.detail && ctx_r105.row.detail.length > 0 && colGroup_r106.type === "left");
 } }
 class DataTableBodyRowComponent {
     constructor(differs, scrollbarHelper, cd, element) {
@@ -1429,7 +1429,7 @@ DataTableBodyRowComponent.ngComponentDef = _angular_core__WEBPACK_IMPORTED_MODUL
       >
       </datatable-body-cell>
       <a
-        *ngIf="row.detail && row.detail.length > 0"
+        *ngIf="row.detail && row.detail.length > 0 && colGroup.type === 'left'"
         href="javascript:void(0)"
         [class.datatable-icon-down]="!expanded"
         [class.datatable-icon-up]="expanded"
