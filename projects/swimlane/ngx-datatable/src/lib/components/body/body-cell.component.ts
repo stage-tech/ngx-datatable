@@ -31,7 +31,6 @@ export type TreeStatus = 'collapsed' | 'expanded' | 'loading' | 'disabled';
     <div
       class="datatable-body-cell-label"
       style="display: flex; align-items:center; height: 100%;"
-      fxLayoutGap="10px"
       [style.margin-left.px]="calcLeftMargin(column, row)"
     >
       <a
@@ -72,7 +71,7 @@ export type TreeStatus = 'collapsed' | 'expanded' | 'loading' | 'disabled';
           </ng-template>
         </ng-container>
 
-        <div *ngIf="column.icons as icons" fxLayout="column">
+        <div *ngIf="column.icons as icons" style="display: flex; flex-direction: column; margin-right: 10px;">
           <mat-icon
             *ngFor="let i of getIcons(row, icons)"
             [innerHTML]="i.icon"
@@ -586,6 +585,8 @@ export class DataTableBodyCellComponent implements DoCheck, OnDestroy {
   }
 
   toggleExpandRow(row, event) {
+    event.preventDefault();
+    event.stopPropagation();
     if (this.rowDetail) {
       this.rowDetail.toggleExpandRow(row);
     }

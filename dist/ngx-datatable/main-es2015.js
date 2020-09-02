@@ -70,7 +70,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 const _c0 = ["cellTemplate"];
-const _c1 = ["fxLayoutGap", "10px", 1, "datatable-body-cell-label", 2, "display", "flex", "align-items", "center", "height", "100%"];
+const _c1 = [1, "datatable-body-cell-label", 2, "display", "flex", "align-items", "center", "height", "100%"];
 const _c2 = ["href", "javascript:void(0)", "style", "font-size: 18px; display: flex; align-items: center;", "title", "Expand/Collapse Row", 3, "datatable-icon-down", "datatable-icon-up", "click", 4, "ngIf"];
 const _c3 = [4, "ngIf"];
 const _c4 = ["href", "javascript:void(0)", "title", "Expand/Collapse Row", 2, "font-size", "18px", "display", "flex", "align-items", "center", 3, "click"];
@@ -87,7 +87,7 @@ function DataTableBodyCellComponent_a_1_Template(rf, ctx) { if (rf & 1) {
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵstylingApply"]();
 } }
 const _c5 = ["class", "datatable-checkbox", 4, "ngIf"];
-const _c6 = ["fxLayout", "column", 4, "ngIf"];
+const _c6 = ["style", "display: flex; flex-direction: column; margin-right: 10px;", 4, "ngIf"];
 const _c7 = ["iceCustomHtmlToolTip", "", "class", "material-icons", 3, "iceTooltipHtmlText", "duration", "ngClass", 4, "ngIf"];
 const _c8 = ["class", "mat-icon material-icons", 3, "matTooltip", 4, "ngIf"];
 const _c9 = ["class", "ice-data-table-row", "iceCustomHtmlToolTip", "", 3, "iceTooltipHtmlText", "showToolTipOnTextOverflow", "showToolTip", "innerHTML", 4, "ngIf"];
@@ -165,7 +165,7 @@ function DataTableBodyCellComponent_ng_container_2_ng_container_2_Template(rf, c
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵselect"](2);
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("ngIf", ctx_r76.column.treeToggleTemplate);
 } }
-const _c24 = ["fxLayout", "column"];
+const _c24 = [2, "display", "flex", "flex-direction", "column", "margin-right", "10px"];
 const _c25 = [3, "innerHTML", "matTooltip", "class", 4, "ngFor", "ngForOf"];
 const _c26 = [3, "innerHTML", "matTooltip"];
 function DataTableBodyCellComponent_ng_container_2_div_3_mat_icon_1_Template(rf, ctx) { if (rf & 1) {
@@ -659,6 +659,8 @@ class DataTableBodyCellComponent {
         field.onEdit(Object.assign({}, row, { [field.prop]: newValue }));
     }
     toggleExpandRow(row, event) {
+        event.preventDefault();
+        event.stopPropagation();
         if (this.rowDetail) {
             this.rowDetail.toggleExpandRow(row);
         }
@@ -707,7 +709,6 @@ DataTableBodyCellComponent.ngComponentDef = _angular_core__WEBPACK_IMPORTED_MODU
     <div
       class="datatable-body-cell-label"
       style="display: flex; align-items:center; height: 100%;"
-      fxLayoutGap="10px"
       [style.margin-left.px]="calcLeftMargin(column, row)"
     >
       <a
@@ -748,7 +749,7 @@ DataTableBodyCellComponent.ngComponentDef = _angular_core__WEBPACK_IMPORTED_MODU
           </ng-template>
         </ng-container>
 
-        <div *ngIf="column.icons as icons" fxLayout="column">
+        <div *ngIf="column.icons as icons" style="display: flex; flex-direction: column; margin-right: 10px;">
           <mat-icon
             *ngFor="let i of getIcons(row, icons)"
             [innerHTML]="i.icon"
