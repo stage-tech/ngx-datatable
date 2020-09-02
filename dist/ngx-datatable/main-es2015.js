@@ -50,9 +50,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! rxjs */ "./node_modules/rxjs/_esm2015/index.js");
 /* harmony import */ var _angular_platform_browser__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/platform-browser */ "./node_modules/@angular/platform-browser/__ivy_ngcc__/fesm2015/platform-browser.js");
 /* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/common */ "./node_modules/@angular/common/__ivy_ngcc__/fesm2015/common.js");
-/* harmony import */ var _directives_ice_custom_html_tooltip_directive__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../directives/ice-custom-html-tooltip.directive */ "./projects/swimlane/ngx-datatable/src/lib/directives/ice-custom-html-tooltip.directive.ts");
-/* harmony import */ var _angular_material_icon__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @angular/material/icon */ "./node_modules/@angular/material/__ivy_ngcc__/esm2015/icon.js");
-/* harmony import */ var _angular_material_tooltip__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @angular/material/tooltip */ "./node_modules/@angular/material/__ivy_ngcc__/esm2015/tooltip.js");
+/* harmony import */ var _angular_material_icon__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @angular/material/icon */ "./node_modules/@angular/material/__ivy_ngcc__/esm2015/icon.js");
+/* harmony import */ var _angular_material_tooltip__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @angular/material/tooltip */ "./node_modules/@angular/material/__ivy_ngcc__/esm2015/tooltip.js");
+/* harmony import */ var _directives_ice_custom_html_tooltip_directive__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../directives/ice-custom-html-tooltip.directive */ "./projects/swimlane/ngx-datatable/src/lib/directives/ice-custom-html-tooltip.directive.ts");
 /* harmony import */ var _angular_material_button__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @angular/material/button */ "./node_modules/@angular/material/__ivy_ngcc__/esm2015/button.js");
 /* harmony import */ var _ice_datatable_select_ice_datatable_select_component__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../ice-datatable-select/ice-datatable-select.component */ "./projects/swimlane/ngx-datatable/src/lib/components/ice-datatable-select/ice-datatable-select.component.ts");
 /* harmony import */ var _ice_editable_text_ice_editable_text_component__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../ice-editable-text/ice-editable-text.component */ "./projects/swimlane/ngx-datatable/src/lib/components/ice-editable-text/ice-editable-text.component.ts");
@@ -73,10 +73,10 @@ const _c0 = ["cellTemplate"];
 const _c1 = [1, "datatable-body-cell-label", 2, "display", "flex", "align-items", "center"];
 const _c2 = ["class", "datatable-checkbox", 4, "ngIf"];
 const _c3 = [4, "ngIf"];
-const _c4 = ["class", "ice-data-table-row", "iceCustomHtmlToolTip", "", 3, "iceTooltipHtmlText", "showToolTipOnTextOverflow", "showToolTip", "innerHTML", 4, "ngIf"];
-const _c5 = ["fxLayout", "column", 4, "ngIf"];
-const _c6 = ["iceCustomHtmlToolTip", "", "class", "material-icons", 3, "iceTooltipHtmlText", "duration", "ngClass", 4, "ngIf"];
-const _c7 = ["class", "mat-icon material-icons", 3, "matTooltip", 4, "ngIf"];
+const _c4 = ["fxLayout", "column", 4, "ngIf"];
+const _c5 = ["iceCustomHtmlToolTip", "", "class", "material-icons", 3, "iceTooltipHtmlText", "duration", "ngClass", 4, "ngIf"];
+const _c6 = ["class", "mat-icon material-icons", 3, "matTooltip", 4, "ngIf"];
+const _c7 = ["class", "ice-data-table-row", "iceCustomHtmlToolTip", "", 3, "iceTooltipHtmlText", "showToolTipOnTextOverflow", "showToolTip", "innerHTML", 4, "ngIf"];
 const _c8 = ["mat-icon-button", "", 3, "matTooltip", "click", 4, "ngIf"];
 const _c9 = ["style", "margin-top: 18px", 3, "options", "ngClass", "value", "selectDisabled", "update", 4, "ngIf"];
 const _c10 = [1, "datatable-checkbox"];
@@ -151,18 +151,11 @@ function DataTableBodyCellComponent_ng_container_2_Template(rf, ctx) { if (rf & 
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵselect"](2);
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("ngIf", ctx_r72.column.treeToggleTemplate);
 } }
-const _c22 = ["iceCustomHtmlToolTip", "", 1, "ice-data-table-row", 3, "iceTooltipHtmlText", "showToolTipOnTextOverflow", "showToolTip", "innerHTML"];
-function DataTableBodyCellComponent_h4_3_Template(rf, ctx) { if (rf & 1) {
-    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](0, "h4", _c22);
-} if (rf & 2) {
-    const ctx_r73 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("iceTooltipHtmlText", ctx_r73.getTooltipValue(ctx_r73.value, ctx_r73.row, ctx_r73.column))("showToolTipOnTextOverflow", true)("showToolTip", ctx_r73.hasToShowToolTip(ctx_r73.row, ctx_r73.column))("innerHTML", ctx_r73.value, _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵsanitizeHtml"]);
-} }
-const _c23 = ["fxLayout", "column"];
-const _c24 = [3, "innerHTML", "matTooltip", "class", 4, "ngFor", "ngForOf"];
-const _c25 = [3, "innerHTML", "matTooltip"];
-function DataTableBodyCellComponent_div_5_mat_icon_1_Template(rf, ctx) { if (rf & 1) {
-    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "mat-icon", _c25);
+const _c22 = ["fxLayout", "column"];
+const _c23 = [3, "innerHTML", "matTooltip", "class", 4, "ngFor", "ngForOf"];
+const _c24 = [3, "innerHTML", "matTooltip"];
+function DataTableBodyCellComponent_div_3_mat_icon_1_Template(rf, ctx) { if (rf & 1) {
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "mat-icon", _c24);
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵstyling"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
 } if (rf & 2) {
@@ -171,42 +164,49 @@ function DataTableBodyCellComponent_div_5_mat_icon_1_Template(rf, ctx) { if (rf 
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵstylingApply"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("innerHTML", i_r94.icon, _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵsanitizeHtml"])("matTooltip", i_r94.text);
 } }
-function DataTableBodyCellComponent_div_5_Template(rf, ctx) { if (rf & 1) {
-    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "div", _c23);
-    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplate"](1, DataTableBodyCellComponent_div_5_mat_icon_1_Template, 1, 4, "mat-icon", _c24);
+function DataTableBodyCellComponent_div_3_Template(rf, ctx) { if (rf & 1) {
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "div", _c22);
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplate"](1, DataTableBodyCellComponent_div_3_mat_icon_1_Template, 1, 4, "mat-icon", _c23);
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
 } if (rf & 2) {
     const icons_r92 = ctx.ngIf;
-    const ctx_r74 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"]();
+    const ctx_r73 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵselect"](1);
-    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("ngForOf", ctx_r74.getIcons(ctx_r74.row, icons_r92));
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("ngForOf", ctx_r73.getIcons(ctx_r73.row, icons_r92));
 } }
-const _c26 = ["iceCustomHtmlToolTip", "", 1, "material-icons", 3, "iceTooltipHtmlText", "duration", "ngClass"];
-function DataTableBodyCellComponent_mat_icon_6_Template(rf, ctx) { if (rf & 1) {
-    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "mat-icon", _c26);
+const _c25 = ["iceCustomHtmlToolTip", "", 1, "material-icons", 3, "iceTooltipHtmlText", "duration", "ngClass"];
+function DataTableBodyCellComponent_mat_icon_4_Template(rf, ctx) { if (rf & 1) {
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "mat-icon", _c25);
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](1, "priority_high");
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
 } if (rf & 2) {
     const customHtml_r95 = ctx.ngIf;
-    const ctx_r75 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("iceTooltipHtmlText", ctx_r75.sanatizeHtml(customHtml_r95))("duration", 1500)("ngClass", ctx_r75.column.prop && ctx_r75.selectFieldValue(ctx_r75.row, ctx_r75.column.iconColor));
+    const ctx_r74 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"]();
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("iceTooltipHtmlText", ctx_r74.sanatizeHtml(customHtml_r95))("duration", 1500)("ngClass", ctx_r74.column.prop && ctx_r74.selectFieldValue(ctx_r74.row, ctx_r74.column.iconColor));
 } }
-const _c27 = [1, "mat-icon", "material-icons", 3, "matTooltip"];
-function DataTableBodyCellComponent_mat_icon_7_Template(rf, ctx) { if (rf & 1) {
-    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "mat-icon", _c27);
+const _c26 = [1, "mat-icon", "material-icons", 3, "matTooltip"];
+function DataTableBodyCellComponent_mat_icon_5_Template(rf, ctx) { if (rf & 1) {
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "mat-icon", _c26);
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](1, "info");
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
 } if (rf & 2) {
-    const ctx_r76 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("matTooltip", ctx_r76.column.prop && ctx_r76.row[ctx_r76.column.prop.toString() + "InfoTooltip"]);
+    const ctx_r75 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"]();
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("matTooltip", ctx_r75.column.prop && ctx_r75.row[ctx_r75.column.prop.toString() + "InfoTooltip"]);
 } }
-function DataTableBodyCellComponent_mat_icon_8_Template(rf, ctx) { if (rf & 1) {
-    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "mat-icon", _c27);
+function DataTableBodyCellComponent_mat_icon_6_Template(rf, ctx) { if (rf & 1) {
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "mat-icon", _c26);
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](1, "block");
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
 } if (rf & 2) {
+    const ctx_r76 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"]();
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("matTooltip", ctx_r76.column.prop && ctx_r76.row[ctx_r76.column.prop.toString() + "Excluded"]);
+} }
+const _c27 = ["iceCustomHtmlToolTip", "", 1, "ice-data-table-row", 3, "iceTooltipHtmlText", "showToolTipOnTextOverflow", "showToolTip", "innerHTML"];
+function DataTableBodyCellComponent_h4_7_Template(rf, ctx) { if (rf & 1) {
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](0, "h4", _c27);
+} if (rf & 2) {
     const ctx_r77 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("matTooltip", ctx_r77.column.prop && ctx_r77.row[ctx_r77.column.prop.toString() + "Excluded"]);
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("iceTooltipHtmlText", ctx_r77.getTooltipValue(ctx_r77.value, ctx_r77.row, ctx_r77.column))("showToolTipOnTextOverflow", true)("showToolTip", ctx_r77.hasToShowToolTip(ctx_r77.row, ctx_r77.column))("innerHTML", ctx_r77.value, _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵsanitizeHtml"]);
 } }
 const _c28 = ["mat-icon-button", "", 3, "matTooltip", "click"];
 const _c29 = [1, "mat-icon", "material-icons"];
@@ -628,12 +628,12 @@ DataTableBodyCellComponent.ngComponentDef = _angular_core__WEBPACK_IMPORTED_MODU
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵstyling"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplate"](1, DataTableBodyCellComponent_label_1_Template, 2, 1, "label", _c2);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplate"](2, DataTableBodyCellComponent_ng_container_2_Template, 3, 2, "ng-container", _c3);
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplate"](3, DataTableBodyCellComponent_h4_3_Template, 1, 4, "h4", _c4);
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵpipe"](4, "async");
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplate"](5, DataTableBodyCellComponent_div_5_Template, 2, 1, "div", _c5);
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplate"](6, DataTableBodyCellComponent_mat_icon_6_Template, 2, 3, "mat-icon", _c6);
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplate"](7, DataTableBodyCellComponent_mat_icon_7_Template, 2, 1, "mat-icon", _c7);
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplate"](8, DataTableBodyCellComponent_mat_icon_8_Template, 2, 1, "mat-icon", _c7);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplate"](3, DataTableBodyCellComponent_div_3_Template, 2, 1, "div", _c4);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplate"](4, DataTableBodyCellComponent_mat_icon_4_Template, 2, 3, "mat-icon", _c5);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplate"](5, DataTableBodyCellComponent_mat_icon_5_Template, 2, 1, "mat-icon", _c6);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplate"](6, DataTableBodyCellComponent_mat_icon_6_Template, 2, 1, "mat-icon", _c6);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplate"](7, DataTableBodyCellComponent_h4_7_Template, 1, 4, "h4", _c7);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵpipe"](8, "async");
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplate"](9, DataTableBodyCellComponent_button_9_Template, 3, 2, "button", _c8);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵpipe"](10, "async");
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplate"](11, DataTableBodyCellComponent_ice_datatable_row_select_11_Template, 1, 4, "ice-datatable-row-select", _c9);
@@ -649,15 +649,15 @@ DataTableBodyCellComponent.ngComponentDef = _angular_core__WEBPACK_IMPORTED_MODU
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵselect"](2);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("ngIf", ctx.column.isTreeColumn);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵselect"](3);
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("ngIf", !ctx.column.actionButtonIcon && !ctx.column.cellTemplate && !ctx.column.selectOptions && (!ctx.column.editable || !_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵpipeBind1"](4, 12, ctx.isEditable(ctx.column, ctx.row))));
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵselect"](5);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("ngIf", ctx.column.icons);
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵselect"](6);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵselect"](4);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("ngIf", ctx.column.iconCustomTooltipHtmlText && ctx.column.prop && ctx.selectFieldValue(ctx.row, ctx.column.iconCustomTooltipHtmlText));
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵselect"](7);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵselect"](5);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("ngIf", ctx.column.prop && ctx.row[ctx.column.prop.toString() + "InfoTooltip"]);
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵselect"](8);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵselect"](6);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("ngIf", ctx.column.prop && ctx.row[ctx.column.prop.toString() + "Excluded"]);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵselect"](7);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("ngIf", !ctx.column.actionButtonIcon && !ctx.column.cellTemplate && !ctx.column.selectOptions && (!ctx.column.editable || !_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵpipeBind1"](8, 12, ctx.isEditable(ctx.column, ctx.row))));
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵselect"](9);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("ngIf", ctx.column.actionButtonIcon && !_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵpipeBind1"](10, 14, ctx.column.hideActionButton && ctx.column.hideActionButton(ctx.row)));
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵselect"](11);
@@ -666,7 +666,7 @@ DataTableBodyCellComponent.ngComponentDef = _angular_core__WEBPACK_IMPORTED_MODU
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("ngIf", !ctx.column.selectOptions && _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵpipeBind1"](13, 16, ctx.column.editable && ctx.isEditable(ctx.column, ctx.row)));
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵselect"](14);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("ngIf", ctx.column.cellTemplate);
-    } }, directives: [_angular_common__WEBPACK_IMPORTED_MODULE_5__["NgIf"], _angular_common__WEBPACK_IMPORTED_MODULE_5__["NgTemplateOutlet"], _directives_ice_custom_html_tooltip_directive__WEBPACK_IMPORTED_MODULE_6__["ToolTipRendererDirective"], _angular_common__WEBPACK_IMPORTED_MODULE_5__["NgForOf"], _angular_material_icon__WEBPACK_IMPORTED_MODULE_7__["MatIcon"], _angular_material_tooltip__WEBPACK_IMPORTED_MODULE_8__["MatTooltip"], _angular_common__WEBPACK_IMPORTED_MODULE_5__["NgClass"], _angular_material_button__WEBPACK_IMPORTED_MODULE_9__["MatButton"], _ice_datatable_select_ice_datatable_select_component__WEBPACK_IMPORTED_MODULE_10__["DatatableSelectComponent"], _ice_editable_text_ice_editable_text_component__WEBPACK_IMPORTED_MODULE_11__["EditableTextComponent"]], pipes: [_angular_common__WEBPACK_IMPORTED_MODULE_5__["AsyncPipe"]], encapsulation: 2, changeDetection: 0 });
+    } }, directives: [_angular_common__WEBPACK_IMPORTED_MODULE_5__["NgIf"], _angular_common__WEBPACK_IMPORTED_MODULE_5__["NgTemplateOutlet"], _angular_common__WEBPACK_IMPORTED_MODULE_5__["NgForOf"], _angular_material_icon__WEBPACK_IMPORTED_MODULE_6__["MatIcon"], _angular_material_tooltip__WEBPACK_IMPORTED_MODULE_7__["MatTooltip"], _directives_ice_custom_html_tooltip_directive__WEBPACK_IMPORTED_MODULE_8__["ToolTipRendererDirective"], _angular_common__WEBPACK_IMPORTED_MODULE_5__["NgClass"], _angular_material_button__WEBPACK_IMPORTED_MODULE_9__["MatButton"], _ice_datatable_select_ice_datatable_select_component__WEBPACK_IMPORTED_MODULE_10__["DatatableSelectComponent"], _ice_editable_text_ice_editable_text_component__WEBPACK_IMPORTED_MODULE_11__["EditableTextComponent"]], pipes: [_angular_common__WEBPACK_IMPORTED_MODULE_5__["AsyncPipe"]], encapsulation: 2, changeDetection: 0 });
 /*@__PURE__*/ _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵsetClassMetadata"](DataTableBodyCellComponent, [{
         type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"],
         args: [{
@@ -705,21 +705,6 @@ DataTableBodyCellComponent.ngComponentDef = _angular_core__WEBPACK_IMPORTED_MODU
         </ng-template>
       </ng-container>
 
-      <h4
-        *ngIf="
-          !column.actionButtonIcon &&
-          !column.cellTemplate &&
-          !column.selectOptions &&
-          (!column.editable || !(isEditable(column, row) | async))
-        "
-        class="ice-data-table-row"
-        iceCustomHtmlToolTip
-        [iceTooltipHtmlText]="getTooltipValue(value, row, column)"
-        [showToolTipOnTextOverflow]="true"
-        [showToolTip]="hasToShowToolTip(row, column)"
-        [innerHTML]="value"
-      ></h4>
-
       <div *ngIf="column.icons as icons" fxLayout="column">
         <mat-icon
           *ngFor="let i of getIcons(row, icons)"
@@ -756,6 +741,21 @@ DataTableBodyCellComponent.ngComponentDef = _angular_core__WEBPACK_IMPORTED_MODU
         class="mat-icon material-icons"
         >block</mat-icon
       >
+
+      <h4
+        *ngIf="
+          !column.actionButtonIcon &&
+          !column.cellTemplate &&
+          !column.selectOptions &&
+          (!column.editable || !(isEditable(column, row) | async))
+        "
+        class="ice-data-table-row"
+        iceCustomHtmlToolTip
+        [iceTooltipHtmlText]="getTooltipValue(value, row, column)"
+        [showToolTipOnTextOverflow]="true"
+        [showToolTip]="hasToShowToolTip(row, column)"
+        [innerHTML]="value"
+      ></h4>
 
       <button
         *ngIf="column.actionButtonIcon && !(column.hideActionButton && column.hideActionButton(row) | async)"

@@ -60,21 +60,6 @@ export type TreeStatus = 'collapsed' | 'expanded' | 'loading' | 'disabled';
         </ng-template>
       </ng-container>
 
-      <h4
-        *ngIf="
-          !column.actionButtonIcon &&
-          !column.cellTemplate &&
-          !column.selectOptions &&
-          (!column.editable || !(isEditable(column, row) | async))
-        "
-        class="ice-data-table-row"
-        iceCustomHtmlToolTip
-        [iceTooltipHtmlText]="getTooltipValue(value, row, column)"
-        [showToolTipOnTextOverflow]="true"
-        [showToolTip]="hasToShowToolTip(row, column)"
-        [innerHTML]="value"
-      ></h4>
-
       <div *ngIf="column.icons as icons" fxLayout="column">
         <mat-icon
           *ngFor="let i of getIcons(row, icons)"
@@ -111,6 +96,21 @@ export type TreeStatus = 'collapsed' | 'expanded' | 'loading' | 'disabled';
         class="mat-icon material-icons"
         >block</mat-icon
       >
+
+      <h4
+        *ngIf="
+          !column.actionButtonIcon &&
+          !column.cellTemplate &&
+          !column.selectOptions &&
+          (!column.editable || !(isEditable(column, row) | async))
+        "
+        class="ice-data-table-row"
+        iceCustomHtmlToolTip
+        [iceTooltipHtmlText]="getTooltipValue(value, row, column)"
+        [showToolTipOnTextOverflow]="true"
+        [showToolTip]="hasToShowToolTip(row, column)"
+        [innerHTML]="value"
+      ></h4>
 
       <button
         *ngIf="column.actionButtonIcon && !(column.hideActionButton && column.hideActionButton(row) | async)"
