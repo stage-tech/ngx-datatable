@@ -137,7 +137,14 @@ export class DatatableComponent implements OnInit, DoCheck, AfterViewInit {
    */
   @Input() groupedRows: any[];
 
-  @Input() expandable: boolean = false;
+  @Input() set expandable(val: boolean) {
+    this._expandable = val;
+    this.columns = this._columns;
+  }
+
+  get expandable(): boolean {
+    return this._expandable;
+  }
 
   /**
    * Columns to be displayed.
@@ -651,6 +658,7 @@ export class DatatableComponent implements OnInit, DoCheck, AfterViewInit {
   _internalRows: any[];
   _internalColumns: TableColumn[];
   _columns: TableColumn[];
+  _expandable: boolean;
   _columnTemplates: QueryList<DataTableColumnDirective>;
   _subscriptions: Subscription[] = [];
 

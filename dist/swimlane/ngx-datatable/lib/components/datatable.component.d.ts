@@ -383,6 +383,7 @@ export declare class DatatableComponent implements OnInit, DoCheck, AfterViewIni
     _internalRows: any[];
     _internalColumns: TableColumn[];
     _columns: TableColumn[];
+    _expandable: boolean;
     _columnTemplates: QueryList<DataTableColumnDirective>;
     _subscriptions: Subscription[];
     constructor(scrollbarHelper: ScrollbarHelper, dimensionsHelper: DimensionsHelper, cd: ChangeDetectorRef, element: ElementRef, differs: KeyValueDiffers, columnChangesService: ColumnChangesService, configuration: INgxDatatableConfig);

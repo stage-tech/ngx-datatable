@@ -4397,7 +4397,6 @@ class DatatableComponent {
         this.cd = cd;
         this.columnChangesService = columnChangesService;
         this.configuration = configuration;
-        this.expandable = false;
         /**
          * List of row objects that should be
          * represented as selected in the grid.
@@ -4643,6 +4642,20 @@ class DatatableComponent {
      */
     get groupRowsBy() {
         return this._groupRowsBy;
+    }
+    /**
+     * @param {?} val
+     * @return {?}
+     */
+    set expandable(val) {
+        this._expandable = val;
+        this.columns = this._columns;
+    }
+    /**
+     * @return {?}
+     */
+    get expandable() {
+        return this._expandable;
     }
     /**
      * Columns to be displayed.
@@ -5494,8 +5507,6 @@ if (false) {
      * @type {?}
      */
     DatatableComponent.prototype.groupedRows;
-    /** @type {?} */
-    DatatableComponent.prototype.expandable;
     /**
      * List of row objects that should be
      * represented as selected in the grid.
@@ -5792,6 +5803,8 @@ if (false) {
     DatatableComponent.prototype._internalColumns;
     /** @type {?} */
     DatatableComponent.prototype._columns;
+    /** @type {?} */
+    DatatableComponent.prototype._expandable;
     /** @type {?} */
     DatatableComponent.prototype._columnTemplates;
     /** @type {?} */
