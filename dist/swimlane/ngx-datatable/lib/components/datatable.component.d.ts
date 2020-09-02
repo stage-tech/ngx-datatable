@@ -52,6 +52,7 @@ export declare class DatatableComponent implements OnInit, DoCheck, AfterViewIni
      *  ]
      */
     groupedRows: any[];
+    expandable: boolean;
     /**
      * Columns to be displayed.
      */

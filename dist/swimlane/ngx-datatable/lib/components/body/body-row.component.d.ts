@@ -45,5 +45,4 @@ export declare class DataTableBodyRowComponent implements DoCheck {
     onMouseenter(event: any): void;
     recalculateColumns(val?: any[]): void;
     onTreeAction(): void;
-    toggleExpandRow(row: any, event: any): void;
 }

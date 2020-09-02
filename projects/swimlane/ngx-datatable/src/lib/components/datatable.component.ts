@@ -137,10 +137,28 @@ export class DatatableComponent implements OnInit, DoCheck, AfterViewInit {
    */
   @Input() groupedRows: any[];
 
+  @Input() expandable: boolean = false;
+
   /**
    * Columns to be displayed.
    */
   @Input() set columns(val: TableColumn[]) {
+    val = [
+      ...(this.expandable
+        ? [
+            {
+              width: 50,
+              prop: 'ice-expandable',
+              name: '',
+              resizeable: false,
+              canAutoResize: false,
+              draggable: false,
+              sortable: false
+            }
+          ]
+        : []),
+      ...val
+    ];
     if (val) {
       this._internalColumns = [...val];
       setColumnDefaults(this._internalColumns);

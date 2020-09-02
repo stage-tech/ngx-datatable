@@ -46,16 +46,6 @@ import { style } from '@angular/animations';
         (treeAction)="onTreeAction()"
       >
       </datatable-body-cell>
-      <a
-        *ngIf="row.detail && row.detail.length > 0 && colGroup.type === 'left'"
-        href="javascript:void(0)"
-        style="display: flex; align-items: center; justify-content: center; width: 50px;"
-        [class.datatable-icon-down]="!expanded"
-        [class.datatable-icon-up]="expanded"
-        title="Expand/Collapse Row"
-        (click)="toggleExpandRow(row, $event)"
-      >
-      </a>
     </div>
   `
 })
@@ -266,11 +256,5 @@ export class DataTableBodyRowComponent implements DoCheck {
 
   onTreeAction() {
     this.treeAction.emit();
-  }
-
-  toggleExpandRow(row, event) {
-    if (this.rowDetail) {
-      this.rowDetail.toggleExpandRow(row);
-    }
   }
 }

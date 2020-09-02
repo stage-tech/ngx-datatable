@@ -8,6 +8,7 @@ export declare class DataTableBodyCellComponent implements DoCheck, OnDestroy {
     private cd;
     private sanitizer;
     displayCheck: (row: any, column?: TableColumn, value?: any) => boolean;
+    rowDetail: any;
     group: any;
     rowHeight: number;
     isSelected: boolean;
@@ -68,4 +69,5 @@ export declare class DataTableBodyCellComponent implements DoCheck, OnDestroy {
     isEditable(field: any, row: any): Observable<boolean>;
     updateSelect(field: any, row: any, newValue: any): void;
     editField(field: any, row: any, newValue: any): void;
+    toggleExpandRow(row: any, event: any): void;
 }

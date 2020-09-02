@@ -4397,6 +4397,7 @@ class DatatableComponent {
         this.cd = cd;
         this.columnChangesService = columnChangesService;
         this.configuration = configuration;
+        this.expandable = false;
         /**
          * List of row objects that should be
          * represented as selected in the grid.
@@ -4649,6 +4650,22 @@ class DatatableComponent {
      * @return {?}
      */
     set columns(val) {
+        val = [
+            ...(this.expandable
+                ? [
+                    {
+                        width: 50,
+                        prop: 'ice-expandable',
+                        name: '',
+                        resizeable: false,
+                        canAutoResize: false,
+                        draggable: false,
+                        sortable: false
+                    }
+                ]
+                : []),
+            ...val
+        ];
         if (val) {
             this._internalColumns = [...val];
             setColumnDefaults(this._internalColumns);
@@ -5385,6 +5402,7 @@ DatatableComponent.propDecorators = {
     rows: [{ type: Input }],
     groupRowsBy: [{ type: Input }],
     groupedRows: [{ type: Input }],
+    expandable: [{ type: Input }],
     columns: [{ type: Input }],
     selected: [{ type: Input }],
     scrollbarV: [{ type: Input }],
@@ -5476,6 +5494,8 @@ if (false) {
      * @type {?}
      */
     DatatableComponent.prototype.groupedRows;
+    /** @type {?} */
+    DatatableComponent.prototype.expandable;
     /**
      * List of row objects that should be
      * represented as selected in the grid.
@@ -6720,16 +6740,6 @@ class DataTableBodyRowComponent {
     onTreeAction() {
         this.treeAction.emit();
     }
-    /**
-     * @param {?} row
-     * @param {?} event
-     * @return {?}
-     */
-    toggleExpandRow(row, event) {
-        if (this.rowDetail) {
-            this.rowDetail.toggleExpandRow(row);
-        }
-    }
 }
 DataTableBodyRowComponent.decorators = [
     { type: Component, args: [{
@@ -6757,16 +6767,6 @@ DataTableBodyRowComponent.decorators = [
         (treeAction)="onTreeAction()"
       >
       </datatable-body-cell>
-      <a
-        *ngIf="row.detail && row.detail.length > 0 && colGroup.type === 'left'"
-        href="javascript:void(0)"
-        style="display: flex; align-items: center; justify-content: center; width: 50px;"
-        [class.datatable-icon-down]="!expanded"
-        [class.datatable-icon-up]="expanded"
-        title="Expand/Collapse Row"
-        (click)="toggleExpandRow(row, $event)"
-      >
-      </a>
     </div>
   `
             }] }
@@ -7581,6 +7581,16 @@ class DataTableBodyCellComponent {
     editField(field, row, newValue) {
         field.onEdit(Object.assign({}, row, { [field.prop]: newValue }));
     }
+    /**
+     * @param {?} row
+     * @param {?} event
+     * @return {?}
+     */
+    toggleExpandRow(row, event) {
+        if (this.rowDetail) {
+            this.rowDetail.toggleExpandRow(row);
+        }
+    }
 }
 DataTableBodyCellComponent.decorators = [
     { type: Component, args: [{
@@ -7589,126 +7599,139 @@ DataTableBodyCellComponent.decorators = [
                 template: `
     <div
       class="datatable-body-cell-label"
-      style="display: flex; align-items:center;"
+      style="display: flex; align-items:center; height: 100%;"
+      fxLayoutGap="10px"
       [style.margin-left.px]="calcLeftMargin(column, row)"
     >
-      <label
-        *ngIf="column.checkboxable && (!displayCheck || displayCheck(row, column, value))"
-        class="datatable-checkbox"
+      <a
+        *ngIf="column?.prop === 'ice-expandable' && row?.detail?.length > 0"
+        href="javascript:void(0)"
+        [class.datatable-icon-down]="!expanded"
+        [class.datatable-icon-up]="expanded"
+        style="font-size: 18px; display: flex; align-items: center;"
+        title="Expand/Collapse Row"
+        (click)="toggleExpandRow(row, $event)"
       >
-        <input type="checkbox" [checked]="isSelected" (click)="onCheckboxChange($event)" />
-      </label>
-      <ng-container *ngIf="column.isTreeColumn">
-        <button
-          *ngIf="!column.treeToggleTemplate"
-          class="datatable-tree-button"
-          [disabled]="treeStatus === 'disabled'"
-          (click)="onTreeAction()"
+      </a>
+      <ng-container *ngIf="column?.prop !== 'ice-expandable'">
+        <label
+          *ngIf="column.checkboxable && (!displayCheck || displayCheck(row, column, value))"
+          class="datatable-checkbox"
         >
-          <span>
-            <i *ngIf="treeStatus === 'loading'" class="icon datatable-icon-collapse"></i>
-            <i *ngIf="treeStatus === 'collapsed'" class="icon datatable-icon-up"></i>
-            <i *ngIf="treeStatus === 'expanded' || treeStatus === 'disabled'" class="icon datatable-icon-down"></i>
-          </span>
+          <input type="checkbox" [checked]="isSelected" (click)="onCheckboxChange($event)" />
+        </label>
+        <ng-container *ngIf="column.isTreeColumn">
+          <button
+            *ngIf="!column.treeToggleTemplate"
+            class="datatable-tree-button"
+            [disabled]="treeStatus === 'disabled'"
+            (click)="onTreeAction()"
+          >
+            <span>
+              <i *ngIf="treeStatus === 'loading'" class="icon datatable-icon-collapse"></i>
+              <i *ngIf="treeStatus === 'collapsed'" class="icon datatable-icon-up"></i>
+              <i *ngIf="treeStatus === 'expanded' || treeStatus === 'disabled'" class="icon datatable-icon-down"></i>
+            </span>
+          </button>
+          <ng-template
+            *ngIf="column.treeToggleTemplate"
+            [ngTemplateOutlet]="column.treeToggleTemplate"
+            [ngTemplateOutletContext]="{ cellContext: cellContext }"
+          >
+          </ng-template>
+        </ng-container>
+
+        <div *ngIf="column.icons as icons" fxLayout="column">
+          <mat-icon
+            *ngFor="let i of getIcons(row, icons)"
+            [innerHTML]="i.icon"
+            [matTooltip]="i.text"
+            class="{{ i.class }} mat-icon material-icons ice-ml-10"
+          ></mat-icon>
+        </div>
+
+        <mat-icon
+          *ngIf="
+            column.iconCustomTooltipHtmlText &&
+            column.prop &&
+            selectFieldValue(row, column.iconCustomTooltipHtmlText) as customHtml
+          "
+          iceCustomHtmlToolTip
+          [iceTooltipHtmlText]="sanatizeHtml(customHtml)"
+          [duration]="1500"
+          class="material-icons"
+          [ngClass]="column.prop && selectFieldValue(row, column.iconColor)"
+          >priority_high</mat-icon
+        >
+
+        <mat-icon
+          *ngIf="column.prop && row[column.prop.toString() + 'InfoTooltip']"
+          [matTooltip]="column.prop && row[column.prop.toString() + 'InfoTooltip']"
+          class="mat-icon material-icons"
+          >info</mat-icon
+        >
+
+        <mat-icon
+          *ngIf="column.prop && row[column.prop.toString() + 'Excluded']"
+          [matTooltip]="column.prop && row[column.prop.toString() + 'Excluded']"
+          class="mat-icon material-icons"
+          >block</mat-icon
+        >
+
+        <h4
+          *ngIf="
+            !column.actionButtonIcon &&
+            !column.cellTemplate &&
+            !column.selectOptions &&
+            (!column.editable || !(isEditable(column, row) | async))
+          "
+          class="ice-data-table-row"
+          iceCustomHtmlToolTip
+          [iceTooltipHtmlText]="getTooltipValue(value, row, column)"
+          [showToolTipOnTextOverflow]="true"
+          [showToolTip]="hasToShowToolTip(row, column)"
+          [innerHTML]="value"
+        ></h4>
+
+        <button
+          *ngIf="column.actionButtonIcon && !(column.hideActionButton && column.hideActionButton(row) | async)"
+          mat-icon-button
+          [matTooltip]="column.actionButtonTooltip"
+          (click)="onClickRowActionButton($event, column, row)"
+        >
+          <mat-icon class="mat-icon material-icons">{{ column.actionButtonIcon }}</mat-icon>
         </button>
+
+        <ice-datatable-row-select
+          style="margin-top: 18px"
+          [options]="column.selectOptions"
+          [ngClass]="column.cellClass"
+          (update)="updateSelect(column, row, $event)"
+          [value]="value || column.defaultValue"
+          [selectDisabled]="column.disabled"
+          *ngIf="column.selectOptions && !(column.hideIfEmpty && column.disabled && value === '')"
+        ></ice-datatable-row-select>
+
+        <ng-container *ngIf="!column.selectOptions && (column.editable && isEditable(column, row) | async)">
+          <mat-icon class="mat-icon material-icons" *ngIf="!column.hideEditIcon">edit</mat-icon>
+          <ice-editable-text
+            [ngClass]="column.cellClass"
+            (update)="editField(column, row, $event)"
+            [errorText]="selectFieldValue(row, column.errorMessageField)"
+            [value]="value"
+          >
+            {{ value }}
+          </ice-editable-text>
+        </ng-container>
+
         <ng-template
-          *ngIf="column.treeToggleTemplate"
-          [ngTemplateOutlet]="column.treeToggleTemplate"
-          [ngTemplateOutletContext]="{ cellContext: cellContext }"
+          #cellTemplate
+          *ngIf="column.cellTemplate"
+          [ngTemplateOutlet]="column.cellTemplate"
+          [ngTemplateOutletContext]="cellContext"
         >
         </ng-template>
       </ng-container>
-
-      <div *ngIf="column.icons as icons" fxLayout="column">
-        <mat-icon
-          *ngFor="let i of getIcons(row, icons)"
-          [innerHTML]="i.icon"
-          [matTooltip]="i.text"
-          class="{{ i.class }} mat-icon material-icons ice-ml-10"
-        ></mat-icon>
-      </div>
-
-      <mat-icon
-        *ngIf="
-          column.iconCustomTooltipHtmlText &&
-          column.prop &&
-          selectFieldValue(row, column.iconCustomTooltipHtmlText) as customHtml
-        "
-        iceCustomHtmlToolTip
-        [iceTooltipHtmlText]="sanatizeHtml(customHtml)"
-        [duration]="1500"
-        class="material-icons"
-        [ngClass]="column.prop && selectFieldValue(row, column.iconColor)"
-        >priority_high</mat-icon
-      >
-
-      <mat-icon
-        *ngIf="column.prop && row[column.prop.toString() + 'InfoTooltip']"
-        [matTooltip]="column.prop && row[column.prop.toString() + 'InfoTooltip']"
-        class="mat-icon material-icons"
-        >info</mat-icon
-      >
-
-      <mat-icon
-        *ngIf="column.prop && row[column.prop.toString() + 'Excluded']"
-        [matTooltip]="column.prop && row[column.prop.toString() + 'Excluded']"
-        class="mat-icon material-icons"
-        >block</mat-icon
-      >
-
-      <h4
-        *ngIf="
-          !column.actionButtonIcon &&
-          !column.cellTemplate &&
-          !column.selectOptions &&
-          (!column.editable || !(isEditable(column, row) | async))
-        "
-        class="ice-data-table-row"
-        iceCustomHtmlToolTip
-        [iceTooltipHtmlText]="getTooltipValue(value, row, column)"
-        [showToolTipOnTextOverflow]="true"
-        [showToolTip]="hasToShowToolTip(row, column)"
-        [innerHTML]="value"
-      ></h4>
-
-      <button
-        *ngIf="column.actionButtonIcon && !(column.hideActionButton && column.hideActionButton(row) | async)"
-        mat-icon-button
-        [matTooltip]="column.actionButtonTooltip"
-        (click)="onClickRowActionButton($event, column, row)"
-      >
-        <mat-icon class="mat-icon material-icons">{{ column.actionButtonIcon }}</mat-icon>
-      </button>
-
-      <ice-datatable-row-select
-        style="margin-top: 18px"
-        [options]="column.selectOptions"
-        [ngClass]="column.cellClass"
-        (update)="updateSelect(column, row, $event)"
-        [value]="value || column.defaultValue"
-        [selectDisabled]="column.disabled"
-        *ngIf="column.selectOptions && !(column.hideIfEmpty && column.disabled && value === '')"
-      ></ice-datatable-row-select>
-
-      <ng-container *ngIf="!column.selectOptions && (column.editable && isEditable(column, row) | async)">
-        <mat-icon class="mat-icon material-icons" *ngIf="!column.hideEditIcon">edit</mat-icon>
-        <ice-editable-text
-          [ngClass]="column.cellClass"
-          (update)="editField(column, row, $event)"
-          [errorText]="selectFieldValue(row, column.errorMessageField)"
-          [value]="value"
-        >
-          {{ value }}
-        </ice-editable-text>
-      </ng-container>
-
-      <ng-template
-        #cellTemplate
-        *ngIf="column.cellTemplate"
-        [ngTemplateOutlet]="column.cellTemplate"
-        [ngTemplateOutletContext]="cellContext"
-      >
-      </ng-template>
     </div>
   `
             }] }
@@ -7721,6 +7744,7 @@ DataTableBodyCellComponent.ctorParameters = () => [
 ];
 DataTableBodyCellComponent.propDecorators = {
     displayCheck: [{ type: Input }],
+    rowDetail: [{ type: Input }],
     group: [{ type: Input }],
     rowHeight: [{ type: Input }],
     isSelected: [{ type: Input }],
@@ -7747,6 +7771,8 @@ DataTableBodyCellComponent.propDecorators = {
 if (false) {
     /** @type {?} */
     DataTableBodyCellComponent.prototype.displayCheck;
+    /** @type {?} */
+    DataTableBodyCellComponent.prototype.rowDetail;
     /** @type {?} */
     DataTableBodyCellComponent.prototype.activate;
     /** @type {?} */
