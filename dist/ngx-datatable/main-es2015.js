@@ -3189,6 +3189,7 @@ class DatatableComponent {
         this.cd = cd;
         this.columnChangesService = columnChangesService;
         this.configuration = configuration;
+        this.expandable = false;
         /**
          * List of row objects that should be
          * represented as selected in the grid.
@@ -3422,13 +3423,6 @@ class DatatableComponent {
     }
     get groupRowsBy() {
         return this._groupRowsBy;
-    }
-    set expandable(val) {
-        this._expandable = val;
-        this.columns = this._columns;
-    }
-    get expandable() {
-        return this._expandable;
     }
     /**
      * Columns to be displayed.

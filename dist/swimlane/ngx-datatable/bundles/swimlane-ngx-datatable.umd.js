@@ -5291,6 +5291,7 @@
             this.cd = cd;
             this.columnChangesService = columnChangesService;
             this.configuration = configuration;
+            this.expandable = false;
             /**
              * List of row objects that should be
              * represented as selected in the grid.
@@ -5550,24 +5551,6 @@
                         this.groupedRows = this.groupArrayBy(this._rows, this._groupRowsBy);
                     }
                 }
-            },
-            enumerable: true,
-            configurable: true
-        });
-        Object.defineProperty(DatatableComponent.prototype, "expandable", {
-            get: /**
-             * @return {?}
-             */
-            function () {
-                return this._expandable;
-            },
-            set: /**
-             * @param {?} val
-             * @return {?}
-             */
-            function (val) {
-                this._expandable = val;
-                this.columns = this._columns;
             },
             enumerable: true,
             configurable: true
@@ -6812,6 +6795,8 @@
          * @type {?}
          */
         DatatableComponent.prototype.groupedRows;
+        /** @type {?} */
+        DatatableComponent.prototype.expandable;
         /**
          * List of row objects that should be
          * represented as selected in the grid.
@@ -7108,8 +7093,6 @@
         DatatableComponent.prototype._internalColumns;
         /** @type {?} */
         DatatableComponent.prototype._columns;
-        /** @type {?} */
-        DatatableComponent.prototype._expandable;
         /** @type {?} */
         DatatableComponent.prototype._columnTemplates;
         /** @type {?} */
