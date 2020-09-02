@@ -70,7 +70,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 const _c0 = ["cellTemplate"];
-const _c1 = [1, "datatable-body-cell-label"];
+const _c1 = [1, "datatable-body-cell-label", 2, "display", "flex"];
 const _c2 = ["class", "datatable-checkbox", 4, "ngIf"];
 const _c3 = [4, "ngIf"];
 const _c4 = ["class", "ice-data-table-row", "iceCustomHtmlToolTip", "", 3, "iceTooltipHtmlText", "showToolTipOnTextOverflow", "showToolTip", "innerHTML", 4, "ngIf"];
@@ -649,7 +649,7 @@ DataTableBodyCellComponent.ngComponentDef = _angular_core__WEBPACK_IMPORTED_MODU
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵselect"](2);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("ngIf", ctx.column.isTreeColumn);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵselect"](3);
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("ngIf", !ctx.column.icons && !ctx.column.iconCustomTooltipHtmlText && !ctx.column.actionButtonIcon && !ctx.column.cellTemplate && !ctx.column.selectOptions && (!ctx.column.editable || !_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵpipeBind1"](4, 12, ctx.isEditable(ctx.column, ctx.row))));
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("ngIf", !ctx.column.actionButtonIcon && !ctx.column.cellTemplate && !ctx.column.selectOptions && (!ctx.column.editable || !_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵpipeBind1"](4, 12, ctx.isEditable(ctx.column, ctx.row))));
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵselect"](5);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("ngIf", ctx.column.icons);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵselect"](6);
@@ -673,7 +673,7 @@ DataTableBodyCellComponent.ngComponentDef = _angular_core__WEBPACK_IMPORTED_MODU
                 selector: 'datatable-body-cell',
                 changeDetection: _angular_core__WEBPACK_IMPORTED_MODULE_0__["ChangeDetectionStrategy"].OnPush,
                 template: `
-    <div class="datatable-body-cell-label" [style.margin-left.px]="calcLeftMargin(column, row)">
+    <div class="datatable-body-cell-label" style="display: flex;" [style.margin-left.px]="calcLeftMargin(column, row)">
       <label
         *ngIf="column.checkboxable && (!displayCheck || displayCheck(row, column, value))"
         class="datatable-checkbox"
@@ -703,8 +703,6 @@ DataTableBodyCellComponent.ngComponentDef = _angular_core__WEBPACK_IMPORTED_MODU
 
       <h4
         *ngIf="
-          !column.icons &&
-          !column.iconCustomTooltipHtmlText &&
           !column.actionButtonIcon &&
           !column.cellTemplate &&
           !column.selectOptions &&
