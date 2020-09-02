@@ -1188,7 +1188,7 @@ __webpack_require__.r(__webpack_exports__);
 const _c0 = [3, "class", "ngStyle", 4, "ngFor", "ngForOf", "ngForTrackBy"];
 const _c1 = [3, "ngStyle"];
 const _c2 = ["tabindex", "-1", 3, "row", "group", "expanded", "isSelected", "rowIndex", "column", "rowHeight", "displayCheck", "treeStatus", "activate", "treeAction", 4, "ngFor", "ngForOf", "ngForTrackBy"];
-const _c3 = ["href", "javascript:void(0)", "style", "display: flex; align-items: center;", "title", "Expand/Collapse Row", 3, "datatable-icon-down", "datatable-icon-up", "click", 4, "ngIf"];
+const _c3 = ["href", "javascript:void(0)", "style", "display: flex; align-items: center; justify-content: center; width: 50px;", "title", "Expand/Collapse Row", 3, "datatable-icon-down", "datatable-icon-up", "click", 4, "ngIf"];
 const _c4 = ["tabindex", "-1", 3, "row", "group", "expanded", "isSelected", "rowIndex", "column", "rowHeight", "displayCheck", "treeStatus", "activate", "treeAction"];
 function DataTableBodyRowComponent_div_0_datatable_body_cell_1_Template(rf, ctx) { if (rf & 1) {
     const _r113 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵgetCurrentView"]();
@@ -1201,7 +1201,7 @@ function DataTableBodyRowComponent_div_0_datatable_body_cell_1_Template(rf, ctx)
     const ctx_r108 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"](2);
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("row", ctx_r108.row)("group", ctx_r108.group)("expanded", ctx_r108.expanded)("isSelected", ctx_r108.isSelected)("rowIndex", ctx_r108.rowIndex)("column", column_r110)("rowHeight", ctx_r108.rowHeight)("displayCheck", ctx_r108.displayCheck)("treeStatus", ctx_r108.treeStatus);
 } }
-const _c5 = ["href", "javascript:void(0)", "title", "Expand/Collapse Row", 2, "display", "flex", "align-items", "center", 3, "click"];
+const _c5 = ["href", "javascript:void(0)", "title", "Expand/Collapse Row", 2, "display", "flex", "align-items", "center", "justify-content", "center", "width", "50px", 3, "click"];
 function DataTableBodyRowComponent_div_0_a_2_Template(rf, ctx) { if (rf & 1) {
     const _r116 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵgetCurrentView"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "a", _c5);
@@ -1328,7 +1328,7 @@ class DataTableBodyRowComponent {
             width: `${widths[group]}px`
         };
         if (this.row && !!this.row.detail && group === 'left') {
-            styles.width = `50px`;
+            styles.width = `100%`;
         }
         if (group === 'left') {
             Object(_utils_translate__WEBPACK_IMPORTED_MODULE_3__["translateXY"])(styles, offsetX, 0);
@@ -1434,7 +1434,7 @@ DataTableBodyRowComponent.ngComponentDef = _angular_core__WEBPACK_IMPORTED_MODUL
       <a
         *ngIf="row.detail && row.detail.length > 0 && colGroup.type === 'left'"
         href="javascript:void(0)"
-        style="display: flex; align-items: center;"
+        style="display: flex; align-items: center; justify-content: center; width: 50px;"
         [class.datatable-icon-down]="!expanded"
         [class.datatable-icon-up]="expanded"
         title="Expand/Collapse Row"

@@ -6637,7 +6637,7 @@ class DataTableBodyRowComponent {
             width: `${widths[group]}px`
         };
         if (this.row && !!this.row.detail && group === 'left') {
-            styles.width = `50px`;
+            styles.width = `100%`;
         }
         if (group === 'left') {
             translateXY(styles, offsetX, 0);
@@ -6760,7 +6760,7 @@ DataTableBodyRowComponent.decorators = [
       <a
         *ngIf="row.detail && row.detail.length > 0 && colGroup.type === 'left'"
         href="javascript:void(0)"
-        style="display: flex; align-items: center;"
+        style="display: flex; align-items: center; justify-content: center; width: 50px;"
         [class.datatable-icon-down]="!expanded"
         [class.datatable-icon-up]="expanded"
         title="Expand/Collapse Row"

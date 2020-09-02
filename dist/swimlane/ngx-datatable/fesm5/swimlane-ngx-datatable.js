@@ -7807,7 +7807,7 @@ var DataTableBodyRowComponent = /** @class */ (function () {
             width: widths[group] + "px"
         };
         if (this.row && !!this.row.detail && group === 'left') {
-            styles.width = "50px";
+            styles.width = "100%";
         }
         if (group === 'left') {
             translateXY(styles, offsetX, 0);
@@ -7930,7 +7930,7 @@ var DataTableBodyRowComponent = /** @class */ (function () {
         { type: Component, args: [{
                     selector: 'datatable-body-row',
                     changeDetection: ChangeDetectionStrategy.OnPush,
-                    template: "\n    <div\n      *ngFor=\"let colGroup of _columnsByPin; let i = index; trackBy: trackByGroups\"\n      class=\"datatable-row-{{ colGroup.type }} datatable-row-group\"\n      [ngStyle]=\"_groupStyles[colGroup.type]\"\n    >\n      <datatable-body-cell\n        *ngFor=\"let column of colGroup.columns; let ii = index; trackBy: columnTrackingFn\"\n        tabindex=\"-1\"\n        [row]=\"row\"\n        [group]=\"group\"\n        [expanded]=\"expanded\"\n        [isSelected]=\"isSelected\"\n        [rowIndex]=\"rowIndex\"\n        [column]=\"column\"\n        [rowHeight]=\"rowHeight\"\n        [displayCheck]=\"displayCheck\"\n        [treeStatus]=\"treeStatus\"\n        (activate)=\"onActivate($event, ii)\"\n        (treeAction)=\"onTreeAction()\"\n      >\n      </datatable-body-cell>\n      <a\n        *ngIf=\"row.detail && row.detail.length > 0 && colGroup.type === 'left'\"\n        href=\"javascript:void(0)\"\n        style=\"display: flex; align-items: center;\"\n        [class.datatable-icon-down]=\"!expanded\"\n        [class.datatable-icon-up]=\"expanded\"\n        title=\"Expand/Collapse Row\"\n        (click)=\"toggleExpandRow(row, $event)\"\n      >\n      </a>\n    </div>\n  "
+                    template: "\n    <div\n      *ngFor=\"let colGroup of _columnsByPin; let i = index; trackBy: trackByGroups\"\n      class=\"datatable-row-{{ colGroup.type }} datatable-row-group\"\n      [ngStyle]=\"_groupStyles[colGroup.type]\"\n    >\n      <datatable-body-cell\n        *ngFor=\"let column of colGroup.columns; let ii = index; trackBy: columnTrackingFn\"\n        tabindex=\"-1\"\n        [row]=\"row\"\n        [group]=\"group\"\n        [expanded]=\"expanded\"\n        [isSelected]=\"isSelected\"\n        [rowIndex]=\"rowIndex\"\n        [column]=\"column\"\n        [rowHeight]=\"rowHeight\"\n        [displayCheck]=\"displayCheck\"\n        [treeStatus]=\"treeStatus\"\n        (activate)=\"onActivate($event, ii)\"\n        (treeAction)=\"onTreeAction()\"\n      >\n      </datatable-body-cell>\n      <a\n        *ngIf=\"row.detail && row.detail.length > 0 && colGroup.type === 'left'\"\n        href=\"javascript:void(0)\"\n        style=\"display: flex; align-items: center; justify-content: center; width: 50px;\"\n        [class.datatable-icon-down]=\"!expanded\"\n        [class.datatable-icon-up]=\"expanded\"\n        title=\"Expand/Collapse Row\"\n        (click)=\"toggleExpandRow(row, $event)\"\n      >\n      </a>\n    </div>\n  "
                 }] }
     ];
     /** @nocollapse */
