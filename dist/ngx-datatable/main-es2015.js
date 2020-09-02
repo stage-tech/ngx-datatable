@@ -70,7 +70,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 const _c0 = ["cellTemplate"];
-const _c1 = [1, "datatable-body-cell-label", 2, "display", "flex"];
+const _c1 = [1, "datatable-body-cell-label", 2, "display", "flex", "align-items", "center"];
 const _c2 = ["class", "datatable-checkbox", 4, "ngIf"];
 const _c3 = [4, "ngIf"];
 const _c4 = ["class", "ice-data-table-row", "iceCustomHtmlToolTip", "", 3, "iceTooltipHtmlText", "showToolTipOnTextOverflow", "showToolTip", "innerHTML", 4, "ngIf"];
@@ -673,7 +673,11 @@ DataTableBodyCellComponent.ngComponentDef = _angular_core__WEBPACK_IMPORTED_MODU
                 selector: 'datatable-body-cell',
                 changeDetection: _angular_core__WEBPACK_IMPORTED_MODULE_0__["ChangeDetectionStrategy"].OnPush,
                 template: `
-    <div class="datatable-body-cell-label" style="display: flex;" [style.margin-left.px]="calcLeftMargin(column, row)">
+    <div
+      class="datatable-body-cell-label"
+      style="display: flex; align-items:center;"
+      [style.margin-left.px]="calcLeftMargin(column, row)"
+    >
       <label
         *ngIf="column.checkboxable && (!displayCheck || displayCheck(row, column, value))"
         class="datatable-checkbox"
