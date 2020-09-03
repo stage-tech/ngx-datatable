@@ -544,6 +544,20 @@ class DataTableBodyCellComponent {
             cellElement: this._element
         });
     }
+    middleclickEvent(event) {
+        if (event.which === 2) {
+            this.activate.emit({
+                type: 'middleclick',
+                event,
+                row: this.row,
+                group: this.group,
+                rowHeight: this.rowHeight,
+                column: this.column,
+                value: this.value,
+                cellElement: this._element
+            });
+        }
+    }
     onDblClick(event) {
         this.activate.emit({
             type: 'dblclick',
@@ -692,6 +706,7 @@ DataTableBodyCellComponent.ngComponentDef = _angular_core__WEBPACK_IMPORTED_MODU
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵlistener"]("focus", function DataTableBodyCellComponent_focus_HostBindingHandler($event) { return ctx.onFocus(); });
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵlistener"]("blur", function DataTableBodyCellComponent_blur_HostBindingHandler($event) { return ctx.onBlur(); });
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵlistener"]("click", function DataTableBodyCellComponent_click_HostBindingHandler($event) { return ctx.onClick($event); });
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵlistener"]("mouseup", function DataTableBodyCellComponent_mouseup_HostBindingHandler($event) { return ctx.middleclickEvent($event); });
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵlistener"]("dblclick", function DataTableBodyCellComponent_dblclick_HostBindingHandler($event) { return ctx.onDblClick($event); });
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵlistener"]("keydown", function DataTableBodyCellComponent_keydown_HostBindingHandler($event) { return ctx.onKeyDown($event); });
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵstyling"]();
@@ -913,6 +928,9 @@ DataTableBodyCellComponent.ngComponentDef = _angular_core__WEBPACK_IMPORTED_MODU
         }], onClick: [{
             type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["HostListener"],
             args: ['click', ['$event']]
+        }], middleclickEvent: [{
+            type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["HostListener"],
+            args: ['mouseup', ['$event']]
         }], onDblClick: [{
             type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["HostListener"],
             args: ['dblclick', ['$event']]

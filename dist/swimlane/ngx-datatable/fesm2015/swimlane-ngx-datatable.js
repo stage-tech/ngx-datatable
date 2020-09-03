@@ -7389,6 +7389,24 @@ class DataTableBodyCellComponent {
      * @param {?} event
      * @return {?}
      */
+    middleclickEvent(event) {
+        if (event.which === 2) {
+            this.activate.emit({
+                type: 'middleclick',
+                event,
+                row: this.row,
+                group: this.group,
+                rowHeight: this.rowHeight,
+                column: this.column,
+                value: this.value,
+                cellElement: this._element
+            });
+        }
+    }
+    /**
+     * @param {?} event
+     * @return {?}
+     */
     onDblClick(event) {
         this.activate.emit({
             type: 'dblclick',
@@ -7794,6 +7812,7 @@ DataTableBodyCellComponent.propDecorators = {
     onFocus: [{ type: HostListener, args: ['focus',] }],
     onBlur: [{ type: HostListener, args: ['blur',] }],
     onClick: [{ type: HostListener, args: ['click', ['$event'],] }],
+    middleclickEvent: [{ type: HostListener, args: ['mouseup', ['$event'],] }],
     onDblClick: [{ type: HostListener, args: ['dblclick', ['$event'],] }],
     onKeyDown: [{ type: HostListener, args: ['keydown', ['$event'],] }]
 };

@@ -8822,6 +8822,28 @@
          * @param {?} event
          * @return {?}
          */
+        DataTableBodyCellComponent.prototype.middleclickEvent = /**
+         * @param {?} event
+         * @return {?}
+         */
+        function (event) {
+            if (event.which === 2) {
+                this.activate.emit({
+                    type: 'middleclick',
+                    event: event,
+                    row: this.row,
+                    group: this.group,
+                    rowHeight: this.rowHeight,
+                    column: this.column,
+                    value: this.value,
+                    cellElement: this._element
+                });
+            }
+        };
+        /**
+         * @param {?} event
+         * @return {?}
+         */
         DataTableBodyCellComponent.prototype.onDblClick = /**
          * @param {?} event
          * @return {?}
@@ -9178,6 +9200,7 @@
             onFocus: [{ type: core.HostListener, args: ['focus',] }],
             onBlur: [{ type: core.HostListener, args: ['blur',] }],
             onClick: [{ type: core.HostListener, args: ['click', ['$event'],] }],
+            middleclickEvent: [{ type: core.HostListener, args: ['mouseup', ['$event'],] }],
             onDblClick: [{ type: core.HostListener, args: ['dblclick', ['$event'],] }],
             onKeyDown: [{ type: core.HostListener, args: ['keydown', ['$event'],] }]
         };

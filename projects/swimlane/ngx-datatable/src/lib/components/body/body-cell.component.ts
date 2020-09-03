@@ -445,6 +445,22 @@ export class DataTableBodyCellComponent implements DoCheck, OnDestroy {
     });
   }
 
+  @HostListener('mouseup', ['$event'])
+  middleclickEvent(event) {
+    if (event.which === 2) {
+      this.activate.emit({
+        type: 'middleclick',
+        event,
+        row: this.row,
+        group: this.group,
+        rowHeight: this.rowHeight,
+        column: this.column,
+        value: this.value,
+        cellElement: this._element
+      });
+    }
+  }
+
   @HostListener('dblclick', ['$event'])
   onDblClick(event: MouseEvent): void {
     this.activate.emit({
