@@ -7,8 +7,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { Subject, fromEvent, of, BehaviorSubject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { __values, __assign, __spread, __decorate, __metadata } from 'tslib';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { DomSanitizer, BrowserModule } from '@angular/platform-browser';
+import { DomSanitizer } from '@angular/platform-browser';
 import { ComponentPortal } from '@angular/cdk/portal';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
@@ -10145,8 +10144,6 @@ var NgxDatatableModule = /** @class */ (function () {
                         OverlayModule,
                         MatIconModule,
                         MatButtonModule,
-                        BrowserModule,
-                        MatFormFieldModule,
                         MatInputModule,
                         FormsModule,
                         ReactiveFormsModule

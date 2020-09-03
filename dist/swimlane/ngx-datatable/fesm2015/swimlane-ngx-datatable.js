@@ -6,8 +6,7 @@ import { Overlay, OverlayPositionBuilder, OverlayModule } from '@angular/cdk/ove
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { Subject, fromEvent, of, BehaviorSubject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { DomSanitizer, BrowserModule } from '@angular/platform-browser';
+import { DomSanitizer } from '@angular/platform-browser';
 import { ComponentPortal } from '@angular/cdk/portal';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
@@ -8862,8 +8861,6 @@ NgxDatatableModule.decorators = [
                     OverlayModule,
                     MatIconModule,
                     MatButtonModule,
-                    BrowserModule,
-                    MatFormFieldModule,
                     MatInputModule,
                     FormsModule,
                     ReactiveFormsModule

@@ -51,8 +51,6 @@ import { BrowserModule } from '@angular/platform-browser';
     OverlayModule,
     MatIconModule,
     MatButtonModule,
-    BrowserModule,
-    MatFormFieldModule,
     MatInputModule,
     FormsModule,
     ReactiveFormsModule

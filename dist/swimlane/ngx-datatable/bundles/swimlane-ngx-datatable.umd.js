@@ -1,8 +1,8 @@
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@angular/common'), require('@angular/material/icon'), require('@angular/material/button'), require('@angular/cdk/overlay'), require('@angular/material/tooltip'), require('rxjs'), require('rxjs/operators'), require('@angular/material/form-field'), require('@angular/platform-browser'), require('@angular/cdk/portal'), require('@angular/forms'), require('@angular/material/input')) :
-    typeof define === 'function' && define.amd ? define('@swimlane/ngx-datatable', ['exports', '@angular/core', '@angular/common', '@angular/material/icon', '@angular/material/button', '@angular/cdk/overlay', '@angular/material/tooltip', 'rxjs', 'rxjs/operators', '@angular/material/form-field', '@angular/platform-browser', '@angular/cdk/portal', '@angular/forms', '@angular/material/input'], factory) :
-    (global = global || self, factory((global.swimlane = global.swimlane || {}, global.swimlane['ngx-datatable'] = {}), global.ng.core, global.ng.common, global.ng.material.icon, global.ng.material.button, global.ng.cdk.overlay, global.ng.material.tooltip, global.rxjs, global.rxjs.operators, global.ng.material['form-field'], global.ng.platformBrowser, global.ng.cdk.portal, global.ng.forms, global.ng.material.input));
-}(this, function (exports, core, common, icon, button, overlay, tooltip, rxjs, operators, formField, platformBrowser, portal, forms, input) { 'use strict';
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@angular/common'), require('@angular/material/icon'), require('@angular/material/button'), require('@angular/cdk/overlay'), require('@angular/material/tooltip'), require('rxjs'), require('rxjs/operators'), require('@angular/platform-browser'), require('@angular/cdk/portal'), require('@angular/forms'), require('@angular/material/input')) :
+    typeof define === 'function' && define.amd ? define('@swimlane/ngx-datatable', ['exports', '@angular/core', '@angular/common', '@angular/material/icon', '@angular/material/button', '@angular/cdk/overlay', '@angular/material/tooltip', 'rxjs', 'rxjs/operators', '@angular/platform-browser', '@angular/cdk/portal', '@angular/forms', '@angular/material/input'], factory) :
+    (global = global || self, factory((global.swimlane = global.swimlane || {}, global.swimlane['ngx-datatable'] = {}), global.ng.core, global.ng.common, global.ng.material.icon, global.ng.material.button, global.ng.cdk.overlay, global.ng.material.tooltip, global.rxjs, global.rxjs.operators, global.ng.platformBrowser, global.ng.cdk.portal, global.ng.forms, global.ng.material.input));
+}(this, function (exports, core, common, icon, button, overlay, tooltip, rxjs, operators, platformBrowser, portal, forms, input) { 'use strict';
 
     /*! *****************************************************************************
     Copyright (c) Microsoft Corporation. All rights reserved.
@@ -10333,8 +10333,6 @@
                             overlay.OverlayModule,
                             icon.MatIconModule,
                             button.MatButtonModule,
-                            platformBrowser.BrowserModule,
-                            formField.MatFormFieldModule,
                             input.MatInputModule,
                             forms.FormsModule,
                             forms.ReactiveFormsModule
