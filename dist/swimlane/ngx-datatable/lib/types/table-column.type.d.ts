@@ -211,4 +211,5 @@ export interface TableColumn {
     hideEditIcon?: boolean;
     errorMessageField?: string;
     onClickAction?: (arg0: any) => void;
+    filter?: boolean;
 }

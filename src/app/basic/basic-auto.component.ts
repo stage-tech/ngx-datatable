@@ -36,7 +36,7 @@ export class BasicAutoComponent {
   loadingIndicator = true;
   reorderable = true;
 
-  columns = [{ prop: 'name' }, { name: 'Gender' }, { name: 'Company', sortable: false }];
+  columns = [{ prop: 'name' }, { name: 'Gender', filter: true }, { name: 'Company', sortable: false }];
 
   ColumnMode = ColumnMode;
 

@@ -14,7 +14,7 @@ import { ResizeableDirective } from './directives/resizeable.directive';
 import { OrderableDirective } from './directives/orderable.directive';
 import { LongPressDirective } from './directives/long-press.directive';
 import { ScrollerComponent } from './components/body/scroller.component';
-import { DatatableComponent } from './components/datatable.component';
+import { MatFormFieldModule } from '@angular/material/form-field';
 import { DataTableColumnDirective } from './components/columns/column.directive';
 import { DataTableHeaderComponent } from './components/header/header.component';
 import { DataTableHeaderCellComponent } from './components/header/header-cell.component';
@@ -39,9 +39,24 @@ import { ToolTipRendererDirective } from './directives/ice-custom-html-tooltip.d
 import { CustomToolTipComponent } from './components/ice-custom-tooltip/ice-custom-tooltip.component';
 import { DatatableSelectComponent } from './components/ice-datatable-select/ice-datatable-select.component';
 import { EditableTextComponent } from './components/ice-editable-text/ice-editable-text.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatInputModule } from '@angular/material/input';
+import { DatatableComponent } from './components/datatable.component';
+import { BrowserModule } from '@angular/platform-browser';
 
 @NgModule({
-  imports: [CommonModule, MatTooltipModule, OverlayModule, MatIconModule, MatButtonModule],
+  imports: [
+    CommonModule,
+    MatTooltipModule,
+    OverlayModule,
+    MatIconModule,
+    MatButtonModule,
+    BrowserModule,
+    MatFormFieldModule,
+    MatInputModule,
+    FormsModule,
+    ReactiveFormsModule
+  ],
   providers: [ScrollbarHelper, DimensionsHelper, ColumnChangesService],
   declarations: [
     DataTableFooterTemplateDirective,

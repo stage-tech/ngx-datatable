@@ -252,4 +252,6 @@ export interface TableColumn {
   errorMessageField?: string;
 
   onClickAction?: (arg0: any) => void;
+
+  filter?: boolean;
 }

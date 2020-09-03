@@ -98,6 +98,8 @@
     .ngx-datatable .datatable-header .datatable-header-inner {
       align-items: stretch;
       -webkit-align-items: stretch; }
+    .ngx-datatable .datatable-header .filter-template-wrap {
+      padding: 0 0 0 0.9rem !important; }
     .ngx-datatable .datatable-header .datatable-header-cell {
       position: relative;
       display: inline-block; }
@@ -110,6 +112,14 @@
         vertical-align: middle;
         display: inline-block;
         cursor: pointer; }
+      .ngx-datatable .datatable-header .datatable-header-cell .filter-header {
+        padding-top: 5px; }
+        .ngx-datatable .datatable-header .datatable-header-cell .filter-header .mat-form-field-flex {
+          height: 40px; }
+        .ngx-datatable .datatable-header .datatable-header-cell .filter-header .mat-form-field-label-wrapper {
+          font-size: 12px;
+          font-weight: 500;
+          top: -1.01em; }
       .ngx-datatable .datatable-header .datatable-header-cell .resize-handle,
       .ngx-datatable .datatable-header .datatable-header-cell .resize-handle--not-resizable {
         display: inline-block;

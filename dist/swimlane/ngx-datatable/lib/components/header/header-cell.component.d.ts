@@ -23,6 +23,7 @@ export declare class DataTableHeaderCellComponent {
         event: MouseEvent;
         column: any;
     }>;
+    filter: EventEmitter<any>;
     readonly columnCssClasses: any;
     readonly name: string;
     readonly minWidth: number;
@@ -33,6 +34,7 @@ export declare class DataTableHeaderCellComponent {
     sortClass: string;
     sortDir: SortDirection;
     selectFn: any;
+    filterCache: {};
     cellContext: any;
     private _column;
     private _sorts;
@@ -41,4 +43,6 @@ export declare class DataTableHeaderCellComponent {
     calcSortDir(sorts: any[]): any;
     onSort(): void;
     calcSortClass(sortDir: SortDirection): string;
+    setFilter(column: any): void;
+    resetFilter(column: any): void;
 }

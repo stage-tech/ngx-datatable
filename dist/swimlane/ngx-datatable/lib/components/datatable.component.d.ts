@@ -259,6 +259,10 @@ export declare class DatatableComponent implements OnInit, DoCheck, AfterViewIni
      */
     sort: EventEmitter<any>;
     /**
+     * Ice column filter was invoked.
+     */
+    filter: EventEmitter<any>;
+    /**
      * The table was paged either triggered by the pager or the body scroll.
      */
     page: EventEmitter<any>;
@@ -490,6 +494,7 @@ export declare class DatatableComponent implements OnInit, DoCheck, AfterViewIni
      * The header triggered a column re-order event.
      */
     onColumnReorder({ column, newValue, prevValue }: any): void;
+    onColumnFilter(event: any): void;
     /**
      * The header triggered a column sort event.
      */

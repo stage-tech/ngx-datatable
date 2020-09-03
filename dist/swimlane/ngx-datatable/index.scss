@@ -140,6 +140,10 @@
       -webkit-align-items: stretch;
     }
 
+    .filter-template-wrap {
+      padding: 0 0 0 0.9rem !important;
+    }
+
     .datatable-header-cell {
       position: relative;
       display: inline-block;
@@ -159,6 +163,18 @@
         vertical-align: middle;
         display: inline-block;
         cursor: pointer;
+      }
+
+      .filter-header {
+        padding-top: 5px;
+        .mat-form-field-flex {
+          height: 40px;
+        }
+        .mat-form-field-label-wrapper {
+          font-size: 12px;
+          font-weight: 500;
+          top: -1.01em;
+        }
       }
 
       .resize-handle,

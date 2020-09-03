@@ -450,6 +450,11 @@ export class DatatableComponent implements OnInit, DoCheck, AfterViewInit {
   @Output() sort: EventEmitter<any> = new EventEmitter();
 
   /**
+   * Ice column filter was invoked.
+   */
+  @Output() filter: EventEmitter<any> = new EventEmitter();
+
+  /**
    * The table was paged either triggered by the pager or the body scroll.
    */
   @Output() page: EventEmitter<any> = new EventEmitter();
@@ -1064,6 +1069,10 @@ export class DatatableComponent implements OnInit, DoCheck, AfterViewInit {
       newValue,
       prevValue
     });
+  }
+
+  onColumnFilter(event: any): void {
+    this.filter.emit(event);
   }
 
   /**

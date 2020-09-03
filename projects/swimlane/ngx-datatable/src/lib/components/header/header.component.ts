@@ -32,6 +32,7 @@ import { translateXY } from '../../utils/translate';
       >
         <datatable-header-cell
           *ngFor="let column of colGroup.columns; trackBy: columnTrackingFn"
+          [ngClass]="{ 'filter-template-wrap': column.filter }"
           resizeable
           [resizeEnabled]="column.resizeable"
           (resize)="onColumnResized($event, column)"

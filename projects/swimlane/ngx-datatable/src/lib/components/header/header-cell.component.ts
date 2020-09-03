@@ -14,30 +14,57 @@ import { SelectionType } from '../../types/selection.type';
 import { TableColumn } from '../../types/table-column.type';
 import { nextSortDir } from '../../utils/sort';
 import { SortDirection } from '../../types/sort-direction.type';
+import { Subject } from 'rxjs';
+import { debounceTime, takeUntil } from 'rxjs/operators';
 
 @Component({
   selector: 'datatable-header-cell',
   template: `
     <div class="datatable-header-cell-template-wrap">
-      <ng-template
-        *ngIf="isTarget"
-        [ngTemplateOutlet]="targetMarkerTemplate"
-        [ngTemplateOutletContext]="targetMarkerContext"
-      >
-      </ng-template>
-      <label *ngIf="isCheckboxable" class="datatable-checkbox">
-        <input type="checkbox" [checked]="allRowsSelected" (change)="select.emit(!allRowsSelected)" />
-      </label>
-      <span *ngIf="!column.headerTemplate" class="datatable-header-cell-wrapper">
-        <span class="datatable-header-cell-label draggable" (click)="onSort()" [innerHTML]="name"> </span>
-      </span>
-      <ng-template
-        *ngIf="column.headerTemplate"
-        [ngTemplateOutlet]="column.headerTemplate"
-        [ngTemplateOutletContext]="cellContext"
-      >
-      </ng-template>
-      <span (click)="onSort()" [class]="sortClass"> </span>
+      <ng-container *ngIf="column.filter">
+        <mat-form-field class="filter-header">
+          <input
+            matInput
+            [placeholder]="column.name"
+            [(ngModel)]="filterCache[column.prop]"
+            (ngModelChange)="setFilter(column.prop)"
+          />
+          <button
+            mat-button
+            *ngIf="filterCache[column.prop]"
+            matSuffix
+            mat-icon-button
+            aria-label="Clear"
+            (click)="resetFilter(column.prop)"
+          >
+            <mat-icon class="mat-icon material-icons">close</mat-icon>
+          </button>
+        </mat-form-field>
+        <button mat-icon-button>
+          <mat-icon class="mat-icon material-icons" (click)="onSort()">sort</mat-icon>
+        </button>
+      </ng-container>
+      <ng-container *ngIf="!column.filter">
+        <ng-template
+          *ngIf="isTarget"
+          [ngTemplateOutlet]="targetMarkerTemplate"
+          [ngTemplateOutletContext]="targetMarkerContext"
+        >
+        </ng-template>
+        <label *ngIf="isCheckboxable" class="datatable-checkbox">
+          <input type="checkbox" [checked]="allRowsSelected" (change)="select.emit(!allRowsSelected)" />
+        </label>
+        <span *ngIf="!column.headerTemplate" class="datatable-header-cell-wrapper">
+          <span class="datatable-header-cell-label draggable" (click)="onSort()" [innerHTML]="name"> </span>
+        </span>
+        <ng-template
+          *ngIf="column.headerTemplate"
+          [ngTemplateOutlet]="column.headerTemplate"
+          [ngTemplateOutletContext]="cellContext"
+        >
+        </ng-template>
+        <span (click)="onSort()" [class]="sortClass"> </span>
+      </ng-container>
     </div>
   `,
   host: {
@@ -95,6 +122,7 @@ export class DataTableHeaderCellComponent {
   @Output() sort: EventEmitter<any> = new EventEmitter();
   @Output() select: EventEmitter<any> = new EventEmitter();
   @Output() columnContextmenu = new EventEmitter<{ event: MouseEvent; column: any }>(false);
+  @Output() filter: EventEmitter<any> = new EventEmitter();
 
   @HostBinding('class')
   get columnCssClasses(): any {
@@ -158,6 +186,7 @@ export class DataTableHeaderCellComponent {
   sortClass: string;
   sortDir: SortDirection;
   selectFn = this.select.emit.bind(this.select);
+  filterCache = {};
 
   cellContext: any = {
     column: this.column,
@@ -206,5 +235,18 @@ export class DataTableHeaderCellComponent {
     } else {
       return `sort-btn`;
     }
+  }
+
+  setFilter(column) {
+    this.filter.emit({
+      column
+    });
+  }
+
+  resetFilter(column) {
+    this.filterCache[column] = '';
+    this.filter.emit({
+      column
+    });
   }
 }
