@@ -121,6 +121,7 @@ export type TreeStatus = 'collapsed' | 'expanded' | 'loading' | 'disabled';
           [showToolTipOnTextOverflow]="true"
           [showToolTip]="hasToShowToolTip(row, column)"
           [innerHTML]="value"
+          (click)="onClickField(row, column.onClickAction, $event)"
         ></h4>
 
         <button
@@ -596,6 +597,15 @@ export class DataTableBodyCellComponent implements DoCheck, OnDestroy {
     event.stopPropagation();
     if (this.rowDetail) {
       this.rowDetail.toggleExpandRow(row);
+    }
+  }
+
+  onClickField(row, action, event) {
+    if (row && action) {
+      event.preventDefault();
+      event.stopPropagation();
+
+      action(row);
     }
   }
 }

@@ -71,4 +71,5 @@ export declare class DataTableBodyCellComponent implements DoCheck, OnDestroy {
     updateSelect(field: any, row: any, newValue: any): void;
     editField(field: any, row: any, newValue: any): void;
     toggleExpandRow(row: any, event: any): void;
+    onClickField(row: any, action: any, event: any): void;
 }

@@ -7607,6 +7607,19 @@ class DataTableBodyCellComponent {
             this.rowDetail.toggleExpandRow(row);
         }
     }
+    /**
+     * @param {?} row
+     * @param {?} action
+     * @param {?} event
+     * @return {?}
+     */
+    onClickField(row, action, event) {
+        if (row && action) {
+            event.preventDefault();
+            event.stopPropagation();
+            action(row);
+        }
+    }
 }
 DataTableBodyCellComponent.decorators = [
     { type: Component, args: [{
@@ -7706,6 +7719,7 @@ DataTableBodyCellComponent.decorators = [
           [showToolTipOnTextOverflow]="true"
           [showToolTip]="hasToShowToolTip(row, column)"
           [innerHTML]="value"
+          (click)="onClickField(row, column.onClickAction, $event)"
         ></h4>
 
         <button
@@ -9072,6 +9086,8 @@ if (false) {
     TableColumn.prototype.hideEditIcon;
     /** @type {?|undefined} */
     TableColumn.prototype.errorMessageField;
+    /** @type {?|undefined} */
+    TableColumn.prototype.onClickAction;
 }
 
 /**

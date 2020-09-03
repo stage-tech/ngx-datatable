@@ -210,4 +210,5 @@ export interface TableColumn {
     hideIfEmpty?: boolean;
     hideEditIcon?: boolean;
     errorMessageField?: string;
+    onClickAction?: (arg0: any) => void;
 }
