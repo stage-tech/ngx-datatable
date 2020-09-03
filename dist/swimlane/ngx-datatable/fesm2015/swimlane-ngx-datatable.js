@@ -1656,6 +1656,7 @@ class DataTableHeaderComponent {
         this.resize = new EventEmitter();
         this.select = new EventEmitter();
         this.columnContextmenu = new EventEmitter(false);
+        this.filter = new EventEmitter();
         this._columnGroupWidths = {
             total: 100
         };
@@ -1967,6 +1968,13 @@ class DataTableHeaderComponent {
         }
         return styles;
     }
+    /**
+     * @param {?} event
+     * @return {?}
+     */
+    onColumnFilter(event) {
+        this.filter.emit(event);
+    }
 }
 DataTableHeaderComponent.decorators = [
     { type: Component, args: [{
@@ -2012,6 +2020,7 @@ DataTableHeaderComponent.decorators = [
           [sortDescendingIcon]="sortDescendingIcon"
           [allRowsSelected]="allRowsSelected"
           (sort)="onSort($event)"
+          (filter)="onColumnFilter($event)"
           (select)="select.emit($event)"
           (columnContextmenu)="columnContextmenu.emit($event)"
         >
@@ -2049,6 +2058,7 @@ DataTableHeaderComponent.propDecorators = {
     resize: [{ type: Output }],
     select: [{ type: Output }],
     columnContextmenu: [{ type: Output }],
+    filter: [{ type: Output }],
     headerWidth: [{ type: HostBinding, args: ['style.width',] }]
 };
 if (false) {
@@ -2086,6 +2096,8 @@ if (false) {
     DataTableHeaderComponent.prototype.select;
     /** @type {?} */
     DataTableHeaderComponent.prototype.columnContextmenu;
+    /** @type {?} */
+    DataTableHeaderComponent.prototype.filter;
     /** @type {?} */
     DataTableHeaderComponent.prototype._columnsByPin;
     /** @type {?} */
@@ -2594,7 +2606,8 @@ class DataTableHeaderCellComponent {
      */
     setFilter(column) {
         this.filter.emit({
-            column
+            column,
+            value: this.filterCache[column]
         });
     }
     /**

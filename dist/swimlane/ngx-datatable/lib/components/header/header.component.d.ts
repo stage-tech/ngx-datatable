@@ -28,6 +28,7 @@ export declare class DataTableHeaderComponent {
         event: MouseEvent;
         column: any;
     }>;
+    filter: EventEmitter<any>;
     _columnsByPin: any;
     _columnGroupWidths: any;
     _innerWidth: number;
@@ -57,4 +58,5 @@ export declare class DataTableHeaderComponent {
     calcNewSorts(column: any, prevValue: number, newValue: number): any[];
     setStylesByGroup(): void;
     calcStylesByGroup(group: string): any;
+    onColumnFilter(event: any): void;
 }

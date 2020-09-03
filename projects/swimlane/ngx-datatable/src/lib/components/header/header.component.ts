@@ -58,6 +58,7 @@ import { translateXY } from '../../utils/translate';
           [sortDescendingIcon]="sortDescendingIcon"
           [allRowsSelected]="allRowsSelected"
           (sort)="onSort($event)"
+          (filter)="onColumnFilter($event)"
           (select)="select.emit($event)"
           (columnContextmenu)="columnContextmenu.emit($event)"
         >
@@ -145,6 +146,7 @@ export class DataTableHeaderComponent {
   @Output() resize: EventEmitter<any> = new EventEmitter();
   @Output() select: EventEmitter<any> = new EventEmitter();
   @Output() columnContextmenu = new EventEmitter<{ event: MouseEvent; column: any }>(false);
+  @Output() filter: EventEmitter<any> = new EventEmitter();
 
   _columnsByPin: any;
   _columnGroupWidths: any = {
@@ -327,5 +329,9 @@ export class DataTableHeaderComponent {
     }
 
     return styles;
+  }
+
+  onColumnFilter(event: any): void {
+    this.filter.emit(event);
   }
 }

@@ -239,7 +239,8 @@ export class DataTableHeaderCellComponent {
 
   setFilter(column) {
     this.filter.emit({
-      column
+      column,
+      value: this.filterCache[column]
     });
   }
 
