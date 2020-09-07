@@ -5,7 +5,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { Overlay, OverlayPositionBuilder, OverlayModule } from '@angular/cdk/overlay';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { Subject, fromEvent, of, BehaviorSubject } from 'rxjs';
-import { takeUntil, throttleTime } from 'rxjs/operators';
+import { takeUntil, debounceTime } from 'rxjs/operators';
 import { __values, __assign, __spread } from 'tslib';
 import { DomSanitizer } from '@angular/platform-browser';
 import { ComponentPortal } from '@angular/cdk/portal';
@@ -8804,7 +8804,7 @@ var DatatableComponent = /** @class */ (function () {
              */
             function () { return _this.recalculate$.next(); }));
         }
-        this._subscriptions.push(this.recalculate$.pipe(throttleTime(100)).subscribe((/**
+        this._subscriptions.push(this.recalculate$.pipe(debounceTime(100)).subscribe((/**
          * @return {?}
          */
         function () { return _this.recalculate(); })));

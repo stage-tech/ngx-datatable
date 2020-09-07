@@ -281,7 +281,7 @@ if(this.configuration&&this.configuration.messages){this.messages=Object.assign(
      */_proto10.ngOnInit=function ngOnInit(){var _this10=this;// need to call this immediatly to size
 // if the table is hidden the visibility
 // listener will invoke this itself upon show
-this.recalculate();if(css_element_queries__WEBPACK_IMPORTED_MODULE_16__["ResizeSensor"]){this.resizeSensor=new css_element_queries__WEBPACK_IMPORTED_MODULE_16__["ResizeSensor"](this.element,function(){return _this10.recalculate$.next()})}this._subscriptions.push(this.recalculate$.pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_17__["throttleTime"])(100)).subscribe(function(){return _this10.recalculate()}))}/**
+this.recalculate();if(css_element_queries__WEBPACK_IMPORTED_MODULE_16__["ResizeSensor"]){this.resizeSensor=new css_element_queries__WEBPACK_IMPORTED_MODULE_16__["ResizeSensor"](this.element,function(){return _this10.recalculate$.next()})}this._subscriptions.push(this.recalculate$.pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_17__["debounceTime"])(100)).subscribe(function(){return _this10.recalculate()}))}/**
      * Lifecycle hook that is called after a component's
      * view has been fully initialized.
      */;_proto10.ngAfterViewInit=function ngAfterViewInit(){var _this11=this;if(!this.externalSorting){this.sortInternalRows()}// this has to be done to prevent the change detection
