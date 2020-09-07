@@ -138,7 +138,8 @@ export type TreeStatus = 'collapsed' | 'expanded' | 'loading' | 'disabled';
           [options]="column.selectOptions"
           [ngClass]="column.cellClass"
           (update)="updateSelect(column, row, $event)"
-          [value]="value || column.defaultValue"
+          [value]="value"
+          [defaultValue]="column.defaultValue"
           [selectDisabled]="column.disabled"
           *ngIf="column.selectOptions && !(column.hideIfEmpty && column.disabled && value === '')"
         ></ice-datatable-row-select>

@@ -12,6 +12,7 @@ export class DatatableSelectComponent implements OnInit {
 
   @Input() align = 'left';
   @Input() focusOnEnter = false;
+  @Input() defaultValue: string;
   @Input() editOnFocus = false;
   @Input() selectDisabled = false;
   @Output() update = new EventEmitter<string>();
@@ -21,6 +22,9 @@ export class DatatableSelectComponent implements OnInit {
   @ViewChildren('selectElement') selectEl;
 
   ngOnInit() {
+    if (!this.value) {
+      this.value = this.defaultValue;
+    }
     if (this.value) {
       this.update.emit(this.value);
     }

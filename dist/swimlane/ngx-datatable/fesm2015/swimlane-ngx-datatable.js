@@ -5787,7 +5787,8 @@ DataTableBodyCellComponent.decorators = [
           [options]="column.selectOptions"
           [ngClass]="column.cellClass"
           (update)="updateSelect(column, row, $event)"
-          [value]="value || column.defaultValue"
+          [value]="value"
+          [defaultValue]="column.defaultValue"
           [selectDisabled]="column.disabled"
           *ngIf="column.selectOptions && !(column.hideIfEmpty && column.disabled && value === '')"
         ></ice-datatable-row-select>
@@ -6602,6 +6603,9 @@ class DatatableSelectComponent {
      * @return {?}
      */
     ngOnInit() {
+        if (!this.value) {
+            this.value = this.defaultValue;
+        }
         if (this.value) {
             this.update.emit(this.value);
         }
@@ -6624,6 +6628,7 @@ DatatableSelectComponent.decorators = [
 DatatableSelectComponent.propDecorators = {
     align: [{ type: Input }],
     focusOnEnter: [{ type: Input }],
+    defaultValue: [{ type: Input }],
     editOnFocus: [{ type: Input }],
     selectDisabled: [{ type: Input }],
     update: [{ type: Output }],
@@ -6643,6 +6648,8 @@ if (false) {
     DatatableSelectComponent.prototype.align;
     /** @type {?} */
     DatatableSelectComponent.prototype.focusOnEnter;
+    /** @type {?} */
+    DatatableSelectComponent.prototype.defaultValue;
     /** @type {?} */
     DatatableSelectComponent.prototype.editOnFocus;
     /** @type {?} */

@@ -5,6 +5,7 @@ export declare class DatatableSelectComponent implements OnInit {
     rows: any[];
     align: string;
     focusOnEnter: boolean;
+    defaultValue: string;
     editOnFocus: boolean;
     selectDisabled: boolean;
     update: EventEmitter<string>;

@@ -92,7 +92,7 @@ const _c7 = ["iceCustomHtmlToolTip", "", "class", "material-icons", 3, "iceToolt
 const _c8 = ["class", "mat-icon material-icons", 3, "matTooltip", 4, "ngIf"];
 const _c9 = ["class", "ice-data-table-row", "iceCustomHtmlToolTip", "", 3, "iceTooltipHtmlText", "showToolTipOnTextOverflow", "showToolTip", "innerHTML", "click", 4, "ngIf"];
 const _c10 = ["mat-icon-button", "", 3, "matTooltip", "click", 4, "ngIf"];
-const _c11 = ["style", "margin-top: 18px", 3, "options", "ngClass", "value", "selectDisabled", "update", 4, "ngIf"];
+const _c11 = ["style", "margin-top: 18px", 3, "options", "ngClass", "value", "defaultValue", "selectDisabled", "update", 4, "ngIf"];
 const _c12 = [1, "datatable-checkbox"];
 const _c13 = ["type", "checkbox", 3, "checked", "click"];
 function DataTableBodyCellComponent_ng_container_2_label_1_Template(rf, ctx) { if (rf & 1) {
@@ -241,7 +241,7 @@ function DataTableBodyCellComponent_ng_container_2_button_9_Template(rf, ctx) { 
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵselect"](2);
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtextInterpolate"](ctx_r84.column.actionButtonIcon);
 } }
-const _c32 = [2, "margin-top", "18px", 3, "options", "ngClass", "value", "selectDisabled", "update"];
+const _c32 = [2, "margin-top", "18px", 3, "options", "ngClass", "value", "defaultValue", "selectDisabled", "update"];
 function DataTableBodyCellComponent_ng_container_2_ice_datatable_row_select_11_Template(rf, ctx) { if (rf & 1) {
     const _r107 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵgetCurrentView"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "ice-datatable-row-select", _c32);
@@ -249,7 +249,7 @@ function DataTableBodyCellComponent_ng_container_2_ice_datatable_row_select_11_T
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
 } if (rf & 2) {
     const ctx_r85 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"](2);
-    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("options", ctx_r85.column.selectOptions)("ngClass", ctx_r85.column.cellClass)("value", ctx_r85.value || ctx_r85.column.defaultValue)("selectDisabled", ctx_r85.column.disabled);
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("options", ctx_r85.column.selectOptions)("ngClass", ctx_r85.column.cellClass)("value", ctx_r85.value)("defaultValue", ctx_r85.column.defaultValue)("selectDisabled", ctx_r85.column.disabled);
 } }
 const _c33 = ["class", "mat-icon material-icons", 4, "ngIf"];
 const _c34 = [3, "ngClass", "errorText", "value", "update"];
@@ -296,7 +296,7 @@ function DataTableBodyCellComponent_ng_container_2_Template(rf, ctx) { if (rf & 
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵpipe"](8, "async");
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplate"](9, DataTableBodyCellComponent_ng_container_2_button_9_Template, 3, 2, "button", _c10);
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵpipe"](10, "async");
-    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplate"](11, DataTableBodyCellComponent_ng_container_2_ice_datatable_row_select_11_Template, 1, 4, "ice-datatable-row-select", _c11);
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplate"](11, DataTableBodyCellComponent_ng_container_2_ice_datatable_row_select_11_Template, 1, 5, "ice-datatable-row-select", _c11);
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplate"](12, DataTableBodyCellComponent_ng_container_2_ng_container_12_Template, 4, 5, "ng-container", _c3);
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵpipe"](13, "async");
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplate"](14, DataTableBodyCellComponent_ng_container_2_14_Template, 2, 2, undefined, _c3);
@@ -847,7 +847,8 @@ DataTableBodyCellComponent.ngComponentDef = _angular_core__WEBPACK_IMPORTED_MODU
           [options]="column.selectOptions"
           [ngClass]="column.cellClass"
           (update)="updateSelect(column, row, $event)"
-          [value]="value || column.defaultValue"
+          [value]="value"
+          [defaultValue]="column.defaultValue"
           [selectDisabled]="column.disabled"
           *ngIf="column.selectOptions && !(column.hideIfEmpty && column.disabled && value === '')"
         ></ice-datatable-row-select>
@@ -5729,6 +5730,9 @@ class DatatableSelectComponent {
         this.options = [];
     }
     ngOnInit() {
+        if (!this.value) {
+            this.value = this.defaultValue;
+        }
         if (this.value) {
             this.update.emit(this.value);
         }
@@ -5742,7 +5746,7 @@ DatatableSelectComponent.ngComponentDef = _angular_core__WEBPACK_IMPORTED_MODULE
     } if (rf & 2) {
         var _t;
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵqueryRefresh"]((_t = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵloadViewQuery"]())) && (ctx.selectEl = _t);
-    } }, inputs: { align: "align", focusOnEnter: "focusOnEnter", editOnFocus: "editOnFocus", selectDisabled: "selectDisabled", options: "options", default: "default", value: "value" }, outputs: { update: "update" }, consts: 3, vars: 3, template: function DatatableSelectComponent_Template(rf, ctx) { if (rf & 1) {
+    } }, inputs: { align: "align", focusOnEnter: "focusOnEnter", defaultValue: "defaultValue", editOnFocus: "editOnFocus", selectDisabled: "selectDisabled", options: "options", default: "default", value: "value" }, outputs: { update: "update" }, consts: 3, vars: 3, template: function DatatableSelectComponent_Template(rf, ctx) { if (rf & 1) {
         const _r134 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵgetCurrentView"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "select", _c1, _c2);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵlistener"]("change", function DatatableSelectComponent_Template_select_change_0_listener($event) { _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵrestoreView"](_r134); const _r130 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵreference"](1); return ctx.emitUpdate(_r130.value); });
@@ -5763,6 +5767,8 @@ DatatableSelectComponent.ngComponentDef = _angular_core__WEBPACK_IMPORTED_MODULE
     }], null, { align: [{
             type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["Input"]
         }], focusOnEnter: [{
+            type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["Input"]
+        }], defaultValue: [{
             type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["Input"]
         }], editOnFocus: [{
             type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["Input"]
