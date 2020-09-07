@@ -7775,7 +7775,7 @@ class DatatableComponent {
              */
             () => this.recalculate$.next()));
         }
-        this._subscriptions.push(this.recalculate$.pipe(debounceTime(100)).subscribe((/**
+        this._subscriptions.push(this.recalculate$.pipe(debounceTime(20)).subscribe((/**
          * @return {?}
          */
         () => this.recalculate())));

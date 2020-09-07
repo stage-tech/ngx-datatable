@@ -8992,7 +8992,7 @@
                  */
                 function () { return _this.recalculate$.next(); }));
             }
-            this._subscriptions.push(this.recalculate$.pipe(operators.debounceTime(100)).subscribe((/**
+            this._subscriptions.push(this.recalculate$.pipe(operators.debounceTime(20)).subscribe((/**
              * @return {?}
              */
             function () { return _this.recalculate(); })));
