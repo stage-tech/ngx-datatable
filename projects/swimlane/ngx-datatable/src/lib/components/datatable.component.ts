@@ -21,12 +21,13 @@ import {
   SkipSelf,
   OnDestroy,
   Optional,
-  Inject
+  Inject,
+  ViewRef
 } from '@angular/core';
 
 import { DatatableGroupHeaderDirective } from './body/body-group-header.directive';
 
-import { BehaviorSubject, Subscription } from 'rxjs';
+import { BehaviorSubject, Subscription, Subject } from 'rxjs';
 import { INgxDatatableConfig } from '../ngx-datatable.module';
 import { groupRowsByParents, optionalGetterForProp } from '../utils/tree';
 import { TableColumn } from '../types/table-column.type';
@@ -46,6 +47,8 @@ import { DimensionsHelper } from '../services/dimensions-helper.service';
 import { throttleable } from '../utils/throttle';
 import { forceFillColumnWidths, adjustColumnWidths } from '../utils/math';
 import { sortRows } from '../utils/sort';
+import { ResizeSensor } from 'css-element-queries';
+import { throttleTime, debounceTime } from 'rxjs/operators';
 
 @Component({
   selector: 'ngx-datatable',
@@ -658,6 +661,8 @@ export class DatatableComponent implements OnInit, DoCheck, AfterViewInit {
   _columns: TableColumn[];
   _columnTemplates: QueryList<DataTableColumnDirective>;
   _subscriptions: Subscription[] = [];
+  resizeSensor: ResizeSensor;
+  recalculate$ = new Subject();
 
   constructor(
     @SkipSelf() private scrollbarHelper: ScrollbarHelper,
@@ -687,6 +692,10 @@ export class DatatableComponent implements OnInit, DoCheck, AfterViewInit {
     // if the table is hidden the visibility
     // listener will invoke this itself upon show
     this.recalculate();
+    if (ResizeSensor) {
+      this.resizeSensor = new ResizeSensor(this.element, () => this.recalculate$.next());
+    }
+    this.recalculate$.pipe(throttleTime(100)).subscribe(() => this.recalculate());
   }
 
   /**
@@ -826,15 +835,9 @@ export class DatatableComponent implements OnInit, DoCheck, AfterViewInit {
   recalculate(): void {
     this.recalculateDims();
     this.recalculateColumns();
-  }
-
-  /**
-   * Window resize handler to update sizes.
-   */
-  @HostListener('window:resize')
-  @throttleable(5)
-  onWindowResize(): void {
-    this.recalculate();
+    if (!(this.cd as ViewRef).destroyed) {
+      this.cd.detectChanges();
+    }
   }
 
   /**
@@ -1161,6 +1164,9 @@ export class DatatableComponent implements OnInit, DoCheck, AfterViewInit {
 
   ngOnDestroy() {
     this._subscriptions.forEach(subscription => subscription.unsubscribe());
+    if (this.resizeSensor) {
+      this.resizeSensor.detach();
+    }
   }
 
   /**

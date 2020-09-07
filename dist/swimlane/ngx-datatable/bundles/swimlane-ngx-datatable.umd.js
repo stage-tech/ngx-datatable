@@ -1,8 +1,8 @@
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@angular/common'), require('@angular/material/icon'), require('@angular/material/button'), require('@angular/cdk/overlay'), require('@angular/material/tooltip'), require('rxjs'), require('rxjs/operators'), require('@angular/platform-browser'), require('@angular/cdk/portal'), require('@angular/forms'), require('@angular/material/input')) :
-    typeof define === 'function' && define.amd ? define('@swimlane/ngx-datatable', ['exports', '@angular/core', '@angular/common', '@angular/material/icon', '@angular/material/button', '@angular/cdk/overlay', '@angular/material/tooltip', 'rxjs', 'rxjs/operators', '@angular/platform-browser', '@angular/cdk/portal', '@angular/forms', '@angular/material/input'], factory) :
-    (global = global || self, factory((global.swimlane = global.swimlane || {}, global.swimlane['ngx-datatable'] = {}), global.ng.core, global.ng.common, global.ng.material.icon, global.ng.material.button, global.ng.cdk.overlay, global.ng.material.tooltip, global.rxjs, global.rxjs.operators, global.ng.platformBrowser, global.ng.cdk.portal, global.ng.forms, global.ng.material.input));
-}(this, function (exports, core, common, icon, button, overlay, tooltip, rxjs, operators, platformBrowser, portal, forms, input) { 'use strict';
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@angular/common'), require('@angular/material/icon'), require('@angular/material/button'), require('@angular/cdk/overlay'), require('@angular/material/tooltip'), require('rxjs'), require('rxjs/operators'), require('@angular/platform-browser'), require('@angular/cdk/portal'), require('@angular/forms'), require('@angular/material/input'), require('css-element-queries')) :
+    typeof define === 'function' && define.amd ? define('@swimlane/ngx-datatable', ['exports', '@angular/core', '@angular/common', '@angular/material/icon', '@angular/material/button', '@angular/cdk/overlay', '@angular/material/tooltip', 'rxjs', 'rxjs/operators', '@angular/platform-browser', '@angular/cdk/portal', '@angular/forms', '@angular/material/input', 'css-element-queries'], factory) :
+    (global = global || self, factory((global.swimlane = global.swimlane || {}, global.swimlane['ngx-datatable'] = {}), global.ng.core, global.ng.common, global.ng.material.icon, global.ng.material.button, global.ng.cdk.overlay, global.ng.material.tooltip, global.rxjs, global.rxjs.operators, global.ng.platformBrowser, global.ng.cdk.portal, global.ng.forms, global.ng.material.input, global.cssElementQueries));
+}(this, function (exports, core, common, icon, button, overlay, tooltip, rxjs, operators, platformBrowser, portal, forms, input, cssElementQueries) { 'use strict';
 
     /*! *****************************************************************************
     Copyright (c) Microsoft Corporation. All rights reserved.
@@ -8082,100 +8082,6 @@
      * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     /**
-     * Throttle a function
-     * @param {?} func
-     * @param {?} wait
-     * @param {?=} options
-     * @return {?}
-     */
-    function throttle(func, wait, options) {
-        options = options || {};
-        /** @type {?} */
-        var context;
-        /** @type {?} */
-        var args;
-        /** @type {?} */
-        var result;
-        /** @type {?} */
-        var timeout = null;
-        /** @type {?} */
-        var previous = 0;
-        /**
-         * @return {?}
-         */
-        function later() {
-            previous = options.leading === false ? 0 : +new Date();
-            timeout = null;
-            result = func.apply(context, args);
-        }
-        return (/**
-         * @this {?}
-         * @return {?}
-         */
-        function () {
-            /** @type {?} */
-            var now = +new Date();
-            if (!previous && options.leading === false) {
-                previous = now;
-            }
-            /** @type {?} */
-            var remaining = wait - (now - previous);
-            context = this;
-            args = arguments;
-            if (remaining <= 0) {
-                clearTimeout(timeout);
-                timeout = null;
-                previous = now;
-                result = func.apply(context, args);
-            }
-            else if (!timeout && options.trailing !== false) {
-                timeout = setTimeout(later, remaining);
-            }
-            return result;
-        });
-    }
-    /**
-     * Throttle decorator
-     *
-     *  class MyClass {
-     *    throttleable(10)
-     *    myFn() { ... }
-     *  }
-     * @param {?} duration
-     * @param {?=} options
-     * @return {?}
-     */
-    function throttleable(duration, options) {
-        return (/**
-         * @param {?} target
-         * @param {?} key
-         * @param {?} descriptor
-         * @return {?}
-         */
-        function innerDecorator(target, key, descriptor) {
-            return {
-                configurable: true,
-                enumerable: descriptor.enumerable,
-                get: (/**
-                 * @return {?}
-                 */
-                function getter() {
-                    Object.defineProperty(this, key, {
-                        configurable: true,
-                        enumerable: descriptor.enumerable,
-                        value: throttle(descriptor.value, duration, options)
-                    });
-                    return this[key];
-                })
-            };
-        });
-    }
-
-    /**
-     * @fileoverview added by tsickle
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-    /**
      * Calculates the Total Flex Grow
      * @param {?} columns
      * @return {?}
@@ -8624,6 +8530,7 @@
             this._count = 0;
             this._offset = 0;
             this._subscriptions = [];
+            this.recalculate$ = new rxjs.Subject();
             /**
              * This will be used when displaying or selecting rows.
              * when tracking/comparing them, we'll use the value of this fn,
@@ -9074,10 +8981,21 @@
          * @return {?}
          */
         function () {
+            var _this = this;
             // need to call this immediatly to size
             // if the table is hidden the visibility
             // listener will invoke this itself upon show
             this.recalculate();
+            if (cssElementQueries.ResizeSensor) {
+                this.resizeSensor = new cssElementQueries.ResizeSensor(this.element, (/**
+                 * @return {?}
+                 */
+                function () { return _this.recalculate$.next(); }));
+            }
+            this.recalculate$.pipe(operators.throttleTime(100)).subscribe((/**
+             * @return {?}
+             */
+            function () { return _this.recalculate(); }));
         };
         /**
          * Lifecycle hook that is called after a component's
@@ -9292,20 +9210,9 @@
         function () {
             this.recalculateDims();
             this.recalculateColumns();
-        };
-        /**
-         * Window resize handler to update sizes.
-         */
-        /**
-         * Window resize handler to update sizes.
-         * @return {?}
-         */
-        DatatableComponent.prototype.onWindowResize = /**
-         * Window resize handler to update sizes.
-         * @return {?}
-         */
-        function () {
-            this.recalculate();
+            if (!((/** @type {?} */ (this.cd))).destroyed) {
+                this.cd.detectChanges();
+            }
         };
         /**
          * Recalulcates the column widths based on column width
@@ -9811,6 +9718,9 @@
              * @return {?}
              */
             function (subscription) { return subscription.unsubscribe(); }));
+            if (this.resizeSensor) {
+                this.resizeSensor.detach();
+            }
         };
         /**
          * listen for changes to input bindings of all DataTableColumnDirective and
@@ -9853,7 +9763,7 @@
         DatatableComponent.decorators = [
             { type: core.Component, args: [{
                         selector: 'ngx-datatable',
-                        template: "<div visibilityObserver (visible)=\"recalculate()\">\n  <datatable-header\n    *ngIf=\"headerHeight\"\n    [sorts]=\"sorts\"\n    [sortType]=\"sortType\"\n    [scrollbarH]=\"scrollbarH\"\n    [innerWidth]=\"_innerWidth\"\n    [offsetX]=\"_offsetX | async\"\n    [dealsWithGroup]=\"groupedRows !== undefined\"\n    [columns]=\"_internalColumns\"\n    [headerHeight]=\"headerHeight\"\n    [reorderable]=\"reorderable\"\n    [targetMarkerTemplate]=\"targetMarkerTemplate\"\n    [sortAscendingIcon]=\"cssClasses.sortAscending\"\n    [sortDescendingIcon]=\"cssClasses.sortDescending\"\n    [allRowsSelected]=\"allRowsSelected\"\n    [selectionType]=\"selectionType\"\n    (sort)=\"onColumnSort($event)\"\n    (filter)=\"onColumnFilter($event)\"\n    (resize)=\"onColumnResize($event)\"\n    (reorder)=\"onColumnReorder($event)\"\n    (select)=\"onHeaderSelect($event)\"\n    (columnContextmenu)=\"onColumnContextmenu($event)\"\n  >\n  </datatable-header>\n  <datatable-body\n    [groupRowsBy]=\"groupRowsBy\"\n    [groupedRows]=\"groupedRows\"\n    [rows]=\"_internalRows\"\n    [groupExpansionDefault]=\"groupExpansionDefault\"\n    [scrollbarV]=\"scrollbarV\"\n    [scrollbarH]=\"scrollbarH\"\n    [virtualization]=\"virtualization\"\n    [loadingIndicator]=\"loadingIndicator\"\n    [externalPaging]=\"externalPaging\"\n    [rowHeight]=\"rowHeight\"\n    [rowCount]=\"rowCount\"\n    [offset]=\"offset\"\n    [trackByProp]=\"trackByProp\"\n    [columns]=\"_internalColumns\"\n    [pageSize]=\"pageSize\"\n    [offsetX]=\"_offsetX | async\"\n    [rowDetail]=\"rowDetail\"\n    [groupHeader]=\"groupHeader\"\n    [selected]=\"selected\"\n    [innerWidth]=\"_innerWidth\"\n    [bodyHeight]=\"bodyHeight\"\n    [selectionType]=\"selectionType\"\n    [emptyMessage]=\"messages.emptyMessage\"\n    [rowIdentity]=\"rowIdentity\"\n    [rowClass]=\"rowClass\"\n    [selectCheck]=\"selectCheck\"\n    [displayCheck]=\"displayCheck\"\n    [summaryRow]=\"summaryRow\"\n    [summaryHeight]=\"summaryHeight\"\n    [summaryPosition]=\"summaryPosition\"\n    (page)=\"onBodyPage($event)\"\n    (activate)=\"activate.emit($event)\"\n    (rowContextmenu)=\"onRowContextmenu($event)\"\n    (select)=\"onBodySelect($event)\"\n    (scroll)=\"onBodyScroll($event)\"\n    (treeAction)=\"onTreeAction($event)\"\n  >\n  </datatable-body>\n  <datatable-footer\n    *ngIf=\"footerHeight\"\n    [rowCount]=\"rowCount\"\n    [pageSize]=\"pageSize\"\n    [offset]=\"offset\"\n    [footerHeight]=\"footerHeight\"\n    [footerTemplate]=\"footer\"\n    [totalMessage]=\"messages.totalMessage\"\n    [pagerLeftArrowIcon]=\"cssClasses.pagerLeftArrow\"\n    [pagerRightArrowIcon]=\"cssClasses.pagerRightArrow\"\n    [pagerPreviousIcon]=\"cssClasses.pagerPrevious\"\n    [selectedCount]=\"selected.length\"\n    [selectedMessage]=\"!!selectionType && messages.selectedMessage\"\n    [pagerNextIcon]=\"cssClasses.pagerNext\"\n    (page)=\"onFooterPage($event)\"\n  >\n  </datatable-footer>\n</div>\n",
+                        template: "<div visibilityObserver (visible)=\"recalculate()\">\r\n  <datatable-header\r\n    *ngIf=\"headerHeight\"\r\n    [sorts]=\"sorts\"\r\n    [sortType]=\"sortType\"\r\n    [scrollbarH]=\"scrollbarH\"\r\n    [innerWidth]=\"_innerWidth\"\r\n    [offsetX]=\"_offsetX | async\"\r\n    [dealsWithGroup]=\"groupedRows !== undefined\"\r\n    [columns]=\"_internalColumns\"\r\n    [headerHeight]=\"headerHeight\"\r\n    [reorderable]=\"reorderable\"\r\n    [targetMarkerTemplate]=\"targetMarkerTemplate\"\r\n    [sortAscendingIcon]=\"cssClasses.sortAscending\"\r\n    [sortDescendingIcon]=\"cssClasses.sortDescending\"\r\n    [allRowsSelected]=\"allRowsSelected\"\r\n    [selectionType]=\"selectionType\"\r\n    (sort)=\"onColumnSort($event)\"\r\n    (filter)=\"onColumnFilter($event)\"\r\n    (resize)=\"onColumnResize($event)\"\r\n    (reorder)=\"onColumnReorder($event)\"\r\n    (select)=\"onHeaderSelect($event)\"\r\n    (columnContextmenu)=\"onColumnContextmenu($event)\"\r\n  >\r\n  </datatable-header>\r\n  <datatable-body\r\n    [groupRowsBy]=\"groupRowsBy\"\r\n    [groupedRows]=\"groupedRows\"\r\n    [rows]=\"_internalRows\"\r\n    [groupExpansionDefault]=\"groupExpansionDefault\"\r\n    [scrollbarV]=\"scrollbarV\"\r\n    [scrollbarH]=\"scrollbarH\"\r\n    [virtualization]=\"virtualization\"\r\n    [loadingIndicator]=\"loadingIndicator\"\r\n    [externalPaging]=\"externalPaging\"\r\n    [rowHeight]=\"rowHeight\"\r\n    [rowCount]=\"rowCount\"\r\n    [offset]=\"offset\"\r\n    [trackByProp]=\"trackByProp\"\r\n    [columns]=\"_internalColumns\"\r\n    [pageSize]=\"pageSize\"\r\n    [offsetX]=\"_offsetX | async\"\r\n    [rowDetail]=\"rowDetail\"\r\n    [groupHeader]=\"groupHeader\"\r\n    [selected]=\"selected\"\r\n    [innerWidth]=\"_innerWidth\"\r\n    [bodyHeight]=\"bodyHeight\"\r\n    [selectionType]=\"selectionType\"\r\n    [emptyMessage]=\"messages.emptyMessage\"\r\n    [rowIdentity]=\"rowIdentity\"\r\n    [rowClass]=\"rowClass\"\r\n    [selectCheck]=\"selectCheck\"\r\n    [displayCheck]=\"displayCheck\"\r\n    [summaryRow]=\"summaryRow\"\r\n    [summaryHeight]=\"summaryHeight\"\r\n    [summaryPosition]=\"summaryPosition\"\r\n    (page)=\"onBodyPage($event)\"\r\n    (activate)=\"activate.emit($event)\"\r\n    (rowContextmenu)=\"onRowContextmenu($event)\"\r\n    (select)=\"onBodySelect($event)\"\r\n    (scroll)=\"onBodyScroll($event)\"\r\n    (treeAction)=\"onTreeAction($event)\"\r\n  >\r\n  </datatable-body>\r\n  <datatable-footer\r\n    *ngIf=\"footerHeight\"\r\n    [rowCount]=\"rowCount\"\r\n    [pageSize]=\"pageSize\"\r\n    [offset]=\"offset\"\r\n    [footerHeight]=\"footerHeight\"\r\n    [footerTemplate]=\"footer\"\r\n    [totalMessage]=\"messages.totalMessage\"\r\n    [pagerLeftArrowIcon]=\"cssClasses.pagerLeftArrow\"\r\n    [pagerRightArrowIcon]=\"cssClasses.pagerRightArrow\"\r\n    [pagerPreviousIcon]=\"cssClasses.pagerPrevious\"\r\n    [selectedCount]=\"selected.length\"\r\n    [selectedMessage]=\"!!selectionType && messages.selectedMessage\"\r\n    [pagerNextIcon]=\"cssClasses.pagerNext\"\r\n    (page)=\"onFooterPage($event)\"\r\n  >\r\n  </datatable-footer>\r\n</div>\r\n",
                         changeDetection: core.ChangeDetectionStrategy.OnPush,
                         encapsulation: core.ViewEncapsulation.None,
                         host: {
@@ -9938,15 +9848,8 @@
             footer: [{ type: core.ContentChild, args: [DatatableFooterDirective, { static: false },] }],
             bodyComponent: [{ type: core.ViewChild, args: [DataTableBodyComponent, { static: false },] }],
             headerComponent: [{ type: core.ViewChild, args: [DataTableHeaderComponent, { static: false },] }],
-            rowIdentity: [{ type: core.Input }],
-            onWindowResize: [{ type: core.HostListener, args: ['window:resize',] }]
+            rowIdentity: [{ type: core.Input }]
         };
-        __decorate([
-            throttleable(5),
-            __metadata("design:type", Function),
-            __metadata("design:paramtypes", []),
-            __metadata("design:returntype", void 0)
-        ], DatatableComponent.prototype, "onWindowResize", null);
         return DatatableComponent;
     }());
     if (false) {
@@ -10279,6 +10182,10 @@
         DatatableComponent.prototype._columnTemplates;
         /** @type {?} */
         DatatableComponent.prototype._subscriptions;
+        /** @type {?} */
+        DatatableComponent.prototype.resizeSensor;
+        /** @type {?} */
+        DatatableComponent.prototype.recalculate$;
         /**
          * This will be used when displaying or selecting rows.
          * when tracking/comparing them, we'll use the value of this fn,
@@ -10694,6 +10601,100 @@
         SortPropDir.prototype.dir;
         /** @type {?} */
         SortPropDir.prototype.prop;
+    }
+
+    /**
+     * @fileoverview added by tsickle
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+    /**
+     * Throttle a function
+     * @param {?} func
+     * @param {?} wait
+     * @param {?=} options
+     * @return {?}
+     */
+    function throttle(func, wait, options) {
+        options = options || {};
+        /** @type {?} */
+        var context;
+        /** @type {?} */
+        var args;
+        /** @type {?} */
+        var result;
+        /** @type {?} */
+        var timeout = null;
+        /** @type {?} */
+        var previous = 0;
+        /**
+         * @return {?}
+         */
+        function later() {
+            previous = options.leading === false ? 0 : +new Date();
+            timeout = null;
+            result = func.apply(context, args);
+        }
+        return (/**
+         * @this {?}
+         * @return {?}
+         */
+        function () {
+            /** @type {?} */
+            var now = +new Date();
+            if (!previous && options.leading === false) {
+                previous = now;
+            }
+            /** @type {?} */
+            var remaining = wait - (now - previous);
+            context = this;
+            args = arguments;
+            if (remaining <= 0) {
+                clearTimeout(timeout);
+                timeout = null;
+                previous = now;
+                result = func.apply(context, args);
+            }
+            else if (!timeout && options.trailing !== false) {
+                timeout = setTimeout(later, remaining);
+            }
+            return result;
+        });
+    }
+    /**
+     * Throttle decorator
+     *
+     *  class MyClass {
+     *    throttleable(10)
+     *    myFn() { ... }
+     *  }
+     * @param {?} duration
+     * @param {?=} options
+     * @return {?}
+     */
+    function throttleable(duration, options) {
+        return (/**
+         * @param {?} target
+         * @param {?} key
+         * @param {?} descriptor
+         * @return {?}
+         */
+        function innerDecorator(target, key, descriptor) {
+            return {
+                configurable: true,
+                enumerable: descriptor.enumerable,
+                get: (/**
+                 * @return {?}
+                 */
+                function getter() {
+                    Object.defineProperty(this, key, {
+                        configurable: true,
+                        enumerable: descriptor.enumerable,
+                        value: throttle(descriptor.value, duration, options)
+                    });
+                    return this[key];
+                })
+            };
+        });
     }
 
     /**

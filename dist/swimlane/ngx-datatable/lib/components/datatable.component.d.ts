@@ -1,6 +1,6 @@
 import { ElementRef, EventEmitter, OnInit, QueryList, AfterViewInit, DoCheck, KeyValueDiffers, KeyValueDiffer, ChangeDetectorRef } from '@angular/core';
 import { DatatableGroupHeaderDirective } from './body/body-group-header.directive';
-import { BehaviorSubject, Subscription } from 'rxjs';
+import { BehaviorSubject, Subscription, Subject } from 'rxjs';
 import { INgxDatatableConfig } from '../ngx-datatable.module';
 import { TableColumn } from '../types/table-column.type';
 import { ColumnMode } from '../types/column-mode.type';
@@ -15,6 +15,7 @@ import { DataTableHeaderComponent } from './header/header.component';
 import { ScrollbarHelper } from '../services/scrollbar-helper.service';
 import { ColumnChangesService } from '../services/column-changes.service';
 import { DimensionsHelper } from '../services/dimensions-helper.service';
+import { ResizeSensor } from 'css-element-queries';
 export declare class DatatableComponent implements OnInit, DoCheck, AfterViewInit {
     private scrollbarHelper;
     private dimensionsHelper;
@@ -389,6 +390,8 @@ export declare class DatatableComponent implements OnInit, DoCheck, AfterViewIni
     _columns: TableColumn[];
     _columnTemplates: QueryList<DataTableColumnDirective>;
     _subscriptions: Subscription[];
+    resizeSensor: ResizeSensor;
+    recalculate$: Subject<unknown>;
     constructor(scrollbarHelper: ScrollbarHelper, dimensionsHelper: DimensionsHelper, cd: ChangeDetectorRef, element: ElementRef, differs: KeyValueDiffers, columnChangesService: ColumnChangesService, configuration: INgxDatatableConfig);
     /**
      * Lifecycle hook that is called after data-bound
@@ -439,10 +442,6 @@ export declare class DatatableComponent implements OnInit, DoCheck, AfterViewIni
      * Also can be manually invoked or upon window resize.
      */
     recalculate(): void;
-    /**
-     * Window resize handler to update sizes.
-     */
-    onWindowResize(): void;
     /**
      * Recalulcates the column widths based on column width
      * distribution mode and scrollbar offsets.
