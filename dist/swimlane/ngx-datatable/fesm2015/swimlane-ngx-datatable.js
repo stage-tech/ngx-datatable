@@ -5689,6 +5689,7 @@ DataTableBodyCellComponent.decorators = [
         [class.datatable-icon-up]="expanded"
         style="font-size: 18px; display: flex; align-items: center;"
         title="Expand/Collapse Row"
+        (dblclick)="toggleExpandRow(row, $event)"
         (click)="toggleExpandRow(row, $event)"
       >
       </a>
