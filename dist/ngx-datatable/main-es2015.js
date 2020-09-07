@@ -1842,7 +1842,7 @@ class DataTableBodyComponent {
      * Called once, before the instance is destroyed.
      */
     ngOnDestroy() {
-        if (this.rowDetail || this.groupHeader) {
+        if ((this.rowDetail || this.groupHeader) && this.listener) {
             this.listener.unsubscribe();
         }
     }

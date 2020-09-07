@@ -3578,7 +3578,7 @@ var DataTableBodyComponent = /** @class */ (function () {
      * @return {?}
      */
     function () {
-        if (this.rowDetail || this.groupHeader) {
+        if ((this.rowDetail || this.groupHeader) && this.listener) {
             this.listener.unsubscribe();
         }
     };

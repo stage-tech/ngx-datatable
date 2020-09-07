@@ -3168,7 +3168,7 @@ class DataTableBodyComponent {
      * @return {?}
      */
     ngOnDestroy() {
-        if (this.rowDetail || this.groupHeader) {
+        if ((this.rowDetail || this.groupHeader) && this.listener) {
             this.listener.unsubscribe();
         }
     }

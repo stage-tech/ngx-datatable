@@ -39,7 +39,7 @@ _this3.updateIndexes();_this3.updateRows();_this3.cd.markForCheck()})}if(this.gr
 // Fixes #883
 _this3.updateIndexes();_this3.updateRows();_this3.cd.markForCheck()})}}/**
      * Called once, before the instance is destroyed.
-     */;_proto5.ngOnDestroy=function ngOnDestroy(){if(this.rowDetail||this.groupHeader){this.listener.unsubscribe()}}/**
+     */;_proto5.ngOnDestroy=function ngOnDestroy(){if((this.rowDetail||this.groupHeader)&&this.listener){this.listener.unsubscribe()}}/**
      * Updates the Y offset given a new offset.
      */;_proto5.updateOffsetY=function updateOffsetY(offset){// scroller is missing on empty table
 if(!this.scroller){return}if(this.scrollbarV&&this.virtualization&&offset){// First get the row Index that we need to move to.

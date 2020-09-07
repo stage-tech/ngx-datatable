@@ -323,7 +323,7 @@ export class DataTableBodyComponent implements OnInit, OnDestroy {
    * Called once, before the instance is destroyed.
    */
   ngOnDestroy(): void {
-    if (this.rowDetail || this.groupHeader) {
+    if ((this.rowDetail || this.groupHeader) && this.listener) {
       this.listener.unsubscribe();
     }
   }
