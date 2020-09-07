@@ -9208,11 +9208,17 @@
          * @return {?}
          */
         function () {
+            var _this = this;
             this.recalculateDims();
             this.recalculateColumns();
-            if (!((/** @type {?} */ (this.cd))).destroyed) {
-                this.cd.detectChanges();
-            }
+            requestAnimationFrame((/**
+             * @return {?}
+             */
+            function () {
+                if (!((/** @type {?} */ (_this.cd))).destroyed) {
+                    _this.cd.detectChanges();
+                }
+            }));
         };
         /**
          * Recalulcates the column widths based on column width

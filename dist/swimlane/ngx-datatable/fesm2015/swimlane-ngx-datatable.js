@@ -7920,9 +7920,14 @@ class DatatableComponent {
     recalculate() {
         this.recalculateDims();
         this.recalculateColumns();
-        if (!((/** @type {?} */ (this.cd))).destroyed) {
-            this.cd.detectChanges();
-        }
+        requestAnimationFrame((/**
+         * @return {?}
+         */
+        () => {
+            if (!((/** @type {?} */ (this.cd))).destroyed) {
+                this.cd.detectChanges();
+            }
+        }));
     }
     /**
      * Recalulcates the column widths based on column width

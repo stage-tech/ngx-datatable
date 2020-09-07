@@ -835,9 +835,11 @@ export class DatatableComponent implements OnInit, DoCheck, AfterViewInit {
   recalculate(): void {
     this.recalculateDims();
     this.recalculateColumns();
-    if (!(this.cd as ViewRef).destroyed) {
-      this.cd.detectChanges();
-    }
+    requestAnimationFrame(() => {
+      if (!(this.cd as ViewRef).destroyed) {
+        this.cd.detectChanges();
+      }
+    });
   }
 
   /**

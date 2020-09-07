@@ -3750,9 +3750,11 @@ class DatatableComponent {
     recalculate() {
         this.recalculateDims();
         this.recalculateColumns();
-        if (!this.cd.destroyed) {
-            this.cd.detectChanges();
-        }
+        requestAnimationFrame(() => {
+            if (!this.cd.destroyed) {
+                this.cd.detectChanges();
+            }
+        });
     }
     /**
      * Recalulcates the column widths based on column width
