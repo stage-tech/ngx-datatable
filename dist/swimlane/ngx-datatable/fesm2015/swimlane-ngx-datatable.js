@@ -7775,10 +7775,10 @@ class DatatableComponent {
              */
             () => this.recalculate$.next()));
         }
-        this.recalculate$.pipe(throttleTime(100)).subscribe((/**
+        this._subscriptions.push(this.recalculate$.pipe(throttleTime(100)).subscribe((/**
          * @return {?}
          */
-        () => this.recalculate()));
+        () => this.recalculate())));
     }
     /**
      * Lifecycle hook that is called after a component's

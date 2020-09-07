@@ -695,7 +695,7 @@ export class DatatableComponent implements OnInit, DoCheck, AfterViewInit {
     if (ResizeSensor) {
       this.resizeSensor = new ResizeSensor(this.element, () => this.recalculate$.next());
     }
-    this.recalculate$.pipe(throttleTime(100)).subscribe(() => this.recalculate());
+    this._subscriptions.push(this.recalculate$.pipe(throttleTime(100)).subscribe(() => this.recalculate()));
   }
 
   /**

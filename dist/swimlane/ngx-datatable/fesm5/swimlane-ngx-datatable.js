@@ -8804,10 +8804,10 @@ var DatatableComponent = /** @class */ (function () {
              */
             function () { return _this.recalculate$.next(); }));
         }
-        this.recalculate$.pipe(throttleTime(100)).subscribe((/**
+        this._subscriptions.push(this.recalculate$.pipe(throttleTime(100)).subscribe((/**
          * @return {?}
          */
-        function () { return _this.recalculate(); }));
+        function () { return _this.recalculate(); })));
     };
     /**
      * Lifecycle hook that is called after a component's
