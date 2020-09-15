@@ -5,7 +5,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { Overlay, OverlayPositionBuilder, OverlayModule } from '@angular/cdk/overlay';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { Subject, fromEvent, of, BehaviorSubject, asyncScheduler } from 'rxjs';
-import { takeUntil, throttleTime } from 'rxjs/operators';
+import { takeUntil, throttleTime, delay } from 'rxjs/operators';
 import { DomSanitizer } from '@angular/platform-browser';
 import { ComponentPortal } from '@angular/cdk/portal';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -7784,7 +7784,7 @@ class DatatableComponent {
             () => this.recalculate$.next()));
         }
         this._subscriptions.push(this.recalculate$
-            .pipe(throttleTime(100, asyncScheduler, { leading: true, trailing: true }))
+            .pipe(throttleTime(250, asyncScheduler, { leading: true, trailing: true }), delay(100))
             .subscribe((/**
          * @return {?}
          */

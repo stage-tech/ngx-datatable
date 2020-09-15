@@ -3646,7 +3646,7 @@ class DatatableComponent {
             this.resizeSensor = new css_element_queries__WEBPACK_IMPORTED_MODULE_16__["ResizeSensor"](this.element, () => this.recalculate$.next());
         }
         this._subscriptions.push(this.recalculate$
-            .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_17__["throttleTime"])(100, rxjs__WEBPACK_IMPORTED_MODULE_2__["asyncScheduler"], { leading: true, trailing: true }))
+            .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_17__["throttleTime"])(250, rxjs__WEBPACK_IMPORTED_MODULE_2__["asyncScheduler"], { leading: true, trailing: true }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_17__["delay"])(100))
             .subscribe(() => this.recalculate()));
     }
     /**

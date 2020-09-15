@@ -8999,7 +8999,7 @@
                 function () { return _this.recalculate$.next(); }));
             }
             this._subscriptions.push(this.recalculate$
-                .pipe(operators.throttleTime(100, rxjs.asyncScheduler, { leading: true, trailing: true }))
+                .pipe(operators.throttleTime(250, rxjs.asyncScheduler, { leading: true, trailing: true }), operators.delay(100))
                 .subscribe((/**
              * @return {?}
              */

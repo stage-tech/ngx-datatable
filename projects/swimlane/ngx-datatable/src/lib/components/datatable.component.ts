@@ -48,7 +48,7 @@ import { throttleable } from '../utils/throttle';
 import { forceFillColumnWidths, adjustColumnWidths } from '../utils/math';
 import { sortRows } from '../utils/sort';
 import { ResizeSensor } from 'css-element-queries';
-import { throttleTime, debounceTime } from 'rxjs/operators';
+import { throttleTime, debounceTime, delay } from 'rxjs/operators';
 
 @Component({
   selector: 'ngx-datatable',
@@ -697,7 +697,10 @@ export class DatatableComponent implements OnInit, DoCheck, AfterViewInit {
     }
     this._subscriptions.push(
       this.recalculate$
-        .pipe(throttleTime(100, asyncScheduler, { leading: true, trailing: true }))
+        .pipe(
+          throttleTime(250, asyncScheduler, { leading: true, trailing: true }),
+          delay(100)
+        )
         .subscribe(() => this.recalculate())
     );
   }
