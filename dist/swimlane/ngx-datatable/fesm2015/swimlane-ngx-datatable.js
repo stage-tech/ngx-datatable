@@ -7784,7 +7784,7 @@ class DatatableComponent {
             () => this.recalculate$.next()));
         }
         this._subscriptions.push(this.recalculate$
-            .pipe(throttleTime(200, asyncScheduler, { leading: true, trailing: true }))
+            .pipe(throttleTime(100, asyncScheduler, { leading: true, trailing: true }))
             .subscribe((/**
          * @return {?}
          */

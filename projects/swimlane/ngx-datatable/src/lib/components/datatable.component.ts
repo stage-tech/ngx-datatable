@@ -697,7 +697,7 @@ export class DatatableComponent implements OnInit, DoCheck, AfterViewInit {
     }
     this._subscriptions.push(
       this.recalculate$
-        .pipe(throttleTime(200, asyncScheduler, { leading: true, trailing: true }))
+        .pipe(throttleTime(100, asyncScheduler, { leading: true, trailing: true }))
         .subscribe(() => this.recalculate())
     );
   }
