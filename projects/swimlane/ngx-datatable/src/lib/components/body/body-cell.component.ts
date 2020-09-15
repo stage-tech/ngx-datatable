@@ -556,7 +556,7 @@ export class DataTableBodyCellComponent implements DoCheck, OnDestroy {
 
   getTooltipValue(value, row, field) {
     if (row && field && field.tooltip && field.tooltip.length > 0) {
-      return row[`${field.tooltip}`];
+      return row[`${field.tooltip}`] || field.tooltip;
     }
     return value;
   }
