@@ -8998,7 +8998,9 @@
                  */
                 function () { return _this.recalculate$.next(); }));
             }
-            this._subscriptions.push(this.recalculate$.pipe(operators.debounceTime(20)).subscribe((/**
+            this._subscriptions.push(this.recalculate$
+                .pipe(operators.throttleTime(200, rxjs.asyncScheduler, { leading: true, trailing: true }))
+                .subscribe((/**
              * @return {?}
              */
             function () { return _this.recalculate(); })));
