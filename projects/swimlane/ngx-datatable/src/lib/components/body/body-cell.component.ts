@@ -122,7 +122,7 @@ export type TreeStatus = 'collapsed' | 'expanded' | 'loading' | 'disabled';
           [showToolTipOnTextOverflow]="true"
           [showToolTip]="hasToShowToolTip(row, column)"
           [innerHTML]="value"
-          (click)="onClickField(row, column.onClickAction, $event)"
+          (click)="onClickField(row, column.onClickAction || column.action, $event)"
         ></h4>
 
         <button

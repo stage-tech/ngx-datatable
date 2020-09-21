@@ -220,7 +220,7 @@ const _c29 = ["iceCustomHtmlToolTip", "", 1, "ice-data-table-row", 3, "iceToolti
 function DataTableBodyCellComponent_ng_container_2_h4_7_Template(rf, ctx) { if (rf & 1) {
     const _r104 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵgetCurrentView"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "h4", _c29);
-    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵlistener"]("click", function DataTableBodyCellComponent_ng_container_2_h4_7_Template_h4_click_0_listener($event) { _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵrestoreView"](_r104); const ctx_r103 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"](2); return ctx_r103.onClickField(ctx_r103.row, ctx_r103.column.onClickAction, $event); });
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵlistener"]("click", function DataTableBodyCellComponent_ng_container_2_h4_7_Template_h4_click_0_listener($event) { _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵrestoreView"](_r104); const ctx_r103 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"](2); return ctx_r103.onClickField(ctx_r103.row, ctx_r103.column.onClickAction || ctx_r103.column.action, $event); });
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
 } if (rf & 2) {
     const ctx_r84 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"](2);
@@ -832,7 +832,7 @@ DataTableBodyCellComponent.ngComponentDef = _angular_core__WEBPACK_IMPORTED_MODU
           [showToolTipOnTextOverflow]="true"
           [showToolTip]="hasToShowToolTip(row, column)"
           [innerHTML]="value"
-          (click)="onClickField(row, column.onClickAction, $event)"
+          (click)="onClickField(row, column.onClickAction || column.action, $event)"
         ></h4>
 
         <button
