@@ -284,6 +284,10 @@ $datatable-summary-row-background-hover: #ddd !default;
         overflow: hidden;
         white-space: nowrap;
         text-overflow: ellipsis;
+        font: normal normal normal 12px/14px Roboto;
+        letter-spacing: 0px;
+        color: #000000;
+        opacity: 1;
       }
 
       .datatable-body-group-cell {
