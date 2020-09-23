@@ -77,6 +77,8 @@ export type TreeStatus = 'collapsed' | 'expanded' | 'loading' | 'disabled';
             *ngFor="let i of getIcons(row, icons)"
             [innerHTML]="i.icon"
             [matTooltip]="i.text"
+            (click)="i.action && i.action(row)"
+            [style.cursor]="i.action ? 'pointer' : 'auto'"
             class="{{ i.class }} mat-icon material-icons ice-ml-10"
           ></mat-icon>
         </div>
@@ -109,7 +111,7 @@ export type TreeStatus = 'collapsed' | 'expanded' | 'loading' | 'disabled';
           >block</mat-icon
         >
 
-        <span
+        <h4
           *ngIf="
             !column.actionButtonIcon &&
             !column.cellTemplate &&
@@ -123,7 +125,7 @@ export type TreeStatus = 'collapsed' | 'expanded' | 'loading' | 'disabled';
           [showToolTip]="hasToShowToolTip(row, column)"
           [innerHTML]="value"
           (click)="onClickField(row, column.onClickAction || column.action, $event)"
-        ></span>
+        ></h4>
 
         <button
           *ngIf="column.actionButtonIcon && !(column.hideActionButton && column.hideActionButton(row) | async)"
