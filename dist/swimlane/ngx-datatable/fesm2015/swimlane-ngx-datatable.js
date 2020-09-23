@@ -5760,7 +5760,7 @@ DataTableBodyCellComponent.decorators = [
           >block</mat-icon
         >
 
-        <h4
+        <span
           *ngIf="
             !column.actionButtonIcon &&
             !column.cellTemplate &&
@@ -5774,7 +5774,7 @@ DataTableBodyCellComponent.decorators = [
           [showToolTip]="hasToShowToolTip(row, column)"
           [innerHTML]="value"
           (click)="onClickField(row, column.onClickAction || column.action, $event)"
-        ></h4>
+        ></span>
 
         <button
           *ngIf="column.actionButtonIcon && !(column.hideActionButton && column.hideActionButton(row) | async)"

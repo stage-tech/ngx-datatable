@@ -111,7 +111,7 @@ export type TreeStatus = 'collapsed' | 'expanded' | 'loading' | 'disabled';
           >block</mat-icon
         >
 
-        <h4
+        <span
           *ngIf="
             !column.actionButtonIcon &&
             !column.cellTemplate &&
@@ -125,7 +125,7 @@ export type TreeStatus = 'collapsed' | 'expanded' | 'loading' | 'disabled';
           [showToolTip]="hasToShowToolTip(row, column)"
           [innerHTML]="value"
           (click)="onClickField(row, column.onClickAction || column.action, $event)"
-        ></h4>
+        ></span>
 
         <button
           *ngIf="column.actionButtonIcon && !(column.hideActionButton && column.hideActionButton(row) | async)"

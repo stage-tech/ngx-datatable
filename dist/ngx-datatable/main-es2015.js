@@ -220,10 +220,10 @@ function DataTableBodyCellComponent_ng_container_2_mat_icon_6_Template(rf, ctx) 
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("matTooltip", ctx_r83.column.prop && ctx_r83.row[ctx_r83.column.prop.toString() + "Excluded"]);
 } }
 const _c29 = ["iceCustomHtmlToolTip", "", 1, "ice-data-table-row", 3, "iceTooltipHtmlText", "showToolTipOnTextOverflow", "showToolTip", "innerHTML", "click"];
-function DataTableBodyCellComponent_ng_container_2_h4_7_Template(rf, ctx) { if (rf & 1) {
+function DataTableBodyCellComponent_ng_container_2_span_7_Template(rf, ctx) { if (rf & 1) {
     const _r106 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵgetCurrentView"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "h4", _c29);
-    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵlistener"]("click", function DataTableBodyCellComponent_ng_container_2_h4_7_Template_h4_click_0_listener($event) { _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵrestoreView"](_r106); const ctx_r105 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"](2); return ctx_r105.onClickField(ctx_r105.row, ctx_r105.column.onClickAction || ctx_r105.column.action, $event); });
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "span", _c29);
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵlistener"]("click", function DataTableBodyCellComponent_ng_container_2_span_7_Template_span_click_0_listener($event) { _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵrestoreView"](_r106); const ctx_r105 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"](2); return ctx_r105.onClickField(ctx_r105.row, ctx_r105.column.onClickAction || ctx_r105.column.action, $event); });
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
 } if (rf & 2) {
     const ctx_r84 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"](2);
@@ -296,7 +296,7 @@ function DataTableBodyCellComponent_ng_container_2_Template(rf, ctx) { if (rf & 
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplate"](4, DataTableBodyCellComponent_ng_container_2_mat_icon_4_Template, 2, 3, "mat-icon", _c7);
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplate"](5, DataTableBodyCellComponent_ng_container_2_mat_icon_5_Template, 2, 1, "mat-icon", _c8);
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplate"](6, DataTableBodyCellComponent_ng_container_2_mat_icon_6_Template, 2, 1, "mat-icon", _c8);
-    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplate"](7, DataTableBodyCellComponent_ng_container_2_h4_7_Template, 1, 4, "h4", _c9);
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplate"](7, DataTableBodyCellComponent_ng_container_2_span_7_Template, 1, 4, "span", _c9);
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵpipe"](8, "async");
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplate"](9, DataTableBodyCellComponent_ng_container_2_button_9_Template, 3, 2, "button", _c10);
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵpipe"](10, "async");
@@ -824,7 +824,7 @@ DataTableBodyCellComponent.ngComponentDef = _angular_core__WEBPACK_IMPORTED_MODU
           >block</mat-icon
         >
 
-        <h4
+        <span
           *ngIf="
             !column.actionButtonIcon &&
             !column.cellTemplate &&
@@ -838,7 +838,7 @@ DataTableBodyCellComponent.ngComponentDef = _angular_core__WEBPACK_IMPORTED_MODU
           [showToolTip]="hasToShowToolTip(row, column)"
           [innerHTML]="value"
           (click)="onClickField(row, column.onClickAction || column.action, $event)"
-        ></h4>
+        ></span>
 
         <button
           *ngIf="column.actionButtonIcon && !(column.hideActionButton && column.hideActionButton(row) | async)"
