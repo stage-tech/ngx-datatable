@@ -5726,7 +5726,11 @@ DataTableBodyCellComponent.decorators = [
             *ngFor="let i of getIcons(row, icons)"
             [innerHTML]="i.icon"
             [matTooltip]="i.text"
-            (click)="i.action && i.action(row)"
+            (click)="
+              !!i.onClickAction
+                ? onClickField(row, column.onClickAction || column.action, $event)
+                : i.action && i.action(row)
+            "
             [style.cursor]="i.action ? 'pointer' : 'auto'"
             class="{{ i.class }} mat-icon material-icons ice-ml-10"
           ></mat-icon>

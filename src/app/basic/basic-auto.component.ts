@@ -36,7 +36,11 @@ export class BasicAutoComponent {
   loadingIndicator = true;
   reorderable = true;
 
-  columns = [{ prop: 'name' }, { name: 'Gender', filter: true }, { name: 'Company', sortable: false }];
+  columns = [
+    { prop: 'name' },
+    { name: 'Gender', filter: true },
+    { name: 'Company', sortable: false, icons: 'icons', onClickAction: row => console.log('ok', row) }
+  ];
 
   ColumnMode = ColumnMode;
 
