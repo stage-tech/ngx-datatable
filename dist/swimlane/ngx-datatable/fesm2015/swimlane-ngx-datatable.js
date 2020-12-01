@@ -5091,10 +5091,12 @@ class DataTableBodyCellComponent {
      * @param {?} element
      * @param {?} cd
      * @param {?} sanitizer
+     * @param {?} changeDetectorRef
      */
-    constructor(element, cd, sanitizer) {
+    constructor(element, cd, sanitizer, changeDetectorRef) {
         this.cd = cd;
         this.sanitizer = sanitizer;
+        this.changeDetectorRef = changeDetectorRef;
         this.activate = new EventEmitter();
         this.treeAction = new EventEmitter();
         this._isEditable = {};
@@ -5319,6 +5321,14 @@ class DataTableBodyCellComponent {
         if (this.sortDir === SortDirection.desc) {
             cls += ' sort-desc';
         }
+        setTimeout((/**
+         * @return {?}
+         */
+        () => {
+            if (!this.changeDetectorRef['destroyed']) {
+                this.changeDetectorRef.detectChanges();
+            }
+        }));
         return cls;
     }
     /**
@@ -5830,7 +5840,8 @@ DataTableBodyCellComponent.decorators = [
 DataTableBodyCellComponent.ctorParameters = () => [
     { type: ElementRef },
     { type: ChangeDetectorRef },
-    { type: DomSanitizer }
+    { type: DomSanitizer },
+    { type: ChangeDetectorRef }
 ];
 DataTableBodyCellComponent.propDecorators = {
     displayCheck: [{ type: Input }],
@@ -5949,6 +5960,11 @@ if (false) {
      * @private
      */
     DataTableBodyCellComponent.prototype.sanitizer;
+    /**
+     * @type {?}
+     * @private
+     */
+    DataTableBodyCellComponent.prototype.changeDetectorRef;
 }
 
 /**

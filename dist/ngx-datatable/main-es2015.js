@@ -331,9 +331,10 @@ function DataTableBodyCellComponent_ng_container_2_Template(rf, ctx) { if (rf & 
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("ngIf", ctx_r74.column.cellTemplate);
 } }
 class DataTableBodyCellComponent {
-    constructor(element, cd, sanitizer) {
+    constructor(element, cd, sanitizer, changeDetectorRef) {
         this.cd = cd;
         this.sanitizer = sanitizer;
+        this.changeDetectorRef = changeDetectorRef;
         this.activate = new _angular_core__WEBPACK_IMPORTED_MODULE_0__["EventEmitter"]();
         this.treeAction = new _angular_core__WEBPACK_IMPORTED_MODULE_0__["EventEmitter"]();
         this._isEditable = {};
@@ -482,6 +483,11 @@ class DataTableBodyCellComponent {
         if (this.sortDir === _types_sort_direction_type__WEBPACK_IMPORTED_MODULE_1__["SortDirection"].desc) {
             cls += ' sort-desc';
         }
+        setTimeout(() => {
+            if (!this.changeDetectorRef['destroyed']) {
+                this.changeDetectorRef.detectChanges();
+            }
+        });
         return cls;
     }
     get width() {
@@ -700,7 +706,7 @@ class DataTableBodyCellComponent {
         }
     }
 }
-DataTableBodyCellComponent.ngComponentDef = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineComponent"]({ type: DataTableBodyCellComponent, selectors: [["datatable-body-cell"]], factory: function DataTableBodyCellComponent_Factory(t) { return new (t || DataTableBodyCellComponent)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_angular_core__WEBPACK_IMPORTED_MODULE_0__["ElementRef"]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_angular_core__WEBPACK_IMPORTED_MODULE_0__["ChangeDetectorRef"]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_angular_platform_browser__WEBPACK_IMPORTED_MODULE_4__["DomSanitizer"])); }, viewQuery: function DataTableBodyCellComponent_Query(rf, ctx) { if (rf & 1) {
+DataTableBodyCellComponent.ngComponentDef = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineComponent"]({ type: DataTableBodyCellComponent, selectors: [["datatable-body-cell"]], factory: function DataTableBodyCellComponent_Factory(t) { return new (t || DataTableBodyCellComponent)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_angular_core__WEBPACK_IMPORTED_MODULE_0__["ElementRef"]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_angular_core__WEBPACK_IMPORTED_MODULE_0__["ChangeDetectorRef"]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_angular_platform_browser__WEBPACK_IMPORTED_MODULE_4__["DomSanitizer"]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_angular_core__WEBPACK_IMPORTED_MODULE_0__["ChangeDetectorRef"])); }, viewQuery: function DataTableBodyCellComponent_Query(rf, ctx) { if (rf & 1) {
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵstaticViewQuery"](_c0, true, _angular_core__WEBPACK_IMPORTED_MODULE_0__["ViewContainerRef"]);
     } if (rf & 2) {
         var _t;
@@ -887,7 +893,7 @@ DataTableBodyCellComponent.ngComponentDef = _angular_core__WEBPACK_IMPORTED_MODU
     </div>
   `
             }]
-    }], function () { return [{ type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["ElementRef"] }, { type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["ChangeDetectorRef"] }, { type: _angular_platform_browser__WEBPACK_IMPORTED_MODULE_4__["DomSanitizer"] }]; }, { displayCheck: [{
+    }], function () { return [{ type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["ElementRef"] }, { type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["ChangeDetectorRef"] }, { type: _angular_platform_browser__WEBPACK_IMPORTED_MODULE_4__["DomSanitizer"] }, { type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["ChangeDetectorRef"] }]; }, { displayCheck: [{
             type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["Input"]
         }], rowDetail: [{
             type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["Input"]

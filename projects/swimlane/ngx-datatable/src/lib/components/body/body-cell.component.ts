@@ -330,7 +330,11 @@ export class DataTableBodyCellComponent implements DoCheck, OnDestroy {
     if (this.sortDir === SortDirection.desc) {
       cls += ' sort-desc';
     }
-
+    setTimeout(() => {
+      if (!this.changeDetectorRef['destroyed']) {
+        this.changeDetectorRef.detectChanges();
+      }
+    });
     return cls;
   }
 
@@ -391,7 +395,12 @@ export class DataTableBodyCellComponent implements DoCheck, OnDestroy {
   private _element: any;
   private _treeStatus: TreeStatus;
 
-  constructor(element: ElementRef, private cd: ChangeDetectorRef, private sanitizer: DomSanitizer) {
+  constructor(
+    element: ElementRef,
+    private cd: ChangeDetectorRef,
+    private sanitizer: DomSanitizer,
+    private changeDetectorRef: ChangeDetectorRef
+  ) {
     this._element = element.nativeElement;
   }
 

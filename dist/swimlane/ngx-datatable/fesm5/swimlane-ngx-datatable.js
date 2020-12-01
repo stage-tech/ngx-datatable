@@ -5718,9 +5718,10 @@ if (false) {
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var DataTableBodyCellComponent = /** @class */ (function () {
-    function DataTableBodyCellComponent(element, cd, sanitizer) {
+    function DataTableBodyCellComponent(element, cd, sanitizer, changeDetectorRef) {
         this.cd = cd;
         this.sanitizer = sanitizer;
+        this.changeDetectorRef = changeDetectorRef;
         this.activate = new EventEmitter();
         this.treeAction = new EventEmitter();
         this._isEditable = {};
@@ -5946,6 +5947,7 @@ var DataTableBodyCellComponent = /** @class */ (function () {
          */
         function () {
             var e_1, _a;
+            var _this = this;
             /** @type {?} */
             var cls = 'datatable-body-cell';
             if (this.column.cellClass) {
@@ -5997,6 +5999,14 @@ var DataTableBodyCellComponent = /** @class */ (function () {
             if (this.sortDir === SortDirection.desc) {
                 cls += ' sort-desc';
             }
+            setTimeout((/**
+             * @return {?}
+             */
+            function () {
+                if (!_this.changeDetectorRef['destroyed']) {
+                    _this.changeDetectorRef.detectChanges();
+                }
+            }));
             return cls;
         },
         enumerable: true,
@@ -6493,7 +6503,8 @@ var DataTableBodyCellComponent = /** @class */ (function () {
     DataTableBodyCellComponent.ctorParameters = function () { return [
         { type: ElementRef },
         { type: ChangeDetectorRef },
-        { type: DomSanitizer }
+        { type: DomSanitizer },
+        { type: ChangeDetectorRef }
     ]; };
     DataTableBodyCellComponent.propDecorators = {
         displayCheck: [{ type: Input }],
@@ -6614,6 +6625,11 @@ if (false) {
      * @private
      */
     DataTableBodyCellComponent.prototype.sanitizer;
+    /**
+     * @type {?}
+     * @private
+     */
+    DataTableBodyCellComponent.prototype.changeDetectorRef;
 }
 
 /**

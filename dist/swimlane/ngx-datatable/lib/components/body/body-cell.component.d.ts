@@ -7,6 +7,7 @@ export declare type TreeStatus = 'collapsed' | 'expanded' | 'loading' | 'disable
 export declare class DataTableBodyCellComponent implements DoCheck, OnDestroy {
     private cd;
     private sanitizer;
+    private changeDetectorRef;
     displayCheck: (row: any, column?: TableColumn, value?: any) => boolean;
     rowDetail: any;
     group: any;
@@ -47,7 +48,7 @@ export declare class DataTableBodyCellComponent implements DoCheck, OnDestroy {
     private _expanded;
     private _element;
     private _treeStatus;
-    constructor(element: ElementRef, cd: ChangeDetectorRef, sanitizer: DomSanitizer);
+    constructor(element: ElementRef, cd: ChangeDetectorRef, sanitizer: DomSanitizer, changeDetectorRef: ChangeDetectorRef);
     ngDoCheck(): void;
     ngOnDestroy(): void;
     checkValueUpdates(): void;
