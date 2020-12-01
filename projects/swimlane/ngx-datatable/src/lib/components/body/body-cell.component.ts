@@ -142,7 +142,7 @@ export type TreeStatus = 'collapsed' | 'expanded' | 'loading' | 'disabled';
 
         <ice-datatable-row-select
           style="margin-top: 18px"
-          [options]="column.selectOptions"
+          [options]="column.selectOptions(row)"
           [ngClass]="column.cellClass"
           (update)="updateSelect(column, row, $event)"
           [value]="value"

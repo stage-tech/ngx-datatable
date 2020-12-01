@@ -200,7 +200,7 @@ export interface TableColumn {
     action?: (arg0: any) => void;
     hideActionButton?: (arg0: any) => Observable<boolean>;
     actionButtonTooltip?: string;
-    selectOptions?: Array<{
+    selectOptions?: (arg0: any) => Array<{
         value: string;
         label: string;
     }>;
