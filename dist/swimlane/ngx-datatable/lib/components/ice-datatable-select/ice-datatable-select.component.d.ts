@@ -8,11 +8,15 @@ export declare class DatatableSelectComponent implements OnInit {
     defaultValue: string;
     editOnFocus: boolean;
     selectDisabled: boolean;
+    title: any;
     update: EventEmitter<string>;
-    options: any[];
+    options: any;
     default: string;
-    value: string;
+    value: any;
     selectEl: any;
+    currentClass: string;
+    _options: any;
+    _value: any;
     ngOnInit(): void;
     emitUpdate(newValue: any): void;
 }

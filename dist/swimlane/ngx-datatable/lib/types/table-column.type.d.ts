@@ -207,7 +207,7 @@ export interface TableColumn {
     editable?: (arg0: any) => Observable<boolean>;
     defaultValue?: string;
     disabled?: boolean;
-    hideIfEmpty?: boolean;
+    hideIfEmpty?: (arg0: any) => boolean;
     hideEditIcon?: boolean;
     errorMessageField?: string;
     onClickAction?: (arg0: any) => void;

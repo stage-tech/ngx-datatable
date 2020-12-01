@@ -43,6 +43,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
 import { DatatableComponent } from './components/datatable.component';
 import { BrowserModule } from '@angular/platform-browser';
+import { MatSelectModule } from '@angular/material';
 
 @NgModule({
   imports: [
@@ -52,6 +53,8 @@ import { BrowserModule } from '@angular/platform-browser';
     MatIconModule,
     MatButtonModule,
     MatInputModule,
+    MatFormFieldModule,
+    MatSelectModule,
     FormsModule,
     ReactiveFormsModule
   ],

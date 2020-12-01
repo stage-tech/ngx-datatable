@@ -15,11 +15,26 @@ export class DatatableSelectComponent implements OnInit {
   @Input() defaultValue: string;
   @Input() editOnFocus = false;
   @Input() selectDisabled = false;
+  @Input() title;
   @Output() update = new EventEmitter<string>();
-  @Input() options = [];
+  @Input() set options(options) {
+    if (!this._options) {
+      this.currentClass = (options.find(option => option.value === this.value) || { class: 'none' }).class;
+      this._options = options;
+    }
+  }
   @Input() default: string;
-  @Input() value: string;
+  @Input() set value(value) {
+    this.currentClass = (this._options.find(option => option.value === value) || { class: 'none' }).class;
+    this._value = value;
+  }
+  get value() {
+    return this._value;
+  }
   @ViewChildren('selectElement') selectEl;
+  currentClass = 'initial';
+  _options;
+  _value;
 
   ngOnInit() {
     if (!this.value) {
@@ -31,6 +46,7 @@ export class DatatableSelectComponent implements OnInit {
   }
 
   emitUpdate(newValue) {
+    this.currentClass = (this._options.find(option => option.value === newValue) || { class: 'none' }).class;
     this.update.emit(newValue);
   }
 }

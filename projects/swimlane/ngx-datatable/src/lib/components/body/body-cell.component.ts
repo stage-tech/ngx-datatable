@@ -141,14 +141,14 @@ export type TreeStatus = 'collapsed' | 'expanded' | 'loading' | 'disabled';
         </button>
 
         <ice-datatable-row-select
-          style="margin-top: 18px"
-          [options]="column.selectOptions(row)"
+          style="width:100%;"
           [ngClass]="column.cellClass"
           (update)="updateSelect(column, row, $event)"
+          [options]="column.selectOptions(row)"
           [value]="value"
           [defaultValue]="column.defaultValue"
           [selectDisabled]="column.disabled"
-          *ngIf="column.selectOptions && !(column.hideIfEmpty && column.disabled && value === '')"
+          *ngIf="column.selectOptions && !(column.hideIfEmpty && column.hideIfEmpty(row))"
         ></ice-datatable-row-select>
 
         <ng-container *ngIf="!column.selectOptions && (column.editable && isEditable(column, row) | async)">

@@ -245,7 +245,7 @@ export interface TableColumn {
 
   disabled?: boolean;
 
-  hideIfEmpty?: boolean;
+  hideIfEmpty?: (arg0: any) => boolean;
 
   hideEditIcon?: boolean;
 

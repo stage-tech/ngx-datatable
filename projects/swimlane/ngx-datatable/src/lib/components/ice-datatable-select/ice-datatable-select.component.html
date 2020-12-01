@@ -1,7 +1,12 @@
-<select #selectElement (change)="emitUpdate(selectElement.value)" [value]="value" [disabled]="selectDisabled">
-  <ng-container *ngIf="options">
-    <ng-container *ngFor="let item of options">
-      <option [value]="item.value">{{ item.label }}</option>
-    </ng-container>
-  </ng-container>
+<select *ngIf="_options" [ngClass]="currentClass" #selectElement (change)="emitUpdate(selectElement.value)" [(ngModel)]="value" [disabled]="selectDisabled">
+      <option *ngFor="let item of _options" [value]="item.value" [disabled]="item.disabled" [ngClass]="item.class || 'black'">{{ item.label }}</option>
 </select>
+
+
+ <!-- <mat-form-field appearance="fill">
+  <mat-select>
+    <ng-container *ngFor="let item of options">
+    <mat-option  [value]="item.value">{{ item.label }}</mat-option>
+  </ng-container>
+  </mat-select>
+</mat-form-field> -->

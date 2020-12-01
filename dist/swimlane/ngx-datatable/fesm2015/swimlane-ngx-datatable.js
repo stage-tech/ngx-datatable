@@ -6,11 +6,13 @@ import { Overlay, OverlayPositionBuilder, OverlayModule } from '@angular/cdk/ove
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { Subject, fromEvent, of, BehaviorSubject, asyncScheduler } from 'rxjs';
 import { takeUntil, throttleTime, delay } from 'rxjs/operators';
+import { MatFormFieldModule } from '@angular/material/form-field';
 import { DomSanitizer } from '@angular/platform-browser';
 import { ComponentPortal } from '@angular/cdk/portal';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
 import { ResizeSensor } from 'css-element-queries';
+import { MatSelectModule } from '@angular/material';
 
 /**
  * @fileoverview added by tsickle
@@ -5790,14 +5792,14 @@ DataTableBodyCellComponent.decorators = [
         </button>
 
         <ice-datatable-row-select
-          style="margin-top: 18px"
-          [options]="column.selectOptions(row)"
+          style="width:100%;"
           [ngClass]="column.cellClass"
           (update)="updateSelect(column, row, $event)"
+          [options]="column.selectOptions(row)"
           [value]="value"
           [defaultValue]="column.defaultValue"
           [selectDisabled]="column.disabled"
-          *ngIf="column.selectOptions && !(column.hideIfEmpty && column.disabled && value === '')"
+          *ngIf="column.selectOptions && !(column.hideIfEmpty && column.hideIfEmpty(row))"
         ></ice-datatable-row-select>
 
         <ng-container *ngIf="!column.selectOptions && (column.editable && isEditable(column, row) | async)">
@@ -6604,7 +6606,39 @@ class DatatableSelectComponent {
         this.editOnFocus = false;
         this.selectDisabled = false;
         this.update = new EventEmitter();
-        this.options = [];
+        this.currentClass = 'initial';
+    }
+    /**
+     * @param {?} options
+     * @return {?}
+     */
+    set options(options) {
+        if (!this._options) {
+            this.currentClass = (options.find((/**
+             * @param {?} option
+             * @return {?}
+             */
+            option => option.value === this.value)) || { class: 'none' }).class;
+            this._options = options;
+        }
+    }
+    /**
+     * @param {?} value
+     * @return {?}
+     */
+    set value(value) {
+        this.currentClass = (this._options.find((/**
+         * @param {?} option
+         * @return {?}
+         */
+        option => option.value === value)) || { class: 'none' }).class;
+        this._value = value;
+    }
+    /**
+     * @return {?}
+     */
+    get value() {
+        return this._value;
     }
     /**
      * @return {?}
@@ -6622,13 +6656,18 @@ class DatatableSelectComponent {
      * @return {?}
      */
     emitUpdate(newValue) {
+        this.currentClass = (this._options.find((/**
+         * @param {?} option
+         * @return {?}
+         */
+        option => option.value === newValue)) || { class: 'none' }).class;
         this.update.emit(newValue);
     }
 }
 DatatableSelectComponent.decorators = [
     { type: Component, args: [{
                 selector: 'ice-datatable-row-select',
-                template: "<select #selectElement (change)=\"emitUpdate(selectElement.value)\" [value]=\"value\" [disabled]=\"selectDisabled\">\r\n  <ng-container *ngIf=\"options\">\r\n    <ng-container *ngFor=\"let item of options\">\r\n      <option [value]=\"item.value\">{{ item.label }}</option>\r\n    </ng-container>\r\n  </ng-container>\r\n</select>\r\n",
+                template: "<select *ngIf=\"_options\" [ngClass]=\"currentClass\" #selectElement (change)=\"emitUpdate(selectElement.value)\" [(ngModel)]=\"value\" [disabled]=\"selectDisabled\">\n      <option *ngFor=\"let item of _options\" [value]=\"item.value\" [disabled]=\"item.disabled\" [ngClass]=\"item.class || 'black'\">{{ item.label }}</option>\n</select>\n\n\n <!-- <mat-form-field appearance=\"fill\">\n  <mat-select>\n    <ng-container *ngFor=\"let item of options\">\n    <mat-option  [value]=\"item.value\">{{ item.label }}</mat-option>\n  </ng-container>\n  </mat-select>\n</mat-form-field> -->\n",
                 changeDetection: ChangeDetectionStrategy.OnPush
             }] }
 ];
@@ -6638,6 +6677,7 @@ DatatableSelectComponent.propDecorators = {
     defaultValue: [{ type: Input }],
     editOnFocus: [{ type: Input }],
     selectDisabled: [{ type: Input }],
+    title: [{ type: Input }],
     update: [{ type: Output }],
     options: [{ type: Input }],
     default: [{ type: Input }],
@@ -6662,15 +6702,19 @@ if (false) {
     /** @type {?} */
     DatatableSelectComponent.prototype.selectDisabled;
     /** @type {?} */
-    DatatableSelectComponent.prototype.update;
+    DatatableSelectComponent.prototype.title;
     /** @type {?} */
-    DatatableSelectComponent.prototype.options;
+    DatatableSelectComponent.prototype.update;
     /** @type {?} */
     DatatableSelectComponent.prototype.default;
     /** @type {?} */
-    DatatableSelectComponent.prototype.value;
-    /** @type {?} */
     DatatableSelectComponent.prototype.selectEl;
+    /** @type {?} */
+    DatatableSelectComponent.prototype.currentClass;
+    /** @type {?} */
+    DatatableSelectComponent.prototype._options;
+    /** @type {?} */
+    DatatableSelectComponent.prototype._value;
 }
 
 /**
@@ -8809,6 +8853,8 @@ NgxDatatableModule.decorators = [
                     MatIconModule,
                     MatButtonModule,
                     MatInputModule,
+                    MatFormFieldModule,
+                    MatSelectModule,
                     FormsModule,
                     ReactiveFormsModule
                 ],

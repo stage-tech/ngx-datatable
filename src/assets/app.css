@@ -216,6 +216,14 @@ select {
   background: #ffc91f;
 }
 
+.red-option {
+  color: red;
+}
+
+.black {
+  color: black;
+}
+
 .is-gender {
   background: blue;
   color: white;
