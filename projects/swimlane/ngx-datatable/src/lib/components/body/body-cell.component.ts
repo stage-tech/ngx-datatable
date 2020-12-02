@@ -72,9 +72,12 @@ export type TreeStatus = 'collapsed' | 'expanded' | 'loading' | 'disabled';
           </ng-template>
         </ng-container>
 
-        <div *ngIf="column.icons as icons" style="display: flex; flex-direction: column; margin-right: 10px;">
+        <div
+          *ngIf="column.icons && getIcons(row, column.icons)"
+          style="display: flex; flex-direction: column; margin-right: 10px;"
+        >
           <mat-icon
-            *ngFor="let i of getIcons(row, icons)"
+            *ngFor="let i of getIcons(row, column.icons)"
             [innerHTML]="i.icon"
             [matTooltip]="i.text"
             (click)="
@@ -576,7 +579,7 @@ export class DataTableBodyCellComponent implements DoCheck, OnDestroy {
       const iconsArray = icons.split('.');
       return iconsArray.length > 1 && row[iconsArray[0]] ? row[iconsArray[0]][iconsArray[1]] || [] : row[icons] || [];
     }
-    return [];
+    return null;
   }
 
   selectFieldValue(row, prop) {

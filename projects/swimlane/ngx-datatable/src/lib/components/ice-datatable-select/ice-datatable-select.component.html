@@ -1,4 +1,4 @@
-<select *ngIf="_options" [ngClass]="currentClass" #selectElement (change)="emitUpdate(selectElement.value)" [(ngModel)]="value" [disabled]="selectDisabled">
+<select *ngIf="_options" style="width: 100%;" [ngClass]="currentClass" #selectElement (change)="emitUpdate(selectElement.value)" [(ngModel)]="value" [disabled]="selectDisabled">
       <option *ngFor="let item of _options" [value]="item.value" [disabled]="item.disabled" [ngClass]="item.class || 'black'">{{ item.label }}</option>
 </select>
 

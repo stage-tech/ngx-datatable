@@ -5580,7 +5580,7 @@ class DataTableBodyCellComponent {
             const iconsArray = icons.split('.');
             return iconsArray.length > 1 && row[iconsArray[0]] ? row[iconsArray[0]][iconsArray[1]] || [] : row[icons] || [];
         }
-        return [];
+        return null;
     }
     /**
      * @param {?} row
@@ -5727,9 +5727,12 @@ DataTableBodyCellComponent.decorators = [
           </ng-template>
         </ng-container>
 
-        <div *ngIf="column.icons as icons" style="display: flex; flex-direction: column; margin-right: 10px;">
+        <div
+          *ngIf="column.icons && getIcons(row, column.icons)"
+          style="display: flex; flex-direction: column; margin-right: 10px;"
+        >
           <mat-icon
-            *ngFor="let i of getIcons(row, icons)"
+            *ngFor="let i of getIcons(row, column.icons)"
             [innerHTML]="i.icon"
             [matTooltip]="i.text"
             (click)="
@@ -6677,7 +6680,7 @@ class DatatableSelectComponent {
 DatatableSelectComponent.decorators = [
     { type: Component, args: [{
                 selector: 'ice-datatable-row-select',
-                template: "<select *ngIf=\"_options\" [ngClass]=\"currentClass\" #selectElement (change)=\"emitUpdate(selectElement.value)\" [(ngModel)]=\"value\" [disabled]=\"selectDisabled\">\n      <option *ngFor=\"let item of _options\" [value]=\"item.value\" [disabled]=\"item.disabled\" [ngClass]=\"item.class || 'black'\">{{ item.label }}</option>\n</select>\n\n\n <!-- <mat-form-field appearance=\"fill\">\n  <mat-select>\n    <ng-container *ngFor=\"let item of options\">\n    <mat-option  [value]=\"item.value\">{{ item.label }}</mat-option>\n  </ng-container>\n  </mat-select>\n</mat-form-field> -->\n",
+                template: "<select *ngIf=\"_options\" style=\"width: 100%;\" [ngClass]=\"currentClass\" #selectElement (change)=\"emitUpdate(selectElement.value)\" [(ngModel)]=\"value\" [disabled]=\"selectDisabled\">\n      <option *ngFor=\"let item of _options\" [value]=\"item.value\" [disabled]=\"item.disabled\" [ngClass]=\"item.class || 'black'\">{{ item.label }}</option>\n</select>\n\n\n <!-- <mat-form-field appearance=\"fill\">\n  <mat-select>\n    <ng-container *ngFor=\"let item of options\">\n    <mat-option  [value]=\"item.value\">{{ item.label }}</mat-option>\n  </ng-container>\n  </mat-select>\n</mat-form-field> -->\n",
                 changeDetection: ChangeDetectionStrategy.OnPush
             }] }
 ];
