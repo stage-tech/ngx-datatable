@@ -5578,7 +5578,7 @@ class DataTableBodyCellComponent {
         if (row && icons) {
             /** @type {?} */
             const iconsArray = icons.split('.');
-            return iconsArray.length > 1 && row[iconsArray[0]] ? row[iconsArray[0]][iconsArray[1]] || [] : row[icons] || [];
+            return iconsArray.length > 1 && row[iconsArray[0]] ? row[iconsArray[0]][iconsArray[1]] : row[icons];
         }
         return null;
     }
