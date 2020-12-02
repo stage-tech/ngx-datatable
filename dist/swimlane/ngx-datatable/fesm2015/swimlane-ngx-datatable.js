@@ -5636,9 +5636,11 @@ class DataTableBodyCellComponent {
      * @return {?}
      */
     updateSelect(field, row, newValue) {
-        row[field.prop] = newValue;
-        if (field.onEdit) {
-            field.onEdit(row);
+        if (row[field.prop] !== newValue) {
+            row[field.prop] = newValue;
+            if (field.onEdit) {
+                field.onEdit(row);
+            }
         }
     }
     /**

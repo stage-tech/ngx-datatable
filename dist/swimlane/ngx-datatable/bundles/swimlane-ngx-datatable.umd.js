@@ -6612,9 +6612,11 @@
          * @return {?}
          */
         function (field, row, newValue) {
-            row[field.prop] = newValue;
-            if (field.onEdit) {
-                field.onEdit(row);
+            if (row[field.prop] !== newValue) {
+                row[field.prop] = newValue;
+                if (field.onEdit) {
+                    field.onEdit(row);
+                }
             }
         };
         /**

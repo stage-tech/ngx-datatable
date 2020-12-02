@@ -610,9 +610,11 @@ export class DataTableBodyCellComponent implements DoCheck, OnDestroy {
   }
 
   updateSelect(field, row: any, newValue: any) {
-    row[field.prop] = newValue;
-    if (field.onEdit) {
-      field.onEdit(row);
+    if (row[field.prop] !== newValue) {
+      row[field.prop] = newValue;
+      if (field.onEdit) {
+        field.onEdit(row);
+      }
     }
   }
 
