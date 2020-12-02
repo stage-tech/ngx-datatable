@@ -5780,7 +5780,7 @@ DataTableBodyCellComponent.decorators = [
           *ngIf="
             !column.actionButtonIcon &&
             !column.cellTemplate &&
-            !column.selectOptions &&
+            (!column.selectOptions || (column.hideIfEmpty && column.hideIfEmpty(row))) &&
             (!column.editable || !(isEditable(column, row) | async))
           "
           class="ice-data-table-row"

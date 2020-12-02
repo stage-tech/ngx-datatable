@@ -169,6 +169,8 @@ That's all.
     padding-bottom: 5px;
     color: #000000;
     opacity: 1; }
+  .ngx-datatable.material .datatable-body .datatable-body-row .black {
+    color: black; }
   .ngx-datatable.material .datatable-body .datatable-body-row .datatable-body-group-cell {
     text-align: left;
     padding: 0.9rem 1.2rem;
