@@ -6133,7 +6133,6 @@
              */
             function () {
                 var e_1, _a;
-                var _this = this;
                 /** @type {?} */
                 var cls = 'datatable-body-cell';
                 if (this.column.cellClass) {
@@ -6176,7 +6175,7 @@
                 if (!this.sortDir) {
                     cls += ' sort-active';
                 }
-                if (this.isFocused) {
+                if (this.isFocused && !this.column.icons) {
                     cls += ' active';
                 }
                 if (this.sortDir === SortDirection.asc) {
@@ -6185,14 +6184,6 @@
                 if (this.sortDir === SortDirection.desc) {
                     cls += ' sort-desc';
                 }
-                setTimeout((/**
-                 * @return {?}
-                 */
-                function () {
-                    if (!_this.changeDetectorRef['destroyed']) {
-                        _this.changeDetectorRef.detectChanges();
-                    }
-                }));
                 return cls;
             },
             enumerable: true,

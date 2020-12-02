@@ -321,7 +321,7 @@ export class DataTableBodyCellComponent implements DoCheck, OnDestroy {
     if (!this.sortDir) {
       cls += ' sort-active';
     }
-    if (this.isFocused) {
+    if (this.isFocused && !this.column.icons) {
       cls += ' active';
     }
     if (this.sortDir === SortDirection.asc) {
@@ -330,11 +330,6 @@ export class DataTableBodyCellComponent implements DoCheck, OnDestroy {
     if (this.sortDir === SortDirection.desc) {
       cls += ' sort-desc';
     }
-    setTimeout(() => {
-      if (!this.changeDetectorRef['destroyed']) {
-        this.changeDetectorRef.detectChanges();
-      }
-    });
     return cls;
   }
 

@@ -474,7 +474,7 @@ class DataTableBodyCellComponent {
         if (!this.sortDir) {
             cls += ' sort-active';
         }
-        if (this.isFocused) {
+        if (this.isFocused && !this.column.icons) {
             cls += ' active';
         }
         if (this.sortDir === _types_sort_direction_type__WEBPACK_IMPORTED_MODULE_1__["SortDirection"].asc) {
@@ -483,11 +483,6 @@ class DataTableBodyCellComponent {
         if (this.sortDir === _types_sort_direction_type__WEBPACK_IMPORTED_MODULE_1__["SortDirection"].desc) {
             cls += ' sort-desc';
         }
-        setTimeout(() => {
-            if (!this.changeDetectorRef['destroyed']) {
-                this.changeDetectorRef.detectChanges();
-            }
-        });
         return cls;
     }
     get width() {

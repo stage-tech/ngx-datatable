@@ -5312,7 +5312,7 @@ class DataTableBodyCellComponent {
         if (!this.sortDir) {
             cls += ' sort-active';
         }
-        if (this.isFocused) {
+        if (this.isFocused && !this.column.icons) {
             cls += ' active';
         }
         if (this.sortDir === SortDirection.asc) {
@@ -5321,14 +5321,6 @@ class DataTableBodyCellComponent {
         if (this.sortDir === SortDirection.desc) {
             cls += ' sort-desc';
         }
-        setTimeout((/**
-         * @return {?}
-         */
-        () => {
-            if (!this.changeDetectorRef['destroyed']) {
-                this.changeDetectorRef.detectChanges();
-            }
-        }));
         return cls;
     }
     /**
