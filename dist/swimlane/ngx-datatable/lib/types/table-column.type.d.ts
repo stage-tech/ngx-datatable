@@ -197,6 +197,7 @@ export interface TableColumn {
     iconCustomTooltipHtmlText?: string;
     iconColor?: string;
     actionButtonIcon?: string;
+    hideTextProperty?: boolean;
     action?: (arg0: any) => void;
     hideActionButton?: (arg0: any) => Observable<boolean>;
     actionButtonTooltip?: string;

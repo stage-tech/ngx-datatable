@@ -5776,6 +5776,7 @@ DataTableBodyCellComponent.decorators = [
         <span
           *ngIf="
             !column.actionButtonIcon &&
+            !column.hideTextProperty &&
             !column.cellTemplate &&
             (!column.selectOptions || (column.hideIfEmpty && column.hideIfEmpty(row))) &&
             (!column.editable || !(isEditable(column, row) | async))
@@ -6680,7 +6681,7 @@ class DatatableSelectComponent {
 DatatableSelectComponent.decorators = [
     { type: Component, args: [{
                 selector: 'ice-datatable-row-select',
-                template: "<select *ngIf=\"_options\" style=\"width: 100%;\" [ngClass]=\"currentClass\" #selectElement (change)=\"emitUpdate(selectElement.value)\" [(ngModel)]=\"value\" [disabled]=\"selectDisabled\">\n      <option *ngFor=\"let item of _options\" [value]=\"item.value\" [disabled]=\"item.disabled\" [ngClass]=\"item.class || 'black'\">{{ item.label }}</option>\n</select>\n\n\n <!-- <mat-form-field appearance=\"fill\">\n  <mat-select>\n    <ng-container *ngFor=\"let item of options\">\n    <mat-option  [value]=\"item.value\">{{ item.label }}</mat-option>\n  </ng-container>\n  </mat-select>\n</mat-form-field> -->\n",
+                template: "<select *ngIf=\"_options\" style=\"width: 100%;\" [ngClass]=\"currentClass\" #selectElement (change)=\"emitUpdate(selectElement.value)\" [(ngModel)]=\"value\" [disabled]=\"selectDisabled\">\r\n      <option *ngFor=\"let item of _options\" [value]=\"item.value\" [disabled]=\"item.disabled\" [ngClass]=\"item.class || 'black'\">{{ item.label }}</option>\r\n</select>\r\n\r\n\r\n <!-- <mat-form-field appearance=\"fill\">\r\n  <mat-select>\r\n    <ng-container *ngFor=\"let item of options\">\r\n    <mat-option  [value]=\"item.value\">{{ item.label }}</mat-option>\r\n  </ng-container>\r\n  </mat-select>\r\n</mat-form-field> -->\r\n",
                 changeDetection: ChangeDetectionStrategy.OnPush
             }] }
 ];
@@ -9171,6 +9172,8 @@ if (false) {
     TableColumn.prototype.iconColor;
     /** @type {?|undefined} */
     TableColumn.prototype.actionButtonIcon;
+    /** @type {?|undefined} */
+    TableColumn.prototype.hideTextProperty;
     /** @type {?|undefined} */
     TableColumn.prototype.action;
     /** @type {?|undefined} */

@@ -138,6 +138,7 @@ import { MatButtonModule } from '@angular/material/button';
   imports: [
     CommonModule,
     MatTooltipModule,
+    BrowserModule,
     FormsModule,
     MatFormFieldModule,
     MatInputModule,
@@ -145,7 +146,6 @@ import { MatButtonModule } from '@angular/material/button';
     MatIconModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
-    BrowserModule,
     AppRoutingModule,
     NgxDatatableModule.forRoot({
       messages: {

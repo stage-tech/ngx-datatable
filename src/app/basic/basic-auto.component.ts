@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { ColumnMode } from 'projects/swimlane/ngx-datatable/src/public-api';
+import { of } from 'rxjs';
 
 @Component({
   selector: 'basic-auto-demo',
@@ -38,17 +39,13 @@ export class BasicAutoComponent {
 
   columns = [
     { prop: 'name' },
-    { name: 'Gender', filter: true },
-    { name: 'Company', sortable: false, icons: 'icons', onClickAction: row => console.log('ok', row) },
+    { name: 'Gender', filter: true, editable: row => of(true) },
     {
-      prop: 'select',
-      name: 'Select',
-      selectOptions: row => [
-        { label: 'Option', value: '1', class: 'red-option', disabled: true },
-        { label: 'Option2', value: '2' },
-        { label: 'Option3', value: '3' }
-      ],
-      hideIfEmpty: row => row.hide
+      name: 'Company',
+      sortable: false,
+      icons: 'icons',
+      onClickAction: row => console.log('ok', row),
+      hideTextProperty: true
     }
   ];
 

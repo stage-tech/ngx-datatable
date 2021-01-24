@@ -121,6 +121,7 @@ export type TreeStatus = 'collapsed' | 'expanded' | 'loading' | 'disabled';
         <span
           *ngIf="
             !column.actionButtonIcon &&
+            !column.hideTextProperty &&
             !column.cellTemplate &&
             (!column.selectOptions || (column.hideIfEmpty && column.hideIfEmpty(row))) &&
             (!column.editable || !(isEditable(column, row) | async))
