@@ -565,12 +565,12 @@ export class DataTableBodyCellComponent implements DoCheck, OnDestroy {
   }
 
   hasToShowToolTip(row, field) {
-    return row && field && field.tooltip && field.tooltip.length > 0;
+    return row && field && field.tooltip && field.tooltip.length > 0 && !!this.getTooltipValue(null, row, field);
   }
 
   getTooltipValue(value, row, field) {
     if (row && field && field.tooltip && field.tooltip.length > 0) {
-      return row[`${field.tooltip}`] || field.tooltip;
+      return row[`${field.tooltip}`] || (!field.canHideTooltip && field.tooltip);
     }
     return value;
   }

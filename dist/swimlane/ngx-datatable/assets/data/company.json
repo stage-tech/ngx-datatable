@@ -3,6 +3,7 @@
     "name": "Ethel Price",
     "gender": "female",
     "company": "Johnson, Johnson and Partners, LLC CMP DDC",
+    "topo": "algo",
     "age": 22,
     "icons": [{  "icon": "fiber_manual_record", "text": "some", "onClickAction": true }]
   },

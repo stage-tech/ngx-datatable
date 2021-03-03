@@ -39,7 +39,7 @@ export class BasicAutoComponent {
 
   columns = [
     { prop: 'name' },
-    { name: 'Gender', filter: true, editable: row => of(true) },
+    { name: 'Gender', tooltip: 'topo', canHideTooltip: true },
     {
       name: 'Company',
       sortable: false,
