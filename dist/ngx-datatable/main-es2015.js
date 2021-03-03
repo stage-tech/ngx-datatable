@@ -10129,7 +10129,7 @@ class BasicAutoComponent {
         this.reorderable = true;
         this.columns = [
             { prop: 'name' },
-            { name: 'Gender', tooltip: 'topo', canHideTooltip: false },
+            { name: 'Gender', tooltip: 'topo', canHideTooltip: true },
             {
                 name: 'Company',
                 sortable: false,
