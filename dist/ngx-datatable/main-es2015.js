@@ -91,7 +91,7 @@ const _c5 = ["class", "datatable-checkbox", 4, "ngIf"];
 const _c6 = ["style", "display: flex; flex-direction: column; margin-right: 10px;", 4, "ngIf"];
 const _c7 = ["iceCustomHtmlToolTip", "", "class", "material-icons", 3, "iceTooltipHtmlText", "duration", "ngClass", 4, "ngIf"];
 const _c8 = ["class", "mat-icon material-icons", 3, "matTooltip", 4, "ngIf"];
-const _c9 = ["class", "ice-data-table-row", "iceCustomHtmlToolTip", "", 3, "iceTooltipHtmlText", "showToolTipOnTextOverflow", "showToolTip", "innerHTML", "click", 4, "ngIf"];
+const _c9 = ["class", "ice-data-table-row", "iceCustomHtmlToolTip", "", 3, "iceTooltipHtmlText", "duration", "showToolTipOnTextOverflow", "showToolTip", "innerHTML", "click", 4, "ngIf"];
 const _c10 = ["mat-icon-button", "", 3, "matTooltip", "click", 4, "ngIf"];
 const _c11 = ["style", "width:100%;", 3, "ngClass", "options", "value", "defaultValue", "selectDisabled", "update", 4, "ngIf"];
 const _c12 = [1, "datatable-checkbox"];
@@ -218,7 +218,7 @@ function DataTableBodyCellComponent_ng_container_2_mat_icon_6_Template(rf, ctx) 
     const ctx_r83 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"](2);
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("matTooltip", ctx_r83.column.prop && ctx_r83.row[ctx_r83.column.prop.toString() + "Excluded"]);
 } }
-const _c29 = ["iceCustomHtmlToolTip", "", 1, "ice-data-table-row", 3, "iceTooltipHtmlText", "showToolTipOnTextOverflow", "showToolTip", "innerHTML", "click"];
+const _c29 = ["iceCustomHtmlToolTip", "", 1, "ice-data-table-row", 3, "iceTooltipHtmlText", "duration", "showToolTipOnTextOverflow", "showToolTip", "innerHTML", "click"];
 function DataTableBodyCellComponent_ng_container_2_span_7_Template(rf, ctx) { if (rf & 1) {
     const _r105 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵgetCurrentView"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "span", _c29);
@@ -226,7 +226,7 @@ function DataTableBodyCellComponent_ng_container_2_span_7_Template(rf, ctx) { if
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
 } if (rf & 2) {
     const ctx_r84 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"](2);
-    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("iceTooltipHtmlText", ctx_r84.getTooltipValue(ctx_r84.value, ctx_r84.row, ctx_r84.column))("showToolTipOnTextOverflow", true)("showToolTip", ctx_r84.hasToShowToolTip(ctx_r84.row, ctx_r84.column))("innerHTML", ctx_r84.value, _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵsanitizeHtml"]);
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("iceTooltipHtmlText", ctx_r84.getTooltipValue(ctx_r84.value, ctx_r84.row, ctx_r84.column))("duration", ctx_r84.column.tooltipDuration)("showToolTipOnTextOverflow", true)("showToolTip", ctx_r84.hasToShowToolTip(ctx_r84.row, ctx_r84.column))("innerHTML", ctx_r84.value, _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵsanitizeHtml"]);
 } }
 const _c30 = ["mat-icon-button", "", 3, "matTooltip", "click"];
 const _c31 = [1, "mat-icon", "material-icons"];
@@ -295,7 +295,7 @@ function DataTableBodyCellComponent_ng_container_2_Template(rf, ctx) { if (rf & 
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplate"](4, DataTableBodyCellComponent_ng_container_2_mat_icon_4_Template, 2, 3, "mat-icon", _c7);
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplate"](5, DataTableBodyCellComponent_ng_container_2_mat_icon_5_Template, 2, 1, "mat-icon", _c8);
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplate"](6, DataTableBodyCellComponent_ng_container_2_mat_icon_6_Template, 2, 1, "mat-icon", _c8);
-    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplate"](7, DataTableBodyCellComponent_ng_container_2_span_7_Template, 1, 4, "span", _c9);
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplate"](7, DataTableBodyCellComponent_ng_container_2_span_7_Template, 1, 5, "span", _c9);
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵpipe"](8, "async");
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplate"](9, DataTableBodyCellComponent_ng_container_2_button_9_Template, 3, 2, "button", _c10);
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵpipe"](10, "async");
@@ -844,6 +844,7 @@ DataTableBodyCellComponent.ngComponentDef = _angular_core__WEBPACK_IMPORTED_MODU
           class="ice-data-table-row"
           iceCustomHtmlToolTip
           [iceTooltipHtmlText]="getTooltipValue(value, row, column)"
+          [duration]="column.tooltipDuration"
           [showToolTipOnTextOverflow]="true"
           [showToolTip]="hasToShowToolTip(row, column)"
           [innerHTML]="value"

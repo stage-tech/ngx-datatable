@@ -5784,6 +5784,7 @@ DataTableBodyCellComponent.decorators = [
           class="ice-data-table-row"
           iceCustomHtmlToolTip
           [iceTooltipHtmlText]="getTooltipValue(value, row, column)"
+          [duration]="column.tooltipDuration"
           [showToolTipOnTextOverflow]="true"
           [showToolTip]="hasToShowToolTip(row, column)"
           [innerHTML]="value"
@@ -9178,6 +9179,8 @@ if (false) {
     TableColumn.prototype.action;
     /** @type {?|undefined} */
     TableColumn.prototype.hideActionButton;
+    /** @type {?|undefined} */
+    TableColumn.prototype.tooltipDuration;
     /** @type {?|undefined} */
     TableColumn.prototype.actionButtonTooltip;
     /** @type {?|undefined} */

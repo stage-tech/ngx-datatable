@@ -237,6 +237,8 @@ export interface TableColumn {
 
   hideActionButton?: (arg0: any) => Observable<boolean>;
 
+  tooltipDuration?: number;
+
   actionButtonTooltip?: string;
 
   selectOptions?: (arg0: any) => Array<{ value: string; label: string }>;

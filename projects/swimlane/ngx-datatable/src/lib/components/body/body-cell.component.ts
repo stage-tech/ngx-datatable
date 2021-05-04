@@ -129,6 +129,7 @@ export type TreeStatus = 'collapsed' | 'expanded' | 'loading' | 'disabled';
           class="ice-data-table-row"
           iceCustomHtmlToolTip
           [iceTooltipHtmlText]="getTooltipValue(value, row, column)"
+          [duration]="column.tooltipDuration"
           [showToolTipOnTextOverflow]="true"
           [showToolTip]="hasToShowToolTip(row, column)"
           [innerHTML]="value"
