@@ -5661,10 +5661,22 @@ const _c0 = [1, "ice-custom-tooltip"];
 const _c1 = [1, "tooltip-container"];
 const _c2 = [3, "innerHTML"];
 class CustomToolTipComponent {
+    hide() {
+        if (this.onMouseLeave) {
+            this.onMouseLeave();
+        }
+    }
+    show() {
+        if (this.onMouseEnter) {
+            this.onMouseEnter();
+        }
+    }
 }
 CustomToolTipComponent.ngComponentDef = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineComponent"]({ type: CustomToolTipComponent, selectors: [["ice-custom-tooltip"]], factory: function CustomToolTipComponent_Factory(t) { return new (t || CustomToolTipComponent)(); }, hostBindings: function CustomToolTipComponent_HostBindings(rf, ctx, elIndex) { if (rf & 1) {
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵlistener"]("mouseleave", function CustomToolTipComponent_mouseleave_HostBindingHandler($event) { return ctx.hide(); });
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵlistener"]("mouseenter", function CustomToolTipComponent_mouseenter_HostBindingHandler($event) { return ctx.show(); });
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementHostAttrs"](_c0);
-    } }, inputs: { text: "text" }, consts: 3, vars: 1, template: function CustomToolTipComponent_Template(rf, ctx) { if (rf & 1) {
+    } }, inputs: { text: "text", onMouseLeave: "onMouseLeave", onMouseEnter: "onMouseEnter" }, consts: 3, vars: 1, template: function CustomToolTipComponent_Template(rf, ctx) { if (rf & 1) {
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "div");
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](1, "div", _c1);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](2, "div", _c2);
@@ -5687,6 +5699,16 @@ CustomToolTipComponent.ngComponentDef = _angular_core__WEBPACK_IMPORTED_MODULE_0
             }]
     }], null, { text: [{
             type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["Input"]
+        }], onMouseLeave: [{
+            type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["Input"]
+        }], onMouseEnter: [{
+            type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["Input"]
+        }], hide: [{
+            type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["HostListener"],
+            args: ['mouseleave']
+        }], show: [{
+            type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["HostListener"],
+            args: ['mouseenter']
         }] });
 
 
@@ -6258,91 +6280,60 @@ DraggableDirective.ngDirectiveDef = _angular_core__WEBPACK_IMPORTED_MODULE_0__["
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ToolTipRendererDirective", function() { return ToolTipRendererDirective; });
-/* harmony import */ var _angular_cdk_portal__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/cdk/portal */ "./node_modules/@angular/cdk/__ivy_ngcc__/esm2015/portal.js");
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js");
-/* harmony import */ var _components_ice_custom_tooltip_ice_custom_tooltip_component__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../components/ice-custom-tooltip/ice-custom-tooltip.component */ "./projects/swimlane/ngx-datatable/src/lib/components/ice-custom-tooltip/ice-custom-tooltip.component.ts");
-/* harmony import */ var _angular_cdk_overlay__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/cdk/overlay */ "./node_modules/@angular/cdk/__ivy_ngcc__/esm2015/overlay.js");
-
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js");
+/* harmony import */ var _angular_cdk_overlay__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/cdk/overlay */ "./node_modules/@angular/cdk/__ivy_ngcc__/esm2015/overlay.js");
+/* harmony import */ var _services_toolbar_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../services/toolbar-service */ "./projects/swimlane/ngx-datatable/src/lib/services/toolbar-service.ts");
 
 
 
 
 class ToolTipRendererDirective {
-    constructor(_overlay, _overlayPositionBuilder, _elementRef) {
+    constructor(_overlay, _overlayPositionBuilder, _elementRef, toolbarService) {
         this._overlay = _overlay;
         this._overlayPositionBuilder = _overlayPositionBuilder;
         this._elementRef = _elementRef;
+        this.toolbarService = toolbarService;
         this.showToolTip = true;
         this.showToolTipOnTextOverflow = false;
         this.duration = 0;
     }
     show() {
-        if (this.timeout) {
-            clearTimeout(this.timeout);
-        }
+        this.toolbarService.destroy();
         if ((this.showToolTipOnTextOverflow &&
             this._elementRef.nativeElement.offsetWidth < this._elementRef.nativeElement.scrollWidth) ||
             this.showToolTip) {
-            if (!this._overlayRef) {
-                const positionStrategy = this._overlayPositionBuilder.flexibleConnectedTo(this._elementRef).withPositions([
-                    {
-                        originX: 'start',
-                        originY: 'top',
-                        overlayX: 'start',
-                        overlayY: 'bottom',
-                        offsetY: -5
-                    }
-                ]);
-                this._overlayRef = this._overlay.create({ positionStrategy });
-            }
-            if (!this._overlayRef.hasAttached()) {
-                const tooltipRef = this._overlayRef.attach(new _angular_cdk_portal__WEBPACK_IMPORTED_MODULE_0__["ComponentPortal"](_components_ice_custom_tooltip_ice_custom_tooltip_component__WEBPACK_IMPORTED_MODULE_2__["CustomToolTipComponent"]));
-                this.componentInstance = tooltipRef;
-                tooltipRef.instance.text = this.iceTooltipHtmlText;
-            }
+            this.toolbarService.setToolbar(this._overlay, this._overlayPositionBuilder, this._elementRef, this.iceTooltipHtmlText, this.duration);
         }
     }
     hide() {
-        this.timeout = setTimeout(() => {
-            this.closeToolTip();
-        }, this.duration);
+        this.toolbarService.setTimeout(this.duration);
     }
     ngOnDestroy() {
-        if (this.timeout) {
-            clearTimeout(this.timeout);
-        }
-        this.closeToolTip();
-        this._overlayRef = null;
-    }
-    closeToolTip() {
-        if (this._overlayRef) {
-            this._overlayRef.detach();
-            this.componentInstance = null;
-        }
+        this.toolbarService.destroy();
     }
 }
-ToolTipRendererDirective.ngDirectiveDef = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdefineDirective"]({ type: ToolTipRendererDirective, selectors: [["", "iceCustomHtmlToolTip", ""]], factory: function ToolTipRendererDirective_Factory(t) { return new (t || ToolTipRendererDirective)(_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdirectiveInject"](_angular_cdk_overlay__WEBPACK_IMPORTED_MODULE_3__["Overlay"]), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdirectiveInject"](_angular_cdk_overlay__WEBPACK_IMPORTED_MODULE_3__["OverlayPositionBuilder"]), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdirectiveInject"](_angular_core__WEBPACK_IMPORTED_MODULE_1__["ElementRef"])); }, hostBindings: function ToolTipRendererDirective_HostBindings(rf, ctx, elIndex) { if (rf & 1) {
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵlistener"]("mouseenter", function ToolTipRendererDirective_mouseenter_HostBindingHandler($event) { return ctx.show(); });
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵlistener"]("mouseleave", function ToolTipRendererDirective_mouseleave_HostBindingHandler($event) { return ctx.hide(); });
+ToolTipRendererDirective.ngDirectiveDef = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineDirective"]({ type: ToolTipRendererDirective, selectors: [["", "iceCustomHtmlToolTip", ""]], factory: function ToolTipRendererDirective_Factory(t) { return new (t || ToolTipRendererDirective)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_angular_cdk_overlay__WEBPACK_IMPORTED_MODULE_1__["Overlay"]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_angular_cdk_overlay__WEBPACK_IMPORTED_MODULE_1__["OverlayPositionBuilder"]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_angular_core__WEBPACK_IMPORTED_MODULE_0__["ElementRef"]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_services_toolbar_service__WEBPACK_IMPORTED_MODULE_2__["ToolbarService"])); }, hostBindings: function ToolTipRendererDirective_HostBindings(rf, ctx, elIndex) { if (rf & 1) {
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵlistener"]("mouseenter", function ToolTipRendererDirective_mouseenter_HostBindingHandler($event) { return ctx.show(); });
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵlistener"]("mouseleave", function ToolTipRendererDirective_mouseleave_HostBindingHandler($event) { return ctx.hide(); });
     } }, inputs: { iceTooltipHtmlText: "iceTooltipHtmlText", showToolTip: "showToolTip", showToolTipOnTextOverflow: "showToolTipOnTextOverflow", duration: "duration" } });
-/*@__PURE__*/ _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵsetClassMetadata"](ToolTipRendererDirective, [{
-        type: _angular_core__WEBPACK_IMPORTED_MODULE_1__["Directive"],
+/*@__PURE__*/ _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵsetClassMetadata"](ToolTipRendererDirective, [{
+        type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["Directive"],
         args: [{
                 selector: '[iceCustomHtmlToolTip]'
             }]
-    }], function () { return [{ type: _angular_cdk_overlay__WEBPACK_IMPORTED_MODULE_3__["Overlay"] }, { type: _angular_cdk_overlay__WEBPACK_IMPORTED_MODULE_3__["OverlayPositionBuilder"] }, { type: _angular_core__WEBPACK_IMPORTED_MODULE_1__["ElementRef"] }]; }, { iceTooltipHtmlText: [{
-            type: _angular_core__WEBPACK_IMPORTED_MODULE_1__["Input"]
+    }], function () { return [{ type: _angular_cdk_overlay__WEBPACK_IMPORTED_MODULE_1__["Overlay"] }, { type: _angular_cdk_overlay__WEBPACK_IMPORTED_MODULE_1__["OverlayPositionBuilder"] }, { type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["ElementRef"] }, { type: _services_toolbar_service__WEBPACK_IMPORTED_MODULE_2__["ToolbarService"] }]; }, { iceTooltipHtmlText: [{
+            type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["Input"]
         }], showToolTip: [{
-            type: _angular_core__WEBPACK_IMPORTED_MODULE_1__["Input"]
+            type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["Input"]
         }], showToolTipOnTextOverflow: [{
-            type: _angular_core__WEBPACK_IMPORTED_MODULE_1__["Input"]
+            type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["Input"]
         }], duration: [{
-            type: _angular_core__WEBPACK_IMPORTED_MODULE_1__["Input"]
+            type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["Input"]
         }], show: [{
-            type: _angular_core__WEBPACK_IMPORTED_MODULE_1__["HostListener"],
+            type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["HostListener"],
             args: ['mouseenter']
         }], hide: [{
-            type: _angular_core__WEBPACK_IMPORTED_MODULE_1__["HostListener"],
+            type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["HostListener"],
             args: ['mouseleave']
         }] });
 
@@ -6891,6 +6882,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_material_input__WEBPACK_IMPORTED_MODULE_42__ = __webpack_require__(/*! @angular/material/input */ "./node_modules/@angular/material/__ivy_ngcc__/esm2015/input.js");
 /* harmony import */ var _components_datatable_component__WEBPACK_IMPORTED_MODULE_43__ = __webpack_require__(/*! ./components/datatable.component */ "./projects/swimlane/ngx-datatable/src/lib/components/datatable.component.ts");
 /* harmony import */ var _angular_material__WEBPACK_IMPORTED_MODULE_44__ = __webpack_require__(/*! @angular/material */ "./node_modules/@angular/material/__ivy_ngcc__/esm2015/material.js");
+/* harmony import */ var _services_toolbar_service__WEBPACK_IMPORTED_MODULE_45__ = __webpack_require__(/*! ./services/toolbar-service */ "./projects/swimlane/ngx-datatable/src/lib/services/toolbar-service.ts");
+
 
 
 
@@ -6950,7 +6943,7 @@ class NgxDatatableModule {
     }
 }
 NgxDatatableModule.ngModuleDef = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineNgModule"]({ type: NgxDatatableModule });
-NgxDatatableModule.ngInjectorDef = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineInjector"]({ factory: function NgxDatatableModule_Factory(t) { return new (t || NgxDatatableModule)(); }, providers: [_services_scrollbar_helper_service__WEBPACK_IMPORTED_MODULE_6__["ScrollbarHelper"], _services_dimensions_helper_service__WEBPACK_IMPORTED_MODULE_7__["DimensionsHelper"], _services_column_changes_service__WEBPACK_IMPORTED_MODULE_8__["ColumnChangesService"]], imports: [[
+NgxDatatableModule.ngInjectorDef = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineInjector"]({ factory: function NgxDatatableModule_Factory(t) { return new (t || NgxDatatableModule)(); }, providers: [_services_scrollbar_helper_service__WEBPACK_IMPORTED_MODULE_6__["ScrollbarHelper"], _services_dimensions_helper_service__WEBPACK_IMPORTED_MODULE_7__["DimensionsHelper"], _services_column_changes_service__WEBPACK_IMPORTED_MODULE_8__["ColumnChangesService"], _services_toolbar_service__WEBPACK_IMPORTED_MODULE_45__["ToolbarService"]], imports: [[
             _angular_common__WEBPACK_IMPORTED_MODULE_1__["CommonModule"],
             _angular_material_tooltip__WEBPACK_IMPORTED_MODULE_5__["MatTooltipModule"],
             _angular_cdk_overlay__WEBPACK_IMPORTED_MODULE_4__["OverlayModule"],
@@ -7029,7 +7022,7 @@ NgxDatatableModule.ngInjectorDef = _angular_core__WEBPACK_IMPORTED_MODULE_0__["�
                     _angular_forms__WEBPACK_IMPORTED_MODULE_41__["FormsModule"],
                     _angular_forms__WEBPACK_IMPORTED_MODULE_41__["ReactiveFormsModule"]
                 ],
-                providers: [_services_scrollbar_helper_service__WEBPACK_IMPORTED_MODULE_6__["ScrollbarHelper"], _services_dimensions_helper_service__WEBPACK_IMPORTED_MODULE_7__["DimensionsHelper"], _services_column_changes_service__WEBPACK_IMPORTED_MODULE_8__["ColumnChangesService"]],
+                providers: [_services_scrollbar_helper_service__WEBPACK_IMPORTED_MODULE_6__["ScrollbarHelper"], _services_dimensions_helper_service__WEBPACK_IMPORTED_MODULE_7__["DimensionsHelper"], _services_column_changes_service__WEBPACK_IMPORTED_MODULE_8__["ColumnChangesService"], _services_toolbar_service__WEBPACK_IMPORTED_MODULE_45__["ToolbarService"]],
                 declarations: [
                     _components_footer_footer_template_directive__WEBPACK_IMPORTED_MODULE_9__["DataTableFooterTemplateDirective"],
                     _directives_visibility_directive__WEBPACK_IMPORTED_MODULE_10__["VisibilityDirective"],
@@ -7200,6 +7193,79 @@ ScrollbarHelper.ngInjectableDef = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵ
                 type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["Inject"],
                 args: [_angular_common__WEBPACK_IMPORTED_MODULE_1__["DOCUMENT"]]
             }] }]; }, null);
+
+
+/***/ }),
+
+/***/ "./projects/swimlane/ngx-datatable/src/lib/services/toolbar-service.ts":
+/*!*****************************************************************************!*\
+  !*** ./projects/swimlane/ngx-datatable/src/lib/services/toolbar-service.ts ***!
+  \*****************************************************************************/
+/*! exports provided: ToolbarService */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ToolbarService", function() { return ToolbarService; });
+/* harmony import */ var _angular_cdk_portal__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/cdk/portal */ "./node_modules/@angular/cdk/__ivy_ngcc__/esm2015/portal.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js");
+/* harmony import */ var _components_ice_custom_tooltip_ice_custom_tooltip_component__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../components/ice-custom-tooltip/ice-custom-tooltip.component */ "./projects/swimlane/ngx-datatable/src/lib/components/ice-custom-tooltip/ice-custom-tooltip.component.ts");
+
+
+
+
+/**
+ * service to make DatatableComponent aware of changes to
+ * input bindings of DataTableColumnDirective
+ */
+class ToolbarService {
+    setToolbar(_overlay, _overlayPositionBuilder, _elementRef, iceTooltipHtmlText, duration) {
+        if (!this._overlayRef) {
+            const positionStrategy = _overlayPositionBuilder.flexibleConnectedTo(_elementRef).withPositions([
+                {
+                    originX: 'start',
+                    originY: 'top',
+                    overlayX: 'start',
+                    overlayY: 'bottom',
+                    offsetY: -5
+                }
+            ]);
+            this._overlayRef = _overlay.create({ positionStrategy });
+        }
+        if (!this._overlayRef.hasAttached()) {
+            const tooltipRef = this._overlayRef.attach(new _angular_cdk_portal__WEBPACK_IMPORTED_MODULE_0__["ComponentPortal"](_components_ice_custom_tooltip_ice_custom_tooltip_component__WEBPACK_IMPORTED_MODULE_2__["CustomToolTipComponent"]));
+            this.componentInstance = tooltipRef;
+            this.componentInstance.instance.text = iceTooltipHtmlText;
+            this.componentInstance.instance.onMouseLeave = () => (this.clearTimeout(), this.setTimeout(duration));
+            this.componentInstance.instance.onMouseEnter = () => this.clearTimeout();
+        }
+    }
+    clearTimeout() {
+        if (this.timeout) {
+            clearTimeout(this.timeout);
+        }
+    }
+    setTimeout(duration) {
+        this.timeout = setTimeout(() => {
+            this.closeToolTip();
+        }, duration);
+    }
+    destroy() {
+        this.clearTimeout();
+        this.closeToolTip();
+        this._overlayRef = null;
+    }
+    closeToolTip() {
+        if (this._overlayRef) {
+            this._overlayRef.detach();
+            this.componentInstance = null;
+        }
+    }
+}
+ToolbarService.ngInjectableDef = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdefineInjectable"]({ token: ToolbarService, factory: function ToolbarService_Factory(t) { return new (t || ToolbarService)(); }, providedIn: null });
+/*@__PURE__*/ _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵsetClassMetadata"](ToolbarService, [{
+        type: _angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"]
+    }], null, null);
 
 
 /***/ }),
@@ -10130,7 +10196,7 @@ class BasicAutoComponent {
         this.reorderable = true;
         this.columns = [
             { prop: 'name' },
-            { name: 'Gender', tooltip: 'topo', canHideTooltip: true },
+            { name: 'Gender', tooltip: 'topo', tooltipDuration: 300 },
             {
                 name: 'Company',
                 sortable: false,

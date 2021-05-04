@@ -44,6 +44,7 @@ import { MatInputModule } from '@angular/material/input';
 import { DatatableComponent } from './components/datatable.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { MatSelectModule } from '@angular/material';
+import { ToolbarService } from './services/toolbar-service';
 
 @NgModule({
   imports: [
@@ -58,7 +59,7 @@ import { MatSelectModule } from '@angular/material';
     FormsModule,
     ReactiveFormsModule
   ],
-  providers: [ScrollbarHelper, DimensionsHelper, ColumnChangesService],
+  providers: [ScrollbarHelper, DimensionsHelper, ColumnChangesService, ToolbarService],
   declarations: [
     DataTableFooterTemplateDirective,
     VisibilityDirective,

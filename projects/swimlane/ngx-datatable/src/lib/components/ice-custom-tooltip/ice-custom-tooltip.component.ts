@@ -1,4 +1,4 @@
-import { Component, Input, ViewEncapsulation } from '@angular/core';
+import { Component, HostListener, Input, ViewEncapsulation } from '@angular/core';
 
 @Component({
   selector: 'ice-custom-tooltip',
@@ -11,4 +11,20 @@ import { Component, Input, ViewEncapsulation } from '@angular/core';
 })
 export class CustomToolTipComponent {
   @Input() text: string;
+  @Input() onMouseLeave: () => void;
+  @Input() onMouseEnter: () => void;
+
+  @HostListener('mouseleave')
+  hide() {
+    if (this.onMouseLeave) {
+      this.onMouseLeave();
+    }
+  }
+
+  @HostListener('mouseenter')
+  show() {
+    if (this.onMouseEnter) {
+      this.onMouseEnter();
+    }
+  }
 }

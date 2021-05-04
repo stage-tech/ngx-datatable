@@ -6446,6 +6446,22 @@ if (false) {
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class CustomToolTipComponent {
+    /**
+     * @return {?}
+     */
+    hide() {
+        if (this.onMouseLeave) {
+            this.onMouseLeave();
+        }
+    }
+    /**
+     * @return {?}
+     */
+    show() {
+        if (this.onMouseEnter) {
+            this.onMouseEnter();
+        }
+    }
 }
 CustomToolTipComponent.decorators = [
     { type: Component, args: [{
@@ -6459,11 +6475,115 @@ CustomToolTipComponent.decorators = [
             }] }
 ];
 CustomToolTipComponent.propDecorators = {
-    text: [{ type: Input }]
+    text: [{ type: Input }],
+    onMouseLeave: [{ type: Input }],
+    onMouseEnter: [{ type: Input }],
+    hide: [{ type: HostListener, args: ['mouseleave',] }],
+    show: [{ type: HostListener, args: ['mouseenter',] }]
 };
 if (false) {
     /** @type {?} */
     CustomToolTipComponent.prototype.text;
+    /** @type {?} */
+    CustomToolTipComponent.prototype.onMouseLeave;
+    /** @type {?} */
+    CustomToolTipComponent.prototype.onMouseEnter;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+/**
+ * service to make DatatableComponent aware of changes to
+ * input bindings of DataTableColumnDirective
+ */
+class ToolbarService {
+    /**
+     * @param {?} _overlay
+     * @param {?} _overlayPositionBuilder
+     * @param {?} _elementRef
+     * @param {?} iceTooltipHtmlText
+     * @param {?} duration
+     * @return {?}
+     */
+    setToolbar(_overlay, _overlayPositionBuilder, _elementRef, iceTooltipHtmlText, duration) {
+        if (!this._overlayRef) {
+            /** @type {?} */
+            const positionStrategy = _overlayPositionBuilder.flexibleConnectedTo(_elementRef).withPositions([
+                {
+                    originX: 'start',
+                    originY: 'top',
+                    overlayX: 'start',
+                    overlayY: 'bottom',
+                    offsetY: -5
+                }
+            ]);
+            this._overlayRef = _overlay.create({ positionStrategy });
+        }
+        if (!this._overlayRef.hasAttached()) {
+            /** @type {?} */
+            const tooltipRef = this._overlayRef.attach(new ComponentPortal(CustomToolTipComponent));
+            this.componentInstance = tooltipRef;
+            this.componentInstance.instance.text = iceTooltipHtmlText;
+            this.componentInstance.instance.onMouseLeave = (/**
+             * @return {?}
+             */
+            () => (this.clearTimeout(), this.setTimeout(duration)));
+            this.componentInstance.instance.onMouseEnter = (/**
+             * @return {?}
+             */
+            () => this.clearTimeout());
+        }
+    }
+    /**
+     * @return {?}
+     */
+    clearTimeout() {
+        if (this.timeout) {
+            clearTimeout(this.timeout);
+        }
+    }
+    /**
+     * @param {?} duration
+     * @return {?}
+     */
+    setTimeout(duration) {
+        this.timeout = setTimeout((/**
+         * @return {?}
+         */
+        () => {
+            this.closeToolTip();
+        }), duration);
+    }
+    /**
+     * @return {?}
+     */
+    destroy() {
+        this.clearTimeout();
+        this.closeToolTip();
+        this._overlayRef = (/** @type {?} */ (null));
+    }
+    /**
+     * @return {?}
+     */
+    closeToolTip() {
+        if (this._overlayRef) {
+            this._overlayRef.detach();
+            this.componentInstance = (/** @type {?} */ (null));
+        }
+    }
+}
+ToolbarService.decorators = [
+    { type: Injectable }
+];
+if (false) {
+    /** @type {?} */
+    ToolbarService.prototype._overlayRef;
+    /** @type {?} */
+    ToolbarService.prototype.timeout;
+    /** @type {?} */
+    ToolbarService.prototype.componentInstance;
 }
 
 /**
@@ -6475,11 +6595,13 @@ class ToolTipRendererDirective {
      * @param {?} _overlay
      * @param {?} _overlayPositionBuilder
      * @param {?} _elementRef
+     * @param {?} toolbarService
      */
-    constructor(_overlay, _overlayPositionBuilder, _elementRef) {
+    constructor(_overlay, _overlayPositionBuilder, _elementRef, toolbarService) {
         this._overlay = _overlay;
         this._overlayPositionBuilder = _overlayPositionBuilder;
         this._elementRef = _elementRef;
+        this.toolbarService = toolbarService;
         this.showToolTip = true;
         this.showToolTipOnTextOverflow = false;
         this.duration = 0;
@@ -6488,63 +6610,24 @@ class ToolTipRendererDirective {
      * @return {?}
      */
     show() {
-        if (this.timeout) {
-            clearTimeout(this.timeout);
-        }
+        this.toolbarService.destroy();
         if ((this.showToolTipOnTextOverflow &&
             this._elementRef.nativeElement.offsetWidth < this._elementRef.nativeElement.scrollWidth) ||
             this.showToolTip) {
-            if (!this._overlayRef) {
-                /** @type {?} */
-                const positionStrategy = this._overlayPositionBuilder.flexibleConnectedTo(this._elementRef).withPositions([
-                    {
-                        originX: 'start',
-                        originY: 'top',
-                        overlayX: 'start',
-                        overlayY: 'bottom',
-                        offsetY: -5
-                    }
-                ]);
-                this._overlayRef = this._overlay.create({ positionStrategy });
-            }
-            if (!this._overlayRef.hasAttached()) {
-                /** @type {?} */
-                const tooltipRef = this._overlayRef.attach(new ComponentPortal(CustomToolTipComponent));
-                this.componentInstance = tooltipRef;
-                tooltipRef.instance.text = this.iceTooltipHtmlText;
-            }
+            this.toolbarService.setToolbar(this._overlay, this._overlayPositionBuilder, this._elementRef, this.iceTooltipHtmlText, this.duration);
         }
     }
     /**
      * @return {?}
      */
     hide() {
-        this.timeout = setTimeout((/**
-         * @return {?}
-         */
-        () => {
-            this.closeToolTip();
-        }), this.duration);
+        this.toolbarService.setTimeout(this.duration);
     }
     /**
      * @return {?}
      */
     ngOnDestroy() {
-        if (this.timeout) {
-            clearTimeout(this.timeout);
-        }
-        this.closeToolTip();
-        this._overlayRef = (/** @type {?} */ (null));
-    }
-    /**
-     * @private
-     * @return {?}
-     */
-    closeToolTip() {
-        if (this._overlayRef) {
-            this._overlayRef.detach();
-            this.componentInstance = (/** @type {?} */ (null));
-        }
+        this.toolbarService.destroy();
     }
 }
 ToolTipRendererDirective.decorators = [
@@ -6556,7 +6639,8 @@ ToolTipRendererDirective.decorators = [
 ToolTipRendererDirective.ctorParameters = () => [
     { type: Overlay },
     { type: OverlayPositionBuilder },
-    { type: ElementRef }
+    { type: ElementRef },
+    { type: ToolbarService }
 ];
 ToolTipRendererDirective.propDecorators = {
     iceTooltipHtmlText: [{ type: Input }],
@@ -6579,21 +6663,6 @@ if (false) {
      * @type {?}
      * @private
      */
-    ToolTipRendererDirective.prototype._overlayRef;
-    /**
-     * @type {?}
-     * @private
-     */
-    ToolTipRendererDirective.prototype.timeout;
-    /**
-     * @type {?}
-     * @private
-     */
-    ToolTipRendererDirective.prototype.componentInstance;
-    /**
-     * @type {?}
-     * @private
-     */
     ToolTipRendererDirective.prototype._overlay;
     /**
      * @type {?}
@@ -6605,6 +6674,11 @@ if (false) {
      * @private
      */
     ToolTipRendererDirective.prototype._elementRef;
+    /**
+     * @type {?}
+     * @private
+     */
+    ToolTipRendererDirective.prototype.toolbarService;
 }
 
 /**
@@ -8873,7 +8947,7 @@ NgxDatatableModule.decorators = [
                     FormsModule,
                     ReactiveFormsModule
                 ],
-                providers: [ScrollbarHelper, DimensionsHelper, ColumnChangesService],
+                providers: [ScrollbarHelper, DimensionsHelper, ColumnChangesService, ToolbarService],
                 declarations: [
                     DataTableFooterTemplateDirective,
                     VisibilityDirective,
@@ -9372,5 +9446,5 @@ function elementsFromPoint(x, y) {
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
-export { ClickType, ColumnChangesService, ColumnMode, ContextmenuType, DataTableBodyCellComponent, DataTableBodyComponent, DataTableBodyRowComponent, DataTableColumnCellDirective, DataTableColumnCellTreeToggle, DataTableColumnDirective, DataTableColumnHeaderDirective, DataTableFooterComponent, DataTableFooterTemplateDirective, DataTableHeaderCellComponent, DataTableHeaderComponent, DataTablePagerComponent, DataTableRowWrapperComponent, DataTableSelectionComponent, DataTableSummaryRowComponent, DatatableComponent, DatatableFooterDirective, DatatableGroupHeaderDirective, DatatableGroupHeaderTemplateDirective, DatatableRowDetailDirective, DatatableRowDetailTemplateDirective, DimensionsHelper, DraggableDirective, Keys, LongPressDirective, NgxDatatableModule, OrderableDirective, ProgressBarComponent, ResizeableDirective, RowHeightCache, ScrollbarHelper, ScrollerComponent, SelectionType, SortDirection, SortType, VisibilityDirective, adjustColumnWidths, camelCase, columnGroupWidths, columnTotalWidth, columnsByPin, columnsByPinArr, columnsTotalWidth, deCamelCase, deepValueGetter, elementsFromPoint, emptyStringGetter, forceFillColumnWidths, getTotalFlexGrow, getVendorPrefixedName, getterForProp, groupRowsByParents, id, isNullOrUndefined, nextSortDir, numericIndexGetter, optionalGetterForProp, orderByComparator, selectRows, selectRowsBetween, setColumnDefaults, shallowValueGetter, sortRows, throttle, throttleable, translateTemplates, translateXY, ToolTipRendererDirective as ɵa, CustomToolTipComponent as ɵb, DatatableSelectComponent as ɵc, EditableTextComponent as ɵd };
+export { ClickType, ColumnChangesService, ColumnMode, ContextmenuType, DataTableBodyCellComponent, DataTableBodyComponent, DataTableBodyRowComponent, DataTableColumnCellDirective, DataTableColumnCellTreeToggle, DataTableColumnDirective, DataTableColumnHeaderDirective, DataTableFooterComponent, DataTableFooterTemplateDirective, DataTableHeaderCellComponent, DataTableHeaderComponent, DataTablePagerComponent, DataTableRowWrapperComponent, DataTableSelectionComponent, DataTableSummaryRowComponent, DatatableComponent, DatatableFooterDirective, DatatableGroupHeaderDirective, DatatableGroupHeaderTemplateDirective, DatatableRowDetailDirective, DatatableRowDetailTemplateDirective, DimensionsHelper, DraggableDirective, Keys, LongPressDirective, NgxDatatableModule, OrderableDirective, ProgressBarComponent, ResizeableDirective, RowHeightCache, ScrollbarHelper, ScrollerComponent, SelectionType, SortDirection, SortType, VisibilityDirective, adjustColumnWidths, camelCase, columnGroupWidths, columnTotalWidth, columnsByPin, columnsByPinArr, columnsTotalWidth, deCamelCase, deepValueGetter, elementsFromPoint, emptyStringGetter, forceFillColumnWidths, getTotalFlexGrow, getVendorPrefixedName, getterForProp, groupRowsByParents, id, isNullOrUndefined, nextSortDir, numericIndexGetter, optionalGetterForProp, orderByComparator, selectRows, selectRowsBetween, setColumnDefaults, shallowValueGetter, sortRows, throttle, throttleable, translateTemplates, translateXY, ToolbarService as ɵa, ToolTipRendererDirective as ɵb, CustomToolTipComponent as ɵc, DatatableSelectComponent as ɵd, EditableTextComponent as ɵe };
 //# sourceMappingURL=swimlane-ngx-datatable.js.map
