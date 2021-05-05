@@ -1,9 +1,16 @@
 import { Component } from '@angular/core';
 import { MockServerResultsService } from './mock-server-results-service';
-import { PagedData } from './model/paged-data';
 import { CorporateEmployee } from './model/corporate-employee';
 import { Page } from './model/page';
 import { ColumnMode } from 'projects/swimlane/ngx-datatable/src/public-api';
+import { delay } from 'rxjs/operators';
+
+interface PageInfo {
+  offset: number;
+  pageSize: number;
+  limit: number;
+  count: number;
+}
 
 @Component({
   selector: 'virtual-paging-demo',
@@ -24,15 +31,21 @@ import { ColumnMode } from 'projects/swimlane/ngx-datatable/src/public-api';
       <ngx-datatable
         class="material"
         [rows]="rows"
-        [columns]="[{ name: 'Name' }, { name: 'Gender' }, { name: 'Company' }]"
+        [columns]="[
+          { name: 'Name', sortable: false },
+          { name: 'Gender', sortable: false },
+          { name: 'Company', sortable: false }
+        ]"
         [columnMode]="ColumnMode.force"
         [headerHeight]="50"
+        [loadingIndicator]="isLoading > 0"
         [scrollbarV]="true"
         [footerHeight]="50"
         [rowHeight]="50"
         [externalPaging]="true"
-        [count]="page.totalElements"
-        [offset]="page.pageNumber"
+        [externalSorting]="true"
+        [count]="totalElements"
+        [offset]="pageNumber"
         (page)="setPage($event)"
       >
       </ngx-datatable>
@@ -40,44 +53,70 @@ import { ColumnMode } from 'projects/swimlane/ngx-datatable/src/public-api';
   `
 })
 export class VirtualPagingComponent {
-  page = new Page();
-  rows = new Array<CorporateEmployee>();
+  totalElements: number;
+  pageNumber: number;
+  rows: CorporateEmployee[];
   cache: any = {};
 
   ColumnMode = ColumnMode;
 
+  isLoading = 0;
+
   constructor(private serverResultsService: MockServerResultsService) {
-    this.page.pageNumber = 0;
+    this.pageNumber = 0;
   }
 
-  /**
-   * Populate the table with new data based on the page number
-   * @param page The page to select
-   */
-  setPage(pageInfo) {
-    this.page.pageNumber = pageInfo.offset;
-    this.page.size = pageInfo.pageSize;
+  setPage(pageInfo: PageInfo) {
+    // Current page number is determined by last call to setPage
+    // This is the page the UI is currently displaying
+    // The current page is based on the UI pagesize and scroll position
+    // Pagesize can change depending on browser size
+    this.pageNumber = pageInfo.offset;
 
-    // cache results
-    // if(this.cache[this.page.pageNumber]) return;
+    // Calculate row offset in the UI using pageInfo
+    // This is the scroll position in rows
+    const rowOffset = pageInfo.offset * pageInfo.pageSize;
 
-    this.serverResultsService.getResults(this.page).subscribe(pagedData => {
-      this.page = pagedData.page;
+    // When calling the server, we keep page size fixed
+    // This should be the max UI pagesize or larger
+    // This is not necessary but helps simplify caching since the UI page size can change
+    const page = new Page();
+    page.size = 20;
+    page.pageNumber = Math.floor(rowOffset / page.size);
 
-      // calc start
-      const start = this.page.pageNumber * this.page.size;
+    // We keep a index of server loaded pages so we don't load same data twice
+    // This is based on the server page not the UI
+    if (this.cache[page.pageNumber]) return;
+    this.cache[page.pageNumber] = true;
 
-      // copy rows
+    // Counter of pending API calls
+    this.isLoading++;
+
+    this.serverResultsService.getResults(page).subscribe(pagedData => {
+      // Update total count
+      this.totalElements = pagedData.page.totalElements;
+
+      // Create array to store data if missing
+      // The array should have the correct number of with "holes" for missing data
+      if (!this.rows) {
+        this.rows = new Array<CorporateEmployee>(this.totalElements || 0);
+      }
+
+      // Calc starting row offset
+      // This is the position to insert the new data
+      const start = pagedData.page.pageNumber * pagedData.page.size;
+
+      // Copy existing data
       const rows = [...this.rows];
 
-      // insert rows into new position
-      rows.splice(start, 0, ...pagedData.data);
+      // Insert new rows into correct position
+      rows.splice(start, pagedData.page.size, ...pagedData.data);
 
-      // set rows to our new rows
+      // Set rows to our new rows for display
       this.rows = rows;
 
-      // add flag for results
-      this.cache[this.page.pageNumber] = true;
+      // Decrement the counter of pending API calls
+      this.isLoading--;
     });
   }
 }

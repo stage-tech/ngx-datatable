@@ -19,7 +19,6 @@ import {
   ChangeDetectionStrategy,
   ChangeDetectorRef,
   SkipSelf,
-  OnDestroy,
   Optional,
   Inject,
   ViewRef
@@ -205,13 +204,13 @@ export class DatatableComponent implements OnInit, DoCheck, AfterViewInit {
    * Type of column width distribution formula.
    * Example: flex, force, standard
    */
-  @Input() columnMode: ColumnMode = ColumnMode.standard;
+  @Input() columnMode: ColumnMode | keyof typeof ColumnMode = ColumnMode.standard;
 
   /**
    * The minimum header height in pixels.
    * Pass a falsey for no header
    */
-  @Input() headerHeight: any = 30;
+  @Input() headerHeight: number = 30;
 
   /**
    * The minimum footer height in pixels.
@@ -327,6 +326,7 @@ export class DatatableComponent implements OnInit, DoCheck, AfterViewInit {
   @Input() cssClasses: any = {
     sortAscending: 'datatable-icon-up',
     sortDescending: 'datatable-icon-down',
+    sortUnset: 'datatable-icon-sort-unset',
     pagerLeftArrow: 'datatable-icon-left',
     pagerRightArrow: 'datatable-icon-right',
     pagerPrevious: 'datatable-icon-prev',
@@ -597,26 +597,26 @@ export class DatatableComponent implements OnInit, DoCheck, AfterViewInit {
   /**
    * Row Detail templates gathered from the ContentChild
    */
-  @ContentChild(DatatableRowDetailDirective, { static: false })
+  @ContentChild(DatatableRowDetailDirective)
   rowDetail: DatatableRowDetailDirective;
 
   /**
    * Group Header templates gathered from the ContentChild
    */
-  @ContentChild(DatatableGroupHeaderDirective, { static: false })
+  @ContentChild(DatatableGroupHeaderDirective)
   groupHeader: DatatableGroupHeaderDirective;
 
   /**
    * Footer template gathered from the ContentChild
    */
-  @ContentChild(DatatableFooterDirective, { static: false })
+  @ContentChild(DatatableFooterDirective)
   footer: DatatableFooterDirective;
 
   /**
    * Reference to the body component for manually
    * invoking functions on the body.
    */
-  @ViewChild(DataTableBodyComponent, { static: false })
+  @ViewChild(DataTableBodyComponent)
   bodyComponent: DataTableBodyComponent;
 
   /**
@@ -625,7 +625,7 @@ export class DatatableComponent implements OnInit, DoCheck, AfterViewInit {
    *
    * @memberOf DatatableComponent
    */
-  @ViewChild(DataTableHeaderComponent, { static: false })
+  @ViewChild(DataTableHeaderComponent)
   headerComponent: DataTableHeaderComponent;
 
   /**
@@ -634,7 +634,7 @@ export class DatatableComponent implements OnInit, DoCheck, AfterViewInit {
   get allRowsSelected(): boolean {
     let allRowsSelected = this.rows && this.selected && this.selected.length === this.rows.length;
 
-    if (this.selectAllRowsOnPage) {
+    if (this.bodyComponent && this.selectAllRowsOnPage) {
       const indexes = this.bodyComponent.indexes;
       const rowsOnPage = indexes.last - indexes.first;
       allRowsSelected = this.selected.length === rowsOnPage;
@@ -842,11 +842,16 @@ export class DatatableComponent implements OnInit, DoCheck, AfterViewInit {
   recalculate(): void {
     this.recalculateDims();
     this.recalculateColumns();
-    requestAnimationFrame(() => {
-      if (!(this.cd as ViewRef).destroyed) {
-        this.cd.detectChanges();
-      }
-    });
+    this.cd.markForCheck();
+  }
+
+  /**
+   * Window resize handler to update sizes.
+   */
+  @HostListener('window:resize')
+  @throttleable(5)
+  onWindowResize(): void {
+    this.recalculate();
   }
 
   /**
@@ -1125,7 +1130,7 @@ export class DatatableComponent implements OnInit, DoCheck, AfterViewInit {
    * Toggle all row selection
    */
   onHeaderSelect(event: any): void {
-    if (this.selectAllRowsOnPage) {
+    if (this.bodyComponent && this.selectAllRowsOnPage) {
       // before we splice, chk if we currently have all selected
       const first = this.bodyComponent.indexes.first;
       const last = this.bodyComponent.indexes.last;

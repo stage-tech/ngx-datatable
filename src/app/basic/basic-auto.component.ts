@@ -23,8 +23,8 @@ import { of } from 'rxjs';
         [loadingIndicator]="loadingIndicator"
         [columns]="columns"
         [columnMode]="ColumnMode.force"
-        headerHeight="50"
-        footerHeight="50"
+        [headerHeight]="50"
+        [footerHeight]="50"
         rowHeight="auto"
         [reorderable]="reorderable"
       >

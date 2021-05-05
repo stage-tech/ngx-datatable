@@ -1,20 +1,18 @@
-import { async, TestBed, ComponentFixture } from '@angular/core/testing';
+import { TestBed, ComponentFixture, waitForAsync } from '@angular/core/testing';
 import { Component, DebugElement } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { ResizeableDirective } from './resizeable.directive';
 
 @Component({
   selector: 'test-fixture-component',
-  template: `
-    <div resizeable></div>
-  `
+  template: ` <div resizeable></div> `
 })
 class TestFixtureComponent {}
 
 describe('ResizeableDirective', () => {
   let fixture: ComponentFixture<TestFixtureComponent>;
   let component: TestFixtureComponent;
-  let element;
+  let element: any;
 
   // provide our implementations or mocks to the dependency injector
   beforeEach(() => {
@@ -23,13 +21,15 @@ describe('ResizeableDirective', () => {
     });
   });
 
-  beforeEach(async(() => {
-    TestBed.compileComponents().then(() => {
-      fixture = TestBed.createComponent(TestFixtureComponent);
-      component = fixture.componentInstance;
-      element = fixture.nativeElement;
-    });
-  }));
+  beforeEach(
+    waitForAsync(() => {
+      TestBed.compileComponents().then(() => {
+        fixture = TestBed.createComponent(TestFixtureComponent);
+        component = fixture.componentInstance;
+        element = fixture.nativeElement;
+      });
+    })
+  );
 
   describe('fixture', () => {
     let directive: ResizeableDirective;

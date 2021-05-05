@@ -1,5 +1,4 @@
-import { async, TestBed, ComponentFixture } from '@angular/core/testing';
-import {} from 'jasmine';
+import { TestBed, ComponentFixture, waitForAsync } from '@angular/core/testing';
 import { DataTableBodyComponent } from './body.component';
 import { DataTableBodyRowComponent } from './body-row.component';
 import { DataTableRowWrapperComponent } from './body-row-wrapper.component';
@@ -13,7 +12,7 @@ import { ScrollbarHelper } from '../../services/scrollbar-helper.service';
 describe('DataTableBodyComponent', () => {
   let fixture: ComponentFixture<DataTableBodyComponent>;
   let component: DataTableBodyComponent;
-  let element;
+  let element: any;
 
   // provide our implementations or mocks to the dependency injector
   beforeEach(() => {
@@ -32,13 +31,15 @@ describe('DataTableBodyComponent', () => {
     });
   });
 
-  beforeEach(async(() => {
-    TestBed.compileComponents().then(() => {
-      fixture = TestBed.createComponent(DataTableBodyComponent);
-      component = fixture.componentInstance;
-      element = fixture.nativeElement;
-    });
-  }));
+  beforeEach(
+    waitForAsync(() => {
+      TestBed.compileComponents().then(() => {
+        fixture = TestBed.createComponent(DataTableBodyComponent);
+        component = fixture.componentInstance;
+        element = fixture.nativeElement;
+      });
+    })
+  );
 
   describe('fixture', () => {
     it('should have a component instance', () => {

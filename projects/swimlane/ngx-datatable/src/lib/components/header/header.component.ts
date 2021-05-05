@@ -6,9 +6,8 @@ import {
   HostBinding,
   ChangeDetectorRef,
   ChangeDetectionStrategy,
-  ViewRef
+  OnDestroy
 } from '@angular/core';
-import { MouseEvent } from '../../events';
 import { columnsByPin, columnGroupWidths, columnsByPinArr } from '../../utils/column';
 import { SortType } from '../../types/sort.type';
 import { SelectionType } from '../../types/selection.type';
@@ -19,6 +18,7 @@ import { translateXY } from '../../utils/translate';
   selector: 'datatable-header',
   template: `
     <div
+      role="row"
       orderable
       (reorder)="onColumnReordered($event)"
       (targetChanged)="onTargetChanged($event)"
@@ -31,6 +31,7 @@ import { translateXY } from '../../utils/translate';
         [ngStyle]="_styleByGroup[colGroup.type]"
       >
         <datatable-header-cell
+          role="columnheader"
           *ngFor="let column of colGroup.columns; trackBy: columnTrackingFn"
           [ngClass]="{ 'filter-template-wrap': column.filter }"
           resizeable
@@ -56,6 +57,7 @@ import { translateXY } from '../../utils/translate';
           [selectionType]="selectionType"
           [sortAscendingIcon]="sortAscendingIcon"
           [sortDescendingIcon]="sortDescendingIcon"
+          [sortUnsetIcon]="sortUnsetIcon"
           [allRowsSelected]="allRowsSelected"
           (sort)="onSort($event)"
           (filter)="onColumnFilter($event)"
@@ -71,9 +73,10 @@ import { translateXY } from '../../utils/translate';
   },
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class DataTableHeaderComponent {
+export class DataTableHeaderComponent implements OnDestroy {
   @Input() sortAscendingIcon: any;
   @Input() sortDescendingIcon: any;
+  @Input() sortUnsetIcon: any;
   @Input() scrollbarH: boolean;
   @Input() dealsWithGroup: boolean;
   @Input() targetMarkerTemplate: any;
@@ -162,7 +165,13 @@ export class DataTableHeaderComponent {
     right: {}
   };
 
+  private destroyed = false;
+
   constructor(private cd: ChangeDetectorRef) {}
+
+  ngOnDestroy(): void {
+    this.destroyed = true;
+  }
 
   onLongPressStart({ event, model }: { event: any; model: any }) {
     model.dragging = true;
@@ -307,7 +316,7 @@ export class DataTableHeaderComponent {
     this._styleByGroup.left = this.calcStylesByGroup('left');
     this._styleByGroup.center = this.calcStylesByGroup('center');
     this._styleByGroup.right = this.calcStylesByGroup('right');
-    if (!(this.cd as ViewRef).destroyed) {
+    if (!this.destroyed) {
       this.cd.detectChanges();
     }
   }
