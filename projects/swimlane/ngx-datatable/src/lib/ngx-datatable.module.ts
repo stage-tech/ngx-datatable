@@ -42,8 +42,7 @@ import { EditableTextComponent } from './components/ice-editable-text/ice-editab
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
 import { DatatableComponent } from './components/datatable.component';
-import { BrowserModule } from '@angular/platform-browser';
-import { MatSelectModule } from '@angular/material';
+import { MatSelectModule } from '@angular/material/select';
 import { ToolbarService } from './services/toolbar-service';
 
 @NgModule({
