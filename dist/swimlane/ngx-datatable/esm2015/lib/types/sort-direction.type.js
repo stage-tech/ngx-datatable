@@ -1,11 +1,6 @@
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-/** @enum {string} */
-const SortDirection = {
-    asc: 'asc',
-    desc: 'desc',
-};
-export { SortDirection };
-//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoic29ydC1kaXJlY3Rpb24udHlwZS5qcyIsInNvdXJjZVJvb3QiOiJuZzovL0Bzd2ltbGFuZS9uZ3gtZGF0YXRhYmxlLyIsInNvdXJjZXMiOlsibGliL3R5cGVzL3NvcnQtZGlyZWN0aW9uLnR5cGUudHMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6Ijs7Ozs7O0lBQ0UsS0FBTSxLQUFLO0lBQ1gsTUFBTyxNQUFNIiwic291cmNlc0NvbnRlbnQiOlsiZXhwb3J0IGVudW0gU29ydERpcmVjdGlvbiB7XHJcbiAgYXNjID0gJ2FzYycsXHJcbiAgZGVzYyA9ICdkZXNjJ1xyXG59XHJcbiJdfQ==
+export var SortDirection;
+(function (SortDirection) {
+  SortDirection['asc'] = 'asc';
+  SortDirection['desc'] = 'desc';
+})(SortDirection || (SortDirection = {}));
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoic29ydC1kaXJlY3Rpb24udHlwZS5qcyIsInNvdXJjZVJvb3QiOiIuLi8uLi8uLi8uLi9wcm9qZWN0cy9zd2ltbGFuZS9uZ3gtZGF0YXRhYmxlL3NyYy8iLCJzb3VyY2VzIjpbImxpYi90eXBlcy9zb3J0LWRpcmVjdGlvbi50eXBlLnRzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBLE1BQU0sQ0FBTixJQUFZLGFBR1g7QUFIRCxXQUFZLGFBQWE7SUFDdkIsNEJBQVcsQ0FBQTtJQUNYLDhCQUFhLENBQUE7QUFDZixDQUFDLEVBSFcsYUFBYSxLQUFiLGFBQWEsUUFHeEIiLCJzb3VyY2VzQ29udGVudCI6WyJleHBvcnQgZW51bSBTb3J0RGlyZWN0aW9uIHtcclxuICBhc2MgPSAnYXNjJyxcclxuICBkZXNjID0gJ2Rlc2MnXHJcbn1cclxuIl19

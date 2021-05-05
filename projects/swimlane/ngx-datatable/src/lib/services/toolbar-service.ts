@@ -31,7 +31,10 @@ export class ToolbarService {
       );
       this.componentInstance = tooltipRef;
       this.componentInstance.instance.text = iceTooltipHtmlText;
-      this.componentInstance.instance.onMouseLeave = () => (this.clearTimeout(), this.setTimeout(duration));
+      this.componentInstance.instance.onMouseLeave = () => {
+        this.clearTimeout();
+        this.setTimeout(duration);
+      };
       this.componentInstance.instance.onMouseEnter = () => this.clearTimeout();
     }
   }

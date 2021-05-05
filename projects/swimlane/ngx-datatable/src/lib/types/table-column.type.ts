@@ -241,7 +241,7 @@ export interface TableColumn {
 
   actionButtonTooltip?: string;
 
-  selectOptions?: (arg0: any) => Array<{ value: string; label: string }>;
+  selectOptions?: (arg0: any) => { value: string; label: string }[];
 
   editable?: (arg0: any) => Observable<boolean>;
 

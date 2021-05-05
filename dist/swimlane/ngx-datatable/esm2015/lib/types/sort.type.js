@@ -1,11 +1,6 @@
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-/** @enum {string} */
-const SortType = {
-    single: 'single',
-    multi: 'multi',
-};
-export { SortType };
-//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoic29ydC50eXBlLmpzIiwic291cmNlUm9vdCI6Im5nOi8vQHN3aW1sYW5lL25neC1kYXRhdGFibGUvIiwic291cmNlcyI6WyJsaWIvdHlwZXMvc29ydC50eXBlLnRzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiI7Ozs7OztJQUNFLFFBQVMsUUFBUTtJQUNqQixPQUFRLE9BQU8iLCJzb3VyY2VzQ29udGVudCI6WyJleHBvcnQgZW51bSBTb3J0VHlwZSB7XHJcbiAgc2luZ2xlID0gJ3NpbmdsZScsXHJcbiAgbXVsdGkgPSAnbXVsdGknXHJcbn1cclxuIl19
+export var SortType;
+(function (SortType) {
+  SortType['single'] = 'single';
+  SortType['multi'] = 'multi';
+})(SortType || (SortType = {}));
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoic29ydC50eXBlLmpzIiwic291cmNlUm9vdCI6Ii4uLy4uLy4uLy4uL3Byb2plY3RzL3N3aW1sYW5lL25neC1kYXRhdGFibGUvc3JjLyIsInNvdXJjZXMiOlsibGliL3R5cGVzL3NvcnQudHlwZS50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQSxNQUFNLENBQU4sSUFBWSxRQUdYO0FBSEQsV0FBWSxRQUFRO0lBQ2xCLDZCQUFpQixDQUFBO0lBQ2pCLDJCQUFlLENBQUE7QUFDakIsQ0FBQyxFQUhXLFFBQVEsS0FBUixRQUFRLFFBR25CIiwic291cmNlc0NvbnRlbnQiOlsiZXhwb3J0IGVudW0gU29ydFR5cGUge1xyXG4gIHNpbmdsZSA9ICdzaW5nbGUnLFxyXG4gIG11bHRpID0gJ211bHRpJ1xyXG59XHJcbiJdfQ==

@@ -1,25 +1,11 @@
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
 import { Directive, TemplateRef } from '@angular/core';
 export class DataTableColumnHeaderDirective {
-    /**
-     * @param {?} template
-     */
-    constructor(template) {
-        this.template = template;
-    }
+  constructor(template) {
+    this.template = template;
+  }
 }
 DataTableColumnHeaderDirective.decorators = [
-    { type: Directive, args: [{ selector: '[ngx-datatable-header-template]' },] }
+  { type: Directive, args: [{ selector: '[ngx-datatable-header-template]' }] }
 ];
-/** @nocollapse */
-DataTableColumnHeaderDirective.ctorParameters = () => [
-    { type: TemplateRef }
-];
-if (false) {
-    /** @type {?} */
-    DataTableColumnHeaderDirective.prototype.template;
-}
-//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiY29sdW1uLWhlYWRlci5kaXJlY3RpdmUuanMiLCJzb3VyY2VSb290Ijoibmc6Ly9Ac3dpbWxhbmUvbmd4LWRhdGF0YWJsZS8iLCJzb3VyY2VzIjpbImxpYi9jb21wb25lbnRzL2NvbHVtbnMvY29sdW1uLWhlYWRlci5kaXJlY3RpdmUudHMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6Ijs7OztBQUFBLE9BQU8sRUFBRSxTQUFTLEVBQUUsV0FBVyxFQUFFLE1BQU0sZUFBZSxDQUFDO0FBR3ZELE1BQU0sT0FBTyw4QkFBOEI7Ozs7SUFDekMsWUFBbUIsUUFBMEI7UUFBMUIsYUFBUSxHQUFSLFFBQVEsQ0FBa0I7SUFBRyxDQUFDOzs7WUFGbEQsU0FBUyxTQUFDLEVBQUUsUUFBUSxFQUFFLGlDQUFpQyxFQUFFOzs7O1lBRnRDLFdBQVc7Ozs7SUFJakIsa0RBQWlDIiwic291cmNlc0NvbnRlbnQiOlsiaW1wb3J0IHsgRGlyZWN0aXZlLCBUZW1wbGF0ZVJlZiB9IGZyb20gJ0Bhbmd1bGFyL2NvcmUnO1xyXG5cclxuQERpcmVjdGl2ZSh7IHNlbGVjdG9yOiAnW25neC1kYXRhdGFibGUtaGVhZGVyLXRlbXBsYXRlXScgfSlcclxuZXhwb3J0IGNsYXNzIERhdGFUYWJsZUNvbHVtbkhlYWRlckRpcmVjdGl2ZSB7XHJcbiAgY29uc3RydWN0b3IocHVibGljIHRlbXBsYXRlOiBUZW1wbGF0ZVJlZjxhbnk+KSB7fVxyXG59XHJcbiJdfQ==
+DataTableColumnHeaderDirective.ctorParameters = () => [{ type: TemplateRef }];
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiY29sdW1uLWhlYWRlci5kaXJlY3RpdmUuanMiLCJzb3VyY2VSb290IjoiLi4vLi4vLi4vLi4vcHJvamVjdHMvc3dpbWxhbmUvbmd4LWRhdGF0YWJsZS9zcmMvIiwic291cmNlcyI6WyJsaWIvY29tcG9uZW50cy9jb2x1bW5zL2NvbHVtbi1oZWFkZXIuZGlyZWN0aXZlLnRzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBLE9BQU8sRUFBRSxTQUFTLEVBQUUsV0FBVyxFQUFFLE1BQU0sZUFBZSxDQUFDO0FBR3ZELE1BQU0sT0FBTyw4QkFBOEI7SUFDekMsWUFBbUIsUUFBMEI7UUFBMUIsYUFBUSxHQUFSLFFBQVEsQ0FBa0I7SUFBRyxDQUFDOzs7WUFGbEQsU0FBUyxTQUFDLEVBQUUsUUFBUSxFQUFFLGlDQUFpQyxFQUFFOzs7WUFGdEMsV0FBVyIsInNvdXJjZXNDb250ZW50IjpbImltcG9ydCB7IERpcmVjdGl2ZSwgVGVtcGxhdGVSZWYgfSBmcm9tICdAYW5ndWxhci9jb3JlJztcclxuXHJcbkBEaXJlY3RpdmUoeyBzZWxlY3RvcjogJ1tuZ3gtZGF0YXRhYmxlLWhlYWRlci10ZW1wbGF0ZV0nIH0pXHJcbmV4cG9ydCBjbGFzcyBEYXRhVGFibGVDb2x1bW5IZWFkZXJEaXJlY3RpdmUge1xyXG4gIGNvbnN0cnVjdG9yKHB1YmxpYyB0ZW1wbGF0ZTogVGVtcGxhdGVSZWY8YW55Pikge31cclxufVxyXG4iXX0=

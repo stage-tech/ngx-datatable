@@ -1,11 +1,6 @@
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-/** @enum {string} */
-const ContextmenuType = {
-    header: 'header',
-    body: 'body',
-};
-export { ContextmenuType };
-//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiY29udGV4dG1lbnUudHlwZS5qcyIsInNvdXJjZVJvb3QiOiJuZzovL0Bzd2ltbGFuZS9uZ3gtZGF0YXRhYmxlLyIsInNvdXJjZXMiOlsibGliL3R5cGVzL2NvbnRleHRtZW51LnR5cGUudHMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6Ijs7Ozs7O0lBQ0UsUUFBUyxRQUFRO0lBQ2pCLE1BQU8sTUFBTSIsInNvdXJjZXNDb250ZW50IjpbImV4cG9ydCBlbnVtIENvbnRleHRtZW51VHlwZSB7XHJcbiAgaGVhZGVyID0gJ2hlYWRlcicsXHJcbiAgYm9keSA9ICdib2R5J1xyXG59XHJcbiJdfQ==
+export var ContextmenuType;
+(function (ContextmenuType) {
+  ContextmenuType['header'] = 'header';
+  ContextmenuType['body'] = 'body';
+})(ContextmenuType || (ContextmenuType = {}));
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiY29udGV4dG1lbnUudHlwZS5qcyIsInNvdXJjZVJvb3QiOiIuLi8uLi8uLi8uLi9wcm9qZWN0cy9zd2ltbGFuZS9uZ3gtZGF0YXRhYmxlL3NyYy8iLCJzb3VyY2VzIjpbImxpYi90eXBlcy9jb250ZXh0bWVudS50eXBlLnRzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBLE1BQU0sQ0FBTixJQUFZLGVBR1g7QUFIRCxXQUFZLGVBQWU7SUFDekIsb0NBQWlCLENBQUE7SUFDakIsZ0NBQWEsQ0FBQTtBQUNmLENBQUMsRUFIVyxlQUFlLEtBQWYsZUFBZSxRQUcxQiIsInNvdXJjZXNDb250ZW50IjpbImV4cG9ydCBlbnVtIENvbnRleHRtZW51VHlwZSB7XHJcbiAgaGVhZGVyID0gJ2hlYWRlcicsXHJcbiAgYm9keSA9ICdib2R5J1xyXG59XHJcbiJdfQ==

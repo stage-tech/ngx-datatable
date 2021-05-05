@@ -1,7 +1,3 @@
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
 import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
 /**
@@ -9,30 +5,15 @@ import { Subject } from 'rxjs';
  * input bindings of DataTableColumnDirective
  */
 export class ColumnChangesService {
-    constructor() {
-        this.columnInputChanges = new Subject();
-    }
-    /**
-     * @return {?}
-     */
-    get columnInputChanges$() {
-        return this.columnInputChanges.asObservable();
-    }
-    /**
-     * @return {?}
-     */
-    onInputChange() {
-        this.columnInputChanges.next();
-    }
+  constructor() {
+    this.columnInputChanges = new Subject();
+  }
+  get columnInputChanges$() {
+    return this.columnInputChanges.asObservable();
+  }
+  onInputChange() {
+    this.columnInputChanges.next();
+  }
 }
-ColumnChangesService.decorators = [
-    { type: Injectable }
-];
-if (false) {
-    /**
-     * @type {?}
-     * @private
-     */
-    ColumnChangesService.prototype.columnInputChanges;
-}
-//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiY29sdW1uLWNoYW5nZXMuc2VydmljZS5qcyIsInNvdXJjZVJvb3QiOiJuZzovL0Bzd2ltbGFuZS9uZ3gtZGF0YXRhYmxlLyIsInNvdXJjZXMiOlsibGliL3NlcnZpY2VzL2NvbHVtbi1jaGFuZ2VzLnNlcnZpY2UudHMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6Ijs7OztBQUFBLE9BQU8sRUFBRSxVQUFVLEVBQUUsTUFBTSxlQUFlLENBQUM7QUFFM0MsT0FBTyxFQUFjLE9BQU8sRUFBRSxNQUFNLE1BQU0sQ0FBQzs7Ozs7QUFPM0MsTUFBTSxPQUFPLG9CQUFvQjtJQURqQztRQUVVLHVCQUFrQixHQUFHLElBQUksT0FBTyxFQUFhLENBQUM7SUFTeEQsQ0FBQzs7OztJQVBDLElBQUksbUJBQW1CO1FBQ3JCLE9BQU8sSUFBSSxDQUFDLGtCQUFrQixDQUFDLFlBQVksRUFBRSxDQUFDO0lBQ2hELENBQUM7Ozs7SUFFRCxhQUFhO1FBQ1gsSUFBSSxDQUFDLGtCQUFrQixDQUFDLElBQUksRUFBRSxDQUFDO0lBQ2pDLENBQUM7OztZQVZGLFVBQVU7Ozs7Ozs7SUFFVCxrREFBc0QiLCJzb3VyY2VzQ29udGVudCI6WyJpbXBvcnQgeyBJbmplY3RhYmxlIH0gZnJvbSAnQGFuZ3VsYXIvY29yZSc7XHJcblxyXG5pbXBvcnQgeyBPYnNlcnZhYmxlLCBTdWJqZWN0IH0gZnJvbSAncnhqcyc7XHJcblxyXG4vKipcclxuICogc2VydmljZSB0byBtYWtlIERhdGF0YWJsZUNvbXBvbmVudCBhd2FyZSBvZiBjaGFuZ2VzIHRvXHJcbiAqIGlucHV0IGJpbmRpbmdzIG9mIERhdGFUYWJsZUNvbHVtbkRpcmVjdGl2ZVxyXG4gKi9cclxuQEluamVjdGFibGUoKVxyXG5leHBvcnQgY2xhc3MgQ29sdW1uQ2hhbmdlc1NlcnZpY2Uge1xyXG4gIHByaXZhdGUgY29sdW1uSW5wdXRDaGFuZ2VzID0gbmV3IFN1YmplY3Q8dW5kZWZpbmVkPigpO1xyXG5cclxuICBnZXQgY29sdW1uSW5wdXRDaGFuZ2VzJCgpOiBPYnNlcnZhYmxlPHVuZGVmaW5lZD4ge1xyXG4gICAgcmV0dXJuIHRoaXMuY29sdW1uSW5wdXRDaGFuZ2VzLmFzT2JzZXJ2YWJsZSgpO1xyXG4gIH1cclxuXHJcbiAgb25JbnB1dENoYW5nZSgpOiB2b2lkIHtcclxuICAgIHRoaXMuY29sdW1uSW5wdXRDaGFuZ2VzLm5leHQoKTtcclxuICB9XHJcbn1cclxuIl19
+ColumnChangesService.decorators = [{ type: Injectable }];
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiY29sdW1uLWNoYW5nZXMuc2VydmljZS5qcyIsInNvdXJjZVJvb3QiOiIuLi8uLi8uLi8uLi9wcm9qZWN0cy9zd2ltbGFuZS9uZ3gtZGF0YXRhYmxlL3NyYy8iLCJzb3VyY2VzIjpbImxpYi9zZXJ2aWNlcy9jb2x1bW4tY2hhbmdlcy5zZXJ2aWNlLnRzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBLE9BQU8sRUFBRSxVQUFVLEVBQUUsTUFBTSxlQUFlLENBQUM7QUFFM0MsT0FBTyxFQUFjLE9BQU8sRUFBRSxNQUFNLE1BQU0sQ0FBQztBQUUzQzs7O0dBR0c7QUFFSCxNQUFNLE9BQU8sb0JBQW9CO0lBRGpDO1FBRVUsdUJBQWtCLEdBQUcsSUFBSSxPQUFPLEVBQWEsQ0FBQztJQVN4RCxDQUFDO0lBUEMsSUFBSSxtQkFBbUI7UUFDckIsT0FBTyxJQUFJLENBQUMsa0JBQWtCLENBQUMsWUFBWSxFQUFFLENBQUM7SUFDaEQsQ0FBQztJQUVELGFBQWE7UUFDWCxJQUFJLENBQUMsa0JBQWtCLENBQUMsSUFBSSxFQUFFLENBQUM7SUFDakMsQ0FBQzs7O1lBVkYsVUFBVSIsInNvdXJjZXNDb250ZW50IjpbImltcG9ydCB7IEluamVjdGFibGUgfSBmcm9tICdAYW5ndWxhci9jb3JlJztcclxuXHJcbmltcG9ydCB7IE9ic2VydmFibGUsIFN1YmplY3QgfSBmcm9tICdyeGpzJztcclxuXHJcbi8qKlxyXG4gKiBzZXJ2aWNlIHRvIG1ha2UgRGF0YXRhYmxlQ29tcG9uZW50IGF3YXJlIG9mIGNoYW5nZXMgdG9cclxuICogaW5wdXQgYmluZGluZ3Mgb2YgRGF0YVRhYmxlQ29sdW1uRGlyZWN0aXZlXHJcbiAqL1xyXG5ASW5qZWN0YWJsZSgpXHJcbmV4cG9ydCBjbGFzcyBDb2x1bW5DaGFuZ2VzU2VydmljZSB7XHJcbiAgcHJpdmF0ZSBjb2x1bW5JbnB1dENoYW5nZXMgPSBuZXcgU3ViamVjdDx1bmRlZmluZWQ+KCk7XHJcblxyXG4gIGdldCBjb2x1bW5JbnB1dENoYW5nZXMkKCk6IE9ic2VydmFibGU8dW5kZWZpbmVkPiB7XHJcbiAgICByZXR1cm4gdGhpcy5jb2x1bW5JbnB1dENoYW5nZXMuYXNPYnNlcnZhYmxlKCk7XHJcbiAgfVxyXG5cclxuICBvbklucHV0Q2hhbmdlKCk6IHZvaWQge1xyXG4gICAgdGhpcy5jb2x1bW5JbnB1dENoYW5nZXMubmV4dCgpO1xyXG4gIH1cclxufVxyXG4iXX0=
