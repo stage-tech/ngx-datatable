@@ -1,5 +1,6 @@
-<div visibilityObserver (visible)="recalculate()">
+<div role="table" visibilityObserver (visible)="recalculate()">
   <datatable-header
+    role="rowgroup"
     *ngIf="headerHeight"
     [sorts]="sorts"
     [sortType]="sortType"
@@ -13,6 +14,7 @@
     [targetMarkerTemplate]="targetMarkerTemplate"
     [sortAscendingIcon]="cssClasses.sortAscending"
     [sortDescendingIcon]="cssClasses.sortDescending"
+    [sortUnsetIcon]="cssClasses.sortUnset"
     [allRowsSelected]="allRowsSelected"
     [selectionType]="selectionType"
     (sort)="onColumnSort($event)"
@@ -23,6 +25,7 @@
   >
   </datatable-header>
   <datatable-body
+    role="rowgroup"
     [groupRowsBy]="groupRowsBy"
     [groupedRows]="groupedRows"
     [rows]="_internalRows"

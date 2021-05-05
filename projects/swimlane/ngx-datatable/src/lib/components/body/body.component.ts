@@ -11,7 +11,6 @@ import {
   ChangeDetectionStrategy
 } from '@angular/core';
 import { ScrollerComponent } from './scroller.component';
-import { MouseEvent } from '../../events';
 import { SelectionType } from '../../types/selection.type';
 import { columnsByPin, columnGroupWidths } from '../../utils/column';
 import { RowHeightCache } from '../../utils/row-height-cache';
@@ -20,6 +19,7 @@ import { translateXY } from '../../utils/translate';
 @Component({
   selector: 'datatable-body',
   template: `
+    <datatable-progress *ngIf="loadingIndicator"> </datatable-progress>
     <datatable-selection
       #selector
       [selected]="selected"
@@ -31,7 +31,6 @@ import { translateXY } from '../../utils/translate';
       (select)="select.emit($event)"
       (activate)="activate.emit($event)"
     >
-      <datatable-progress *ngIf="loadingIndicator"> </datatable-progress>
       <datatable-scroller
         *ngIf="rows?.length"
         [scrollbarV]="scrollbarV"
@@ -57,13 +56,14 @@ import { translateXY } from '../../utils/translate';
           [rowDetail]="rowDetail"
           [groupHeader]="groupHeader"
           [offsetX]="offsetX"
-          [detailRowHeight]="getDetailRowHeight(group[i], i)"
+          [detailRowHeight]="getDetailRowHeight(group && group[i], i)"
           [row]="group"
           [expanded]="getRowExpanded(group)"
-          [rowIndex]="getRowIndex(group[i])"
+          [rowIndex]="getRowIndex(group && group[i])"
           (rowContextmenu)="rowContextmenu.emit($event)"
         >
           <datatable-body-row
+            role="row"
             *ngIf="!groupedRows; else groupedRowsTemplate"
             tabindex="-1"
             [isSelected]="selector.getRowSelected(group)"
@@ -76,13 +76,14 @@ import { translateXY } from '../../utils/translate';
             [expanded]="getRowExpanded(group)"
             [rowClass]="rowClass"
             [displayCheck]="displayCheck"
-            [treeStatus]="group.treeStatus"
+            [treeStatus]="group && group.treeStatus"
             (treeAction)="onTreeAction(group)"
             (activate)="selector.onActivate($event, indexes.first + i)"
           >
           </datatable-body-row>
           <ng-template #groupedRowsTemplate>
             <datatable-body-row
+              role="row"
               *ngFor="let row of group.value; let i = index; trackBy: rowTrackingFn"
               tabindex="-1"
               [isSelected]="selector.getRowSelected(row)"
@@ -101,6 +102,7 @@ import { translateXY } from '../../utils/translate';
           </ng-template>
         </datatable-row-wrapper>
         <datatable-summary-row
+          role="row"
           *ngIf="summaryRow && summaryPosition === 'bottom'"
           [ngStyle]="getBottomSummaryRowStyles()"
           [rowHeight]="summaryHeight"
@@ -175,7 +177,7 @@ export class DataTableBodyComponent implements OnInit, OnDestroy {
 
   @Input() set offset(val: number) {
     this._offset = val;
-    this.recalcLayout();
+    if (!this.scrollbarV || (this.scrollbarV && !this.virtualization)) this.recalcLayout();
   }
 
   get offset(): number {
@@ -224,7 +226,7 @@ export class DataTableBodyComponent implements OnInit, OnDestroy {
   @Output() rowContextmenu = new EventEmitter<{ event: MouseEvent; row: any }>(false);
   @Output() treeAction: EventEmitter<any> = new EventEmitter();
 
-  @ViewChild(ScrollerComponent, { static: false }) scroller: ScrollerComponent;
+  @ViewChild(ScrollerComponent) scroller: ScrollerComponent;
 
   /**
    * Returns if selection is enabled.
@@ -254,7 +256,7 @@ export class DataTableBodyComponent implements OnInit, OnDestroy {
   columnGroupWidthsWithoutGroup: any;
   rowTrackingFn: any;
   listener: any;
-  rowIndexes: any = new Map();
+  rowIndexes: any = new WeakMap<any, string>();
   rowExpansions: any[] = [];
 
   _rows: any[];
@@ -398,8 +400,6 @@ export class DataTableBodyComponent implements OnInit, OnDestroy {
     let idx = 0;
     const temp: any[] = [];
 
-    this.rowIndexes.clear();
-
     // if grouprowsby has been specified treat row paging
     // parameters as group paging parameters ie if limit 10 has been
     // specified treat it as 10 groups rather than 10 rows
@@ -414,6 +414,15 @@ export class DataTableBodyComponent implements OnInit, OnDestroy {
       while (rowIndex < last && rowIndex < this.groupedRows.length) {
         // Add the groups into this page
         const group = this.groupedRows[rowIndex];
+        this.rowIndexes.set(group, rowIndex);
+
+        if (group.value) {
+          // add indexes for each group item
+          group.value.forEach((g: any, i: number) => {
+            const _idx = `${rowIndex}-${i}`;
+            this.rowIndexes.set(g, _idx);
+          });
+        }
         temp[idx] = group;
         idx++;
 
@@ -425,6 +434,7 @@ export class DataTableBodyComponent implements OnInit, OnDestroy {
         const row = this.rows[rowIndex];
 
         if (row) {
+          // add indexes for each row
           this.rowIndexes.set(row, rowIndex);
           temp[idx] = row;
         }
@@ -772,7 +782,7 @@ export class DataTableBodyComponent implements OnInit, OnDestroy {
     if (!expanded || !expanded.length) return -1;
 
     const rowId = this.rowIdentity(row);
-    return expanded.findIndex((r) => {
+    return expanded.findIndex(r => {
       const id = this.rowIdentity(r);
       return id === rowId;
     });

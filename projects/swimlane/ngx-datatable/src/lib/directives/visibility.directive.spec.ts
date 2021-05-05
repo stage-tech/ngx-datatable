@@ -1,5 +1,5 @@
-import { async, TestBed, ComponentFixture } from '@angular/core/testing';
-import { Component, DebugElement } from '@angular/core';
+import { TestBed, ComponentFixture, waitForAsync } from '@angular/core/testing';
+import { Component } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { VisibilityDirective } from './visibility.directive';
 
@@ -13,9 +13,7 @@ import { VisibilityDirective } from './visibility.directive';
       }
     `
   ],
-  template: `
-    <div visibilityObserver></div>
-  `
+  template: ` <div visibilityObserver></div> `
 })
 class TestFixtureComponent {}
 
@@ -31,13 +29,15 @@ describe('VisibilityDirective', () => {
     });
   });
 
-  beforeEach(async(() => {
-    TestBed.compileComponents().then(() => {
-      fixture = TestBed.createComponent(TestFixtureComponent);
-      component = fixture.componentInstance;
-      element = fixture.nativeElement;
-    });
-  }));
+  beforeEach(
+    waitForAsync(() => {
+      TestBed.compileComponents().then(() => {
+        fixture = TestBed.createComponent(TestFixtureComponent);
+        component = fixture.componentInstance;
+        element = fixture.nativeElement;
+      });
+    })
+  );
 
   describe('fixture', () => {
     let directive: VisibilityDirective;

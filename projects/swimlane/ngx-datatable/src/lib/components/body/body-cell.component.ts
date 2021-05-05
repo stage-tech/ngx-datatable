@@ -16,7 +16,6 @@ import {
 } from '@angular/core';
 
 import { TableColumn } from '../../types/table-column.type';
-import { MouseEvent, KeyboardEvent } from '../../events';
 import { SortDirection } from '../../types/sort-direction.type';
 import { Keys } from '../../utils/keys';
 
@@ -190,7 +189,7 @@ export class DataTableBodyCellComponent implements DoCheck, OnDestroy {
         });
 
         if (typeof res === 'string') {
-          cls += res;
+          cls += ' ' + res;
         } else if (typeof res === 'object') {
           const keys = Object.keys(res);
           for (const k of keys) {
@@ -248,19 +247,7 @@ export class DataTableBodyCellComponent implements DoCheck, OnDestroy {
   onCheckboxChangeFn = this.onCheckboxChange.bind(this);
   activateFn = this.activate.emit.bind(this.activate);
 
-  cellContext: any = {
-    onCheckboxChangeFn: this.onCheckboxChangeFn,
-    activateFn: this.activateFn,
-    row: this.row,
-    group: this.group,
-    value: this.value,
-    column: this.column,
-    rowHeight: this.rowHeight,
-    isSelected: this.isSelected,
-    rowIndex: this.rowIndex,
-    treeStatus: this.treeStatus,
-    onTreeAction: this.onTreeAction.bind(this)
-  };
+  cellContext: any;
 
   private _isSelected: boolean;
   private _sorts: any[];
@@ -274,6 +261,20 @@ export class DataTableBodyCellComponent implements DoCheck, OnDestroy {
   private _treeStatus: TreeStatus;
 
   constructor(element: ElementRef, private cd: ChangeDetectorRef) {
+    this.cellContext = {
+      onCheckboxChangeFn: this.onCheckboxChangeFn,
+      activateFn: this.activateFn,
+      row: this.row,
+      group: this.group,
+      value: this.value,
+      column: this.column,
+      rowHeight: this.rowHeight,
+      isSelected: this.isSelected,
+      rowIndex: this.rowIndex,
+      treeStatus: this.treeStatus,
+      onTreeAction: this.onTreeAction.bind(this)
+    };
+
     this._element = element.nativeElement;
   }
 
