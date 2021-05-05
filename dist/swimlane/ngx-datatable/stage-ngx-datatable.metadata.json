@@ -11,7 +11,7 @@
             "__symbolic": "reference",
             "module": "@angular/core",
             "name": "NgModule",
-            "line": 34,
+            "line": 47,
             "character": 1
           },
           "arguments": [
@@ -21,14 +21,78 @@
                   "__symbolic": "reference",
                   "module": "@angular/common",
                   "name": "CommonModule",
-                  "line": 35,
-                  "character": 12
+                  "line": 49,
+                  "character": 4
+                },
+                {
+                  "__symbolic": "reference",
+                  "module": "@angular/material/tooltip",
+                  "name": "MatTooltipModule",
+                  "line": 50,
+                  "character": 4
+                },
+                {
+                  "__symbolic": "reference",
+                  "module": "@angular/cdk/overlay",
+                  "name": "OverlayModule",
+                  "line": 51,
+                  "character": 4
+                },
+                {
+                  "__symbolic": "reference",
+                  "module": "@angular/material/icon",
+                  "name": "MatIconModule",
+                  "line": 52,
+                  "character": 4
+                },
+                {
+                  "__symbolic": "reference",
+                  "module": "@angular/material/button",
+                  "name": "MatButtonModule",
+                  "line": 53,
+                  "character": 4
+                },
+                {
+                  "__symbolic": "reference",
+                  "module": "@angular/material/input",
+                  "name": "MatInputModule",
+                  "line": 54,
+                  "character": 4
+                },
+                {
+                  "__symbolic": "reference",
+                  "module": "@angular/material/form-field",
+                  "name": "MatFormFieldModule",
+                  "line": 55,
+                  "character": 4
+                },
+                {
+                  "__symbolic": "reference",
+                  "module": "@angular/material/select",
+                  "name": "MatSelectModule",
+                  "line": 56,
+                  "character": 4
+                },
+                {
+                  "__symbolic": "reference",
+                  "module": "@angular/forms",
+                  "name": "FormsModule",
+                  "line": 57,
+                  "character": 4
+                },
+                {
+                  "__symbolic": "reference",
+                  "module": "@angular/forms",
+                  "name": "ReactiveFormsModule",
+                  "line": 58,
+                  "character": 4
                 }
               ],
               "providers": [
                 { "__symbolic": "reference", "name": "ScrollbarHelper" },
                 { "__symbolic": "reference", "name": "DimensionsHelper" },
-                { "__symbolic": "reference", "name": "ColumnChangesService" }
+                { "__symbolic": "reference", "name": "ColumnChangesService" },
+                { "__symbolic": "reference", "name": "ɵa" }
               ],
               "declarations": [
                 { "__symbolic": "reference", "name": "DataTableFooterTemplateDirective" },
@@ -37,6 +101,7 @@
                 { "__symbolic": "reference", "name": "ResizeableDirective" },
                 { "__symbolic": "reference", "name": "OrderableDirective" },
                 { "__symbolic": "reference", "name": "LongPressDirective" },
+                { "__symbolic": "reference", "name": "ɵb" },
                 { "__symbolic": "reference", "name": "ScrollerComponent" },
                 { "__symbolic": "reference", "name": "DatatableComponent" },
                 { "__symbolic": "reference", "name": "DataTableColumnDirective" },
@@ -48,6 +113,9 @@
                 { "__symbolic": "reference", "name": "ProgressBarComponent" },
                 { "__symbolic": "reference", "name": "DataTableBodyRowComponent" },
                 { "__symbolic": "reference", "name": "DataTableRowWrapperComponent" },
+                { "__symbolic": "reference", "name": "ɵc" },
+                { "__symbolic": "reference", "name": "ɵd" },
+                { "__symbolic": "reference", "name": "ɵe" },
                 { "__symbolic": "reference", "name": "DatatableRowDetailDirective" },
                 { "__symbolic": "reference", "name": "DatatableGroupHeaderDirective" },
                 { "__symbolic": "reference", "name": "DatatableRowDetailTemplateDirective" },
@@ -73,7 +141,8 @@
                 { "__symbolic": "reference", "name": "DatatableFooterDirective" },
                 { "__symbolic": "reference", "name": "DataTablePagerComponent" },
                 { "__symbolic": "reference", "name": "DatatableGroupHeaderTemplateDirective" }
-              ]
+              ],
+              "entryComponents": [{ "__symbolic": "reference", "name": "ɵc" }]
             }
           ]
         }
@@ -102,7 +171,7 @@
             "__symbolic": "reference",
             "module": "@angular/core",
             "name": "Component",
-            "line": 48,
+            "line": 51,
             "character": 1
           },
           "arguments": [
@@ -114,7 +183,7 @@
                   "__symbolic": "reference",
                   "module": "@angular/core",
                   "name": "ChangeDetectionStrategy",
-                  "line": 51,
+                  "line": 54,
                   "character": 19
                 },
                 "member": "OnPush"
@@ -125,15 +194,15 @@
                   "__symbolic": "reference",
                   "module": "@angular/core",
                   "name": "ViewEncapsulation",
-                  "line": 52,
+                  "line": 55,
                   "character": 17
                 },
                 "member": "None"
               },
               "host": { "class": "ngx-datatable" },
-              "template": "<div role=\"table\" visibilityObserver (visible)=\"recalculate()\">\r\n  <datatable-header\r\n    role=\"rowgroup\"\r\n    *ngIf=\"headerHeight\"\r\n    [sorts]=\"sorts\"\r\n    [sortType]=\"sortType\"\r\n    [scrollbarH]=\"scrollbarH\"\r\n    [innerWidth]=\"_innerWidth\"\r\n    [offsetX]=\"_offsetX | async\"\r\n    [dealsWithGroup]=\"groupedRows !== undefined\"\r\n    [columns]=\"_internalColumns\"\r\n    [headerHeight]=\"headerHeight\"\r\n    [reorderable]=\"reorderable\"\r\n    [targetMarkerTemplate]=\"targetMarkerTemplate\"\r\n    [sortAscendingIcon]=\"cssClasses.sortAscending\"\r\n    [sortDescendingIcon]=\"cssClasses.sortDescending\"\r\n    [sortUnsetIcon]=\"cssClasses.sortUnset\"\r\n    [allRowsSelected]=\"allRowsSelected\"\r\n    [selectionType]=\"selectionType\"\r\n    (sort)=\"onColumnSort($event)\"\r\n    (resize)=\"onColumnResize($event)\"\r\n    (reorder)=\"onColumnReorder($event)\"\r\n    (select)=\"onHeaderSelect($event)\"\r\n    (columnContextmenu)=\"onColumnContextmenu($event)\"\r\n  >\r\n  </datatable-header>\r\n  <datatable-body\r\n    role=\"rowgroup\"\r\n    [groupRowsBy]=\"groupRowsBy\"\r\n    [groupedRows]=\"groupedRows\"\r\n    [rows]=\"_internalRows\"\r\n    [groupExpansionDefault]=\"groupExpansionDefault\"\r\n    [scrollbarV]=\"scrollbarV\"\r\n    [scrollbarH]=\"scrollbarH\"\r\n    [virtualization]=\"virtualization\"\r\n    [loadingIndicator]=\"loadingIndicator\"\r\n    [externalPaging]=\"externalPaging\"\r\n    [rowHeight]=\"rowHeight\"\r\n    [rowCount]=\"rowCount\"\r\n    [offset]=\"offset\"\r\n    [trackByProp]=\"trackByProp\"\r\n    [columns]=\"_internalColumns\"\r\n    [pageSize]=\"pageSize\"\r\n    [offsetX]=\"_offsetX | async\"\r\n    [rowDetail]=\"rowDetail\"\r\n    [groupHeader]=\"groupHeader\"\r\n    [selected]=\"selected\"\r\n    [innerWidth]=\"_innerWidth\"\r\n    [bodyHeight]=\"bodyHeight\"\r\n    [selectionType]=\"selectionType\"\r\n    [emptyMessage]=\"messages.emptyMessage\"\r\n    [rowIdentity]=\"rowIdentity\"\r\n    [rowClass]=\"rowClass\"\r\n    [selectCheck]=\"selectCheck\"\r\n    [displayCheck]=\"displayCheck\"\r\n    [summaryRow]=\"summaryRow\"\r\n    [summaryHeight]=\"summaryHeight\"\r\n    [summaryPosition]=\"summaryPosition\"\r\n    (page)=\"onBodyPage($event)\"\r\n    (activate)=\"activate.emit($event)\"\r\n    (rowContextmenu)=\"onRowContextmenu($event)\"\r\n    (select)=\"onBodySelect($event)\"\r\n    (scroll)=\"onBodyScroll($event)\"\r\n    (treeAction)=\"onTreeAction($event)\"\r\n  >\r\n  </datatable-body>\r\n  <datatable-footer\r\n    *ngIf=\"footerHeight\"\r\n    [rowCount]=\"rowCount\"\r\n    [pageSize]=\"pageSize\"\r\n    [offset]=\"offset\"\r\n    [footerHeight]=\"footerHeight\"\r\n    [footerTemplate]=\"footer\"\r\n    [totalMessage]=\"messages.totalMessage\"\r\n    [pagerLeftArrowIcon]=\"cssClasses.pagerLeftArrow\"\r\n    [pagerRightArrowIcon]=\"cssClasses.pagerRightArrow\"\r\n    [pagerPreviousIcon]=\"cssClasses.pagerPrevious\"\r\n    [selectedCount]=\"selected.length\"\r\n    [selectedMessage]=\"!!selectionType && messages.selectedMessage\"\r\n    [pagerNextIcon]=\"cssClasses.pagerNext\"\r\n    (page)=\"onFooterPage($event)\"\r\n  >\r\n  </datatable-footer>\r\n</div>\r\n",
+              "template": "<div role=\"table\" visibilityObserver (visible)=\"recalculate()\">\r\n  <datatable-header\r\n    role=\"rowgroup\"\r\n    *ngIf=\"headerHeight\"\r\n    [sorts]=\"sorts\"\r\n    [sortType]=\"sortType\"\r\n    [scrollbarH]=\"scrollbarH\"\r\n    [innerWidth]=\"_innerWidth\"\r\n    [offsetX]=\"_offsetX | async\"\r\n    [dealsWithGroup]=\"groupedRows !== undefined\"\r\n    [columns]=\"_internalColumns\"\r\n    [headerHeight]=\"headerHeight\"\r\n    [reorderable]=\"reorderable\"\r\n    [targetMarkerTemplate]=\"targetMarkerTemplate\"\r\n    [sortAscendingIcon]=\"cssClasses.sortAscending\"\r\n    [sortDescendingIcon]=\"cssClasses.sortDescending\"\r\n    [sortUnsetIcon]=\"cssClasses.sortUnset\"\r\n    [allRowsSelected]=\"allRowsSelected\"\r\n    [selectionType]=\"selectionType\"\r\n    (sort)=\"onColumnSort($event)\"\r\n    (filter)=\"onColumnFilter($event)\"\r\n    (resize)=\"onColumnResize($event)\"\r\n    (reorder)=\"onColumnReorder($event)\"\r\n    (select)=\"onHeaderSelect($event)\"\r\n    (columnContextmenu)=\"onColumnContextmenu($event)\"\r\n  >\r\n  </datatable-header>\r\n  <datatable-body\r\n    role=\"rowgroup\"\r\n    [groupRowsBy]=\"groupRowsBy\"\r\n    [groupedRows]=\"groupedRows\"\r\n    [rows]=\"_internalRows\"\r\n    [groupExpansionDefault]=\"groupExpansionDefault\"\r\n    [scrollbarV]=\"scrollbarV\"\r\n    [scrollbarH]=\"scrollbarH\"\r\n    [virtualization]=\"virtualization\"\r\n    [loadingIndicator]=\"loadingIndicator\"\r\n    [externalPaging]=\"externalPaging\"\r\n    [rowHeight]=\"rowHeight\"\r\n    [rowCount]=\"rowCount\"\r\n    [offset]=\"offset\"\r\n    [trackByProp]=\"trackByProp\"\r\n    [columns]=\"_internalColumns\"\r\n    [pageSize]=\"pageSize\"\r\n    [offsetX]=\"_offsetX | async\"\r\n    [rowDetail]=\"rowDetail\"\r\n    [groupHeader]=\"groupHeader\"\r\n    [selected]=\"selected\"\r\n    [innerWidth]=\"_innerWidth\"\r\n    [bodyHeight]=\"bodyHeight\"\r\n    [selectionType]=\"selectionType\"\r\n    [emptyMessage]=\"messages.emptyMessage\"\r\n    [rowIdentity]=\"rowIdentity\"\r\n    [rowClass]=\"rowClass\"\r\n    [selectCheck]=\"selectCheck\"\r\n    [displayCheck]=\"displayCheck\"\r\n    [summaryRow]=\"summaryRow\"\r\n    [summaryHeight]=\"summaryHeight\"\r\n    [summaryPosition]=\"summaryPosition\"\r\n    (page)=\"onBodyPage($event)\"\r\n    (activate)=\"activate.emit($event)\"\r\n    (rowContextmenu)=\"onRowContextmenu($event)\"\r\n    (select)=\"onBodySelect($event)\"\r\n    (scroll)=\"onBodyScroll($event)\"\r\n    (treeAction)=\"onTreeAction($event)\"\r\n  >\r\n  </datatable-body>\r\n  <datatable-footer\r\n    *ngIf=\"footerHeight\"\r\n    [rowCount]=\"rowCount\"\r\n    [pageSize]=\"pageSize\"\r\n    [offset]=\"offset\"\r\n    [footerHeight]=\"footerHeight\"\r\n    [footerTemplate]=\"footer\"\r\n    [totalMessage]=\"messages.totalMessage\"\r\n    [pagerLeftArrowIcon]=\"cssClasses.pagerLeftArrow\"\r\n    [pagerRightArrowIcon]=\"cssClasses.pagerRightArrow\"\r\n    [pagerPreviousIcon]=\"cssClasses.pagerPrevious\"\r\n    [selectedCount]=\"selected.length\"\r\n    [selectedMessage]=\"!!selectionType && messages.selectedMessage\"\r\n    [pagerNextIcon]=\"cssClasses.pagerNext\"\r\n    (page)=\"onFooterPage($event)\"\r\n  >\r\n  </datatable-footer>\r\n</div>\r\n",
               "styles": [
-                ".ngx-datatable{display:block;justify-content:center;overflow:hidden;position:relative;transform:translateZ(0)}.ngx-datatable [hidden]{display:none!important}.ngx-datatable *,.ngx-datatable :after,.ngx-datatable :before{box-sizing:border-box}.ngx-datatable.scroll-vertical .datatable-body{overflow-y:auto}.ngx-datatable.scroll-vertical.virtualized .datatable-body .datatable-row-wrapper{position:absolute}.ngx-datatable.scroll-horz .datatable-body{-webkit-overflow-scrolling:touch;overflow-x:auto}.ngx-datatable.fixed-header .datatable-header .datatable-header-inner{white-space:nowrap}.ngx-datatable.fixed-header .datatable-header .datatable-header-inner .datatable-header-cell{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.ngx-datatable.fixed-row .datatable-scroll,.ngx-datatable.fixed-row .datatable-scroll .datatable-body-row{white-space:nowrap}.ngx-datatable.fixed-row .datatable-scroll .datatable-body-row .datatable-body-cell,.ngx-datatable.fixed-row .datatable-scroll .datatable-body-row .datatable-body-group-cell{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.ngx-datatable .datatable-body-row,.ngx-datatable .datatable-header-inner,.ngx-datatable .datatable-row-center{-o-flex-flow:row;display:flex;flex-direction:row;flex-flow:row}.ngx-datatable .datatable-body-cell,.ngx-datatable .datatable-header-cell{display:inline-block;line-height:1.625;overflow-x:hidden;vertical-align:top}.ngx-datatable .datatable-body-cell:focus,.ngx-datatable .datatable-header-cell:focus{outline:none}.ngx-datatable .datatable-row-left,.ngx-datatable .datatable-row-right{z-index:9}.ngx-datatable .datatable-row-center,.ngx-datatable .datatable-row-group,.ngx-datatable .datatable-row-left,.ngx-datatable .datatable-row-right{position:relative}.ngx-datatable .datatable-header{display:block;overflow:hidden}.ngx-datatable .datatable-header .datatable-header-inner{-webkit-align-items:stretch;align-items:stretch}.ngx-datatable .datatable-header .datatable-header-cell{display:inline-block;position:relative}.ngx-datatable .datatable-header .datatable-header-cell.sortable .datatable-header-cell-wrapper{cursor:pointer}.ngx-datatable .datatable-header .datatable-header-cell.longpress .datatable-header-cell-wrapper{cursor:move}.ngx-datatable .datatable-header .datatable-header-cell .sort-btn{cursor:pointer;display:inline-block;line-height:100%;vertical-align:middle}.ngx-datatable .datatable-header .datatable-header-cell .resize-handle,.ngx-datatable .datatable-header .datatable-header-cell .resize-handle--not-resizable{bottom:0;display:inline-block;padding:0 4px;position:absolute;right:0;top:0;visibility:hidden;width:5px}.ngx-datatable .datatable-header .datatable-header-cell .resize-handle{cursor:ew-resize}.ngx-datatable .datatable-header .datatable-header-cell.resizeable:hover .resize-handle,.ngx-datatable .datatable-header .datatable-header-cell:hover .resize-handle--not-resizable{visibility:visible}.ngx-datatable .datatable-header .datatable-header-cell .targetMarker{bottom:0;position:absolute;top:0}.ngx-datatable .datatable-header .datatable-header-cell .targetMarker.dragFromLeft{right:0}.ngx-datatable .datatable-header .datatable-header-cell .targetMarker.dragFromRight{left:0}.ngx-datatable .datatable-header .datatable-header-cell .datatable-header-cell-template-wrap{height:inherit}.ngx-datatable .datatable-body{display:block;position:relative;z-index:10}.ngx-datatable .datatable-body .datatable-scroll{display:inline-block}.ngx-datatable .datatable-body .datatable-row-detail{overflow-y:hidden}.ngx-datatable .datatable-body .datatable-row-wrapper{display:flex;flex-direction:column}.ngx-datatable .datatable-body .datatable-body-row{outline:none}.ngx-datatable .datatable-body .datatable-body-row>div{display:flex}.ngx-datatable .datatable-footer{display:block;overflow:auto;width:100%}.ngx-datatable .datatable-footer .datatable-footer-inner{align-items:center;display:flex;width:100%}.ngx-datatable .datatable-footer .selected-count .page-count{flex:1 1 40%}.ngx-datatable .datatable-footer .selected-count .datatable-pager{flex:1 1 60%}.ngx-datatable .datatable-footer .page-count{flex:1 1 20%}.ngx-datatable .datatable-footer .datatable-pager{flex:1 1 80%;text-align:right}.ngx-datatable .datatable-footer .datatable-pager .pager,.ngx-datatable .datatable-footer .datatable-pager .pager li{display:inline-block;list-style:none;margin:0;padding:0}.ngx-datatable .datatable-footer .datatable-pager .pager li,.ngx-datatable .datatable-footer .datatable-pager .pager li a{outline:none}.ngx-datatable .datatable-footer .datatable-pager .pager li a{cursor:pointer;display:inline-block}.ngx-datatable .datatable-footer .datatable-pager .pager li.disabled a{cursor:not-allowed}"
+                ".ngx-datatable{display:block;justify-content:center;overflow:hidden;position:relative;transform:translateZ(0)}.ngx-datatable [hidden]{display:none!important}.ngx-datatable *,.ngx-datatable :after,.ngx-datatable :before{box-sizing:border-box}.ngx-datatable.scroll-vertical .datatable-body{overflow-y:auto}.ngx-datatable.scroll-vertical.virtualized .datatable-body .datatable-row-wrapper{position:absolute}.ngx-datatable.scroll-horz .datatable-body{-webkit-overflow-scrolling:touch;overflow-x:auto}.ngx-datatable.fixed-header .datatable-header .datatable-header-inner{white-space:nowrap}.ngx-datatable.fixed-header .datatable-header .datatable-header-inner .datatable-header-cell{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.ngx-datatable.fixed-row .datatable-scroll,.ngx-datatable.fixed-row .datatable-scroll .datatable-body-row{white-space:nowrap}.ngx-datatable.fixed-row .datatable-scroll .datatable-body-row .datatable-body-cell,.ngx-datatable.fixed-row .datatable-scroll .datatable-body-row .datatable-body-group-cell{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.ngx-datatable .datatable-body-row,.ngx-datatable .datatable-header-inner,.ngx-datatable .datatable-row-center{-o-flex-flow:row;display:flex;flex-direction:row;flex-flow:row}.ngx-datatable .datatable-body-cell,.ngx-datatable .datatable-header-cell{display:inline-block;line-height:1.625;overflow-x:hidden;vertical-align:top}.ngx-datatable .datatable-body-cell:focus,.ngx-datatable .datatable-header-cell:focus{outline:none}.ngx-datatable .datatable-row-left,.ngx-datatable .datatable-row-right{z-index:9}.ngx-datatable .datatable-row-center,.ngx-datatable .datatable-row-group,.ngx-datatable .datatable-row-left,.ngx-datatable .datatable-row-right{position:relative}.ngx-datatable .datatable-header{display:block;overflow:hidden}.ngx-datatable .datatable-header .datatable-header-inner{-webkit-align-items:stretch;align-items:stretch}.ngx-datatable .datatable-header .filter-template-wrap{padding:0 0 0 .9rem!important}.ngx-datatable .datatable-header .datatable-header-cell{display:inline-block;position:relative}.ngx-datatable .datatable-header .datatable-header-cell.sortable .datatable-header-cell-wrapper{cursor:pointer}.ngx-datatable .datatable-header .datatable-header-cell.longpress .datatable-header-cell-wrapper{cursor:move}.ngx-datatable .datatable-header .datatable-header-cell .sort-btn{cursor:pointer;display:inline-block;line-height:100%;vertical-align:middle}.ngx-datatable .datatable-header .datatable-header-cell .filter-header{padding-top:5px}.ngx-datatable .datatable-header .datatable-header-cell .filter-header .mat-form-field-flex{height:40px}.ngx-datatable .datatable-header .datatable-header-cell .filter-header .mat-form-field-label-wrapper{font-size:12px;font-weight:500;top:-1.01em}.ngx-datatable .datatable-header .datatable-header-cell .resize-handle,.ngx-datatable .datatable-header .datatable-header-cell .resize-handle--not-resizable{bottom:0;display:inline-block;padding:0 4px;position:absolute;right:0;top:0;visibility:hidden;width:5px}.ngx-datatable .datatable-header .datatable-header-cell .resize-handle{cursor:ew-resize}.ngx-datatable .datatable-header .datatable-header-cell.resizeable:hover .resize-handle,.ngx-datatable .datatable-header .datatable-header-cell:hover .resize-handle--not-resizable{visibility:visible}.ngx-datatable .datatable-header .datatable-header-cell .targetMarker{bottom:0;position:absolute;top:0}.ngx-datatable .datatable-header .datatable-header-cell .targetMarker.dragFromLeft{right:0}.ngx-datatable .datatable-header .datatable-header-cell .targetMarker.dragFromRight{left:0}.ngx-datatable .datatable-header .datatable-header-cell .datatable-header-cell-template-wrap{height:inherit}.ngx-datatable .datatable-body{display:block;position:relative;z-index:10}.ngx-datatable .datatable-body .datatable-scroll{display:inline-block}.ngx-datatable .datatable-body .datatable-row-detail{overflow-y:hidden}.ngx-datatable .datatable-body .datatable-row-wrapper{display:flex;flex-direction:column}.ngx-datatable .datatable-body .datatable-body-row{outline:none}.ngx-datatable .datatable-body .datatable-body-row>div{display:flex}.ngx-datatable .datatable-footer{display:block;overflow:auto;width:100%}.ngx-datatable .datatable-footer .datatable-footer-inner{align-items:center;display:flex;width:100%}.ngx-datatable .datatable-footer .selected-count .page-count{flex:1 1 40%}.ngx-datatable .datatable-footer .selected-count .datatable-pager{flex:1 1 60%}.ngx-datatable .datatable-footer .page-count{flex:1 1 20%}.ngx-datatable .datatable-footer .datatable-pager{flex:1 1 80%;text-align:right}.ngx-datatable .datatable-footer .datatable-pager .pager,.ngx-datatable .datatable-footer .datatable-pager .pager li{display:inline-block;list-style:none;margin:0;padding:0}.ngx-datatable .datatable-footer .datatable-pager .pager li,.ngx-datatable .datatable-footer .datatable-pager .pager li a{outline:none}.ngx-datatable .datatable-footer .datatable-pager .pager li a{cursor:pointer;display:inline-block}.ngx-datatable .datatable-footer .datatable-pager .pager li.disabled a{cursor:not-allowed}"
               ]
             }
           ]
@@ -150,7 +219,7 @@
                   "__symbolic": "reference",
                   "module": "@angular/core",
                   "name": "Input",
-                  "line": 62,
+                  "line": 65,
                   "character": 3
                 }
               }
@@ -167,7 +236,7 @@
                   "__symbolic": "reference",
                   "module": "@angular/core",
                   "name": "Input",
-                  "line": 67,
+                  "line": 70,
                   "character": 3
                 }
               }
@@ -184,7 +253,7 @@
                   "__symbolic": "reference",
                   "module": "@angular/core",
                   "name": "Input",
-                  "line": 107,
+                  "line": 110,
                   "character": 3
                 }
               }
@@ -201,14 +270,14 @@
                   "__symbolic": "reference",
                   "module": "@angular/core",
                   "name": "Input",
-                  "line": 136,
+                  "line": 139,
                   "character": 3
                 }
               }
             ]
           }
         ],
-        "columns": [
+        "expandable": [
           {
             "__symbolic": "property",
             "decorators": [
@@ -225,6 +294,23 @@
             ]
           }
         ],
+        "columns": [
+          {
+            "__symbolic": "property",
+            "decorators": [
+              {
+                "__symbolic": "call",
+                "expression": {
+                  "__symbolic": "reference",
+                  "module": "@angular/core",
+                  "name": "Input",
+                  "line": 146,
+                  "character": 3
+                }
+              }
+            ]
+          }
+        ],
         "selected": [
           {
             "__symbolic": "property",
@@ -235,7 +321,7 @@
                   "__symbolic": "reference",
                   "module": "@angular/core",
                   "name": "Input",
-                  "line": 163,
+                  "line": 184,
                   "character": 3
                 }
               }
@@ -252,7 +338,7 @@
                   "__symbolic": "reference",
                   "module": "@angular/core",
                   "name": "Input",
-                  "line": 168,
+                  "line": 189,
                   "character": 3
                 }
               }
@@ -269,7 +355,7 @@
                   "__symbolic": "reference",
                   "module": "@angular/core",
                   "name": "Input",
-                  "line": 173,
+                  "line": 194,
                   "character": 3
                 }
               }
@@ -286,7 +372,7 @@
                   "__symbolic": "reference",
                   "module": "@angular/core",
                   "name": "Input",
-                  "line": 179,
+                  "line": 200,
                   "character": 3
                 }
               }
@@ -303,7 +389,7 @@
                   "__symbolic": "reference",
                   "module": "@angular/core",
                   "name": "Input",
-                  "line": 185,
+                  "line": 206,
                   "character": 3
                 }
               }
@@ -320,7 +406,7 @@
                   "__symbolic": "reference",
                   "module": "@angular/core",
                   "name": "Input",
-                  "line": 191,
+                  "line": 212,
                   "character": 3
                 }
               }
@@ -337,7 +423,7 @@
                   "__symbolic": "reference",
                   "module": "@angular/core",
                   "name": "Input",
-                  "line": 197,
+                  "line": 218,
                   "character": 3
                 }
               }
@@ -354,7 +440,7 @@
                   "__symbolic": "reference",
                   "module": "@angular/core",
                   "name": "Input",
-                  "line": 203,
+                  "line": 224,
                   "character": 3
                 }
               }
@@ -371,7 +457,7 @@
                   "__symbolic": "reference",
                   "module": "@angular/core",
                   "name": "Input",
-                  "line": 209,
+                  "line": 230,
                   "character": 3
                 }
               }
@@ -388,7 +474,7 @@
                   "__symbolic": "reference",
                   "module": "@angular/core",
                   "name": "Input",
-                  "line": 215,
+                  "line": 236,
                   "character": 3
                 }
               }
@@ -405,7 +491,7 @@
                   "__symbolic": "reference",
                   "module": "@angular/core",
                   "name": "Input",
-                  "line": 233,
+                  "line": 254,
                   "character": 3
                 }
               }
@@ -422,7 +508,7 @@
                   "__symbolic": "reference",
                   "module": "@angular/core",
                   "name": "Input",
-                  "line": 251,
+                  "line": 272,
                   "character": 3
                 }
               }
@@ -439,7 +525,7 @@
                   "__symbolic": "reference",
                   "module": "@angular/core",
                   "name": "Input",
-                  "line": 262,
+                  "line": 283,
                   "character": 3
                 }
               }
@@ -456,7 +542,7 @@
                   "__symbolic": "reference",
                   "module": "@angular/core",
                   "name": "Input",
-                  "line": 276,
+                  "line": 297,
                   "character": 3
                 }
               }
@@ -473,7 +559,7 @@
                   "__symbolic": "reference",
                   "module": "@angular/core",
                   "name": "Input",
-                  "line": 282,
+                  "line": 303,
                   "character": 3
                 }
               }
@@ -490,7 +576,7 @@
                   "__symbolic": "reference",
                   "module": "@angular/core",
                   "name": "Input",
-                  "line": 288,
+                  "line": 309,
                   "character": 3
                 }
               }
@@ -507,7 +593,7 @@
                   "__symbolic": "reference",
                   "module": "@angular/core",
                   "name": "Input",
-                  "line": 293,
+                  "line": 314,
                   "character": 3
                 }
               }
@@ -524,7 +610,7 @@
                   "__symbolic": "reference",
                   "module": "@angular/core",
                   "name": "Input",
-                  "line": 299,
+                  "line": 320,
                   "character": 3
                 }
               }
@@ -541,7 +627,7 @@
                   "__symbolic": "reference",
                   "module": "@angular/core",
                   "name": "Input",
-                  "line": 304,
+                  "line": 325,
                   "character": 3
                 }
               }
@@ -558,7 +644,7 @@
                   "__symbolic": "reference",
                   "module": "@angular/core",
                   "name": "Input",
-                  "line": 321,
+                  "line": 342,
                   "character": 3
                 }
               }
@@ -575,7 +661,7 @@
                   "__symbolic": "reference",
                   "module": "@angular/core",
                   "name": "Input",
-                  "line": 340,
+                  "line": 361,
                   "character": 3
                 }
               }
@@ -592,7 +678,7 @@
                   "__symbolic": "reference",
                   "module": "@angular/core",
                   "name": "Input",
-                  "line": 350,
+                  "line": 371,
                   "character": 3
                 }
               }
@@ -609,7 +695,7 @@
                   "__symbolic": "reference",
                   "module": "@angular/core",
                   "name": "Input",
-                  "line": 360,
+                  "line": 381,
                   "character": 3
                 }
               }
@@ -626,7 +712,7 @@
                   "__symbolic": "reference",
                   "module": "@angular/core",
                   "name": "Input",
-                  "line": 367,
+                  "line": 388,
                   "character": 3
                 }
               }
@@ -643,7 +729,7 @@
                   "__symbolic": "reference",
                   "module": "@angular/core",
                   "name": "Input",
-                  "line": 373,
+                  "line": 394,
                   "character": 3
                 }
               }
@@ -660,7 +746,7 @@
                   "__symbolic": "reference",
                   "module": "@angular/core",
                   "name": "Input",
-                  "line": 381,
+                  "line": 402,
                   "character": 3
                 }
               }
@@ -677,7 +763,7 @@
                   "__symbolic": "reference",
                   "module": "@angular/core",
                   "name": "Input",
-                  "line": 386,
+                  "line": 407,
                   "character": 3
                 }
               }
@@ -694,7 +780,7 @@
                   "__symbolic": "reference",
                   "module": "@angular/core",
                   "name": "Input",
-                  "line": 391,
+                  "line": 412,
                   "character": 3
                 }
               }
@@ -711,7 +797,7 @@
                   "__symbolic": "reference",
                   "module": "@angular/core",
                   "name": "Input",
-                  "line": 396,
+                  "line": 417,
                   "character": 3
                 }
               }
@@ -728,7 +814,7 @@
                   "__symbolic": "reference",
                   "module": "@angular/core",
                   "name": "Input",
-                  "line": 401,
+                  "line": 422,
                   "character": 3
                 }
               }
@@ -745,7 +831,7 @@
                   "__symbolic": "reference",
                   "module": "@angular/core",
                   "name": "Input",
-                  "line": 406,
+                  "line": 427,
                   "character": 3
                 }
               }
@@ -762,7 +848,7 @@
                   "__symbolic": "reference",
                   "module": "@angular/core",
                   "name": "Input",
-                  "line": 411,
+                  "line": 432,
                   "character": 3
                 }
               }
@@ -779,7 +865,7 @@
                   "__symbolic": "reference",
                   "module": "@angular/core",
                   "name": "Output",
-                  "line": 416,
+                  "line": 437,
                   "character": 3
                 }
               }
@@ -796,7 +882,7 @@
                   "__symbolic": "reference",
                   "module": "@angular/core",
                   "name": "Output",
-                  "line": 421,
+                  "line": 442,
                   "character": 3
                 }
               }
@@ -813,7 +899,7 @@
                   "__symbolic": "reference",
                   "module": "@angular/core",
                   "name": "Output",
-                  "line": 426,
+                  "line": 447,
                   "character": 3
                 }
               }
@@ -830,7 +916,24 @@
                   "__symbolic": "reference",
                   "module": "@angular/core",
                   "name": "Output",
-                  "line": 431,
+                  "line": 452,
+                  "character": 3
+                }
+              }
+            ]
+          }
+        ],
+        "filter": [
+          {
+            "__symbolic": "property",
+            "decorators": [
+              {
+                "__symbolic": "call",
+                "expression": {
+                  "__symbolic": "reference",
+                  "module": "@angular/core",
+                  "name": "Output",
+                  "line": 457,
                   "character": 3
                 }
               }
@@ -847,7 +950,7 @@
                   "__symbolic": "reference",
                   "module": "@angular/core",
                   "name": "Output",
-                  "line": 436,
+                  "line": 462,
                   "character": 3
                 }
               }
@@ -864,7 +967,7 @@
                   "__symbolic": "reference",
                   "module": "@angular/core",
                   "name": "Output",
-                  "line": 441,
+                  "line": 467,
                   "character": 3
                 }
               }
@@ -881,7 +984,7 @@
                   "__symbolic": "reference",
                   "module": "@angular/core",
                   "name": "Output",
-                  "line": 446,
+                  "line": 472,
                   "character": 3
                 }
               }
@@ -898,7 +1001,7 @@
                   "__symbolic": "reference",
                   "module": "@angular/core",
                   "name": "Output",
-                  "line": 453,
+                  "line": 479,
                   "character": 3
                 }
               }
@@ -915,7 +1018,7 @@
                   "__symbolic": "reference",
                   "module": "@angular/core",
                   "name": "Output",
-                  "line": 458,
+                  "line": 484,
                   "character": 3
                 }
               }
@@ -932,7 +1035,7 @@
                   "__symbolic": "reference",
                   "module": "@angular/core",
                   "name": "HostBinding",
-                  "line": 463,
+                  "line": 489,
                   "character": 3
                 },
                 "arguments": ["class.fixed-header"]
@@ -950,7 +1053,7 @@
                   "__symbolic": "reference",
                   "module": "@angular/core",
                   "name": "HostBinding",
-                  "line": 473,
+                  "line": 499,
                   "character": 3
                 },
                 "arguments": ["class.fixed-row"]
@@ -968,7 +1071,7 @@
                   "__symbolic": "reference",
                   "module": "@angular/core",
                   "name": "HostBinding",
-                  "line": 482,
+                  "line": 508,
                   "character": 3
                 },
                 "arguments": ["class.scroll-vertical"]
@@ -986,7 +1089,7 @@
                   "__symbolic": "reference",
                   "module": "@angular/core",
                   "name": "HostBinding",
-                  "line": 491,
+                  "line": 517,
                   "character": 3
                 },
                 "arguments": ["class.virtualized"]
@@ -1004,7 +1107,7 @@
                   "__symbolic": "reference",
                   "module": "@angular/core",
                   "name": "HostBinding",
-                  "line": 500,
+                  "line": 526,
                   "character": 3
                 },
                 "arguments": ["class.scroll-horz"]
@@ -1022,7 +1125,7 @@
                   "__symbolic": "reference",
                   "module": "@angular/core",
                   "name": "HostBinding",
-                  "line": 508,
+                  "line": 534,
                   "character": 3
                 },
                 "arguments": ["class.selectable"]
@@ -1040,7 +1143,7 @@
                   "__symbolic": "reference",
                   "module": "@angular/core",
                   "name": "HostBinding",
-                  "line": 516,
+                  "line": 542,
                   "character": 3
                 },
                 "arguments": ["class.checkbox-selection"]
@@ -1058,7 +1161,7 @@
                   "__symbolic": "reference",
                   "module": "@angular/core",
                   "name": "HostBinding",
-                  "line": 524,
+                  "line": 550,
                   "character": 3
                 },
                 "arguments": ["class.cell-selection"]
@@ -1076,7 +1179,7 @@
                   "__symbolic": "reference",
                   "module": "@angular/core",
                   "name": "HostBinding",
-                  "line": 532,
+                  "line": 558,
                   "character": 3
                 },
                 "arguments": ["class.single-selection"]
@@ -1094,7 +1197,7 @@
                   "__symbolic": "reference",
                   "module": "@angular/core",
                   "name": "HostBinding",
-                  "line": 540,
+                  "line": 566,
                   "character": 3
                 },
                 "arguments": ["class.multi-selection"]
@@ -1112,7 +1215,7 @@
                   "__symbolic": "reference",
                   "module": "@angular/core",
                   "name": "HostBinding",
-                  "line": 548,
+                  "line": 574,
                   "character": 3
                 },
                 "arguments": ["class.multi-click-selection"]
@@ -1130,7 +1233,7 @@
                   "__symbolic": "reference",
                   "module": "@angular/core",
                   "name": "ContentChildren",
-                  "line": 557,
+                  "line": 583,
                   "character": 3
                 },
                 "arguments": [{ "__symbolic": "reference", "name": "DataTableColumnDirective" }]
@@ -1148,7 +1251,7 @@
                   "__symbolic": "reference",
                   "module": "@angular/core",
                   "name": "ContentChild",
-                  "line": 573,
+                  "line": 599,
                   "character": 3
                 },
                 "arguments": [{ "__symbolic": "reference", "name": "DatatableRowDetailDirective" }]
@@ -1166,7 +1269,7 @@
                   "__symbolic": "reference",
                   "module": "@angular/core",
                   "name": "ContentChild",
-                  "line": 579,
+                  "line": 605,
                   "character": 3
                 },
                 "arguments": [{ "__symbolic": "reference", "name": "DatatableGroupHeaderDirective" }]
@@ -1184,7 +1287,7 @@
                   "__symbolic": "reference",
                   "module": "@angular/core",
                   "name": "ContentChild",
-                  "line": 585,
+                  "line": 611,
                   "character": 3
                 },
                 "arguments": [{ "__symbolic": "reference", "name": "DatatableFooterDirective" }]
@@ -1202,7 +1305,7 @@
                   "__symbolic": "reference",
                   "module": "@angular/core",
                   "name": "ViewChild",
-                  "line": 592,
+                  "line": 618,
                   "character": 3
                 },
                 "arguments": [{ "__symbolic": "reference", "name": "DataTableBodyComponent" }]
@@ -1220,7 +1323,7 @@
                   "__symbolic": "reference",
                   "module": "@angular/core",
                   "name": "ViewChild",
-                  "line": 601,
+                  "line": 627,
                   "character": 3
                 },
                 "arguments": [{ "__symbolic": "reference", "name": "DataTableHeaderComponent" }]
@@ -1239,7 +1342,7 @@
                     "__symbolic": "reference",
                     "module": "@angular/core",
                     "name": "SkipSelf",
-                    "line": 639,
+                    "line": 667,
                     "character": 5
                   }
                 }
@@ -1251,7 +1354,7 @@
                     "__symbolic": "reference",
                     "module": "@angular/core",
                     "name": "SkipSelf",
-                    "line": 640,
+                    "line": 668,
                     "character": 5
                   }
                 }
@@ -1267,7 +1370,7 @@
                     "__symbolic": "reference",
                     "module": "@angular/core",
                     "name": "Optional",
-                    "line": 645,
+                    "line": 673,
                     "character": 5
                   }
                 },
@@ -1277,7 +1380,7 @@
                     "__symbolic": "reference",
                     "module": "@angular/core",
                     "name": "Inject",
-                    "line": 645,
+                    "line": 673,
                     "character": 17
                   },
                   "arguments": ["configuration"]
@@ -1291,21 +1394,21 @@
                 "__symbolic": "reference",
                 "module": "@angular/core",
                 "name": "ChangeDetectorRef",
-                "line": 641,
+                "line": 669,
                 "character": 16
               },
               {
                 "__symbolic": "reference",
                 "module": "@angular/core",
                 "name": "ElementRef",
-                "line": 642,
+                "line": 670,
                 "character": 13
               },
               {
                 "__symbolic": "reference",
                 "module": "@angular/core",
                 "name": "KeyValueDiffers",
-                "line": 643,
+                "line": 671,
                 "character": 13
               },
               { "__symbolic": "reference", "name": "ColumnChangesService" },
@@ -1326,7 +1429,7 @@
                   "__symbolic": "reference",
                   "module": "@angular/core",
                   "name": "Input",
-                  "line": 713,
+                  "line": 752,
                   "character": 3
                 }
               }
@@ -1347,7 +1450,7 @@
                   "__symbolic": "reference",
                   "module": "@angular/core",
                   "name": "HostListener",
-                  "line": 811,
+                  "line": 850,
                   "character": 3
                 },
                 "arguments": ["window:resize"]
@@ -1372,6 +1475,7 @@
         "onRowContextmenu": [{ "__symbolic": "method" }],
         "onColumnResize": [{ "__symbolic": "method" }],
         "onColumnReorder": [{ "__symbolic": "method" }],
+        "onColumnFilter": [{ "__symbolic": "method" }],
         "onColumnSort": [{ "__symbolic": "method" }],
         "onHeaderSelect": [{ "__symbolic": "method" }],
         "onBodySelect": [{ "__symbolic": "method" }],
@@ -1396,7 +1500,7 @@
           "arguments": [
             {
               "selector": "datatable-header",
-              "template": "\n    <div\n      role=\"row\"\n      orderable\n      (reorder)=\"onColumnReordered($event)\"\n      (targetChanged)=\"onTargetChanged($event)\"\n      [style.width.px]=\"_columnGroupWidths.total\"\n      class=\"datatable-header-inner\"\n    >\n      <div\n        *ngFor=\"let colGroup of _columnsByPin; trackBy: trackByGroups\"\n        [class]=\"'datatable-row-' + colGroup.type\"\n        [ngStyle]=\"_styleByGroup[colGroup.type]\"\n      >\n        <datatable-header-cell\n          role=\"columnheader\"\n          *ngFor=\"let column of colGroup.columns; trackBy: columnTrackingFn\"\n          resizeable\n          [resizeEnabled]=\"column.resizeable\"\n          (resize)=\"onColumnResized($event, column)\"\n          long-press\n          [pressModel]=\"column\"\n          [pressEnabled]=\"reorderable && column.draggable\"\n          (longPressStart)=\"onLongPressStart($event)\"\n          (longPressEnd)=\"onLongPressEnd($event)\"\n          draggable\n          [dragX]=\"reorderable && column.draggable && column.dragging\"\n          [dragY]=\"false\"\n          [dragModel]=\"column\"\n          [dragEventTarget]=\"dragEventTarget\"\n          [headerHeight]=\"headerHeight\"\n          [isTarget]=\"column.isTarget\"\n          [targetMarkerTemplate]=\"targetMarkerTemplate\"\n          [targetMarkerContext]=\"column.targetMarkerContext\"\n          [column]=\"column\"\n          [sortType]=\"sortType\"\n          [sorts]=\"sorts\"\n          [selectionType]=\"selectionType\"\n          [sortAscendingIcon]=\"sortAscendingIcon\"\n          [sortDescendingIcon]=\"sortDescendingIcon\"\n          [sortUnsetIcon]=\"sortUnsetIcon\"\n          [allRowsSelected]=\"allRowsSelected\"\n          (sort)=\"onSort($event)\"\n          (select)=\"select.emit($event)\"\n          (columnContextmenu)=\"columnContextmenu.emit($event)\"\n        >\n        </datatable-header-cell>\n      </div>\n    </div>\n  ",
+              "template": "\n    <div\n      role=\"row\"\n      orderable\n      (reorder)=\"onColumnReordered($event)\"\n      (targetChanged)=\"onTargetChanged($event)\"\n      [style.width.px]=\"_columnGroupWidths.total\"\n      class=\"datatable-header-inner\"\n    >\n      <div\n        *ngFor=\"let colGroup of _columnsByPin; trackBy: trackByGroups\"\n        [class]=\"'datatable-row-' + colGroup.type\"\n        [ngStyle]=\"_styleByGroup[colGroup.type]\"\n      >\n        <datatable-header-cell\n          role=\"columnheader\"\n          *ngFor=\"let column of colGroup.columns; trackBy: columnTrackingFn\"\n          [ngClass]=\"{ 'filter-template-wrap': column.filter }\"\n          resizeable\n          [resizeEnabled]=\"column.resizeable\"\n          (resize)=\"onColumnResized($event, column)\"\n          long-press\n          [pressModel]=\"column\"\n          [pressEnabled]=\"reorderable && column.draggable\"\n          (longPressStart)=\"onLongPressStart($event)\"\n          (longPressEnd)=\"onLongPressEnd($event)\"\n          draggable\n          [dragX]=\"reorderable && column.draggable && column.dragging\"\n          [dragY]=\"false\"\n          [dragModel]=\"column\"\n          [dragEventTarget]=\"dragEventTarget\"\n          [headerHeight]=\"headerHeight\"\n          [isTarget]=\"column.isTarget\"\n          [targetMarkerTemplate]=\"targetMarkerTemplate\"\n          [targetMarkerContext]=\"column.targetMarkerContext\"\n          [column]=\"column\"\n          [sortType]=\"sortType\"\n          [sorts]=\"sorts\"\n          [selectionType]=\"selectionType\"\n          [sortAscendingIcon]=\"sortAscendingIcon\"\n          [sortDescendingIcon]=\"sortDescendingIcon\"\n          [sortUnsetIcon]=\"sortUnsetIcon\"\n          [allRowsSelected]=\"allRowsSelected\"\n          (sort)=\"onSort($event)\"\n          (filter)=\"onColumnFilter($event)\"\n          (select)=\"select.emit($event)\"\n          (columnContextmenu)=\"columnContextmenu.emit($event)\"\n        >\n        </datatable-header-cell>\n      </div>\n    </div>\n  ",
               "host": { "class": "datatable-header" },
               "changeDetection": {
                 "__symbolic": "select",
@@ -1404,7 +1508,7 @@
                   "__symbolic": "reference",
                   "module": "@angular/core",
                   "name": "ChangeDetectionStrategy",
-                  "line": 71,
+                  "line": 73,
                   "character": 19
                 },
                 "member": "OnPush"
@@ -1424,7 +1528,7 @@
                   "__symbolic": "reference",
                   "module": "@angular/core",
                   "name": "Input",
-                  "line": 74,
+                  "line": 76,
                   "character": 3
                 }
               }
@@ -1441,7 +1545,7 @@
                   "__symbolic": "reference",
                   "module": "@angular/core",
                   "name": "Input",
-                  "line": 75,
+                  "line": 77,
                   "character": 3
                 }
               }
@@ -1458,7 +1562,7 @@
                   "__symbolic": "reference",
                   "module": "@angular/core",
                   "name": "Input",
-                  "line": 76,
+                  "line": 78,
                   "character": 3
                 }
               }
@@ -1475,7 +1579,7 @@
                   "__symbolic": "reference",
                   "module": "@angular/core",
                   "name": "Input",
-                  "line": 77,
+                  "line": 79,
                   "character": 3
                 }
               }
@@ -1492,7 +1596,7 @@
                   "__symbolic": "reference",
                   "module": "@angular/core",
                   "name": "Input",
-                  "line": 78,
+                  "line": 80,
                   "character": 3
                 }
               }
@@ -1509,7 +1613,7 @@
                   "__symbolic": "reference",
                   "module": "@angular/core",
                   "name": "Input",
-                  "line": 79,
+                  "line": 81,
                   "character": 3
                 }
               }
@@ -1526,7 +1630,7 @@
                   "__symbolic": "reference",
                   "module": "@angular/core",
                   "name": "Input",
-                  "line": 83,
+                  "line": 85,
                   "character": 3
                 }
               }
@@ -1543,7 +1647,7 @@
                   "__symbolic": "reference",
                   "module": "@angular/core",
                   "name": "Input",
-                  "line": 98,
+                  "line": 100,
                   "character": 3
                 }
               }
@@ -1560,7 +1664,7 @@
                   "__symbolic": "reference",
                   "module": "@angular/core",
                   "name": "Input",
-                  "line": 99,
+                  "line": 101,
                   "character": 3
                 }
               }
@@ -1577,7 +1681,7 @@
                   "__symbolic": "reference",
                   "module": "@angular/core",
                   "name": "Input",
-                  "line": 100,
+                  "line": 102,
                   "character": 3
                 }
               }
@@ -1594,7 +1698,7 @@
                   "__symbolic": "reference",
                   "module": "@angular/core",
                   "name": "Input",
-                  "line": 101,
+                  "line": 103,
                   "character": 3
                 }
               }
@@ -1611,7 +1715,7 @@
                   "__symbolic": "reference",
                   "module": "@angular/core",
                   "name": "Input",
-                  "line": 102,
+                  "line": 104,
                   "character": 3
                 }
               }
@@ -1628,7 +1732,7 @@
                   "__symbolic": "reference",
                   "module": "@angular/core",
                   "name": "HostBinding",
-                  "line": 106,
+                  "line": 108,
                   "character": 3
                 },
                 "arguments": ["style.height"]
@@ -1639,7 +1743,7 @@
                   "__symbolic": "reference",
                   "module": "@angular/core",
                   "name": "Input",
-                  "line": 107,
+                  "line": 109,
                   "character": 3
                 }
               }
@@ -1656,7 +1760,7 @@
                   "__symbolic": "reference",
                   "module": "@angular/core",
                   "name": "Input",
-                  "line": 120,
+                  "line": 122,
                   "character": 3
                 }
               }
@@ -1673,7 +1777,7 @@
                   "__symbolic": "reference",
                   "module": "@angular/core",
                   "name": "Input",
-                  "line": 135,
+                  "line": 137,
                   "character": 3
                 }
               }
@@ -1690,7 +1794,7 @@
                   "__symbolic": "reference",
                   "module": "@angular/core",
                   "name": "Output",
-                  "line": 144,
+                  "line": 146,
                   "character": 3
                 }
               }
@@ -1707,7 +1811,7 @@
                   "__symbolic": "reference",
                   "module": "@angular/core",
                   "name": "Output",
-                  "line": 145,
+                  "line": 147,
                   "character": 3
                 }
               }
@@ -1724,7 +1828,7 @@
                   "__symbolic": "reference",
                   "module": "@angular/core",
                   "name": "Output",
-                  "line": 146,
+                  "line": 148,
                   "character": 3
                 }
               }
@@ -1741,7 +1845,7 @@
                   "__symbolic": "reference",
                   "module": "@angular/core",
                   "name": "Output",
-                  "line": 147,
+                  "line": 149,
                   "character": 3
                 }
               }
@@ -1758,7 +1862,24 @@
                   "__symbolic": "reference",
                   "module": "@angular/core",
                   "name": "Output",
-                  "line": 148,
+                  "line": 150,
+                  "character": 3
+                }
+              }
+            ]
+          }
+        ],
+        "filter": [
+          {
+            "__symbolic": "property",
+            "decorators": [
+              {
+                "__symbolic": "call",
+                "expression": {
+                  "__symbolic": "reference",
+                  "module": "@angular/core",
+                  "name": "Output",
+                  "line": 151,
                   "character": 3
                 }
               }
@@ -1773,7 +1894,7 @@
                 "__symbolic": "reference",
                 "module": "@angular/core",
                 "name": "ChangeDetectorRef",
-                "line": 166,
+                "line": 169,
                 "character": 26
               }
             ]
@@ -1792,7 +1913,7 @@
                   "__symbolic": "reference",
                   "module": "@angular/core",
                   "name": "HostBinding",
-                  "line": 192,
+                  "line": 195,
                   "character": 3
                 },
                 "arguments": ["style.width"]
@@ -1809,7 +1930,8 @@
         "onSort": [{ "__symbolic": "method" }],
         "calcNewSorts": [{ "__symbolic": "method" }],
         "setStylesByGroup": [{ "__symbolic": "method" }],
-        "calcStylesByGroup": [{ "__symbolic": "method" }]
+        "calcStylesByGroup": [{ "__symbolic": "method" }],
+        "onColumnFilter": [{ "__symbolic": "method" }]
       }
     },
     "DataTableHeaderCellComponent": {
@@ -1821,13 +1943,13 @@
             "__symbolic": "reference",
             "module": "@angular/core",
             "name": "Component",
-            "line": 16,
+            "line": 18,
             "character": 1
           },
           "arguments": [
             {
               "selector": "datatable-header-cell",
-              "template": "\n    <div class=\"datatable-header-cell-template-wrap\">\n      <ng-template\n        *ngIf=\"isTarget\"\n        [ngTemplateOutlet]=\"targetMarkerTemplate\"\n        [ngTemplateOutletContext]=\"targetMarkerContext\"\n      >\n      </ng-template>\n      <label *ngIf=\"isCheckboxable\" class=\"datatable-checkbox\">\n        <input type=\"checkbox\" [checked]=\"allRowsSelected\" (change)=\"select.emit(!allRowsSelected)\" />\n      </label>\n      <span *ngIf=\"!column.headerTemplate\" class=\"datatable-header-cell-wrapper\">\n        <span class=\"datatable-header-cell-label draggable\" (click)=\"onSort()\" [innerHTML]=\"name\"> </span>\n      </span>\n      <ng-template\n        *ngIf=\"column.headerTemplate\"\n        [ngTemplateOutlet]=\"column.headerTemplate\"\n        [ngTemplateOutletContext]=\"cellContext\"\n      >\n      </ng-template>\n      <span (click)=\"onSort()\" [class]=\"sortClass\"> </span>\n    </div>\n  ",
+              "template": "\n    <div class=\"datatable-header-cell-template-wrap\">\n      <ng-container *ngIf=\"column.filter\">\n        <mat-form-field class=\"filter-header\">\n          <input\n            matInput\n            [placeholder]=\"column.name\"\n            [(ngModel)]=\"filterCache[column.prop]\"\n            (ngModelChange)=\"setFilter(column.prop)\"\n          />\n          <button\n            mat-button\n            *ngIf=\"filterCache[column.prop]\"\n            matSuffix\n            mat-icon-button\n            aria-label=\"Clear\"\n            (click)=\"resetFilter(column.prop)\"\n          >\n            <mat-icon class=\"mat-icon material-icons\">close</mat-icon>\n          </button>\n        </mat-form-field>\n        <button mat-icon-button>\n          <mat-icon class=\"mat-icon material-icons\" (click)=\"onSort()\">sort</mat-icon>\n        </button>\n      </ng-container>\n      <ng-container *ngIf=\"!column.filter\">\n        <ng-template\n          *ngIf=\"isTarget\"\n          [ngTemplateOutlet]=\"targetMarkerTemplate\"\n          [ngTemplateOutletContext]=\"targetMarkerContext\"\n        >\n        </ng-template>\n        <label *ngIf=\"isCheckboxable\" class=\"datatable-checkbox\">\n          <input type=\"checkbox\" [checked]=\"allRowsSelected\" (change)=\"select.emit(!allRowsSelected)\" />\n        </label>\n        <span *ngIf=\"!column.headerTemplate\" class=\"datatable-header-cell-wrapper\">\n          <span class=\"datatable-header-cell-label draggable\" (click)=\"onSort()\" [innerHTML]=\"name\"> </span>\n        </span>\n        <ng-template\n          *ngIf=\"column.headerTemplate\"\n          [ngTemplateOutlet]=\"column.headerTemplate\"\n          [ngTemplateOutletContext]=\"cellContext\"\n        >\n        </ng-template>\n        <span (click)=\"onSort()\" [class]=\"sortClass\"> </span>\n      </ng-container>\n    </div>\n  ",
               "host": { "class": "datatable-header-cell" },
               "changeDetection": {
                 "__symbolic": "select",
@@ -1835,7 +1957,7 @@
                   "__symbolic": "reference",
                   "module": "@angular/core",
                   "name": "ChangeDetectionStrategy",
-                  "line": 44,
+                  "line": 71,
                   "character": 19
                 },
                 "member": "OnPush"
@@ -1855,7 +1977,7 @@
                   "__symbolic": "reference",
                   "module": "@angular/core",
                   "name": "Input",
-                  "line": 47,
+                  "line": 74,
                   "character": 3
                 }
               }
@@ -1872,7 +1994,7 @@
                   "__symbolic": "reference",
                   "module": "@angular/core",
                   "name": "Input",
-                  "line": 48,
+                  "line": 75,
                   "character": 3
                 }
               }
@@ -1889,7 +2011,7 @@
                   "__symbolic": "reference",
                   "module": "@angular/core",
                   "name": "Input",
-                  "line": 49,
+                  "line": 76,
                   "character": 3
                 }
               }
@@ -1906,7 +2028,7 @@
                   "__symbolic": "reference",
                   "module": "@angular/core",
                   "name": "Input",
-                  "line": 50,
+                  "line": 77,
                   "character": 3
                 }
               }
@@ -1923,7 +2045,7 @@
                   "__symbolic": "reference",
                   "module": "@angular/core",
                   "name": "Input",
-                  "line": 52,
+                  "line": 79,
                   "character": 3
                 }
               }
@@ -1940,7 +2062,7 @@
                   "__symbolic": "reference",
                   "module": "@angular/core",
                   "name": "Input",
-                  "line": 53,
+                  "line": 80,
                   "character": 3
                 }
               }
@@ -1957,7 +2079,7 @@
                   "__symbolic": "reference",
                   "module": "@angular/core",
                   "name": "Input",
-                  "line": 54,
+                  "line": 81,
                   "character": 3
                 }
               }
@@ -1974,7 +2096,7 @@
                   "__symbolic": "reference",
                   "module": "@angular/core",
                   "name": "Input",
-                  "line": 58,
+                  "line": 85,
                   "character": 3
                 }
               }
@@ -1991,7 +2113,7 @@
                   "__symbolic": "reference",
                   "module": "@angular/core",
                   "name": "Input",
-                  "line": 66,
+                  "line": 93,
                   "character": 3
                 }
               }
@@ -2008,7 +2130,7 @@
                   "__symbolic": "reference",
                   "module": "@angular/core",
                   "name": "Input",
-                  "line": 68,
+                  "line": 95,
                   "character": 3
                 }
               }
@@ -2025,7 +2147,7 @@
                   "__symbolic": "reference",
                   "module": "@angular/core",
                   "name": "HostBinding",
-                  "line": 78,
+                  "line": 105,
                   "character": 3
                 },
                 "arguments": ["style.height.px"]
@@ -2036,7 +2158,7 @@
                   "__symbolic": "reference",
                   "module": "@angular/core",
                   "name": "Input",
-                  "line": 79,
+                  "line": 106,
                   "character": 3
                 }
               }
@@ -2053,7 +2175,7 @@
                   "__symbolic": "reference",
                   "module": "@angular/core",
                   "name": "Input",
-                  "line": 82,
+                  "line": 109,
                   "character": 3
                 }
               }
@@ -2070,7 +2192,7 @@
                   "__symbolic": "reference",
                   "module": "@angular/core",
                   "name": "Output",
-                  "line": 94,
+                  "line": 121,
                   "character": 3
                 }
               }
@@ -2087,7 +2209,7 @@
                   "__symbolic": "reference",
                   "module": "@angular/core",
                   "name": "Output",
-                  "line": 95,
+                  "line": 122,
                   "character": 3
                 }
               }
@@ -2104,7 +2226,24 @@
                   "__symbolic": "reference",
                   "module": "@angular/core",
                   "name": "Output",
-                  "line": 96,
+                  "line": 123,
+                  "character": 3
+                }
+              }
+            ]
+          }
+        ],
+        "filter": [
+          {
+            "__symbolic": "property",
+            "decorators": [
+              {
+                "__symbolic": "call",
+                "expression": {
+                  "__symbolic": "reference",
+                  "module": "@angular/core",
+                  "name": "Output",
+                  "line": 124,
                   "character": 3
                 }
               }
@@ -2121,7 +2260,7 @@
                   "__symbolic": "reference",
                   "module": "@angular/core",
                   "name": "HostBinding",
-                  "line": 98,
+                  "line": 126,
                   "character": 3
                 },
                 "arguments": ["class"]
@@ -2139,7 +2278,7 @@
                   "__symbolic": "reference",
                   "module": "@angular/core",
                   "name": "HostBinding",
-                  "line": 131,
+                  "line": 159,
                   "character": 3
                 },
                 "arguments": ["attr.title"]
@@ -2157,7 +2296,7 @@
                   "__symbolic": "reference",
                   "module": "@angular/core",
                   "name": "HostBinding",
-                  "line": 137,
+                  "line": 165,
                   "character": 3
                 },
                 "arguments": ["style.minWidth.px"]
@@ -2175,7 +2314,7 @@
                   "__symbolic": "reference",
                   "module": "@angular/core",
                   "name": "HostBinding",
-                  "line": 142,
+                  "line": 170,
                   "character": 3
                 },
                 "arguments": ["style.maxWidth.px"]
@@ -2193,7 +2332,7 @@
                   "__symbolic": "reference",
                   "module": "@angular/core",
                   "name": "HostBinding",
-                  "line": 147,
+                  "line": 175,
                   "character": 3
                 },
                 "arguments": ["style.width.px"]
@@ -2209,7 +2348,7 @@
                 "__symbolic": "reference",
                 "module": "@angular/core",
                 "name": "ChangeDetectorRef",
-                "line": 166,
+                "line": 195,
                 "character": 26
               }
             ]
@@ -2225,7 +2364,7 @@
                   "__symbolic": "reference",
                   "module": "@angular/core",
                   "name": "HostListener",
-                  "line": 176,
+                  "line": 205,
                   "character": 3
                 },
                 "arguments": ["contextmenu", ["$event"]]
@@ -2236,7 +2375,9 @@
         "ngOnInit": [{ "__symbolic": "method" }],
         "calcSortDir": [{ "__symbolic": "method" }],
         "onSort": [{ "__symbolic": "method" }],
-        "calcSortClass": [{ "__symbolic": "method" }]
+        "calcSortClass": [{ "__symbolic": "method" }],
+        "setFilter": [{ "__symbolic": "method" }],
+        "resetFilter": [{ "__symbolic": "method" }]
       }
     },
     "DataTableBodyComponent": {
@@ -2254,14 +2395,14 @@
           "arguments": [
             {
               "selector": "datatable-body",
-              "template": "\n    <datatable-progress *ngIf=\"loadingIndicator\"> </datatable-progress>\n    <datatable-selection\n      #selector\n      [selected]=\"selected\"\n      [rows]=\"rows\"\n      [selectCheck]=\"selectCheck\"\n      [selectEnabled]=\"selectEnabled\"\n      [selectionType]=\"selectionType\"\n      [rowIdentity]=\"rowIdentity\"\n      (select)=\"select.emit($event)\"\n      (activate)=\"activate.emit($event)\"\n    >\n      <datatable-scroller\n        *ngIf=\"rows?.length\"\n        [scrollbarV]=\"scrollbarV\"\n        [scrollbarH]=\"scrollbarH\"\n        [scrollHeight]=\"scrollHeight\"\n        [scrollWidth]=\"columnGroupWidths?.total\"\n        (scroll)=\"onBodyScroll($event)\"\n      >\n        <datatable-summary-row\n          *ngIf=\"summaryRow && summaryPosition === 'top'\"\n          [rowHeight]=\"summaryHeight\"\n          [offsetX]=\"offsetX\"\n          [innerWidth]=\"innerWidth\"\n          [rows]=\"rows\"\n          [columns]=\"columns\"\n        >\n        </datatable-summary-row>\n        <datatable-row-wrapper\n          [groupedRows]=\"groupedRows\"\n          *ngFor=\"let group of temp; let i = index; trackBy: rowTrackingFn\"\n          [innerWidth]=\"innerWidth\"\n          [ngStyle]=\"getRowsStyles(group)\"\n          [rowDetail]=\"rowDetail\"\n          [groupHeader]=\"groupHeader\"\n          [offsetX]=\"offsetX\"\n          [detailRowHeight]=\"getDetailRowHeight(group && group[i], i)\"\n          [row]=\"group\"\n          [expanded]=\"getRowExpanded(group)\"\n          [rowIndex]=\"getRowIndex(group && group[i])\"\n          (rowContextmenu)=\"rowContextmenu.emit($event)\"\n        >\n          <datatable-body-row\n            role=\"row\"\n            *ngIf=\"!groupedRows; else groupedRowsTemplate\"\n            tabindex=\"-1\"\n            [isSelected]=\"selector.getRowSelected(group)\"\n            [innerWidth]=\"innerWidth\"\n            [offsetX]=\"offsetX\"\n            [columns]=\"columns\"\n            [rowHeight]=\"getRowHeight(group)\"\n            [row]=\"group\"\n            [rowIndex]=\"getRowIndex(group)\"\n            [expanded]=\"getRowExpanded(group)\"\n            [rowClass]=\"rowClass\"\n            [displayCheck]=\"displayCheck\"\n            [treeStatus]=\"group && group.treeStatus\"\n            (treeAction)=\"onTreeAction(group)\"\n            (activate)=\"selector.onActivate($event, indexes.first + i)\"\n          >\n          </datatable-body-row>\n          <ng-template #groupedRowsTemplate>\n            <datatable-body-row\n              role=\"row\"\n              *ngFor=\"let row of group.value; let i = index; trackBy: rowTrackingFn\"\n              tabindex=\"-1\"\n              [isSelected]=\"selector.getRowSelected(row)\"\n              [innerWidth]=\"innerWidth\"\n              [offsetX]=\"offsetX\"\n              [columns]=\"columns\"\n              [rowHeight]=\"getRowHeight(row)\"\n              [row]=\"row\"\n              [group]=\"group.value\"\n              [rowIndex]=\"getRowIndex(row)\"\n              [expanded]=\"getRowExpanded(row)\"\n              [rowClass]=\"rowClass\"\n              (activate)=\"selector.onActivate($event, i)\"\n            >\n            </datatable-body-row>\n          </ng-template>\n        </datatable-row-wrapper>\n        <datatable-summary-row\n          role=\"row\"\n          *ngIf=\"summaryRow && summaryPosition === 'bottom'\"\n          [ngStyle]=\"getBottomSummaryRowStyles()\"\n          [rowHeight]=\"summaryHeight\"\n          [offsetX]=\"offsetX\"\n          [innerWidth]=\"innerWidth\"\n          [rows]=\"rows\"\n          [columns]=\"columns\"\n        >\n        </datatable-summary-row>\n      </datatable-scroller>\n      <div class=\"empty-row\" *ngIf=\"!rows?.length && !loadingIndicator\" [innerHTML]=\"emptyMessage\"></div>\n    </datatable-selection>\n  ",
+              "template": "\n    <datatable-progress *ngIf=\"loadingIndicator\"> </datatable-progress>\n    <datatable-selection\n      #selector\n      [selected]=\"selected\"\n      [rows]=\"rows\"\n      [selectCheck]=\"selectCheck\"\n      [selectEnabled]=\"selectEnabled\"\n      [selectionType]=\"selectionType\"\n      [rowIdentity]=\"rowIdentity\"\n      (select)=\"select.emit($event)\"\n      (activate)=\"activate.emit($event)\"\n    >\n      <datatable-scroller\n        *ngIf=\"rows?.length\"\n        [scrollbarV]=\"scrollbarV\"\n        [scrollbarH]=\"scrollbarH\"\n        [scrollHeight]=\"scrollHeight\"\n        [scrollWidth]=\"columnGroupWidths?.total\"\n        (scroll)=\"onBodyScroll($event)\"\n      >\n        <datatable-summary-row\n          *ngIf=\"summaryRow && summaryPosition === 'top'\"\n          [rowHeight]=\"summaryHeight\"\n          [offsetX]=\"offsetX\"\n          [innerWidth]=\"innerWidth\"\n          [rows]=\"rows\"\n          [columns]=\"columns\"\n        >\n        </datatable-summary-row>\n        <datatable-row-wrapper\n          [groupedRows]=\"groupedRows\"\n          *ngFor=\"let group of temp; let i = index; trackBy: rowTrackingFn\"\n          [innerWidth]=\"innerWidth\"\n          [ngStyle]=\"getRowsStyles(group)\"\n          [rowDetail]=\"rowDetail\"\n          [groupHeader]=\"groupHeader\"\n          [offsetX]=\"offsetX\"\n          [detailRowHeight]=\"getDetailRowHeight(group && group[i], i)\"\n          [row]=\"group\"\n          [expanded]=\"getRowExpanded(group)\"\n          [rowIndex]=\"getRowIndex(group && group[i])\"\n          (rowContextmenu)=\"rowContextmenu.emit($event)\"\n        >\n          <datatable-body-row\n            role=\"row\"\n            *ngIf=\"!groupedRows; else groupedRowsTemplate\"\n            tabindex=\"-1\"\n            [isSelected]=\"selector.getRowSelected(group)\"\n            [innerWidth]=\"innerWidth\"\n            [offsetX]=\"offsetX\"\n            [columns]=\"columns\"\n            [rowDetail]=\"rowDetail\"\n            [rowHeight]=\"getRowHeight(group)\"\n            [row]=\"group\"\n            [rowIndex]=\"getRowIndex(group)\"\n            [expanded]=\"getRowExpanded(group)\"\n            [rowClass]=\"rowClass\"\n            [displayCheck]=\"displayCheck\"\n            [treeStatus]=\"group && group.treeStatus\"\n            (treeAction)=\"onTreeAction(group)\"\n            (activate)=\"selector.onActivate($event, indexes.first + i)\"\n          >\n          </datatable-body-row>\n          <ng-template #groupedRowsTemplate>\n            <datatable-body-row\n              role=\"row\"\n              *ngFor=\"let row of group.value; let i = index; trackBy: rowTrackingFn\"\n              tabindex=\"-1\"\n              [isSelected]=\"selector.getRowSelected(row)\"\n              [innerWidth]=\"innerWidth\"\n              [offsetX]=\"offsetX\"\n              [columns]=\"columns\"\n              [rowHeight]=\"getRowHeight(row)\"\n              [row]=\"row\"\n              [group]=\"group.value\"\n              [rowIndex]=\"getRowIndex(row)\"\n              [expanded]=\"getRowExpanded(row)\"\n              [rowClass]=\"rowClass\"\n              (activate)=\"selector.onActivate($event, i)\"\n            >\n            </datatable-body-row>\n          </ng-template>\n        </datatable-row-wrapper>\n        <datatable-summary-row\n          role=\"row\"\n          *ngIf=\"summaryRow && summaryPosition === 'bottom'\"\n          [ngStyle]=\"getBottomSummaryRowStyles()\"\n          [rowHeight]=\"summaryHeight\"\n          [offsetX]=\"offsetX\"\n          [innerWidth]=\"innerWidth\"\n          [rows]=\"rows\"\n          [columns]=\"columns\"\n        >\n        </datatable-summary-row>\n      </datatable-scroller>\n      <div class=\"empty-row\" *ngIf=\"!rows?.length && !loadingIndicator\" [innerHTML]=\"emptyMessage\"></div>\n    </datatable-selection>\n  ",
               "changeDetection": {
                 "__symbolic": "select",
                 "expression": {
                   "__symbolic": "reference",
                   "module": "@angular/core",
                   "name": "ChangeDetectionStrategy",
-                  "line": 118,
+                  "line": 119,
                   "character": 19
                 },
                 "member": "OnPush"
@@ -2282,7 +2423,7 @@
                   "__symbolic": "reference",
                   "module": "@angular/core",
                   "name": "Input",
-                  "line": 124,
+                  "line": 125,
                   "character": 3
                 }
               }
@@ -2299,7 +2440,7 @@
                   "__symbolic": "reference",
                   "module": "@angular/core",
                   "name": "Input",
-                  "line": 125,
+                  "line": 126,
                   "character": 3
                 }
               }
@@ -2316,7 +2457,7 @@
                   "__symbolic": "reference",
                   "module": "@angular/core",
                   "name": "Input",
-                  "line": 126,
+                  "line": 127,
                   "character": 3
                 }
               }
@@ -2333,7 +2474,7 @@
                   "__symbolic": "reference",
                   "module": "@angular/core",
                   "name": "Input",
-                  "line": 127,
+                  "line": 128,
                   "character": 3
                 }
               }
@@ -2350,7 +2491,7 @@
                   "__symbolic": "reference",
                   "module": "@angular/core",
                   "name": "Input",
-                  "line": 128,
+                  "line": 129,
                   "character": 3
                 }
               }
@@ -2367,7 +2508,7 @@
                   "__symbolic": "reference",
                   "module": "@angular/core",
                   "name": "Input",
-                  "line": 129,
+                  "line": 130,
                   "character": 3
                 }
               }
@@ -2384,7 +2525,7 @@
                   "__symbolic": "reference",
                   "module": "@angular/core",
                   "name": "Input",
-                  "line": 130,
+                  "line": 131,
                   "character": 3
                 }
               }
@@ -2401,7 +2542,7 @@
                   "__symbolic": "reference",
                   "module": "@angular/core",
                   "name": "Input",
-                  "line": 131,
+                  "line": 132,
                   "character": 3
                 }
               }
@@ -2418,7 +2559,7 @@
                   "__symbolic": "reference",
                   "module": "@angular/core",
                   "name": "Input",
-                  "line": 132,
+                  "line": 133,
                   "character": 3
                 }
               }
@@ -2435,7 +2576,7 @@
                   "__symbolic": "reference",
                   "module": "@angular/core",
                   "name": "Input",
-                  "line": 133,
+                  "line": 134,
                   "character": 3
                 }
               }
@@ -2452,7 +2593,7 @@
                   "__symbolic": "reference",
                   "module": "@angular/core",
                   "name": "Input",
-                  "line": 134,
+                  "line": 135,
                   "character": 3
                 }
               }
@@ -2469,7 +2610,7 @@
                   "__symbolic": "reference",
                   "module": "@angular/core",
                   "name": "Input",
-                  "line": 135,
+                  "line": 136,
                   "character": 3
                 }
               }
@@ -2486,7 +2627,7 @@
                   "__symbolic": "reference",
                   "module": "@angular/core",
                   "name": "Input",
-                  "line": 136,
+                  "line": 137,
                   "character": 3
                 }
               }
@@ -2503,7 +2644,7 @@
                   "__symbolic": "reference",
                   "module": "@angular/core",
                   "name": "Input",
-                  "line": 137,
+                  "line": 138,
                   "character": 3
                 }
               }
@@ -2520,7 +2661,7 @@
                   "__symbolic": "reference",
                   "module": "@angular/core",
                   "name": "Input",
-                  "line": 138,
+                  "line": 139,
                   "character": 3
                 }
               }
@@ -2537,7 +2678,7 @@
                   "__symbolic": "reference",
                   "module": "@angular/core",
                   "name": "Input",
-                  "line": 139,
+                  "line": 140,
                   "character": 3
                 }
               }
@@ -2554,7 +2695,7 @@
                   "__symbolic": "reference",
                   "module": "@angular/core",
                   "name": "Input",
-                  "line": 140,
+                  "line": 141,
                   "character": 3
                 }
               }
@@ -2571,7 +2712,7 @@
                   "__symbolic": "reference",
                   "module": "@angular/core",
                   "name": "Input",
-                  "line": 141,
+                  "line": 142,
                   "character": 3
                 }
               }
@@ -2588,7 +2729,7 @@
                   "__symbolic": "reference",
                   "module": "@angular/core",
                   "name": "Input",
-                  "line": 142,
+                  "line": 143,
                   "character": 3
                 }
               }
@@ -2605,7 +2746,7 @@
                   "__symbolic": "reference",
                   "module": "@angular/core",
                   "name": "Input",
-                  "line": 143,
+                  "line": 144,
                   "character": 3
                 }
               }
@@ -2622,7 +2763,7 @@
                   "__symbolic": "reference",
                   "module": "@angular/core",
                   "name": "Input",
-                  "line": 144,
+                  "line": 145,
                   "character": 3
                 }
               }
@@ -2639,7 +2780,7 @@
                   "__symbolic": "reference",
                   "module": "@angular/core",
                   "name": "Input",
-                  "line": 145,
+                  "line": 146,
                   "character": 3
                 }
               }
@@ -2656,7 +2797,7 @@
                   "__symbolic": "reference",
                   "module": "@angular/core",
                   "name": "Input",
-                  "line": 146,
+                  "line": 147,
                   "character": 3
                 }
               }
@@ -2673,7 +2814,7 @@
                   "__symbolic": "reference",
                   "module": "@angular/core",
                   "name": "Input",
-                  "line": 147,
+                  "line": 148,
                   "character": 3
                 }
               }
@@ -2690,7 +2831,7 @@
                   "__symbolic": "reference",
                   "module": "@angular/core",
                   "name": "Input",
-                  "line": 149,
+                  "line": 150,
                   "character": 3
                 }
               }
@@ -2707,7 +2848,7 @@
                   "__symbolic": "reference",
                   "module": "@angular/core",
                   "name": "Input",
-                  "line": 158,
+                  "line": 159,
                   "character": 3
                 }
               }
@@ -2724,7 +2865,7 @@
                   "__symbolic": "reference",
                   "module": "@angular/core",
                   "name": "Input",
-                  "line": 167,
+                  "line": 168,
                   "character": 3
                 }
               }
@@ -2741,7 +2882,7 @@
                   "__symbolic": "reference",
                   "module": "@angular/core",
                   "name": "Input",
-                  "line": 177,
+                  "line": 178,
                   "character": 3
                 }
               }
@@ -2758,7 +2899,7 @@
                   "__symbolic": "reference",
                   "module": "@angular/core",
                   "name": "Input",
-                  "line": 186,
+                  "line": 187,
                   "character": 3
                 }
               }
@@ -2775,7 +2916,7 @@
                   "__symbolic": "reference",
                   "module": "@angular/core",
                   "name": "HostBinding",
-                  "line": 195,
+                  "line": 196,
                   "character": 3
                 },
                 "arguments": ["style.width"]
@@ -2793,7 +2934,7 @@
                   "__symbolic": "reference",
                   "module": "@angular/core",
                   "name": "Input",
-                  "line": 204,
+                  "line": 205,
                   "character": 3
                 }
               },
@@ -2803,7 +2944,7 @@
                   "__symbolic": "reference",
                   "module": "@angular/core",
                   "name": "HostBinding",
-                  "line": 205,
+                  "line": 206,
                   "character": 3
                 },
                 "arguments": ["style.height"]
@@ -2821,7 +2962,7 @@
                   "__symbolic": "reference",
                   "module": "@angular/core",
                   "name": "Output",
-                  "line": 220,
+                  "line": 221,
                   "character": 3
                 }
               }
@@ -2838,7 +2979,7 @@
                   "__symbolic": "reference",
                   "module": "@angular/core",
                   "name": "Output",
-                  "line": 221,
+                  "line": 222,
                   "character": 3
                 }
               }
@@ -2855,7 +2996,7 @@
                   "__symbolic": "reference",
                   "module": "@angular/core",
                   "name": "Output",
-                  "line": 222,
+                  "line": 223,
                   "character": 3
                 }
               }
@@ -2872,7 +3013,7 @@
                   "__symbolic": "reference",
                   "module": "@angular/core",
                   "name": "Output",
-                  "line": 223,
+                  "line": 224,
                   "character": 3
                 }
               }
@@ -2889,7 +3030,7 @@
                   "__symbolic": "reference",
                   "module": "@angular/core",
                   "name": "Output",
-                  "line": 224,
+                  "line": 225,
                   "character": 3
                 }
               }
@@ -2906,7 +3047,7 @@
                   "__symbolic": "reference",
                   "module": "@angular/core",
                   "name": "Output",
-                  "line": 225,
+                  "line": 226,
                   "character": 3
                 }
               }
@@ -2923,7 +3064,7 @@
                   "__symbolic": "reference",
                   "module": "@angular/core",
                   "name": "Output",
-                  "line": 226,
+                  "line": 227,
                   "character": 3
                 }
               }
@@ -2940,7 +3081,7 @@
                   "__symbolic": "reference",
                   "module": "@angular/core",
                   "name": "ViewChild",
-                  "line": 228,
+                  "line": 229,
                   "character": 3
                 },
                 "arguments": [{ "__symbolic": "reference", "name": "ScrollerComponent" }]
@@ -2956,7 +3097,7 @@
                 "__symbolic": "reference",
                 "module": "@angular/core",
                 "name": "ChangeDetectorRef",
-                "line": 271,
+                "line": 272,
                 "character": 26
               }
             ]
@@ -2998,7 +3139,7 @@
             "__symbolic": "reference",
             "module": "@angular/core",
             "name": "Component",
-            "line": 23,
+            "line": 25,
             "character": 1
           },
           "arguments": [
@@ -3010,12 +3151,12 @@
                   "__symbolic": "reference",
                   "module": "@angular/core",
                   "name": "ChangeDetectionStrategy",
-                  "line": 25,
+                  "line": 27,
                   "character": 19
                 },
                 "member": "OnPush"
               },
-              "template": "\n    <div class=\"datatable-body-cell-label\" [style.margin-left.px]=\"calcLeftMargin(column, row)\">\n      <label\n        *ngIf=\"column.checkboxable && (!displayCheck || displayCheck(row, column, value))\"\n        class=\"datatable-checkbox\"\n      >\n        <input type=\"checkbox\" [checked]=\"isSelected\" (click)=\"onCheckboxChange($event)\" />\n      </label>\n      <ng-container *ngIf=\"column.isTreeColumn\">\n        <button\n          *ngIf=\"!column.treeToggleTemplate\"\n          class=\"datatable-tree-button\"\n          [disabled]=\"treeStatus === 'disabled'\"\n          (click)=\"onTreeAction()\"\n        >\n          <span>\n            <i *ngIf=\"treeStatus === 'loading'\" class=\"icon datatable-icon-collapse\"></i>\n            <i *ngIf=\"treeStatus === 'collapsed'\" class=\"icon datatable-icon-up\"></i>\n            <i *ngIf=\"treeStatus === 'expanded' || treeStatus === 'disabled'\" class=\"icon datatable-icon-down\"></i>\n          </span>\n        </button>\n        <ng-template\n          *ngIf=\"column.treeToggleTemplate\"\n          [ngTemplateOutlet]=\"column.treeToggleTemplate\"\n          [ngTemplateOutletContext]=\"{ cellContext: cellContext }\"\n        >\n        </ng-template>\n      </ng-container>\n\n      <span *ngIf=\"!column.cellTemplate\" [title]=\"sanitizedValue\" [innerHTML]=\"value\"> </span>\n      <ng-template\n        #cellTemplate\n        *ngIf=\"column.cellTemplate\"\n        [ngTemplateOutlet]=\"column.cellTemplate\"\n        [ngTemplateOutletContext]=\"cellContext\"\n      >\n      </ng-template>\n    </div>\n  "
+              "template": "\n    <div\n      class=\"datatable-body-cell-label\"\n      style=\"display: flex; align-items:center; height: 100%;\"\n      [style.margin-left.px]=\"calcLeftMargin(column, row)\"\n    >\n      <a\n        *ngIf=\"column?.prop === 'ice-expandable' && row?.detail?.length > 0\"\n        href=\"javascript:void(0)\"\n        [class.datatable-icon-down]=\"!expanded\"\n        [class.datatable-icon-up]=\"expanded\"\n        style=\"font-size: 18px; display: flex; align-items: center;\"\n        title=\"Expand/Collapse Row\"\n        (dblclick)=\"toggleExpandRow(row, $event)\"\n        (click)=\"toggleExpandRow(row, $event)\"\n      >\n      </a>\n      <ng-container *ngIf=\"column?.prop !== 'ice-expandable'\">\n        <label\n          *ngIf=\"column.checkboxable && (!displayCheck || displayCheck(row, column, value))\"\n          class=\"datatable-checkbox\"\n        >\n          <input type=\"checkbox\" [checked]=\"isSelected\" (click)=\"onCheckboxChange($event)\" />\n        </label>\n        <ng-container *ngIf=\"column.isTreeColumn\">\n          <button\n            *ngIf=\"!column.treeToggleTemplate\"\n            class=\"datatable-tree-button\"\n            [disabled]=\"treeStatus === 'disabled'\"\n            (click)=\"onTreeAction()\"\n          >\n            <span>\n              <i *ngIf=\"treeStatus === 'loading'\" class=\"icon datatable-icon-collapse\"></i>\n              <i *ngIf=\"treeStatus === 'collapsed'\" class=\"icon datatable-icon-up\"></i>\n              <i *ngIf=\"treeStatus === 'expanded' || treeStatus === 'disabled'\" class=\"icon datatable-icon-down\"></i>\n            </span>\n          </button>\n          <ng-template\n            *ngIf=\"column.treeToggleTemplate\"\n            [ngTemplateOutlet]=\"column.treeToggleTemplate\"\n            [ngTemplateOutletContext]=\"{ cellContext: cellContext }\"\n          >\n          </ng-template>\n        </ng-container>\n\n        <div\n          *ngIf=\"column.icons && getIcons(row, column.icons)\"\n          style=\"display: flex; flex-direction: column; margin-right: 10px;\"\n        >\n          <mat-icon\n            *ngFor=\"let i of getIcons(row, column.icons)\"\n            [innerHTML]=\"i.icon\"\n            [matTooltip]=\"i.text\"\n            (click)=\"\n              !!i.onClickAction\n                ? onClickField(row, column.onClickAction || column.action, $event)\n                : i.action && i.action(row)\n            \"\n            [style.cursor]=\"i.action ? 'pointer' : 'auto'\"\n            class=\"{{ i.class }} mat-icon material-icons ice-ml-10\"\n          ></mat-icon>\n        </div>\n\n        <mat-icon\n          *ngIf=\"\n            column.iconCustomTooltipHtmlText &&\n            column.prop &&\n            selectFieldValue(row, column.iconCustomTooltipHtmlText) as customHtml\n          \"\n          iceCustomHtmlToolTip\n          [iceTooltipHtmlText]=\"sanatizeHtml(customHtml)\"\n          [duration]=\"1500\"\n          class=\"material-icons\"\n          [ngClass]=\"column.prop && selectFieldValue(row, column.iconColor)\"\n          >priority_high</mat-icon\n        >\n\n        <mat-icon\n          *ngIf=\"column.prop && row[column.prop.toString() + 'InfoTooltip']\"\n          [matTooltip]=\"column.prop && row[column.prop.toString() + 'InfoTooltip']\"\n          class=\"mat-icon material-icons\"\n          >info</mat-icon\n        >\n\n        <mat-icon\n          *ngIf=\"column.prop && row[column.prop.toString() + 'Excluded']\"\n          [matTooltip]=\"column.prop && row[column.prop.toString() + 'Excluded']\"\n          class=\"mat-icon material-icons\"\n          >block</mat-icon\n        >\n\n        <span\n          *ngIf=\"\n            !column.actionButtonIcon &&\n            !column.hideTextProperty &&\n            !column.cellTemplate &&\n            (!column.selectOptions || (column.hideIfEmpty && column.hideIfEmpty(row))) &&\n            (!column.editable || !(isEditable(column, row) | async))\n          \"\n          class=\"ice-data-table-row\"\n          iceCustomHtmlToolTip\n          [iceTooltipHtmlText]=\"getTooltipValue(value, row, column)\"\n          [duration]=\"column.tooltipDuration\"\n          [showToolTipOnTextOverflow]=\"true\"\n          [showToolTip]=\"hasToShowToolTip(row, column)\"\n          [innerHTML]=\"value\"\n          (click)=\"onClickField(row, column.onClickAction || column.action, $event)\"\n        ></span>\n\n        <button\n          *ngIf=\"column.actionButtonIcon && !(column.hideActionButton && column.hideActionButton(row) | async)\"\n          mat-icon-button\n          [matTooltip]=\"column.actionButtonTooltip\"\n          (click)=\"onClickRowActionButton($event, column, row)\"\n        >\n          <mat-icon class=\"mat-icon material-icons\">{{ column.actionButtonIcon }}</mat-icon>\n        </button>\n\n        <ice-datatable-row-select\n          style=\"width:100%;\"\n          [ngClass]=\"column.cellClass\"\n          (update)=\"updateSelect(column, row, $event)\"\n          [options]=\"column.selectOptions(row)\"\n          [value]=\"value\"\n          [defaultValue]=\"column.defaultValue\"\n          [selectDisabled]=\"column.disabled\"\n          *ngIf=\"column.selectOptions && !(column.hideIfEmpty && column.hideIfEmpty(row))\"\n        ></ice-datatable-row-select>\n\n        <ng-container *ngIf=\"!column.selectOptions && (column.editable && isEditable(column, row) | async)\">\n          <mat-icon class=\"mat-icon material-icons\" *ngIf=\"!column.hideEditIcon\">edit</mat-icon>\n          <ice-editable-text\n            [ngClass]=\"column.cellClass\"\n            (update)=\"editField(column, row, $event)\"\n            [errorText]=\"selectFieldValue(row, column.errorMessageField)\"\n            [value]=\"value\"\n          >\n            {{ value }}\n          </ice-editable-text>\n        </ng-container>\n\n        <ng-template\n          #cellTemplate\n          *ngIf=\"column.cellTemplate\"\n          [ngTemplateOutlet]=\"column.cellTemplate\"\n          [ngTemplateOutletContext]=\"cellContext\"\n        >\n        </ng-template>\n      </ng-container>\n    </div>\n  "
             }
           ]
         }
@@ -3031,7 +3172,24 @@
                   "__symbolic": "reference",
                   "module": "@angular/core",
                   "name": "Input",
-                  "line": 67,
+                  "line": 181,
+                  "character": 3
+                }
+              }
+            ]
+          }
+        ],
+        "rowDetail": [
+          {
+            "__symbolic": "property",
+            "decorators": [
+              {
+                "__symbolic": "call",
+                "expression": {
+                  "__symbolic": "reference",
+                  "module": "@angular/core",
+                  "name": "Input",
+                  "line": 183,
                   "character": 3
                 }
               }
@@ -3048,7 +3206,7 @@
                   "__symbolic": "reference",
                   "module": "@angular/core",
                   "name": "Input",
-                  "line": 69,
+                  "line": 191,
                   "character": 3
                 }
               }
@@ -3065,7 +3223,7 @@
                   "__symbolic": "reference",
                   "module": "@angular/core",
                   "name": "Input",
-                  "line": 80,
+                  "line": 202,
                   "character": 3
                 }
               }
@@ -3082,7 +3240,7 @@
                   "__symbolic": "reference",
                   "module": "@angular/core",
                   "name": "Input",
-                  "line": 91,
+                  "line": 213,
                   "character": 3
                 }
               }
@@ -3099,7 +3257,7 @@
                   "__symbolic": "reference",
                   "module": "@angular/core",
                   "name": "Input",
-                  "line": 101,
+                  "line": 223,
                   "character": 3
                 }
               }
@@ -3116,7 +3274,7 @@
                   "__symbolic": "reference",
                   "module": "@angular/core",
                   "name": "Input",
-                  "line": 111,
+                  "line": 233,
                   "character": 3
                 }
               }
@@ -3133,7 +3291,7 @@
                   "__symbolic": "reference",
                   "module": "@angular/core",
                   "name": "Input",
-                  "line": 122,
+                  "line": 244,
                   "character": 3
                 }
               }
@@ -3150,7 +3308,7 @@
                   "__symbolic": "reference",
                   "module": "@angular/core",
                   "name": "Input",
-                  "line": 133,
+                  "line": 255,
                   "character": 3
                 }
               }
@@ -3167,7 +3325,7 @@
                   "__symbolic": "reference",
                   "module": "@angular/core",
                   "name": "Input",
-                  "line": 144,
+                  "line": 266,
                   "character": 3
                 }
               }
@@ -3184,7 +3342,7 @@
                   "__symbolic": "reference",
                   "module": "@angular/core",
                   "name": "Input",
-                  "line": 153,
+                  "line": 275,
                   "character": 3
                 }
               }
@@ -3201,7 +3359,7 @@
                   "__symbolic": "reference",
                   "module": "@angular/core",
                   "name": "Output",
-                  "line": 168,
+                  "line": 290,
                   "character": 3
                 }
               }
@@ -3218,7 +3376,7 @@
                   "__symbolic": "reference",
                   "module": "@angular/core",
                   "name": "Output",
-                  "line": 170,
+                  "line": 292,
                   "character": 3
                 }
               }
@@ -3235,7 +3393,7 @@
                   "__symbolic": "reference",
                   "module": "@angular/core",
                   "name": "ViewChild",
-                  "line": 172,
+                  "line": 294,
                   "character": 3
                 },
                 "arguments": [
@@ -3245,7 +3403,7 @@
                       "__symbolic": "reference",
                       "module": "@angular/core",
                       "name": "ViewContainerRef",
-                      "line": 172,
+                      "line": 294,
                       "character": 37
                     },
                     "static": true
@@ -3265,7 +3423,7 @@
                   "__symbolic": "reference",
                   "module": "@angular/core",
                   "name": "HostBinding",
-                  "line": 175,
+                  "line": 297,
                   "character": 3
                 },
                 "arguments": ["class"]
@@ -3283,7 +3441,7 @@
                   "__symbolic": "reference",
                   "module": "@angular/core",
                   "name": "HostBinding",
-                  "line": 218,
+                  "line": 339,
                   "character": 3
                 },
                 "arguments": ["style.width.px"]
@@ -3301,7 +3459,7 @@
                   "__symbolic": "reference",
                   "module": "@angular/core",
                   "name": "HostBinding",
-                  "line": 223,
+                  "line": 344,
                   "character": 3
                 },
                 "arguments": ["style.minWidth.px"]
@@ -3319,7 +3477,7 @@
                   "__symbolic": "reference",
                   "module": "@angular/core",
                   "name": "HostBinding",
-                  "line": 228,
+                  "line": 349,
                   "character": 3
                 },
                 "arguments": ["style.maxWidth.px"]
@@ -3337,7 +3495,7 @@
                   "__symbolic": "reference",
                   "module": "@angular/core",
                   "name": "HostBinding",
-                  "line": 233,
+                  "line": 354,
                   "character": 3
                 },
                 "arguments": ["style.height"]
@@ -3353,15 +3511,22 @@
                 "__symbolic": "reference",
                 "module": "@angular/core",
                 "name": "ElementRef",
-                "line": 262,
+                "line": 384,
                 "character": 23
               },
               {
                 "__symbolic": "reference",
                 "module": "@angular/core",
                 "name": "ChangeDetectorRef",
-                "line": 262,
+                "line": 384,
                 "character": 47
+              },
+              {
+                "__symbolic": "reference",
+                "module": "@angular/platform-browser",
+                "name": "DomSanitizer",
+                "line": 384,
+                "character": 85
               }
             ]
           }
@@ -3379,7 +3544,7 @@
                   "__symbolic": "reference",
                   "module": "@angular/core",
                   "name": "HostListener",
-                  "line": 314,
+                  "line": 436,
                   "character": 3
                 },
                 "arguments": ["focus"]
@@ -3397,7 +3562,7 @@
                   "__symbolic": "reference",
                   "module": "@angular/core",
                   "name": "HostListener",
-                  "line": 319,
+                  "line": 441,
                   "character": 3
                 },
                 "arguments": ["blur"]
@@ -3415,10 +3580,28 @@
                   "__symbolic": "reference",
                   "module": "@angular/core",
                   "name": "HostListener",
-                  "line": 324,
+                  "line": 446,
                   "character": 3
                 },
                 "arguments": ["click", ["$event"]]
+              }
+            ]
+          }
+        ],
+        "middleclickEvent": [
+          {
+            "__symbolic": "method",
+            "decorators": [
+              {
+                "__symbolic": "call",
+                "expression": {
+                  "__symbolic": "reference",
+                  "module": "@angular/core",
+                  "name": "HostListener",
+                  "line": 460,
+                  "character": 3
+                },
+                "arguments": ["mouseup", ["$event"]]
               }
             ]
           }
@@ -3433,7 +3616,7 @@
                   "__symbolic": "reference",
                   "module": "@angular/core",
                   "name": "HostListener",
-                  "line": 338,
+                  "line": 476,
                   "character": 3
                 },
                 "arguments": ["dblclick", ["$event"]]
@@ -3451,7 +3634,7 @@
                   "__symbolic": "reference",
                   "module": "@angular/core",
                   "name": "HostListener",
-                  "line": 352,
+                  "line": 490,
                   "character": 3
                 },
                 "arguments": ["keydown", ["$event"]]
@@ -3463,7 +3646,18 @@
         "calcSortDir": [{ "__symbolic": "method" }],
         "stripHtml": [{ "__symbolic": "method" }],
         "onTreeAction": [{ "__symbolic": "method" }],
-        "calcLeftMargin": [{ "__symbolic": "method" }]
+        "calcLeftMargin": [{ "__symbolic": "method" }],
+        "hasToShowToolTip": [{ "__symbolic": "method" }],
+        "getTooltipValue": [{ "__symbolic": "method" }],
+        "getIcons": [{ "__symbolic": "method" }],
+        "selectFieldValue": [{ "__symbolic": "method" }],
+        "onClickRowActionButton": [{ "__symbolic": "method" }],
+        "sanatizeHtml": [{ "__symbolic": "method" }],
+        "isEditable": [{ "__symbolic": "method" }],
+        "updateSelect": [{ "__symbolic": "method" }],
+        "editField": [{ "__symbolic": "method" }],
+        "toggleExpandRow": [{ "__symbolic": "method" }],
+        "onClickField": [{ "__symbolic": "method" }]
       }
     },
     "DataTableBodyRowComponent": {
@@ -3475,7 +3669,7 @@
             "__symbolic": "reference",
             "module": "@angular/core",
             "name": "Component",
-            "line": 22,
+            "line": 23,
             "character": 1
           },
           "arguments": [
@@ -3487,12 +3681,12 @@
                   "__symbolic": "reference",
                   "module": "@angular/core",
                   "name": "ChangeDetectionStrategy",
-                  "line": 24,
+                  "line": 25,
                   "character": 19
                 },
                 "member": "OnPush"
               },
-              "template": "\n    <div\n      *ngFor=\"let colGroup of _columnsByPin; let i = index; trackBy: trackByGroups\"\n      class=\"datatable-row-{{ colGroup.type }} datatable-row-group\"\n      [ngStyle]=\"_groupStyles[colGroup.type]\"\n    >\n      <datatable-body-cell\n        role=\"cell\"\n        *ngFor=\"let column of colGroup.columns; let ii = index; trackBy: columnTrackingFn\"\n        tabindex=\"-1\"\n        [row]=\"row\"\n        [group]=\"group\"\n        [expanded]=\"expanded\"\n        [isSelected]=\"isSelected\"\n        [rowIndex]=\"rowIndex\"\n        [column]=\"column\"\n        [rowHeight]=\"rowHeight\"\n        [displayCheck]=\"displayCheck\"\n        [treeStatus]=\"treeStatus\"\n        (activate)=\"onActivate($event, ii)\"\n        (treeAction)=\"onTreeAction()\"\n      >\n      </datatable-body-cell>\n    </div>\n  "
+              "template": "\n    <div\n      *ngFor=\"let colGroup of _columnsByPin; let i = index; trackBy: trackByGroups\"\n      class=\"datatable-row-{{ colGroup.type }} datatable-row-group\"\n      [ngStyle]=\"_groupStyles[colGroup.type]\"\n    >\n      <datatable-body-cell\n        role=\"cell\"\n        *ngFor=\"let column of colGroup.columns; let ii = index; trackBy: columnTrackingFn\"\n        tabindex=\"-1\"\n        [row]=\"row\"\n        [group]=\"group\"\n        [rowDetail]=\"rowDetail\"\n        [expanded]=\"expanded\"\n        [isSelected]=\"isSelected\"\n        [rowIndex]=\"rowIndex\"\n        [column]=\"column\"\n        [rowHeight]=\"rowHeight\"\n        [displayCheck]=\"displayCheck\"\n        [treeStatus]=\"treeStatus\"\n        (activate)=\"onActivate($event, ii)\"\n        (treeAction)=\"onTreeAction()\"\n      >\n      </datatable-body-cell>\n    </div>\n  "
             }
           ]
         }
@@ -3508,7 +3702,7 @@
                   "__symbolic": "reference",
                   "module": "@angular/core",
                   "name": "Input",
-                  "line": 52,
+                  "line": 54,
                   "character": 3
                 }
               }
@@ -3525,7 +3719,7 @@
                   "__symbolic": "reference",
                   "module": "@angular/core",
                   "name": "Input",
-                  "line": 62,
+                  "line": 64,
                   "character": 3
                 }
               }
@@ -3542,7 +3736,7 @@
                   "__symbolic": "reference",
                   "module": "@angular/core",
                   "name": "Input",
-                  "line": 77,
+                  "line": 79,
                   "character": 3
                 }
               }
@@ -3559,7 +3753,7 @@
                   "__symbolic": "reference",
                   "module": "@angular/core",
                   "name": "Input",
-                  "line": 78,
+                  "line": 80,
                   "character": 3
                 }
               }
@@ -3576,7 +3770,7 @@
                   "__symbolic": "reference",
                   "module": "@angular/core",
                   "name": "Input",
-                  "line": 79,
+                  "line": 81,
                   "character": 3
                 }
               }
@@ -3593,7 +3787,7 @@
                   "__symbolic": "reference",
                   "module": "@angular/core",
                   "name": "Input",
-                  "line": 80,
+                  "line": 82,
                   "character": 3
                 }
               }
@@ -3610,7 +3804,7 @@
                   "__symbolic": "reference",
                   "module": "@angular/core",
                   "name": "Input",
-                  "line": 81,
+                  "line": 83,
                   "character": 3
                 }
               }
@@ -3627,7 +3821,7 @@
                   "__symbolic": "reference",
                   "module": "@angular/core",
                   "name": "Input",
-                  "line": 82,
+                  "line": 84,
                   "character": 3
                 }
               }
@@ -3644,7 +3838,7 @@
                   "__symbolic": "reference",
                   "module": "@angular/core",
                   "name": "Input",
-                  "line": 83,
+                  "line": 85,
                   "character": 3
                 }
               }
@@ -3661,7 +3855,24 @@
                   "__symbolic": "reference",
                   "module": "@angular/core",
                   "name": "Input",
-                  "line": 84,
+                  "line": 86,
+                  "character": 3
+                }
+              }
+            ]
+          }
+        ],
+        "rowDetail": [
+          {
+            "__symbolic": "property",
+            "decorators": [
+              {
+                "__symbolic": "call",
+                "expression": {
+                  "__symbolic": "reference",
+                  "module": "@angular/core",
+                  "name": "Input",
+                  "line": 87,
                   "character": 3
                 }
               }
@@ -3678,7 +3889,7 @@
                   "__symbolic": "reference",
                   "module": "@angular/core",
                   "name": "Input",
-                  "line": 86,
+                  "line": 89,
                   "character": 3
                 }
               }
@@ -3695,7 +3906,7 @@
                   "__symbolic": "reference",
                   "module": "@angular/core",
                   "name": "HostBinding",
-                  "line": 95,
+                  "line": 98,
                   "character": 3
                 },
                 "arguments": ["class"]
@@ -3713,7 +3924,7 @@
                   "__symbolic": "reference",
                   "module": "@angular/core",
                   "name": "HostBinding",
-                  "line": 125,
+                  "line": 128,
                   "character": 3
                 },
                 "arguments": ["style.height.px"]
@@ -3724,7 +3935,7 @@
                   "__symbolic": "reference",
                   "module": "@angular/core",
                   "name": "Input",
-                  "line": 126,
+                  "line": 129,
                   "character": 3
                 }
               }
@@ -3741,7 +3952,7 @@
                   "__symbolic": "reference",
                   "module": "@angular/core",
                   "name": "HostBinding",
-                  "line": 129,
+                  "line": 132,
                   "character": 3
                 },
                 "arguments": ["style.width.px"]
@@ -3759,7 +3970,7 @@
                   "__symbolic": "reference",
                   "module": "@angular/core",
                   "name": "Output",
-                  "line": 134,
+                  "line": 137,
                   "character": 3
                 }
               }
@@ -3776,7 +3987,7 @@
                   "__symbolic": "reference",
                   "module": "@angular/core",
                   "name": "Output",
-                  "line": 135,
+                  "line": 138,
                   "character": 3
                 }
               }
@@ -3795,7 +4006,7 @@
                     "__symbolic": "reference",
                     "module": "@angular/core",
                     "name": "SkipSelf",
-                    "line": 153,
+                    "line": 156,
                     "character": 5
                   }
                 }
@@ -3808,7 +4019,7 @@
                 "__symbolic": "reference",
                 "module": "@angular/core",
                 "name": "KeyValueDiffers",
-                "line": 152,
+                "line": 155,
                 "character": 21
               },
               { "__symbolic": "reference", "name": "ScrollbarHelper" },
@@ -3816,14 +4027,14 @@
                 "__symbolic": "reference",
                 "module": "@angular/core",
                 "name": "ChangeDetectorRef",
-                "line": 154,
+                "line": 157,
                 "character": 16
               },
               {
                 "__symbolic": "reference",
                 "module": "@angular/core",
                 "name": "ElementRef",
-                "line": 155,
+                "line": 158,
                 "character": 13
               }
             ]
@@ -3845,7 +4056,7 @@
                   "__symbolic": "reference",
                   "module": "@angular/core",
                   "name": "HostListener",
-                  "line": 209,
+                  "line": 216,
                   "character": 3
                 },
                 "arguments": ["keydown", ["$event"]]
@@ -3863,7 +4074,7 @@
                   "__symbolic": "reference",
                   "module": "@angular/core",
                   "name": "HostListener",
-                  "line": 234,
+                  "line": 241,
                   "character": 3
                 },
                 "arguments": ["mouseenter", ["$event"]]
@@ -7142,7 +7353,824 @@
         }
       }
     },
-    "groupRowsByParents": { "__symbolic": "function" }
+    "groupRowsByParents": { "__symbolic": "function" },
+    "ɵa": {
+      "__symbolic": "class",
+      "decorators": [
+        {
+          "__symbolic": "call",
+          "expression": {
+            "__symbolic": "reference",
+            "module": "@angular/core",
+            "name": "Injectable",
+            "line": 8,
+            "character": 1
+          }
+        }
+      ],
+      "members": {
+        "setToolbar": [{ "__symbolic": "method" }],
+        "clearTimeout": [{ "__symbolic": "method" }],
+        "setTimeout": [{ "__symbolic": "method" }],
+        "destroy": [{ "__symbolic": "method" }],
+        "closeToolTip": [{ "__symbolic": "method" }]
+      }
+    },
+    "ɵb": {
+      "__symbolic": "class",
+      "decorators": [
+        {
+          "__symbolic": "call",
+          "expression": {
+            "__symbolic": "reference",
+            "module": "@angular/core",
+            "name": "Directive",
+            "line": 4,
+            "character": 1
+          },
+          "arguments": [{ "selector": "[iceCustomHtmlToolTip]" }]
+        }
+      ],
+      "members": {
+        "iceTooltipHtmlText": [
+          {
+            "__symbolic": "property",
+            "decorators": [
+              {
+                "__symbolic": "call",
+                "expression": {
+                  "__symbolic": "reference",
+                  "module": "@angular/core",
+                  "name": "Input",
+                  "line": 8,
+                  "character": 3
+                }
+              }
+            ]
+          }
+        ],
+        "showToolTip": [
+          {
+            "__symbolic": "property",
+            "decorators": [
+              {
+                "__symbolic": "call",
+                "expression": {
+                  "__symbolic": "reference",
+                  "module": "@angular/core",
+                  "name": "Input",
+                  "line": 9,
+                  "character": 3
+                }
+              }
+            ]
+          }
+        ],
+        "showToolTipOnTextOverflow": [
+          {
+            "__symbolic": "property",
+            "decorators": [
+              {
+                "__symbolic": "call",
+                "expression": {
+                  "__symbolic": "reference",
+                  "module": "@angular/core",
+                  "name": "Input",
+                  "line": 10,
+                  "character": 3
+                }
+              }
+            ]
+          }
+        ],
+        "duration": [
+          {
+            "__symbolic": "property",
+            "decorators": [
+              {
+                "__symbolic": "call",
+                "expression": {
+                  "__symbolic": "reference",
+                  "module": "@angular/core",
+                  "name": "Input",
+                  "line": 11,
+                  "character": 3
+                }
+              }
+            ]
+          }
+        ],
+        "__ctor__": [
+          {
+            "__symbolic": "constructor",
+            "parameters": [
+              {
+                "__symbolic": "reference",
+                "module": "@angular/cdk/overlay",
+                "name": "Overlay",
+                "line": 14,
+                "character": 22
+              },
+              {
+                "__symbolic": "reference",
+                "module": "@angular/cdk/overlay",
+                "name": "OverlayPositionBuilder",
+                "line": 15,
+                "character": 37
+              },
+              {
+                "__symbolic": "reference",
+                "module": "@angular/core",
+                "name": "ElementRef",
+                "line": 16,
+                "character": 25
+              },
+              { "__symbolic": "reference", "name": "ɵa" }
+            ]
+          }
+        ],
+        "show": [
+          {
+            "__symbolic": "method",
+            "decorators": [
+              {
+                "__symbolic": "call",
+                "expression": {
+                  "__symbolic": "reference",
+                  "module": "@angular/core",
+                  "name": "HostListener",
+                  "line": 20,
+                  "character": 3
+                },
+                "arguments": ["mouseenter"]
+              }
+            ]
+          }
+        ],
+        "hide": [
+          {
+            "__symbolic": "method",
+            "decorators": [
+              {
+                "__symbolic": "call",
+                "expression": {
+                  "__symbolic": "reference",
+                  "module": "@angular/core",
+                  "name": "HostListener",
+                  "line": 38,
+                  "character": 3
+                },
+                "arguments": ["mouseleave"]
+              }
+            ]
+          }
+        ],
+        "ngOnDestroy": [{ "__symbolic": "method" }]
+      }
+    },
+    "ɵc": {
+      "__symbolic": "class",
+      "decorators": [
+        {
+          "__symbolic": "call",
+          "expression": {
+            "__symbolic": "reference",
+            "module": "@angular/core",
+            "name": "Component",
+            "line": 2,
+            "character": 1
+          },
+          "arguments": [
+            {
+              "selector": "ice-custom-tooltip",
+              "encapsulation": {
+                "__symbolic": "select",
+                "expression": {
+                  "__symbolic": "reference",
+                  "module": "@angular/core",
+                  "name": "ViewEncapsulation",
+                  "line": 5,
+                  "character": 17
+                },
+                "member": "None"
+              },
+              "host": { "class": "ice-custom-tooltip" },
+              "template": "<div>\r\n  <div class=\"tooltip-container\">\r\n    <div [innerHTML]=\"text\"></div>\r\n  </div>\r\n</div>\r\n",
+              "styles": [
+                ".ice-custom-tooltip .tooltip-container{background:#616161;border:1px solid grey;border-radius:2px;border-radius:5px;color:#fff;padding:1px 5px 4px}.ice-custom-tooltip .tooltip-table{border-collapse:collapse}.ice-custom-tooltip .tooltip-header-row{border-bottom:1pt solid #fff}.ice-custom-tooltip .text-align-left{text-align:left}.ice-custom-tooltip .text-align-vertical-center{vertical-align:middle!important}.ice-custom-tooltip .cell-padding{margin:5px;padding:5px}"
+              ]
+            }
+          ]
+        }
+      ],
+      "members": {
+        "text": [
+          {
+            "__symbolic": "property",
+            "decorators": [
+              {
+                "__symbolic": "call",
+                "expression": {
+                  "__symbolic": "reference",
+                  "module": "@angular/core",
+                  "name": "Input",
+                  "line": 12,
+                  "character": 3
+                }
+              }
+            ]
+          }
+        ],
+        "onMouseLeave": [
+          {
+            "__symbolic": "property",
+            "decorators": [
+              {
+                "__symbolic": "call",
+                "expression": {
+                  "__symbolic": "reference",
+                  "module": "@angular/core",
+                  "name": "Input",
+                  "line": 13,
+                  "character": 3
+                }
+              }
+            ]
+          }
+        ],
+        "onMouseEnter": [
+          {
+            "__symbolic": "property",
+            "decorators": [
+              {
+                "__symbolic": "call",
+                "expression": {
+                  "__symbolic": "reference",
+                  "module": "@angular/core",
+                  "name": "Input",
+                  "line": 14,
+                  "character": 3
+                }
+              }
+            ]
+          }
+        ],
+        "hide": [
+          {
+            "__symbolic": "method",
+            "decorators": [
+              {
+                "__symbolic": "call",
+                "expression": {
+                  "__symbolic": "reference",
+                  "module": "@angular/core",
+                  "name": "HostListener",
+                  "line": 16,
+                  "character": 3
+                },
+                "arguments": ["mouseleave"]
+              }
+            ]
+          }
+        ],
+        "show": [
+          {
+            "__symbolic": "method",
+            "decorators": [
+              {
+                "__symbolic": "call",
+                "expression": {
+                  "__symbolic": "reference",
+                  "module": "@angular/core",
+                  "name": "HostListener",
+                  "line": 23,
+                  "character": 3
+                },
+                "arguments": ["mouseenter"]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "ɵd": {
+      "__symbolic": "class",
+      "decorators": [
+        {
+          "__symbolic": "call",
+          "expression": {
+            "__symbolic": "reference",
+            "module": "@angular/core",
+            "name": "Component",
+            "line": 2,
+            "character": 1
+          },
+          "arguments": [
+            {
+              "selector": "ice-datatable-row-select",
+              "changeDetection": {
+                "__symbolic": "select",
+                "expression": {
+                  "__symbolic": "reference",
+                  "module": "@angular/core",
+                  "name": "ChangeDetectionStrategy",
+                  "line": 5,
+                  "character": 19
+                },
+                "member": "OnPush"
+              },
+              "template": "<select *ngIf=\"_options\" style=\"width: 100%;\" [ngClass]=\"currentClass\" #selectElement (change)=\"emitUpdate(selectElement.value)\" [(ngModel)]=\"value\" [disabled]=\"selectDisabled\">\r\n      <option *ngFor=\"let item of _options\" [value]=\"item.value\" [disabled]=\"item.disabled\" [ngClass]=\"item.class || 'black'\">{{ item.label }}</option>\r\n</select>\r\n\r\n\r\n <!-- <mat-form-field appearance=\"fill\">\r\n  <mat-select>\r\n    <ng-container *ngFor=\"let item of options\">\r\n    <mat-option  [value]=\"item.value\">{{ item.label }}</mat-option>\r\n  </ng-container>\r\n  </mat-select>\r\n</mat-form-field> -->\r\n"
+            }
+          ]
+        }
+      ],
+      "members": {
+        "align": [
+          {
+            "__symbolic": "property",
+            "decorators": [
+              {
+                "__symbolic": "call",
+                "expression": {
+                  "__symbolic": "reference",
+                  "module": "@angular/core",
+                  "name": "Input",
+                  "line": 12,
+                  "character": 3
+                }
+              }
+            ]
+          }
+        ],
+        "focusOnEnter": [
+          {
+            "__symbolic": "property",
+            "decorators": [
+              {
+                "__symbolic": "call",
+                "expression": {
+                  "__symbolic": "reference",
+                  "module": "@angular/core",
+                  "name": "Input",
+                  "line": 13,
+                  "character": 3
+                }
+              }
+            ]
+          }
+        ],
+        "defaultValue": [
+          {
+            "__symbolic": "property",
+            "decorators": [
+              {
+                "__symbolic": "call",
+                "expression": {
+                  "__symbolic": "reference",
+                  "module": "@angular/core",
+                  "name": "Input",
+                  "line": 14,
+                  "character": 3
+                }
+              }
+            ]
+          }
+        ],
+        "editOnFocus": [
+          {
+            "__symbolic": "property",
+            "decorators": [
+              {
+                "__symbolic": "call",
+                "expression": {
+                  "__symbolic": "reference",
+                  "module": "@angular/core",
+                  "name": "Input",
+                  "line": 15,
+                  "character": 3
+                }
+              }
+            ]
+          }
+        ],
+        "selectDisabled": [
+          {
+            "__symbolic": "property",
+            "decorators": [
+              {
+                "__symbolic": "call",
+                "expression": {
+                  "__symbolic": "reference",
+                  "module": "@angular/core",
+                  "name": "Input",
+                  "line": 16,
+                  "character": 3
+                }
+              }
+            ]
+          }
+        ],
+        "title": [
+          {
+            "__symbolic": "property",
+            "decorators": [
+              {
+                "__symbolic": "call",
+                "expression": {
+                  "__symbolic": "reference",
+                  "module": "@angular/core",
+                  "name": "Input",
+                  "line": 17,
+                  "character": 3
+                }
+              }
+            ]
+          }
+        ],
+        "update": [
+          {
+            "__symbolic": "property",
+            "decorators": [
+              {
+                "__symbolic": "call",
+                "expression": {
+                  "__symbolic": "reference",
+                  "module": "@angular/core",
+                  "name": "Output",
+                  "line": 18,
+                  "character": 3
+                }
+              }
+            ]
+          }
+        ],
+        "options": [
+          {
+            "__symbolic": "property",
+            "decorators": [
+              {
+                "__symbolic": "call",
+                "expression": {
+                  "__symbolic": "reference",
+                  "module": "@angular/core",
+                  "name": "Input",
+                  "line": 19,
+                  "character": 3
+                }
+              }
+            ]
+          }
+        ],
+        "default": [
+          {
+            "__symbolic": "property",
+            "decorators": [
+              {
+                "__symbolic": "call",
+                "expression": {
+                  "__symbolic": "reference",
+                  "module": "@angular/core",
+                  "name": "Input",
+                  "line": 25,
+                  "character": 3
+                }
+              }
+            ]
+          }
+        ],
+        "value": [
+          {
+            "__symbolic": "property",
+            "decorators": [
+              {
+                "__symbolic": "call",
+                "expression": {
+                  "__symbolic": "reference",
+                  "module": "@angular/core",
+                  "name": "Input",
+                  "line": 26,
+                  "character": 3
+                }
+              }
+            ]
+          }
+        ],
+        "selectEl": [
+          {
+            "__symbolic": "property",
+            "decorators": [
+              {
+                "__symbolic": "call",
+                "expression": {
+                  "__symbolic": "reference",
+                  "module": "@angular/core",
+                  "name": "ViewChildren",
+                  "line": 33,
+                  "character": 3
+                },
+                "arguments": ["selectElement"]
+              }
+            ]
+          }
+        ],
+        "ngOnInit": [{ "__symbolic": "method" }],
+        "emitUpdate": [{ "__symbolic": "method" }]
+      }
+    },
+    "ɵe": {
+      "__symbolic": "class",
+      "decorators": [
+        {
+          "__symbolic": "call",
+          "expression": {
+            "__symbolic": "reference",
+            "module": "@angular/core",
+            "name": "Component",
+            "line": 13,
+            "character": 1
+          },
+          "arguments": [
+            {
+              "selector": "ice-editable-text",
+              "encapsulation": {
+                "__symbolic": "select",
+                "expression": {
+                  "__symbolic": "reference",
+                  "module": "@angular/core",
+                  "name": "ViewEncapsulation",
+                  "line": 17,
+                  "character": 17
+                },
+                "member": "None"
+              },
+              "host": { "class": "ice-editable-text" },
+              "changeDetection": {
+                "__symbolic": "select",
+                "expression": {
+                  "__symbolic": "reference",
+                  "module": "@angular/core",
+                  "name": "ChangeDetectionStrategy",
+                  "line": 21,
+                  "character": 19
+                },
+                "member": "OnPush"
+              },
+              "template": "<button\r\n  class=\"button-as-text mb-0\"\r\n  #contentWrapper\r\n  *ngIf=\"!editing\"\r\n  [disabled]=\"disabled\"\r\n  [class.active]=\"active\"\r\n  (keyup.space)=\"editOnSpace && emitToggleEditing($event)\"\r\n  (focus)=\"emitFocus(); editOnFocus && emitToggleEditing($event)\"\r\n  (click)=\"emitToggleActive($event); editOnClick && emitToggleEditing($event)\"\r\n>\r\n  <ng-content></ng-content>\r\n</button>\r\n<div *ngIf=\"editing\" class=\"editable-text-container\">\r\n  <div>\r\n    <input\r\n      type=\"text\"\r\n      class=\"editable-text-input\"\r\n      #inputElement\r\n      [disabled]=\"disabled\"\r\n      [class.active]=\"active\"\r\n      [value]=\"value\"\r\n      (keyup.escape)=\"emitToggleEditing($event)\"\r\n      (keyup.enter)=\"emitUpdate(inputElement.value)\"\r\n      (change)=\"emitUpdate(inputElement.value)\"\r\n      (blur)=\"emitToggleEditing($event)\"\r\n    />\r\n  </div>\r\n</div>\r\n<div *ngIf=\"errorText\" class=\"editable-text-container ice-pt-10\">\r\n  <label class=\"ice-error-msg\">{{ errorText }}</label>\r\n</div>\r\n",
+              "styles": [
+                ".ice-editable-text .inherit-all{all:inherit}.ice-editable-text .active{background-color:hsla(0,0%,100%,.3)!important}.ice-editable-text .button-as-text{background:inherit;border:none;border-bottom:1px dashed #aaa!important;border-radius:.2rem;color:inherit;font-size:inherit;font-style:inherit;font-weight:inherit;margin:inherit;min-height:20px;min-width:50px;padding:inherit;text-align:inherit}.ice-editable-text .button-as-text:hover{background-color:hsla(0,0%,100%,.2)!important}.ice-editable-text .editable-text-input{border-bottom:1px dashed #aaa!important}"
+              ]
+            }
+          ]
+        }
+      ],
+      "members": {
+        "align": [
+          {
+            "__symbolic": "property",
+            "decorators": [
+              {
+                "__symbolic": "call",
+                "expression": {
+                  "__symbolic": "reference",
+                  "module": "@angular/core",
+                  "name": "Input",
+                  "line": 27,
+                  "character": 3
+                }
+              }
+            ]
+          }
+        ],
+        "editOnSpace": [
+          {
+            "__symbolic": "property",
+            "decorators": [
+              {
+                "__symbolic": "call",
+                "expression": {
+                  "__symbolic": "reference",
+                  "module": "@angular/core",
+                  "name": "Input",
+                  "line": 28,
+                  "character": 3
+                }
+              }
+            ]
+          }
+        ],
+        "editOnClick": [
+          {
+            "__symbolic": "property",
+            "decorators": [
+              {
+                "__symbolic": "call",
+                "expression": {
+                  "__symbolic": "reference",
+                  "module": "@angular/core",
+                  "name": "Input",
+                  "line": 29,
+                  "character": 3
+                }
+              }
+            ]
+          }
+        ],
+        "focusOnEnter": [
+          {
+            "__symbolic": "property",
+            "decorators": [
+              {
+                "__symbolic": "call",
+                "expression": {
+                  "__symbolic": "reference",
+                  "module": "@angular/core",
+                  "name": "Input",
+                  "line": 30,
+                  "character": 3
+                }
+              }
+            ]
+          }
+        ],
+        "editOnFocus": [
+          {
+            "__symbolic": "property",
+            "decorators": [
+              {
+                "__symbolic": "call",
+                "expression": {
+                  "__symbolic": "reference",
+                  "module": "@angular/core",
+                  "name": "Input",
+                  "line": 31,
+                  "character": 3
+                }
+              }
+            ]
+          }
+        ],
+        "disabled": [
+          {
+            "__symbolic": "property",
+            "decorators": [
+              {
+                "__symbolic": "call",
+                "expression": {
+                  "__symbolic": "reference",
+                  "module": "@angular/core",
+                  "name": "Input",
+                  "line": 32,
+                  "character": 3
+                }
+              }
+            ]
+          }
+        ],
+        "value": [
+          {
+            "__symbolic": "property",
+            "decorators": [
+              {
+                "__symbolic": "call",
+                "expression": {
+                  "__symbolic": "reference",
+                  "module": "@angular/core",
+                  "name": "Input",
+                  "line": 33,
+                  "character": 3
+                }
+              }
+            ]
+          }
+        ],
+        "errorText": [
+          {
+            "__symbolic": "property",
+            "decorators": [
+              {
+                "__symbolic": "call",
+                "expression": {
+                  "__symbolic": "reference",
+                  "module": "@angular/core",
+                  "name": "Input",
+                  "line": 34,
+                  "character": 3
+                }
+              }
+            ]
+          }
+        ],
+        "focus": [
+          {
+            "__symbolic": "property",
+            "decorators": [
+              {
+                "__symbolic": "call",
+                "expression": {
+                  "__symbolic": "reference",
+                  "module": "@angular/core",
+                  "name": "Output",
+                  "line": 35,
+                  "character": 3
+                }
+              }
+            ]
+          }
+        ],
+        "toggleEditing": [
+          {
+            "__symbolic": "property",
+            "decorators": [
+              {
+                "__symbolic": "call",
+                "expression": {
+                  "__symbolic": "reference",
+                  "module": "@angular/core",
+                  "name": "Output",
+                  "line": 36,
+                  "character": 3
+                }
+              }
+            ]
+          }
+        ],
+        "toggleActive": [
+          {
+            "__symbolic": "property",
+            "decorators": [
+              {
+                "__symbolic": "call",
+                "expression": {
+                  "__symbolic": "reference",
+                  "module": "@angular/core",
+                  "name": "Output",
+                  "line": 37,
+                  "character": 3
+                }
+              }
+            ]
+          }
+        ],
+        "update": [
+          {
+            "__symbolic": "property",
+            "decorators": [
+              {
+                "__symbolic": "call",
+                "expression": {
+                  "__symbolic": "reference",
+                  "module": "@angular/core",
+                  "name": "Output",
+                  "line": 38,
+                  "character": 3
+                }
+              }
+            ]
+          }
+        ],
+        "inputEl": [
+          {
+            "__symbolic": "property",
+            "decorators": [
+              {
+                "__symbolic": "call",
+                "expression": {
+                  "__symbolic": "reference",
+                  "module": "@angular/core",
+                  "name": "ViewChildren",
+                  "line": 39,
+                  "character": 3
+                },
+                "arguments": ["inputElement"]
+              }
+            ]
+          }
+        ],
+        "content": [
+          {
+            "__symbolic": "property",
+            "decorators": [
+              {
+                "__symbolic": "call",
+                "expression": {
+                  "__symbolic": "reference",
+                  "module": "@angular/core",
+                  "name": "ViewChild",
+                  "line": 40,
+                  "character": 3
+                },
+                "arguments": ["contentWrapper", { "static": false }]
+              }
+            ]
+          }
+        ],
+        "emitUpdate": [{ "__symbolic": "method" }],
+        "emitToggleEditing": [{ "__symbolic": "method" }],
+        "emitFocus": [{ "__symbolic": "method" }],
+        "emitToggleActive": [{ "__symbolic": "method" }],
+        "ngAfterViewInit": [{ "__symbolic": "method" }]
+      }
+    }
   },
   "origins": {
     "NgxDatatableModule": "./lib/ngx-datatable.module",
@@ -7224,7 +8252,12 @@
     "elementsFromPoint": "./lib/utils/elm-from-point",
     "OptionalValueGetter": "./lib/utils/tree",
     "optionalGetterForProp": "./lib/utils/tree",
-    "groupRowsByParents": "./lib/utils/tree"
+    "groupRowsByParents": "./lib/utils/tree",
+    "ɵa": "./lib/services/toolbar-service",
+    "ɵb": "./lib/directives/ice-custom-html-tooltip.directive",
+    "ɵc": "./lib/components/ice-custom-tooltip/ice-custom-tooltip.component",
+    "ɵd": "./lib/components/ice-datatable-select/ice-datatable-select.component",
+    "ɵe": "./lib/components/ice-editable-text/ice-editable-text.component"
   },
   "importAs": "@stage/ngx-datatable"
 }

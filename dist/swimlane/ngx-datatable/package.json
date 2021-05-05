@@ -1,6 +1,6 @@
 {
-  "name": "@swimlane/ngx-datatable",
-  "version": "19.0.0",
+  "name": "@stage/ngx-datatable",
+  "version": "1.0.0",
   "description": "ngx-datatable is an Angular table grid component for presenting large and complex data.",
   "peerDependencies": {
     "@angular/common": "^11.0.2",
@@ -29,12 +29,12 @@
     "url": "https://github.com/swimlane/ngx-datatable/issues"
   },
   "homepage": "https://github.com/swimlane/ngx-datatable#readme",
-  "main": "bundles/swimlane-ngx-datatable.umd.js",
-  "module": "fesm2015/swimlane-ngx-datatable.js",
-  "es2015": "fesm2015/swimlane-ngx-datatable.js",
-  "esm2015": "esm2015/swimlane-ngx-datatable.js",
-  "fesm2015": "fesm2015/swimlane-ngx-datatable.js",
-  "typings": "swimlane-ngx-datatable.d.ts",
-  "metadata": "swimlane-ngx-datatable.metadata.json",
+  "main": "bundles/stage-ngx-datatable.umd.js",
+  "module": "fesm2015/stage-ngx-datatable.js",
+  "es2015": "fesm2015/stage-ngx-datatable.js",
+  "esm2015": "esm2015/stage-ngx-datatable.js",
+  "fesm2015": "fesm2015/stage-ngx-datatable.js",
+  "typings": "stage-ngx-datatable.d.ts",
+  "metadata": "stage-ngx-datatable.metadata.json",
   "sideEffects": false
 }
