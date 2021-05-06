@@ -54,7 +54,9 @@ export class DataTableSelectionComponent {
       selected = selected.filter(this.selectCheck.bind(this));
     }
 
-    this.selected.splice(0, this.selected.length);
+    while (this.selected.length) {
+      this.selected.pop();
+    }
     this.selected.push(...selected);
 
     this.prevIndex = index;

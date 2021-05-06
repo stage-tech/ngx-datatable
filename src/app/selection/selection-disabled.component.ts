@@ -77,7 +77,9 @@ export class MultiDisableSelectionComponent {
   onSelect({ selected }) {
     console.log('Select Event', selected, this.selected);
 
-    this.selected.splice(0, this.selected.length);
+    while (this.selected.length) {
+      this.selected.pop();
+    }
     this.selected.push(...selected);
   }
 
